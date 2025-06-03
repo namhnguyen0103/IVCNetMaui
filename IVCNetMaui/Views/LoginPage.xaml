@@ -4,25 +4,28 @@
              xmlns:local="clr-namespace:IVCNetMaui"
              xmlns:viewModel="clr-namespace:IVCNetMaui.ViewModels"
              x:Class="IVCNetMaui.Views.LoginPage"
-             
-             Title="NewPage1">
+             Title="Login">
+    
     <ContentPage.BindingContext>
         <viewModel:LoginViewModel />
     </ContentPage.BindingContext>
-    <VerticalStackLayout VerticalOptions="Center">
-        <Label Text="Sign In" 
-               HorizontalOptions="Center" />
-        <Label Text="Enter your user name and password to access the iVAH application"
+    <VerticalStackLayout VerticalOptions="Start"
+                         Padding="24, 80">
+        <Image Source="ivc_logo.png"
+               WidthRequest="168"
+               Margin="0, 0, 0, 32"/>
+        <!--Add Longwatch i3 (VAH)-->
+        <Label Text="Log into your account"
                HorizontalOptions="Center" 
-               HorizontalTextAlignment="Center"/>
-        <Label Text="[Logo Goes Here]"
-               HorizontalOptions="Center"/>
-        <Label Text="Username" />
-        <Entry Placeholder="Enter your user name" />
-        <Label Text="Password"/>
+               FontFamily="NunitoBold"
+               FontSize="16"
+               Margin="0, 0, 0, 24"/>
+        <Entry Placeholder="Enter your username"
+               Margin="0, 0, 0, 16" />
         <Entry Placeholder="Enter your password"
-               IsPassword="True"/>
-        <Button Text="Log In"
-                Command="{Binding Login}"/>
+               IsPassword="True"
+               Margin="0, 0, 0, 32"/>
+        <Button Text="Log in"
+                Command="{Binding LoginCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

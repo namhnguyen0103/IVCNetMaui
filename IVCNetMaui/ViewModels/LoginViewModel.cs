@@ -1,43 +1,27 @@
 namespace IVCNetMaui.ViewModels;
 using CommunityToolkit.Mvvm;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.ComponentModel;
 
-public class LoginViewModel : INotifyPropertyChanged
+public partial class LoginViewModel : ObservableObject
 {
-	public Command Login;
+    public IAsyncRelayCommand LoginCommand { get; }
 
-    private string _username, _password;
+	[ObservableProperty]
+	private string username;
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+	[ObservableProperty]
+	private string password;
 
     public LoginViewModel()
 	{
-		//Login = new Command(
-		//	execute: async () => await Shell.Current.GoToAsync("//Dashboard/Hub"));
+		LoginCommand = new AsyncRelayCommand(OnLoginAsync);
 	}
 
-	public string Username
+	private async Task OnLoginAsync()
 	{
-		get => _username;
-		set
-		{
-			if (_username != value)
-			{
-				_username = value;
-			}
-		}
-	}
-
-	public string Password
-	{
-		get => _password;
-		set
-		{
-			if (_password != value)
-			{
-				_password = value;
-			}
-		}
+		Application.Current.Windows[0].Page = new AppShell();
 	}
 
 	

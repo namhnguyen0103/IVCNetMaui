@@ -16,6 +16,11 @@ namespace IVCNetMaui
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Nunito-VariableFont_wght.ttf", "Nunito");
+                    fonts.AddFont("Nunito-Light.ttf", "NunitoLight");
+                    fonts.AddFont("Nunito-Regular.ttf", "NunitoRegular");
+                    fonts.AddFont("Nunito-Medium.ttf", "NunitoMedium");
+                    fonts.AddFont("Nunito-Bold.ttf", "NunitoBold");
                 });
 
 #if DEBUG

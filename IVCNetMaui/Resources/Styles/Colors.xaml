@@ -6,12 +6,20 @@
 
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
 
-    <Color x:Key="Primary">#512BD4</Color>
-    <Color x:Key="PrimaryDark">#ac99ea</Color>
+    <Color x:Key="Primary">#0868D2</Color>
+    <Color x:Key="PrimaryDark">#0868D2</Color>
     <Color x:Key="PrimaryDarkText">#242424</Color>
-    <Color x:Key="Secondary">#DFD8F7</Color>
-    <Color x:Key="SecondaryDarkText">#9880e5</Color>
-    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="Secondary">#9ACAFF</Color>
+    <Color x:Key="SecondaryDarkText">#53A5FF</Color>
+    <Color x:Key="Tertiary">#043871</Color>
+
+    <Color x:Key="BlueExtraLight">#E3F0FF</Color>
+    <Color x:Key="BlueLight">#9ACAFF</Color>
+    <Color x:Key="BlueMedium">#53A5FF</Color>
+    <Color x:Key="BluePrimary">#0868D2</Color>
+    <Color x:Key="BlueDark">#0552A8</Color>
+    <Color x:Key="BlueExtraDark">#043871</Color>
+    <Color x:Key="BlueBlack">#002752</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
@@ -19,14 +27,16 @@
     <Color x:Key="MidnightBlue">#190649</Color>
     <Color x:Key="OffBlack">#1f1f1f</Color>
 
-    <Color x:Key="Gray100">#E1E1E1</Color>
-    <Color x:Key="Gray200">#C8C8C8</Color>
-    <Color x:Key="Gray300">#ACACAC</Color>
-    <Color x:Key="Gray400">#919191</Color>
-    <Color x:Key="Gray500">#6E6E6E</Color>
-    <Color x:Key="Gray600">#404040</Color>
-    <Color x:Key="Gray900">#212121</Color>
-    <Color x:Key="Gray950">#141414</Color>
+    <Color x:Key="Gray100">#F8F9FA</Color>
+    <Color x:Key="Gray200">#F1F3F5</Color>
+    <Color x:Key="Gray300">#E9ECEE</Color>
+    <Color x:Key="Gray400">#DEE2E6</Color>
+    <Color x:Key="Gray500">#CFD4DA</Color>
+    <Color x:Key="Gray600">#ADB5BD</Color>
+    <Color x:Key="Gray700">#868E96</Color>
+    <Color x:Key="Gray800">#495057</Color>
+    <Color x:Key="Gray900">#343A40</Color>
+    <Color x:Key="Gray950">#21252A</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
