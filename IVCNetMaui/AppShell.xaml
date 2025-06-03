@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="IVCNetMaui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:IVCNetMaui"
+    xmlns:views="clr-namespace:IVCNetMaui.Views"
+    xmlns:dashboard="clr-namespace:IVCNetMaui.Views.Dashboard"
+    xmlns:view="clr-namespace:IVCNetMaui.Views.View"
+    xmlns:historical="clr-namespace:IVCNetMaui.Views.Historical"
+    Title="IVCNetMaui">
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Dashboard">
+            <ShellContent Title="Hub" 
+                          ContentTemplate="{DataTemplate dashboard:HubPage}" />
+            <ShellContent Title="Edge" 
+                          ContentTemplate="{DataTemplate dashboard:EdgePage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Views" FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="View">
+            <ShellContent Title="Camera View" 
+                          ContentTemplate="{DataTemplate view:CameraPage}" />
+            <ShellContent Title="Event View" 
+                          ContentTemplate="{DataTemplate view:EventPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Historical">
+            <ShellContent Title="Health Data"
+                          ContentTemplate="{DataTemplate historical:HealthDataPage}" />
+            <ShellContent Title="IoT Data"
+                          ContentTemplate="{DataTemplate historical:IoTDataPage}" />
+            <ShellContent Title="Media Data"
+                          ContentTemplate="{DataTemplate historical:MediaDataPage}" />
+
+        </Tab>
+    </FlyoutItem>
+
+</Shell>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IVCNetMaui.Views.Historical.MediaDataPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Media Data">
+    <ContentPage.Resources>
+        <Style x:Key="mediaElement"
+               TargetType="toolkit:MediaElement">
+            <Setter Property="HorizontalOptions" Value="Fill" />
+            <Setter Property="HeightRequest" Value="250" />
+        </Style>
+        <Style x:Key="Header"
+               TargetType="Label">
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="DCam1-Mjpeg-640x512.avi" Style="{StaticResource Header}" />
+            <toolkit:MediaElement  Source="embed://DCam1-Mjpeg-640x512.avi"
+                                   ShouldShowPlaybackControls="True" 
+                                   Style="{StaticResource mediaElement}" />
+            <Label Text="YCK-H264-640x360.mp4" Style="{StaticResource Header}"/>
+            <toolkit:MediaElement  Source="embed://YCX-H264-640x360.mp4"
+                                   ShouldShowPlaybackControls="True" 
+                                   Style="{StaticResource mediaElement}" />
+            <Label Text="UNV-H265-1280x720.mp4" Style="{StaticResource Header}" />
+            <toolkit:MediaElement  Source="embed://UNV-H265-1280x720.mp4"
+                                   ShouldShowPlaybackControls="True"
+                                   Style="{StaticResource mediaElement}" />
+            <Label Text="Remote Media" Style="{StaticResource Header}" />
+            <toolkit:MediaElement Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                                  ShouldShowPlaybackControls="True" 
+                                  Style="{StaticResource mediaElement}" />
+                                  
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
