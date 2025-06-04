@@ -8,14 +8,18 @@
     xmlns:dashboard="clr-namespace:IVCNetMaui.Views.Dashboard"
     xmlns:view="clr-namespace:IVCNetMaui.Views.View"
     xmlns:historical="clr-namespace:IVCNetMaui.Views.Historical"
-    Title="IVCNetMaui">
+    Title="IVCNetMaui"  >
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <Tab Title="Dashboard">
-            <ShellContent Title="Hub" 
-                          ContentTemplate="{DataTemplate dashboard:HubPage}" />
-            <ShellContent Title="Edge" 
-                          ContentTemplate="{DataTemplate dashboard:EdgePage}" />
+            <ShellContent Title="Hub Health Monitor" 
+                          ContentTemplate="{DataTemplate dashboard:HubHealthMonitorPage}" />
+            <ShellContent Title="Edge Health Monitor" 
+                          ContentTemplate="{DataTemplate dashboard:EdgeHealthMonitorPage}" />
+            <ShellContent Title="Edge IoTs"
+                          ContentTemplate="{DataTemplate dashboard:EdgeIoTPage}" />
+            <ShellContent Title="Edge Units"
+                          ContentTemplate="{DataTemplate dashboard:EdgeUnitPage}" />
         </Tab>
     </FlyoutItem>
 

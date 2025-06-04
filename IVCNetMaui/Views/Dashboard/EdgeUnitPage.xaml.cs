@@ -1,8 +1,8 @@
 namespace IVCNetMaui.Views.Dashboard;
 
-public partial class EdgePage : ContentPage
+public partial class EdgeUnitPage : ContentPage
 {
-	public EdgePage()
+	public EdgeUnitPage()
 	{
 		InitializeComponent();
 	}

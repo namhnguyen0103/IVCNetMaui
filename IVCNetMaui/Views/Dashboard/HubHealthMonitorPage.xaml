@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
+             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             x:Class="IVCNetMaui.Views.Dashboard.HubHealthMonitorPage"
+             Title="Hub / Health Monitor">
+    <ContentPage.BindingContext>
+        <viewModels:HubHeathViewModel/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <controls:SectionCardControl Title="System"/>
+        <controls:SectionCardControl Title="Video Process"/>
+        <controls:SectionCardControl Title="UI Process"/>
+    </VerticalStackLayout>
+</ContentPage>

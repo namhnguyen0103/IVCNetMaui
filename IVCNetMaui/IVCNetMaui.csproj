@@ -80,6 +80,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="11.2.0" />
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="6.0.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
@@ -91,16 +92,37 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Controls\StatusIconControl.xaml.cs">
+	    <DependentUpon>StatusIconControl.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Dashboard\EdgeHealthMonitorPage.xaml.cs">
+	    <DependentUpon>EdgeHealthMonitorPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Dashboard\HubHealthMonitorPage.xaml.cs">
+	    <DependentUpon>HubHealthMonitorPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\LoginPage.xaml.cs">
 	    <DependentUpon>LoginPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\Dashboard\EdgePage.xaml">
+	  <MauiXaml Update="Controls\SectionCardControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Dashboard\HubPage.xaml">
+	  <MauiXaml Update="Controls\StatusIconControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Dashboard\EdgeHealthMonitorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Dashboard\EdgeIoTPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Dashboard\EdgeUnitPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Dashboard\HubHealthMonitorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Historical\HealthDataPage.xaml">

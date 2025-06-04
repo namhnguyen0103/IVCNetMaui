@@ -1,8 +1,8 @@
 namespace IVCNetMaui.Views.Dashboard;
 
-public partial class HubPage : ContentPage
+public partial class EdgeIoTPage : ContentPage
 {
-	public HubPage()
+	public EdgeIoTPage()
 	{
 		InitializeComponent();
 	}

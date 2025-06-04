@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             x:Class="IVCNetMaui.Views.Dashboard.EdgeIoTPage"
+             Title="Edge / IoT">
+    <VerticalStackLayout>
+        <controls:SectionCardControl Title="Cameras" 
+                                     Count="6" />
+        <controls:SectionCardControl Title="Weather Stations" 
+                                     Count="3" />
+        <controls:SectionCardControl Title="Modbus Devices"
+                                     Count="3" />
+    </VerticalStackLayout>  
+</ContentPage>
