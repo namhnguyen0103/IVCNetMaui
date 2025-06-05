@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.EdgeHealthMonitorPage"
-             Title="Edge / Health Monitor">
+             Title="Edge / Health Monitor"
+             Style="{StaticResource Key=PrimaryPageLayout}">
     <VerticalStackLayout>
         <controls:SectionCardControl Title="System Metrics" />
         <controls:SectionCardControl Title="Video Process Metrics" />

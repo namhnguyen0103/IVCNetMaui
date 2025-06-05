@@ -4,35 +4,25 @@
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.EdgeUnitPage"
-             Title="Edge / Unit">
+             Title="Edge / Unit"
+             Style="{StaticResource Key=PrimaryPageLayout}">
     <ContentPage.BindingContext>
         <viewModels:EdgeUnitViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Footer" 
+                   TargetType="Label">
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <VerticalStackLayout>
         <CollectionView ItemsSource="{Binding List}"
                         ItemsLayout="VerticalList">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
-                    <Grid RowDefinitions="Auto, Auto, Auto"
-                          RowSpacing="8"
-                          Padding="14, 12">
-                        <HorizontalStackLayout Grid.Row="0"
-                                               Spacing="8">
-                            <Border>
-                                <Label Text="#ID"/>
-                            </Border>
-                            <Label Text="UNITNAME"/>
-                        </HorizontalStackLayout>
-                        <HorizontalStackLayout Grid.Row="1"
-                                               Spacing="8">
-                            <controls:StatusIconControl Status="Activated"
-                                                        StatusColor="{StaticResource BluePrimary}"/>
-                            <Label Text="UI Process" />
-                            <Label Text="Video Process" />
-                        </HorizontalStackLayout>
-                        <Label Grid.Row="2" 
-                               Text="{Binding}"/>
-                    </Grid>
+                    <controls:UnitCardControl/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

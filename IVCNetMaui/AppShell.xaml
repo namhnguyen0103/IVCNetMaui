@@ -10,38 +10,61 @@
     xmlns:historical="clr-namespace:IVCNetMaui.Views.Historical"
     Title="IVCNetMaui"  >
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <Tab Title="Dashboard">
+    <!--<FlyoutItem Title="Dashboard">
+        <ShellSection Title="General">
+            <ShellContent Title="Hub Health Monitor" 
+              ContentTemplate="{DataTemplate dashboard:HubHealthMonitorPage}" />
+        </ShellSection>
+        <ShellSection Title="General2">
+            <ShellContent Title="Edge Health Monitor" 
+              ContentTemplate="{DataTemplate dashboard:EdgeHealthMonitorPage}" />
+        </ShellSection>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Views">
+        <ShellContent Title="Camera View" 
+              ContentTemplate="{DataTemplate view:CameraPage}" />
+        <ShellContent Title="Event View" 
+              ContentTemplate="{DataTemplate view:EventPage}" />
+    </FlyoutItem>-->
+
+    <ShellItem Title="Hub" FlyoutDisplayOptions="AsSingleItem">
+        <Tab>
             <ShellContent Title="Hub Health Monitor" 
                           ContentTemplate="{DataTemplate dashboard:HubHealthMonitorPage}" />
-            <ShellContent Title="Edge Health Monitor" 
+        </Tab>
+    </ShellItem>
+
+    <ShellItem Title="Edge" FlyoutDisplayOptions="AsSingleItem">
+        <Tab>
+            <ShellContent Title="Health Monitor" 
                           ContentTemplate="{DataTemplate dashboard:EdgeHealthMonitorPage}" />
-            <ShellContent Title="Edge IoTs"
+            <ShellContent Title="IoTs"
                           ContentTemplate="{DataTemplate dashboard:EdgeIoTPage}" />
-            <ShellContent Title="Edge Units"
+            <ShellContent Title="Units"
                           ContentTemplate="{DataTemplate dashboard:EdgeUnitPage}" />
         </Tab>
-    </FlyoutItem>
+    </ShellItem>
 
-    <FlyoutItem Title="Views" FlyoutDisplayOptions="AsMultipleItems">
-        <Tab Title="View">
-            <ShellContent Title="Camera View" 
+    <ShellItem Title="Camera View" FlyoutDisplayOptions="AsSingleItem">
+        <ShellContent Title="Camera View" 
                           ContentTemplate="{DataTemplate view:CameraPage}" />
-            <ShellContent Title="Event View" 
+    </ShellItem>
+
+    <ShellItem Title="Event View">
+        <ShellContent Title="Event View" 
                           ContentTemplate="{DataTemplate view:EventPage}" />
-        </Tab>
-    </FlyoutItem>
+    </ShellItem>
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <Tab Title="Historical">
+    <ShellItem Title="Historical" FlyoutDisplayOptions="AsSingleItem">
+        <Tab>
             <ShellContent Title="Health Data"
-                          ContentTemplate="{DataTemplate historical:HealthDataPage}" />
+                              ContentTemplate="{DataTemplate historical:HealthDataPage}" />
             <ShellContent Title="IoT Data"
-                          ContentTemplate="{DataTemplate historical:IoTDataPage}" />
+                              ContentTemplate="{DataTemplate historical:IoTDataPage}" />
             <ShellContent Title="Media Data"
-                          ContentTemplate="{DataTemplate historical:MediaDataPage}" />
-
+                              ContentTemplate="{DataTemplate historical:MediaDataPage}" />
         </Tab>
-    </FlyoutItem>
+    </ShellItem>
 
 </Shell>

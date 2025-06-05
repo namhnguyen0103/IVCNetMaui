@@ -92,8 +92,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Controls\StatusIconControl.xaml.cs">
-	    <DependentUpon>StatusIconControl.xaml</DependentUpon>
+	  <Compile Update="Controls\SectionCardControl.xaml.cs">
+	    <DependentUpon>SectionCardControl.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\BadgeControl.xaml.cs">
+	    <DependentUpon>BadgeControl.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\Dashboard\EdgeHealthMonitorPage.xaml.cs">
 	    <DependentUpon>EdgeHealthMonitorPage.xaml</DependentUpon>
@@ -107,10 +110,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\CameraControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\SectionCardControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\StatusIconControl.xaml">
+	  <MauiXaml Update="Controls\BadgeControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\UnitCardControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Dashboard\EdgeHealthMonitorPage.xaml">

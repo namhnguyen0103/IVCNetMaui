@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.EdgeIoTPage"
-             Title="Edge / IoT">
+             Title="Edge / IoT"
+             Style="{StaticResource Key=PrimaryPageLayout}">
     <VerticalStackLayout>
         <controls:SectionCardControl Title="Cameras" 
                                      Count="6" />
