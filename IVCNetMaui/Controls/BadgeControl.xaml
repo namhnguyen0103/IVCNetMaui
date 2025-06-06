@@ -10,11 +10,11 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <Border BindingContext="{x:Reference this}"
-            Padding="8, 4"
-            BackgroundColor="{Binding Status, Converter={StaticResource StatusToColorConverter}}"
-            StrokeThickness="0">
+            Padding="6, 2"
+            Stroke="{Binding Status, Converter={StaticResource StatusToColorConverter}}"
+            StrokeThickness="0.5">
         <Border.StrokeShape>
-            <RoundRectangle CornerRadius="3" />
+            <RoundRectangle CornerRadius="20" />
         </Border.StrokeShape>
         <Label Text="{Binding Status}"
                FontSize="8"

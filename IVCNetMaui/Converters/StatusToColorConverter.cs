@@ -9,10 +9,10 @@ namespace IVCNetMaui.Converters
 {
     internal class StatusToColorConverter : IValueConverter
     {
-        private Color UpLabelColor = Color.FromArgb("#FFFFFF");
+        private Color UpLabelColor = Color.FromArgb("#343A40");
         private Color DownLabelColor = Color.FromArgb("#ADB5BD");
-        private Color UpBackgroundColor = Color.FromArgb("#53A5FF");
-        private Color DownBackgroundColor = Color.FromArgb("#E9ECEE");
+        private Color UpStrokeColor = Color.FromArgb("#343A40");
+        private Color DownStrokeColor = Color.FromArgb("#DEE2E6");
          
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
@@ -30,9 +30,9 @@ namespace IVCNetMaui.Converters
 
             return value switch
             {
-                "Activated" => UpBackgroundColor,
-                "Deactivated" => DownBackgroundColor,
-                _ => DownBackgroundColor
+                "Activated" => UpStrokeColor,
+                "Deactivated" => DownStrokeColor,
+                _ => DownStrokeColor
             };
         }
 

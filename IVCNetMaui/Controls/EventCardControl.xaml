@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="IVCNetMaui.Controls.EventCardControl">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DetailLabel"
+                   TargetType="Label">
+                <Setter Property="FontSize" Value="8"/>
+            </Style>
+            <Style x:Key="DetailInfo"
+                   TargetType="Label">
+                <Setter Property="FontSize" Value="8"/>
+                <Setter Property="FontFamily" Value="NunitoRegular" />
+            </Style>
+            <Style x:Key="DetailHorizontalStack"
+                   TargetType="HorizontalStackLayout">
+                <Setter Property="Spacing" Value="4"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Border Padding="20, 12"
+            StrokeThickness="0">
+        <Border.Behaviors>
+            <toolkit:TouchBehavior 
+                PressedBackgroundColor="{StaticResource Gray300}"
+                DefaultBackgroundColor="White"/>
+        </Border.Behaviors>
+        <VerticalStackLayout>
+            <Label Text="Unit / Name"
+                   FontSize="12"
+                   TextColor="{StaticResource Gray900}"/>
+            <HorizontalStackLayout Spacing="8" Margin="0, 0, 0, 4">
+                <Label Text="DESCRIPTION"
+                       FontFamily="NunitoBold"/>
+                <Label Text="#ID"
+                       TextColor="{StaticResource Gray900}"/>
+            </HorizontalStackLayout>
+            <Border Padding="6, 6"
+                    StrokeThickness="0.5"
+                    Stroke="{StaticResource Gray400}"
+                    BackgroundColor="{StaticResource Gray100}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="3" />
+                </Border.StrokeShape>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Style="{StaticResource DetailHorizontalStack}">
+                        <Label Text="Category"
+                               Style="{StaticResource DetailLabel}"/>
+                        <Label Text="•"
+                               Style="{StaticResource DetailLabel}"/>
+                        <Label Text="Category Type"
+                               Style="{StaticResource DetailInfo}"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Style="{StaticResource DetailHorizontalStack}">
+                        <Label Text="Tag"
+                               Style="{StaticResource DetailLabel}"/>
+                        <Label Text="•"
+                               Style="{StaticResource DetailLabel}"/>
+                        <Label Text="Tag Type"
+                               Style="{StaticResource DetailInfo}"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Style="{StaticResource DetailHorizontalStack}">
+                        <Label Text="Received Time"
+                               Style="{StaticResource DetailLabel}"/>
+                        <Label Text="•"
+                               Style="{StaticResource DetailLabel}"/>
+                        <Label Text="6/6/2025 8:43:12 AM"
+                               Style="{StaticResource DetailInfo}"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Style="{StaticResource DetailHorizontalStack}">
+                        <Label Text="Event Time"
+                               Style="{StaticResource DetailLabel}"/>
+                        <Label Text="•"
+                               Style="{StaticResource DetailLabel}"/>
+                        <Label Text="6/6/2025 8:43:17 AM"
+                               Style="{StaticResource DetailInfo}"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

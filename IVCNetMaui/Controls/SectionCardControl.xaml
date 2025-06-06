@@ -13,7 +13,7 @@
     </ContentView.Resources>
     <Grid x:Name="Card"
           BindingContext="{x:Reference this}"
-          Padding="0, 12"
+          Padding="20, 12"
           ColumnDefinitions="Auto, *, Auto, Auto"
           ColumnSpacing="12">
         <Grid.Behaviors>

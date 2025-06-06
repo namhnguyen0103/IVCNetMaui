@@ -4,8 +4,7 @@
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.HubHealthMonitorPage"
-             Title="Hub / Health Monitor"
-             Style="{StaticResource Key=PrimaryPageLayout}">
+             Title="Hub / Health Monitor">
     <ContentPage.BindingContext>
         <viewModels:HubHeathViewModel/>
     </ContentPage.BindingContext>

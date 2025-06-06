@@ -4,8 +4,7 @@
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.EdgeUnitPage"
-             Title="Edge / Unit"
-             Style="{StaticResource Key=PrimaryPageLayout}">
+             Title="Edge / Unit">
     <ContentPage.BindingContext>
         <viewModels:EdgeUnitViewModel/>
     </ContentPage.BindingContext>

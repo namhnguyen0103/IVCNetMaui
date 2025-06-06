@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.UnitCardControl">
     <ContentView.Resources>
@@ -9,18 +10,36 @@
                    TargetType="Label">
                 <Setter Property="FontSize" Value="12"/>
             </Style>
+            <Style x:Key="FooterDetail"
+                   TargetType="Label">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="TextColor" Value="{StaticResource Gray950}"/>
+            </Style>
+            <Style x:Key="FooterLabel"
+                   TargetType="Label">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="TextColor" Value="{StaticResource Gray900}"/>
+                <Setter Property="FontFamily" Value="NunitoRegular" />
+            </Style>
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid RowDefinitions="Auto, Auto, Auto, Auto"
-              Padding="0, 12">
+              Padding="20, 12">
+        <Grid.Behaviors>
+            <toolkit:TouchBehavior 
+                PressedBackgroundColor="{StaticResource Gray300}"
+                DefaultBackgroundColor="White"/>
+        </Grid.Behaviors>
             <HorizontalStackLayout Grid.Row="0"
-                                   Spacing="4">
+                                   Spacing="2"
+                                   Margin="0, 0, 0, 2">
                 <controls:BadgeControl Status="Activated" />
                 <controls:BadgeControl Status="UI Process" />
                 <controls:BadgeControl Status="Video Process" />
             </HorizontalStackLayout>
             <HorizontalStackLayout Grid.Row="1"
-                                   Spacing="8">
+                                   Spacing="8"
+                                   Margin="0, 0, 0, 6">
                 <Label Text="UNITNAME"
                        FontFamily="NunitoBold"
                        FontSize="16"/>
@@ -29,19 +48,22 @@
                        FontSize="16"/>
             </HorizontalStackLayout>
             <HorizontalStackLayout Grid.Row="2"
-                       Spacing="0">
-                <Label Text="Version:" 
-                       Style="{StaticResource Footer}"
-                       FontFamily="NunitoRegular"/>
-                <Label Text=" 12.0.1" 
-                       Style="{StaticResource Footer}"/>
-                <Label Text=" •" 
-                       Style="{StaticResource Footer}"/>
-                <Label Text=" Uptime:"
-                       Style="{StaticResource Footer}" 
-                       FontFamily="NunitoRegular"/>
-                <Label Text=" 7:03:16:09"
-                       Style="{StaticResource Footer}" />
+                       Spacing="12">
+                <HorizontalStackLayout Spacing="2">
+                    <Label Text="Version:" 
+                           Style="{StaticResource FooterLabel}"
+                           FontFamily="NunitoRegular"/>
+                    <Label Text=" 12.0.1" 
+                           Style="{StaticResource FooterDetail}"/>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Spacing="2">
+                    <Label Text=" Uptime:"
+                               Style="{StaticResource FooterLabel}" 
+                               FontFamily="NunitoRegular"/>
+                    <Label Text=" 7:03:16:09"
+                               Style="{StaticResource FooterDetail}" />
+                </HorizontalStackLayout>
             </HorizontalStackLayout>
         </Grid>
 </ContentView>

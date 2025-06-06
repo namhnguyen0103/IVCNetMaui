@@ -1,12 +1,15 @@
 namespace IVCNetMaui.ViewModels.View;
 using CommunityToolkit.Mvvm;
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-public class EventViewModel : INotifyPropertyChanged
+public partial class EventViewModel : ObservableObject
 {
-	public EventViewModel()
+    [ObservableProperty]
+    public List<string> list = new List<string> { "1", "2", "3" };
+    public EventViewModel()
 	{
 	}
 
-    public event PropertyChangedEventHandler? PropertyChanged;
 }
