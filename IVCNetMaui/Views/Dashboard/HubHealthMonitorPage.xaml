@@ -3,14 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             xmlns:details="clr-namespace:IVCNetMaui.Views.Detail"
              x:Class="IVCNetMaui.Views.Dashboard.HubHealthMonitorPage"
              Title="Hub / Health Monitor">
     <ContentPage.BindingContext>
         <viewModels:HubHeathViewModel/>
     </ContentPage.BindingContext>
     <VerticalStackLayout>
-        <controls:SectionCardControl Title="System"/>
-        <controls:SectionCardControl Title="Video Process"/>
-        <controls:SectionCardControl Title="UI Process"/>
+        <controls:MenuCardControl Title="System"
+                                  Command="{Binding GoToSystemDetailCommand}"/>
+        <controls:MenuCardControl Title="Video Process"
+                                  Command="{Binding GoToVideoProcessDetailCommand}"/>
+        <controls:MenuCardControl Title="UI Process"
+                                  Command="{Binding GoToUIProcessDetailCommand}"/>
     </VerticalStackLayout>
+
 </ContentPage>

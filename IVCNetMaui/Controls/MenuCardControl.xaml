@@ -2,7 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="IVCNetMaui.Controls.SectionCardControl"
+             x:Class="IVCNetMaui.Controls.MenuCardControl"
              x:Name="this">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -19,8 +19,11 @@
         <Grid.Behaviors>
             <toolkit:TouchBehavior 
                 PressedBackgroundColor="{StaticResource Gray300}"
-                DefaultBackgroundColor="White"/>
+                DefaultBackgroundColor="Transparent"/>
         </Grid.Behaviors>
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding Command}"/>
+        </Grid.GestureRecognizers>
         <Border Grid.Column="0"
             WidthRequest="32"
             HeightRequest="32"

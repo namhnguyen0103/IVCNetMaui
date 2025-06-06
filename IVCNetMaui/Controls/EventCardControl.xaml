@@ -38,8 +38,7 @@
                        TextColor="{StaticResource Gray900}"/>
             </HorizontalStackLayout>
             <Border Padding="6, 6"
-                    StrokeThickness="0.5"
-                    Stroke="{StaticResource Gray400}"
+                    StrokeThickness="0"
                     BackgroundColor="{StaticResource Gray100}">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="3" />

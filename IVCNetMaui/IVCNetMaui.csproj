@@ -92,8 +92,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Controls\SectionCardControl.xaml.cs">
-	    <DependentUpon>SectionCardControl.xaml</DependentUpon>
+	  <Compile Update="Controls\MenuCardControl.xaml.cs">
+	    <DependentUpon>MenuCardControl.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Controls\BadgeControl.xaml.cs">
 	    <DependentUpon>BadgeControl.xaml</DependentUpon>
@@ -116,7 +116,7 @@
 	  <MauiXaml Update="Controls\EventCardControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\SectionCardControl.xaml">
+	  <MauiXaml Update="Controls\MenuCardControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\BadgeControl.xaml">
@@ -135,6 +135,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Dashboard\HubHealthMonitorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Detail\ProcessDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Detail\SystemDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Historical\HealthDataPage.xaml">

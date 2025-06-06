@@ -5,11 +5,11 @@
              x:Class="IVCNetMaui.Views.Dashboard.EdgeIoTPage"
              Title="Edge / IoT">
     <VerticalStackLayout>
-        <controls:SectionCardControl Title="Cameras" 
+        <controls:MenuCardControl Title="Cameras" 
                                      Count="6" />
-        <controls:SectionCardControl Title="Weather Stations" 
+        <controls:MenuCardControl Title="Weather Stations" 
                                      Count="3" />
-        <controls:SectionCardControl Title="Modbus Devices"
+        <controls:MenuCardControl Title="Modbus Devices"
                                      Count="3" />
     </VerticalStackLayout>  
 </ContentPage>

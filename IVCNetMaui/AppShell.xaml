@@ -10,60 +10,57 @@
     xmlns:historical="clr-namespace:IVCNetMaui.Views.Historical"
     Title="IVCNetMaui"  >
 
-    <!--<FlyoutItem Title="Dashboard">
-        <ShellSection Title="General">
-            <ShellContent Title="Hub Health Monitor" 
-              ContentTemplate="{DataTemplate dashboard:HubHealthMonitorPage}" />
-        </ShellSection>
-        <ShellSection Title="General2">
-            <ShellContent Title="Edge Health Monitor" 
-              ContentTemplate="{DataTemplate dashboard:EdgeHealthMonitorPage}" />
-        </ShellSection>
-    </FlyoutItem>
-
-    <FlyoutItem Title="Views">
-        <ShellContent Title="Camera View" 
-              ContentTemplate="{DataTemplate view:CameraPage}" />
-        <ShellContent Title="Event View" 
-              ContentTemplate="{DataTemplate view:EventPage}" />
-    </FlyoutItem>-->
-
-    <ShellItem Title="Hub" FlyoutDisplayOptions="AsSingleItem">
+    <ShellItem Title="Hub" 
+               FlyoutDisplayOptions="AsSingleItem"
+               Route="hub">
         <Tab>
             <ShellContent Title="Hub Health Monitor" 
-                          ContentTemplate="{DataTemplate dashboard:HubHealthMonitorPage}" />
+                          ContentTemplate="{DataTemplate dashboard:HubHealthMonitorPage}" 
+                          Route="healthMonitor"/>
         </Tab>
     </ShellItem>
 
-    <ShellItem Title="Edge" FlyoutDisplayOptions="AsSingleItem">
+    <ShellItem Title="Edge" 
+               FlyoutDisplayOptions="AsSingleItem"
+               Route="edge">
         <Tab>
             <ShellContent Title="Health Monitor" 
-                          ContentTemplate="{DataTemplate dashboard:EdgeHealthMonitorPage}" />
+                          ContentTemplate="{DataTemplate dashboard:EdgeHealthMonitorPage}" 
+                          Route="healthMonitor"/>
             <ShellContent Title="IoTs"
-                          ContentTemplate="{DataTemplate dashboard:EdgeIoTPage}" />
+                          ContentTemplate="{DataTemplate dashboard:EdgeIoTPage}" 
+                          Route="iots"/>
             <ShellContent Title="Units"
-                          ContentTemplate="{DataTemplate dashboard:EdgeUnitPage}" />
+                          ContentTemplate="{DataTemplate dashboard:EdgeUnitPage}" 
+                          Route="units"/>
         </Tab>
     </ShellItem>
 
-    <ShellItem Title="Camera View" FlyoutDisplayOptions="AsSingleItem">
+    <ShellItem Title="Camera View" 
+               Route="cameraView">
         <ShellContent Title="Camera View" 
-                          ContentTemplate="{DataTemplate view:CameraPage}" />
+                      ContentTemplate="{DataTemplate view:CameraPage}" />
     </ShellItem>
 
-    <ShellItem Title="Event View">
+    <ShellItem Title="Event View"
+               Route="eventView">
         <ShellContent Title="Event View" 
                           ContentTemplate="{DataTemplate view:EventPage}" />
     </ShellItem>
 
-    <ShellItem Title="Historical" FlyoutDisplayOptions="AsSingleItem">
+    <ShellItem Title="Historical" 
+               FlyoutDisplayOptions="AsSingleItem"
+               Route="historical">
         <Tab>
             <ShellContent Title="Health Data"
-                              ContentTemplate="{DataTemplate historical:HealthDataPage}" />
+                          ContentTemplate="{DataTemplate historical:HealthDataPage}" 
+                          Route="healthData"/>
             <ShellContent Title="IoT Data"
-                              ContentTemplate="{DataTemplate historical:IoTDataPage}" />
+                          ContentTemplate="{DataTemplate historical:IoTDataPage}" 
+                          Route="iotData"/>
             <ShellContent Title="Media Data"
-                              ContentTemplate="{DataTemplate historical:MediaDataPage}" />
+                          ContentTemplate="{DataTemplate historical:MediaDataPage}" 
+                          Route="mediaData"/>
         </Tab>
     </ShellItem>
 

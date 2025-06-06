@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
+             x:Class="IVCNetMaui.Views.Detail.SystemDetailPage"
+             Title="SystemDetailPage">
+    <ContentPage.BindingContext>
+        <viewModels:SystemDetailViewModel/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout Spacing="5">
+        <VerticalStackLayout>
+            <Label Text="Status"/>
+            <Border>
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto, Auto">
+                    <Label Text="Name: _____"/>
+                    <Label Text="Started: _____" Grid.Column="1"/>
+                    <Label Text="OS: _____" Grid.Row="1"/>
+                    <Label Text="Uptime: _____" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
+        <Grid ColumnDefinitions="*, *">
+            <VerticalStackLayout>
+                <Label Text="CPU"/>
+                <Border>
+                    <Grid ColumnDefinitions="*, *">
+                        <Label Text="Total: _____"/>
+                        <Label Text="Used: _____" Grid.Column="1"/>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1">
+                <Label Text="GPU"/>
+                <Border>
+                    <Grid ColumnDefinitions="*, *">
+                        <Label Text="Total: _____"/>
+                        <Label Text="Used: _____" Grid.Column="1"/>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+        <VerticalStackLayout>
+            <Label Text="RAM"/>
+            <Border>
+                <VerticalStackLayout>
+                    <Label Text="Physical"/>
+                    <ProgressBar Progress="0.5"/>
+                    <Label Text="Virtual"/>
+                    <ProgressBar Progress="0.3"/>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+        <Label Text="Disks"/>
+        <Label Text="Network"/>
+    </VerticalStackLayout>
+</ContentPage>
