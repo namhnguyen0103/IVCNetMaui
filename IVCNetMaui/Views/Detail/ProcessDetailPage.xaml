@@ -7,10 +7,50 @@
     <ContentPage.BindingContext>
         <viewModels:ProcessDetailViewModel/>
     </ContentPage.BindingContext>
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout Spacing="5">
+        <VerticalStackLayout>
+            <Label Text="Status"/>
+            <Border>
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto, Auto">
+                    <Label Text="Name: _____"/>
+                    <Label Text="Started: _____" Grid.Column="1"/>
+                    <Label Text="OS: _____" Grid.Row="1"/>
+                    <Label Text="Uptime: _____" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
+        <Grid ColumnDefinitions="*, *">
+            <VerticalStackLayout>
+                <Label Text="CPU"/>
+                <Border>
+                    <Grid ColumnDefinitions="*, *">
+                        <Label Text="Total: _____"/>
+                        <Label Text="Used: _____" Grid.Column="1"/>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1">
+                <Label Text="GPU"/>
+                <Border>
+                    <Grid ColumnDefinitions="*, *">
+                        <Label Text="Total: _____"/>
+                        <Label Text="Used: _____" Grid.Column="1"/>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+        <VerticalStackLayout>
+            <Label Text="RAM"/>
+            <Border>
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto, Auto">
+                    <Label Text="Working: _____" />
+                    <Label Text="Peak Working: _____" Grid.Column="1"/>
+                    <Label Text="Paged: _____" Grid.Row="1"/>
+                    <Label Text="Peak Paged: _____" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

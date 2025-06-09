@@ -4,6 +4,7 @@
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
              x:Class="IVCNetMaui.Views.View.EventPage"
+             x:Name="this"
              Title="EventPage">
     <ContentPage.BindingContext>
         <viewModels:EventViewModel />
@@ -12,7 +13,7 @@
         <CollectionView ItemsSource="{Binding List}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
-                    <controls:EventCardControl />
+                    <controls:EventCardControl Command="{Binding BindingContext.GoToEventDetailCommand, Source={x:Reference this}}"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

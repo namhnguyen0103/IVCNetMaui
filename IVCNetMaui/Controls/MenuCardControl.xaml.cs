@@ -37,14 +37,4 @@ public partial class MenuCardControl : ContentView
 	{
 		InitializeComponent();
 	}
-
-    void OnTapGestureRecognizerTapped(object sender, TappedEventArgs args)
-    {
-        //Card.BackgroundColor = (Color)Application.Current.Resources["Gray300"];
-    }
-
-    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
-    {
-
-    }
 }

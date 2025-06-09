@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
+             x:Class="IVCNetMaui.Views.Detail.EventDetailPage"
+             Title="EventDetailPage">
+    <ContentPage.BindingContext>
+        <viewModels:EventDetailViewModel />
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <Label Text="Unit / Name" />
+        <Label Text="[Category] Description #ID" />
+        <Label Text="Tag: _____" />
+        <Label Text="Received: _____"/>
+        <Label Text="Event: _____"/>
+        <Border>
+            <VerticalStackLayout>
+                <Label Text="Detail:"/>
+            </VerticalStackLayout>
+        </Border>
+        <Button Text="Upload Snaps"
+                Command="{Binding GoToMediaDetailCommand}"/>
+        <Button Text="Upload Clips"
+                Command="{Binding GoToMediaDetailCommand}"/>
+        
+    </VerticalStackLayout>
+</ContentPage>

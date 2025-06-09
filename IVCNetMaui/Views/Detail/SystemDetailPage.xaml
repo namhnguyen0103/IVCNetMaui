@@ -44,6 +44,7 @@
             <Label Text="RAM"/>
             <Border>
                 <VerticalStackLayout>
+                    <!--Make a control for disk/ram usage-->
                     <Label Text="Physical"/>
                     <ProgressBar Progress="0.5"/>
                     <Label Text="Virtual"/>
@@ -51,7 +52,27 @@
                 </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>
-        <Label Text="Disks"/>
-        <Label Text="Network"/>
+        <VerticalStackLayout>
+            <Label Text="Disks"/>
+            <Border>
+                <VerticalStackLayout>
+                    <Label Text="C:"/>
+                    <ProgressBar Progress="0.5"/>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Network"/>
+            <Border>
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto, Auto, Auto">
+                    <Label Text="Name: _____" Grid.ColumnSpan="2"/>
+                    <Label Text="NIT: _____" Grid.Row="1"/>
+                    <Label Text="PktQd: _____" Grid.Row="1" Grid.Column="1"/>
+                    <Label Text="Send: _____" Grid.Row="2" />
+                    <Label Text="Receive: _____" Grid.Row="2" Grid.Column="1"/>
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
