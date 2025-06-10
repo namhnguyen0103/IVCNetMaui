@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using UraniumUI;
 
 namespace IVCNetMaui
 {
@@ -11,6 +12,8 @@ namespace IVCNetMaui
             builder.UseMauiApp<App>()
                    .UseMauiCommunityToolkit()
                    .UseMauiCommunityToolkitMediaElement()
+                   .UseUraniumUI()
+                   .UseUraniumUIMaterial()
                    .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

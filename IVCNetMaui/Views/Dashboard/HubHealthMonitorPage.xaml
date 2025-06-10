@@ -15,7 +15,7 @@
         <controls:MenuCardControl Title="Video Process"
                                   Command="{Binding GoToVideoProcessDetailCommand}"/>
         <controls:MenuCardControl Title="UI Process"
-                                  Command="{Binding GoToUIProcessDetailCommand}"/>
+                                  Command="{Binding GoToUIProcessDetailCommand}" />
     </VerticalStackLayout>
 
 </ContentPage>

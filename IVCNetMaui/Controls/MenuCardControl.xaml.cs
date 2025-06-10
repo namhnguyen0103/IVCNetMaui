@@ -25,9 +25,9 @@ public partial class MenuCardControl : ContentView
     }
 
     public static readonly BindableProperty CommandProperty =
-        BindableProperty.Create(nameof(Command), typeof(AsyncRelayCommand), typeof(MenuCardControl));
+        BindableProperty.Create(nameof(Command), typeof(IAsyncRelayCommand), typeof(MenuCardControl));
 
-    public AsyncRelayCommand Command
+    public IAsyncRelayCommand Command
     {
         get => (AsyncRelayCommand)GetValue(CommandProperty);
         set => SetValue(CommandProperty, value);

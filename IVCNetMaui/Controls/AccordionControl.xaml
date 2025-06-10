@@ -5,24 +5,29 @@
              xmlns:local="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.AccordionControl"
              x:Name="this">
-    <toolkit:Expander BindingContext="{x:Reference this}"
-                      Command="{Binding RotateIconCommand}">
-        <toolkit:Expander.Header>
-            <Grid ColumnDefinitions="*, Auto">
-                <Label Text="{Binding Header}" />
-                <Image x:Name="HeaderIcon" Source="down_arrow.png" Grid.Column="1" WidthRequest="15"/>
-            </Grid>
-        </toolkit:Expander.Header>
-        <CollectionView ItemsSource="{Binding ItemsSource}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="x:String">
-                    <Label Text="{Binding}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=ItemCommand, Source={x:Reference this}}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-    </toolkit:Expander>
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <toolkit:Expander BindingContext="{x:Reference this}"
+                  Command="{Binding RotateIconCommand}">
+                <toolkit:Expander.Header>
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Text="{Binding Header}" />
+                        <Image x:Name="HeaderIcon" Source="down_arrow.png" Grid.Column="1" WidthRequest="15"/>
+                    </Grid>
+                </toolkit:Expander.Header>
+                <!--<CollectionView ItemsSource="{Binding ItemsSource}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                <Label Text="{Binding}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=ItemCommand, Source={x:Reference this}}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>-->
+                <ContentPresenter/>
+            </toolkit:Expander>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
 </ContentView>

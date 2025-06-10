@@ -1,78 +1,157 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
+             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Detail.SystemDetailPage"
-             Title="SystemDetailPage">
+             Title="SystemDetailPage"
+             BackgroundColor="{StaticResource Gray200}"
+             Padding="16, 8">
     <ContentPage.BindingContext>
         <viewModels:SystemDetailViewModel/>
     </ContentPage.BindingContext>
-    <VerticalStackLayout Spacing="5">
-        <VerticalStackLayout>
-            <Label Text="Status"/>
-            <Border>
-                <Grid ColumnDefinitions="*, *"
-                      RowDefinitions="Auto, Auto">
-                    <Label Text="Name: _____"/>
-                    <Label Text="Started: _____" Grid.Column="1"/>
-                    <Label Text="OS: _____" Grid.Row="1"/>
-                    <Label Text="Uptime: _____" Grid.Row="1" Grid.Column="1"/>
-                </Grid>
-            </Border>
-        </VerticalStackLayout>
-        <Grid ColumnDefinitions="*, *">
+    <ContentPage.Resources>
+        <!--<ResourceDictionary>
+            <Style TargetType="Border">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="Padding" Value="12"/>
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="3"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="SectionTitle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Gray800}"/>
+                <Setter Property="FontFamily" Value="NunitoMedium" />
+            </Style>
+            <Style x:Key="PropertyTitle" TargetType="Label">
+                <Setter Property="FontFamily" Value="NunitoMedium"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="TextColor" Value="{StaticResource Gray600}" />
+            </Style>
+            <Style x:Key="PropertyValue" TargetType="Label">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="FontFamily" Value="NunitoMedium"/>
+            </Style>
+            <Style x:Key="PropertyGrid" TargetType="Grid">
+                <Setter Property="ColumnSpacing" Value="16"/>
+                <Setter Property="RowSpacing" Value="12"/>
+            </Style>
+            <Style x:Key="SectionStack" TargetType="VerticalStackLayout">
+                <Setter Property="Spacing" Value="4" />
+            </Style>
+        </ResourceDictionary>-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/DetailStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout Spacing="16">
+            <VerticalStackLayout Style="{StaticResource SectionStack}">
+                <Label Text="Status" Style="{StaticResource SectionTitle}"/>
+                <Border>
+                    <Grid ColumnDefinitions="*, *"
+                          RowDefinitions="Auto, Auto"
+                          Style="{StaticResource PropertyGrid}">
+                        <VerticalStackLayout>
+                            <Label Text="Name:" Style="{StaticResource PropertyTitle}"/>
+                            <Label Text="WIN-JQGG2HC608K" Style="{StaticResource PropertyValue}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="Started:" Style="{StaticResource PropertyTitle}"/>
+                            <Label Text="6/4/2025 2:38:46 PM" Style="{StaticResource PropertyValue}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Row="1">
+                            <Label Text="OS:" Style="{StaticResource PropertyTitle}"/>
+                            <Label Text="Microsoft Windows NT 10.0.17763.0" Style="{StaticResource PropertyValue}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Grid.Row="1">
+                            <Label Text="Uptime:" Style="{StaticResource PropertyTitle}"/>
+                            <Label Text="5 day 22 hr 51 min 56 sec" Style="{StaticResource PropertyValue}"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*, *"
+                  ColumnSpacing="12">
+                <VerticalStackLayout Style="{StaticResource SectionStack}">
+                    <Label Text="CPU" Style="{StaticResource SectionTitle}"/>
+                    <Border>
+                        <Grid ColumnDefinitions="*, *"
+                              Style="{StaticResource PropertyGrid}">
+                            <VerticalStackLayout>
+                                <Label Text="Total:" Style="{StaticResource PropertyTitle}"/>
+                                <Label Text="2" Style="{StaticResource PropertyValue}"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label Text="Used:" Style="{StaticResource PropertyTitle}"/>
+                                <Label Text="4.2%" Style="{StaticResource PropertyValue}"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Style="{StaticResource SectionStack}">
+                    <Label Text="GPU" Style="{StaticResource SectionTitle}"/>
+                    <Border>
+                        <Grid ColumnDefinitions="*, *"
+                              Style="{StaticResource PropertyGrid}">
+                            <VerticalStackLayout>
+                                <Label Text="Total:" Style="{StaticResource PropertyTitle}"/>
+                                <Label Text="2" Style="{StaticResource PropertyValue}"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label Text="Used:" Style="{StaticResource PropertyTitle}"/>
+                                <Label Text="4.2%" Style="{StaticResource PropertyValue}"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </Grid>
+            <VerticalStackLayout Style="{StaticResource SectionStack}">
+                <Label Text="RAM" Style="{StaticResource SectionTitle}"/>
+                <Border>
+                    <VerticalStackLayout Spacing="12">
+                        <controls:UsageBarControl DiskName="Physical"
+                                                  DiskCapacity="6.0"
+                                                  DiskUsage="3.6"/>
+                        <controls:UsageBarControl DiskName="Virtual"
+                                                  DiskCapacity="6.0"
+                                                  DiskUsage="3.6"/>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout Style="{StaticResource SectionStack}">
+                <Label Text="Disks" Style="{StaticResource SectionTitle}"/>
+                <Border>
+                    <VerticalStackLayout>
+                        <controls:UsageBarControl DiskName="C:"
+                                                  DiskCapacity="6.0"
+                                                  DiskUsage="3.6"/>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
             <VerticalStackLayout>
-                <Label Text="CPU"/>
+                <Label Text="Network" Style="{StaticResource SectionTitle}"/>
                 <Border>
-                    <Grid ColumnDefinitions="*, *">
-                        <Label Text="Total: _____"/>
-                        <Label Text="Used: _____" Grid.Column="1"/>
-                    </Grid>
+                    <!--<material:DataGrid ItemsSource="{Binding Items}" UseAutoColumns="True">
+                        <material:DataGrid.TitleTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding Title}" Style="{StaticResource PropertyTitle}" HorizontalOptions="Center" />
+                            </DataTemplate>
+                        </material:DataGrid.TitleTemplate>
+                        <material:DataGrid.CellItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{material:DataGridValueBinding}" Style="{StaticResource PropertyValue}" HorizontalOptions="Center" />
+                            </DataTemplate>
+                        </material:DataGrid.CellItemTemplate>
+                    </material:DataGrid>-->
                 </Border>
             </VerticalStackLayout>
-            <VerticalStackLayout Grid.Column="1">
-                <Label Text="GPU"/>
-                <Border>
-                    <Grid ColumnDefinitions="*, *">
-                        <Label Text="Total: _____"/>
-                        <Label Text="Used: _____" Grid.Column="1"/>
-                    </Grid>
-                </Border>
-            </VerticalStackLayout>
-        </Grid>
-        <VerticalStackLayout>
-            <Label Text="RAM"/>
-            <Border>
-                <VerticalStackLayout>
-                    <!--Make a control for disk/ram usage-->
-                    <Label Text="Physical"/>
-                    <ProgressBar Progress="0.5"/>
-                    <Label Text="Virtual"/>
-                    <ProgressBar Progress="0.3"/>
-                </VerticalStackLayout>
-            </Border>
         </VerticalStackLayout>
-        <VerticalStackLayout>
-            <Label Text="Disks"/>
-            <Border>
-                <VerticalStackLayout>
-                    <Label Text="C:"/>
-                    <ProgressBar Progress="0.5"/>
-                </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
-        <VerticalStackLayout>
-            <Label Text="Network"/>
-            <Border>
-                <Grid ColumnDefinitions="*, *"
-                      RowDefinitions="Auto, Auto, Auto">
-                    <Label Text="Name: _____" Grid.ColumnSpan="2"/>
-                    <Label Text="NIT: _____" Grid.Row="1"/>
-                    <Label Text="PktQd: _____" Grid.Row="1" Grid.Column="1"/>
-                    <Label Text="Send: _____" Grid.Row="2" />
-                    <Label Text="Receive: _____" Grid.Row="2" Grid.Column="1"/>
-                </Grid>
-            </Border>
-        </VerticalStackLayout>
-    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

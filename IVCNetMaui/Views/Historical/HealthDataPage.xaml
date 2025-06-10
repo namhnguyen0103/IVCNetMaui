@@ -11,9 +11,19 @@
     </ContentPage.BindingContext>
     <VerticalStackLayout>
         <Label Text="Hub Health"/>
-        <controls:AccordionControl Header="System Health"
-                                   ItemsSource="{Binding List}"
-                                   ItemCommand="{Binding TestCommand}">
+        <controls:AccordionControl Header="System Health">
+            <VerticalStackLayout>
+                <Label Text="Edge 1"/>
+                <Label Text="Edge 2"/>
+                <Label Text="Edge 3"/>
+            </VerticalStackLayout>
+        </controls:AccordionControl>
+        <controls:AccordionControl Header="Process Health">
+            <VerticalStackLayout>
+                <Label Text="Edge 1"/>
+                <Label Text="Edge 2"/>
+                <Label Text="Edge 3"/>
+            </VerticalStackLayout>
         </controls:AccordionControl>
 
     </VerticalStackLayout>
