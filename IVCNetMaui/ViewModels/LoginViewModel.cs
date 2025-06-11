@@ -2,6 +2,7 @@ namespace IVCNetMaui.ViewModels;
 using CommunityToolkit.Mvvm;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using IVCNetMaui.Views;
 using System.ComponentModel;
 
 public partial class LoginViewModel : ObservableObject
@@ -22,7 +23,8 @@ public partial class LoginViewModel : ObservableObject
 	private async Task OnLoginAsync()
 	{
 		Console.WriteLine("Works");
-		Application.Current.Windows[0].Page = new AppShell();
+		//Application.Current.Windows[0].Page = new AppShell();
+		Application.Current.Windows[0].Page = new MainPage();
 	}
 
 	

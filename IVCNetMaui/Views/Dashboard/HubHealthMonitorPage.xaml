@@ -5,17 +5,38 @@
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:details="clr-namespace:IVCNetMaui.Views.Detail"
              x:Class="IVCNetMaui.Views.Dashboard.HubHealthMonitorPage"
-             Title="Hub / Health Monitor">
+             Title="Hub"
+             Style="{StaticResource MenuContentPage}"
+             >
+    <!--<Shell.TitleView>
+        <HorizontalStackLayout>
+            <Label Text="Test"
+               VerticalOptions="Center"
+               VerticalTextAlignment="Center"
+               FontSize="32"
+               BackgroundColor="White"
+               FontFamily="NunitoBold"/>
+        </HorizontalStackLayout>
+    </Shell.TitleView>-->
     <ContentPage.BindingContext>
         <viewModels:HubHeathViewModel/>
     </ContentPage.BindingContext>
-    <VerticalStackLayout>
-        <controls:MenuCardControl Title="System"
-                                  Command="{Binding GoToSystemDetailCommand}"/>
-        <controls:MenuCardControl Title="Video Process"
-                                  Command="{Binding GoToVideoProcessDetailCommand}"/>
-        <controls:MenuCardControl Title="UI Process"
-                                  Command="{Binding GoToUIProcessDetailCommand}" />
-    </VerticalStackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/MenuStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Border Style="{StaticResource MenuBorder}">
+        <VerticalStackLayout>
+            <controls:MenuCardControl Title="System"
+                                      Command="{Binding GoToSystemDetailCommand}"/>
+            <controls:MenuCardControl Title="Video Process"
+                                      Command="{Binding GoToVideoProcessDetailCommand}"/>
+            <controls:MenuCardControl Title="UI Process"
+                                      Command="{Binding GoToUIProcessDetailCommand}" />
+        </VerticalStackLayout>
+    </Border>
 
 </ContentPage>

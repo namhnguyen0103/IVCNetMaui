@@ -8,19 +8,23 @@
     xmlns:dashboard="clr-namespace:IVCNetMaui.Views.Dashboard"
     xmlns:view="clr-namespace:IVCNetMaui.Views.View"
     xmlns:historical="clr-namespace:IVCNetMaui.Views.Historical"
-    Title="IVCNetMaui"  >
+    x:DataType="local:AppShell"
+    x:Name="shell"
+    Title="IVCNetMaui"
+    FlyoutBackdrop="#80808080">
 
-    <ShellItem Title="Hub" 
+    <FlyoutItem Title="Hub" 
                FlyoutDisplayOptions="AsSingleItem"
-               Route="hub">
+               Route="hub"
+               >
         <Tab>
             <ShellContent Title="Hub Health Monitor" 
                           ContentTemplate="{DataTemplate dashboard:HubHealthMonitorPage}" 
                           Route="healthMonitor"/>
         </Tab>
-    </ShellItem>
+    </FlyoutItem>
 
-    <ShellItem Title="Edge" 
+    <FlyoutItem Title="Edge" 
                FlyoutDisplayOptions="AsSingleItem"
                Route="edge">
         <Tab>
@@ -34,21 +38,21 @@
                           ContentTemplate="{DataTemplate dashboard:EdgeUnitPage}" 
                           Route="units"/>
         </Tab>
-    </ShellItem>
+    </FlyoutItem>
 
-    <ShellItem Title="Camera View" 
+    <FlyoutItem Title="Camera View" 
                Route="cameraView">
         <ShellContent Title="Camera View" 
                       ContentTemplate="{DataTemplate view:CameraPage}" />
-    </ShellItem>
+    </FlyoutItem>
 
-    <ShellItem Title="Event View"
+    <FlyoutItem Title="Event View"
                Route="eventView">
         <ShellContent Title="Event View" 
                           ContentTemplate="{DataTemplate view:EventPage}" />
-    </ShellItem>
+    </FlyoutItem>
 
-    <ShellItem Title="Historical" 
+    <FlyoutItem Title="Historical" 
                FlyoutDisplayOptions="AsSingleItem"
                Route="historical">
         <Tab>
@@ -62,6 +66,19 @@
                           ContentTemplate="{DataTemplate historical:MediaDataPage}" 
                           Route="mediaData"/>-->
         </Tab>
-    </ShellItem>
+    </FlyoutItem>
 
+    <!--<Shell.FlyoutContent>
+        <CollectionView BindingContext="{x:Reference shell}"
+                        IsGrouped="True"
+                        ItemsSource="{Binding Items}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:AppShell">
+                    <Label Text="{Binding}"
+                           TextColor="Black"
+                           FontSize="18" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Shell.FlyoutContent>-->
 </Shell>

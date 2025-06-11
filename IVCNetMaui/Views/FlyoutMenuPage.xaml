@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:dashboard="clr-namespace:IVCNetMaui.Views.Dashboard"
+             xmlns:view="clr-namespace:IVCNetMaui.Views.View"
+             xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels"
+             xmlns:models="clr-namespace:IVCNetMaui.Models"
+             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             x:Class="IVCNetMaui.Views.FlyoutMenuPage"
+             Title="FlyoutMenuPage"
+             IconImageSource="hamburger_menu.png"
+             ios:Page.UseSafeArea="True">
+    <ContentPage.BindingContext>
+        <viewModels:FlyoutMenuViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="FlyoutCardControlTemplate">
+            <Grid ColumnDefinitions="20, *" 
+                  Padding="8"
+                  ColumnSpacing="8">
+                <Image Source="{TemplateBinding Icon}" />
+                <Label Grid.Column="1"
+                       Text="{TemplateBinding Title}"
+                       FontSize="16"
+                       FontFamily="NunitoMedium"
+                       VerticalOptions="Center" />
+            </Grid>
+        </ControlTemplate>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <!--<VerticalStackLayout>
+            <Label Text="NAVIGATION"/>
+            <controls:AccordionControl Header="Dashboards">
+                <VerticalStackLayout>
+                    <controls:AccordionControl Header="Hub">
+                        <Label Text="Health Monitor"/>
+                    </controls:AccordionControl>
+                    <controls:AccordionControl Header="Edge">
+                        <VerticalStackLayout>
+                            <Label Text="Health Monitor"/>
+                            <Label Text="Units"/>
+                            <Label Text="IoTs"/>
+                        </VerticalStackLayout>
+                    </controls:AccordionControl>
+                </VerticalStackLayout>
+            </controls:AccordionControl>
+            <Label Text="VIEWS"/>
+            <VerticalStackLayout>
+                <Label Text="Camera View"/>
+                <Label Text="Event View"/>
+            </VerticalStackLayout>
+            <Label Text="HISTORICAL"/>
+            <VerticalStackLayout>
+                <Label Text="Health Data"/>
+                <Label Text="IoT Data"/>
+                <Label Text="Media Data"/>
+            </VerticalStackLayout>
+            <Label Text="MANAGEMENT"/>
+        </VerticalStackLayout>-->
+
+        <!--<CollectionView x:Name="collectionView"
+                    x:FieldModifier="public"
+                    SelectionMode="Single">
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type models:FlyoutPageItem}">
+                    <models:FlyoutPageItem Title="Hub Health Monitor"
+                                      IconSource="home.png"
+                                      TargetType="{x:Type dashboard:HubHealthMonitorPage}" />
+                    <models:FlyoutPageItem Title="Edge Health Monitor"
+                                           IconSource="home.png"
+                                           TargetType="{x:Type dashboard:EdgeHealthMonitorPage}" />
+                    <models:FlyoutPageItem Title="Camera View"
+                                           IconSource="camera.png"
+                                           TargetType="{x:Type view:CameraPage}" />
+                    <models:FlyoutPageItem Title="Event View"
+                                           IconSource="flag.png"
+                                           TargetType="{x:Type view:EventPage}" />
+                </x:Array>
+            </CollectionView.ItemsSource>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:FlyoutPageItem">
+                    --><!--<Grid ColumnDefinitions="20, *" 
+                          Padding="8"
+                          ColumnSpacing="8">
+                        <Image Source="{Binding IconSource}" />
+                        <Label Grid.Column="1"
+                           Text="{Binding Title}"
+                           FontSize="16"
+                           FontFamily="NunitoMedium"
+                           VerticalOptions="Center" />-->
+                    <!--</Grid>--><!--
+                    <controls:MenuCardControl ControlTemplate="{StaticResource FlyoutCardControlTemplate}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>-->
+        <VerticalStackLayout>
+            <controls:MenuCardControl Title="Hub Health Monitor" Icon="home.png" ControlTemplate="{StaticResource FlyoutCardControlTemplate}"/>
+            <controls:MenuCardControl Title="Camera View" Icon="camera.png" ControlTemplate="{StaticResource FlyoutCardControlTemplate}"/>
+            <controls:MenuCardControl Title="Event View" Icon="flag.png" ControlTemplate="{StaticResource FlyoutCardControlTemplate}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
