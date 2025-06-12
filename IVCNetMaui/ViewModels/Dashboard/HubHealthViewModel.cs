@@ -5,12 +5,12 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-public partial class HubHeathViewModel : ObservableObject
+public partial class HubHeathMonitorViewModel : ObservableObject
 {
 	public IAsyncRelayCommand GoToSystemDetailCommand { get; private set; }
 	public IAsyncRelayCommand GoToVideoProcessDetailCommand { get; private set; }
 	public IAsyncRelayCommand GoToUIProcessDetailCommand { get; private set; }
-    public HubHeathViewModel()
+    public HubHeathMonitorViewModel()
 	{
 		GoToSystemDetailCommand = new AsyncRelayCommand(GoToSystemDetail);
 		GoToVideoProcessDetailCommand = new AsyncRelayCommand(GoToProcessDetail);

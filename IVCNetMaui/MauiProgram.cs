@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui;
+using IVCNetMaui.ViewModels.Dashboard;
+using IVCNetMaui.Views.Dashboard;
 using Microsoft.Extensions.Logging;
 using UraniumUI;
 
@@ -27,7 +29,17 @@ namespace IVCNetMaui
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton<HubHeathMonitorViewModel>();
+            builder.Services.AddSingleton<HubHealthMonitorPage>();
+            
             return builder.Build();
+        }
+
+        public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
+        {
+            mauiAppBuilder.Services.AddSingleton<HubHealthMonitorPage>();
+            
+            return mauiAppBuilder;
         }
     }
 }

@@ -4,9 +4,9 @@ namespace IVCNetMaui.Views.Dashboard;
 
 public partial class HubHealthMonitorPage : ContentPage
 {
-	public HubHealthMonitorPage()
+	public HubHealthMonitorPage(HubHeathMonitorViewModel vm)
 	{
-		BindingContext = new HubHeathViewModel();
+		BindingContext = vm;
 		InitializeComponent();
 	}
 
