@@ -4,11 +4,9 @@
              xmlns:local="clr-namespace:IVCNetMaui"
              xmlns:viewModel="clr-namespace:IVCNetMaui.ViewModels"
              x:Class="IVCNetMaui.Views.LoginPage"
-             Title="Login">
-    
-    <ContentPage.BindingContext>
-        <viewModel:LoginViewModel />
-    </ContentPage.BindingContext>
+             x:DataType="viewModel:LoginViewModel"
+             Title="Login"
+             Shell.NavBarIsVisible="False">
     <VerticalStackLayout VerticalOptions="Start"
                          Padding="24, 80">
         <Image Source="ivc_logo.png"

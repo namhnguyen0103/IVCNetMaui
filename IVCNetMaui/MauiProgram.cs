@@ -1,5 +1,8 @@
 ﻿using CommunityToolkit.Maui;
+using IVCNetMaui.Services.Navigation;
+using IVCNetMaui.ViewModels;
 using IVCNetMaui.ViewModels.Dashboard;
+using IVCNetMaui.Views;
 using IVCNetMaui.Views.Dashboard;
 using Microsoft.Extensions.Logging;
 using UraniumUI;
@@ -29,8 +32,14 @@ namespace IVCNetMaui
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
+            builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
+            
             builder.Services.AddSingleton<HubHealthMonitorViewModel>();
             builder.Services.AddSingleton<HubHealthMonitorPage>();
+            
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<LoginPage>();
             
             return builder.Build();
         }

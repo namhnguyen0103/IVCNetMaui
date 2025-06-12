@@ -1,15 +1,20 @@
-﻿namespace IVCNetMaui
+﻿using IVCNetMaui.Services.Navigation;
+
+namespace IVCNetMaui
 {
     public partial class App : Application
     {
-        public App()
+        private readonly INavigationService _navigationService;
+        public App(INavigationService navigationService)
         {
+            _navigationService = navigationService;
+            
             InitializeComponent();
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new Views.LoginPage());
+            return new Window(new AppShell(_navigationService));
         }
     }
 }

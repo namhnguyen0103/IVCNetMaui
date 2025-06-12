@@ -12,11 +12,12 @@
     x:Name="shell"
     Title="IVCNetMaui"
     FlyoutBackdrop="#80808080">
-
+    
+    <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" Route="login" FlyoutItemIsVisible="False"/>
+    
     <FlyoutItem Title="Hub" 
-               FlyoutDisplayOptions="AsSingleItem"
-               Route="hub"
-               >
+                FlyoutDisplayOptions="AsSingleItem"
+                Route="hub">
         <Tab>
             <ShellContent Title="Hub Health Monitor" 
                           ContentTemplate="{DataTemplate dashboard:HubHealthMonitorPage}" 
