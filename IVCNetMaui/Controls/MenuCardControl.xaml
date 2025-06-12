@@ -32,7 +32,7 @@
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="3,3,3,3" />
             </Border.StrokeShape>
-            <Image Source="{Binding Icon}" WidthRequest="20"/>
+            <Image Source="{Binding Icon}" WidthRequest="20" />
         </Border>
         <Label Grid.Column="1"
            Text="{Binding Title}" />

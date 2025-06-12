@@ -18,7 +18,7 @@
     </ContentPage.Resources>
     <VerticalStackLayout>
         <CollectionView ItemsSource="{Binding List}"
-                        ItemsLayout="VerticalList">
+                        ItemsLayout="VerticalGrid, 2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
                     <controls:UnitCardControl/>

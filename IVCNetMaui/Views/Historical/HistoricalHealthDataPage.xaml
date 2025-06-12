@@ -7,6 +7,11 @@
              x:Class="IVCNetMaui.Views.Historical.HistoricalHealthDataPage"
              Title="HealthDataPage"
              Padding="20, 12">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Padding" Value="16, 8"/>
+        </Style>
+    </ContentPage.Resources>
     <VerticalStackLayout>
         <Label Text="Hub Health Monitor"/>
         <controls:AccordionControl>
@@ -17,10 +22,10 @@
             </controls:AccordionControl.HeaderContent>
             <controls:AccordionControl.BodyContent>
                 <ControlTemplate>
-                    <VerticalStackLayout>
-                        <Label Text="Edge 1"/>
-                        <Label Text="Edge 2"/>
-                        <Label Text="Edge 3"/>
+                    <VerticalStackLayout BackgroundColor="{StaticResource Gray200}" Padding="8, 0, 0, 0">
+                        <Label Text="LVE1"/>
+                        <Label Text="LVE2"/>
+                        <Label Text="LVE3"/>
                     </VerticalStackLayout>
                 </ControlTemplate>
 

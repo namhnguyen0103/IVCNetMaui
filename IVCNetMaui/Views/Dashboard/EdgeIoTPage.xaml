@@ -3,13 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.EdgeIoTPage"
-             Title="Edge / IoT">
-    <VerticalStackLayout>
-        <controls:MenuCardControl Title="Cameras" 
-                                     Count="6" />
-        <controls:MenuCardControl Title="Weather Stations" 
-                                     Count="3" />
-        <controls:MenuCardControl Title="Modbus Devices"
-                                     Count="3" />
-    </VerticalStackLayout>  
+             Title="Edge / IoT"
+             Style="{StaticResource MenuContentPage}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Templates/MenuPageLayout.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="Auto">
+        <Border Style="{StaticResource MenuBorder}">
+            <VerticalStackLayout>
+                <controls:MenuCardControl Title="Cameras"
+                                          Icon="videocam_white.png"
+                                             Count="6" />
+                <controls:MenuCardControl Title="Weather Stations" 
+                                          Icon="solar_power_white.png"
+                                             Count="3" />
+                <controls:MenuCardControl Title="Modbus Devices"
+                                          Icon="router_white.png"
+                                             Count="3" />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>

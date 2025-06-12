@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IVCNetMaui.Resources.Styles.MenuStyles">
+             x:Class="IVCNetMaui.Views.Templates.MenuPageLayout">
     <Style x:Key="MenuBorder" TargetType="Border">
         <Setter Property="StrokeThickness" Value="0"/>
         <Setter Property="BackgroundColor" Value="White"/>
-        <Setter Property="VerticalOptions" Value="Start"/>
+        <!--<Setter Property="VerticalOptions" Value="Start"/>-->
         <Setter Property="StrokeShape">
             <Setter.Value>
                 <RoundRectangle CornerRadius="3" />
@@ -14,6 +14,6 @@
     </Style>
     <Style x:Key="MenuContentPage" TargetType="ContentPage">
         <Setter Property="BackgroundColor" Value="{StaticResource Gray200}"/>
-        <Setter Property="Padding" Value="20, 12"/>
+        <Setter Property="Padding" Value="20, 40"/>
     </Style>
 </ResourceDictionary>

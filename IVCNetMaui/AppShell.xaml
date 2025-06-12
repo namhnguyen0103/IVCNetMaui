@@ -63,9 +63,9 @@
             <ShellContent Title="IoT Data"
                           ContentTemplate="{DataTemplate historical:IoTDataPage}" 
                           Route="iotData"/>
-            <!--<ShellContent Title="Media Data"
+            <ShellContent Title="Media Data"
                           ContentTemplate="{DataTemplate historical:MediaDataPage}" 
-                          Route="mediaData"/>-->
+                          Route="mediaData"/>
         </Tab>
     </FlyoutItem>
 

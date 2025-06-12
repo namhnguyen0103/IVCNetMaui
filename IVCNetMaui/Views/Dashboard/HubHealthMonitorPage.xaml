@@ -10,19 +10,25 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles/MenuStyles.xaml" />
+                <ResourceDictionary Source="/Views/Templates/MenuPageLayout.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Border Style="{StaticResource MenuBorder}">
-        <VerticalStackLayout>
-            <controls:MenuCardControl Title="System"
+    <Grid RowDefinitions="Auto">
+        <Border Style="{StaticResource MenuBorder}">
+            <VerticalStackLayout>
+                <controls:MenuCardControl Title="System"
+                                      Icon="health_white.png"
                                       Command="{Binding GoToSystemDetailCommand}"/>
-            <controls:MenuCardControl Title="Video Process"
+                <controls:MenuCardControl Title="Video Process"
+                                      Icon="heart_white.png"
                                       Command="{Binding GoToVideoProcessDetailCommand}"/>
-            <controls:MenuCardControl Title="UI Process"
+                <controls:MenuCardControl Title="UI Process"
+                                      Icon="trend_white.png"
                                       Command="{Binding GoToUIProcessDetailCommand}" />
-        </VerticalStackLayout>
-    </Border>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+
 
 </ContentPage>

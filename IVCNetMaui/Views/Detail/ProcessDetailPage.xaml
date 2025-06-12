@@ -4,7 +4,7 @@
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
              x:Class="IVCNetMaui.Views.Detail.ProcessDetailPage"
              x:DataType="viewModels:ProcessDetailViewModel"
-             Title="ProcessDetailPage"
+             Title="Process Detail"
              Background="{StaticResource Gray200}"
              Padding="12, 8">
     <ContentPage.Resources>

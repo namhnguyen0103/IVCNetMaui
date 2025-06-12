@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Detail.SystemDetailPage"
              x:DataType="viewModels:SystemDetailViewModel"
-             Title="SystemDetailPage"
+             Title="System Detail"
              BackgroundColor="{StaticResource Gray200}"
              Padding="16, 8">
     <ContentPage.Resources>

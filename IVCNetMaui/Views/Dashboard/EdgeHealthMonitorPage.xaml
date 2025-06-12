@@ -4,10 +4,25 @@
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              x:Class="IVCNetMaui.Views.Dashboard.EdgeHealthMonitorPage"
-             Title="Edge / Health Monitor">
-    <VerticalStackLayout>
-        <controls:MenuCardControl Title="System Metrics" />
-        <controls:MenuCardControl Title="Video Process Metrics" />
-        <controls:MenuCardControl Title="UI Process Metrics" />
-    </VerticalStackLayout>
+             Title="Edge / Health Monitor"
+             Style="{StaticResource MenuContentPage}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Templates/MenuPageLayout.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="Auto">
+        <Border Style="{StaticResource MenuBorder}">
+            <VerticalStackLayout>
+                <controls:MenuCardControl Title="System Metrics" 
+                                          Icon="health_white.png"/>
+                <controls:MenuCardControl Title="Video Process Metrics" 
+                                          Icon="heart_white.png"/>
+                <controls:MenuCardControl Title="UI Process Metrics" 
+                                          Icon="trend_white.png"/>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>
