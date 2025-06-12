@@ -29,7 +29,7 @@ namespace IVCNetMaui
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
-            builder.Services.AddSingleton<HubHeathMonitorViewModel>();
+            builder.Services.AddSingleton<HubHealthMonitorViewModel>();
             builder.Services.AddSingleton<HubHealthMonitorPage>();
             
             return builder.Build();

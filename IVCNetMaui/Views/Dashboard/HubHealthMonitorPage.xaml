@@ -4,7 +4,7 @@
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.HubHealthMonitorPage"
-             x:DataType="viewModels:HubHeathMonitorViewModel"
+             x:DataType="viewModels:HubHealthMonitorViewModel"
              Title="Hub"
              Style="{StaticResource MenuContentPage}">
     <ContentPage.Resources>

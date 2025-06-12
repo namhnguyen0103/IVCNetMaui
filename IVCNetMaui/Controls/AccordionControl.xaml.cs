@@ -11,7 +11,7 @@ public partial class AccordionControl : ContentView
         get => (string)GetValue(HeaderProperty);
         set => SetValue(HeaderProperty, value);
     }
-    Image? _headerIcon;
+    private Image? _headerIcon;
     public ICommand RotateIconCommand { get; set; }
     public AccordionControl()
 	{
