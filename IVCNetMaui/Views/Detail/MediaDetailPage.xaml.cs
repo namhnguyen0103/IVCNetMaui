@@ -1,12 +1,13 @@
+using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Detail;
 
 namespace IVCNetMaui.Views.Detail;
 
 public partial class MediaDetailPage : ContentPage
 {
-	public MediaDetailPage()
+	public MediaDetailPage(MediaDetailViewModel vm)
 	{
-		BindingContext = new MediaDetailViewModel();
+		BindingContext = vm;
 		InitializeComponent();
 	}
 }

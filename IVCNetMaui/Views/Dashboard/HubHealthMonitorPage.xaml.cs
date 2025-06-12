@@ -9,15 +9,4 @@ public partial class HubHealthMonitorPage : ContentPage
 		BindingContext = vm;
 		InitializeComponent();
 	}
-
-    private void OnOpenSidebarClicked(object sender, EventArgs e)
-    {
-        // Open the sidebar (Flyout)
-        Shell.Current.FlyoutIsPresented = true;
-    }
-
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-
-    }
 }

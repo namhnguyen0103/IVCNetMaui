@@ -5,29 +5,36 @@ namespace IVCNetMaui.Controls;
 
 public partial class AccordionControl : ContentView
 {
-    public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(String), typeof(AccordionControl), string.Empty);
-    public string Header
+    public static readonly BindableProperty HeaderContentProperty = BindableProperty.Create(nameof(HeaderContent), typeof(ControlTemplate), typeof(AccordionControl));
+
+    public ControlTemplate HeaderContent
     {
-        get => (string)GetValue(HeaderProperty);
-        set => SetValue(HeaderProperty, value);
+        get => (ControlTemplate)this.GetValue(HeaderContentProperty);
+        set => SetValue(HeaderContentProperty, value);
     }
-    private Image? _headerIcon;
-    public ICommand RotateIconCommand { get; set; }
+    
+    public static readonly BindableProperty BodyContentProperty = BindableProperty.Create(nameof(BodyContent), typeof(ControlTemplate), typeof(AccordionControl));
+
+    public ControlTemplate BodyContent
+    {
+        get => (ControlTemplate)GetValue(BodyContentProperty);
+        set => SetValue(BodyContentProperty, value);
+    }
+
     public AccordionControl()
-	{
-        RotateIconCommand = new Command(RotateIcon);
-        InitializeComponent();
-	}
-
-    protected override void OnApplyTemplate()
     {
-        base.OnApplyTemplate();
-        _headerIcon = GetTemplateChild("HeaderIcon") as Image;
+        InitializeComponent();
     }
 
-    private void RotateIcon()
+    private async void OnExpandedChanged(object sender, EventArgs e)
     {
-        Console.WriteLine("Rotate works");
-        _headerIcon?.RelRotateTo(180, 0);
+        if (MainExpander.IsExpanded)
+        {
+            await HeaderIcon.RotateTo(-180, 200, Easing.SinInOut);
+        }
+        else
+        {
+            await HeaderIcon.RotateTo(0, 200, Easing.SinInOut);
+        }
     }
 }

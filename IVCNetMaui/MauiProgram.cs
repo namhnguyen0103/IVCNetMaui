@@ -2,8 +2,14 @@
 using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels;
 using IVCNetMaui.ViewModels.Dashboard;
+using IVCNetMaui.ViewModels.Detail;
+using IVCNetMaui.ViewModels.Historical;
+using IVCNetMaui.ViewModels.View;
 using IVCNetMaui.Views;
 using IVCNetMaui.Views.Dashboard;
+using IVCNetMaui.Views.Detail;
+using IVCNetMaui.Views.Historical;
+using IVCNetMaui.Views.View;
 using Microsoft.Extensions.Logging;
 using UraniumUI;
 
@@ -32,23 +38,51 @@ namespace IVCNetMaui
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+            builder
+                .RegisterAppServices()
+                .RegisterViewModels()
+                .RegisterViews();
+            
+            
+            
+            
 
-            builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
-            
-            builder.Services.AddSingleton<HubHealthMonitorViewModel>();
-            builder.Services.AddSingleton<HubHealthMonitorPage>();
-            
-            builder.Services.AddTransient<LoginViewModel>();
-            builder.Services.AddTransient<LoginPage>();
             
             return builder.Build();
         }
 
-        public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
+        private static MauiAppBuilder RegisterAppServices(this MauiAppBuilder builder)
         {
-            mauiAppBuilder.Services.AddSingleton<HubHealthMonitorPage>();
+            builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
             
-            return mauiAppBuilder;
+            return builder;
+        }
+        private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
+        {
+            builder.Services.AddSingleton<HubHealthMonitorViewModel>();
+            builder.Services.AddSingleton<EventViewModel>();
+            builder.Services.AddSingleton<HistoricalHealthDataViewModel>();
+            
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<CameraViewModel>();
+            builder.Services.AddTransient<EventDetailViewModel>();
+            builder.Services.AddTransient<MediaDetailViewModel>();
+            
+            return builder;
+        }
+        
+        private static MauiAppBuilder RegisterViews(this MauiAppBuilder builder)
+        {
+            builder.Services.AddSingleton<HubHealthMonitorPage>();
+            builder.Services.AddSingleton<EventPage>();
+            builder.Services.AddSingleton<HistoricalHealthDataPage>();
+            
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<CameraPage>();
+            builder.Services.AddTransient<EventDetailPage>();
+            builder.Services.AddTransient<MediaDetailPage>();
+            
+            return builder;
         }
     }
 }

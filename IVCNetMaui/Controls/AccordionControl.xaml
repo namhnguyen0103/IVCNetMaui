@@ -4,30 +4,16 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:local="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.AccordionControl"
-             x:Name="this">
-    <ContentView.ControlTemplate>
-        <ControlTemplate>
-            <toolkit:Expander BindingContext="{x:Reference this}"
-                  Command="{Binding RotateIconCommand}">
-                <toolkit:Expander.Header>
-                    <Grid ColumnDefinitions="*, Auto">
-                        <Label Text="{Binding Header}" />
-                        <Image x:Name="HeaderIcon" Source="down_arrow.png" Grid.Column="1" WidthRequest="15"/>
-                    </Grid>
-                </toolkit:Expander.Header>
-                <!--<CollectionView ItemsSource="{Binding ItemsSource}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="x:String">
-                <Label Text="{Binding}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Path=ItemCommand, Source={x:Reference this}}"/>
-                    </Label.GestureRecognizers>
-                </Label>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>-->
-                <ContentPresenter/>
-            </toolkit:Expander>
-        </ControlTemplate>
-    </ContentView.ControlTemplate>
+             x:Name="This">
+        <toolkit:Expander BindingContext="{x:Reference This}"
+              ExpandedChanged="OnExpandedChanged"
+              x:Name="MainExpander">
+            <toolkit:Expander.Header>
+                <Grid ColumnDefinitions="*, Auto">
+                    <ContentView ControlTemplate="{Binding HeaderContent}"/>
+                    <Image x:Name="HeaderIcon" Source="down_arrow.png" Grid.Column="1" WidthRequest="15"/>
+                </Grid>
+            </toolkit:Expander.Header>
+            <ContentView ControlTemplate="{Binding BodyContent}"/>
+        </toolkit:Expander>
 </ContentView>

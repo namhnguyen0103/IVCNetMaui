@@ -5,9 +5,9 @@ namespace IVCNetMaui.Views.View;
 
 public partial class CameraPage : ContentPage
 {
-	public CameraPage()
+	public CameraPage(CameraViewModel vm)
 	{
-        BindingContext = new CameraViewModel();
+        BindingContext = vm;
 		InitializeComponent();
         BuildGrid(1);
 	}

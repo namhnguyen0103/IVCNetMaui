@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Historical"
+             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             x:Class="IVCNetMaui.Views.Historical.HistoricalHealthDataPage"
+             Title="HealthDataPage"
+             Padding="20, 12">
+    <VerticalStackLayout>
+        <Label Text="Hub Health Monitor"/>
+        <controls:AccordionControl>
+            <controls:AccordionControl.HeaderContent>
+                <ControlTemplate>
+                    <Label Text="System Health"/>
+                </ControlTemplate>
+            </controls:AccordionControl.HeaderContent>
+            <controls:AccordionControl.BodyContent>
+                <ControlTemplate>
+                    <VerticalStackLayout>
+                        <Label Text="Edge 1"/>
+                        <Label Text="Edge 2"/>
+                        <Label Text="Edge 3"/>
+                    </VerticalStackLayout>
+                </ControlTemplate>
+
+            </controls:AccordionControl.BodyContent>
+        </controls:AccordionControl>
+
+    </VerticalStackLayout>
+</ContentPage>

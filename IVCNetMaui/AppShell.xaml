@@ -58,7 +58,7 @@
                Route="historical">
         <Tab>
             <ShellContent Title="Health Data"
-                          ContentTemplate="{DataTemplate historical:HealthDataPage}" 
+                          ContentTemplate="{DataTemplate historical:HistoricalHealthDataPage}" 
                           Route="healthData"/>
             <ShellContent Title="IoT Data"
                           ContentTemplate="{DataTemplate historical:IoTDataPage}" 

@@ -4,9 +4,9 @@ namespace IVCNetMaui.Views.Detail;
 
 public partial class EventDetailPage : ContentPage
 {
-	public EventDetailPage()
+	public EventDetailPage(EventDetailViewModel vm)
 	{
-		BindingContext = new EventDetailViewModel();
+		BindingContext = vm;
 		InitializeComponent();
 	}
 }

@@ -1,3 +1,6 @@
+using IVCNetMaui.Services.Navigation;
+using IVCNetMaui.ViewModels.Base;
+
 namespace IVCNetMaui.ViewModels.View;
 using CommunityToolkit.Mvvm;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -7,7 +10,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 
-public partial class CameraViewModel : ObservableObject
+public partial class CameraViewModel : ViewModelBase
 {
     public List<CameraControl> Cameras { get; }
 
@@ -18,7 +21,7 @@ public partial class CameraViewModel : ObservableObject
 
     // For testing if deleting and adding cameras are correct
     private int count = 1;
-    public CameraViewModel()
+    public CameraViewModel(INavigationService navigationService) : base(navigationService)
 	{
         AddCommand = new Command(AddCamera, CanAddCamera);
         Cameras = new()

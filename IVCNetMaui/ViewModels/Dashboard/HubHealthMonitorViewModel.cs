@@ -1,3 +1,6 @@
+using IVCNetMaui.Services.Navigation;
+using IVCNetMaui.ViewModels.Base;
+
 namespace IVCNetMaui.ViewModels.Dashboard;
 using CommunityToolkit.Mvvm;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -5,12 +8,12 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-public partial class HubHealthMonitorViewModel : ObservableObject
+public partial class HubHealthMonitorViewModel : ViewModelBase
 {
 	public IAsyncRelayCommand GoToSystemDetailCommand { get; private set; }
 	public IAsyncRelayCommand GoToVideoProcessDetailCommand { get; private set; }
 	public IAsyncRelayCommand GoToUIProcessDetailCommand { get; private set; }
-    public HubHealthMonitorViewModel()
+    public HubHealthMonitorViewModel(INavigationService navigationService) : base(navigationService)
 	{
 		GoToSystemDetailCommand = new AsyncRelayCommand(GoToSystemDetail);
 		GoToVideoProcessDetailCommand = new AsyncRelayCommand(GoToProcessDetail);

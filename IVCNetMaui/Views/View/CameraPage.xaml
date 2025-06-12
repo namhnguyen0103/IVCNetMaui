@@ -7,7 +7,7 @@
              Title="CameraPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Camera"
-                     IconImageSource="right_arrow.png"
+                     IconImageSource="add.png"
                      Command="{Binding AddCommand}"/>
     </ContentPage.ToolbarItems>
     <Grid x:Name="FlexibleGrid">

@@ -164,7 +164,7 @@
 	  <MauiXaml Update="Views\FlyoutMenuPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Historical\HealthDataPage.xaml">
+	  <MauiXaml Update="Views\Historical\HistoricalHealthDataPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Historical\IoTDataPage.xaml">
@@ -185,6 +185,10 @@
 	  <MauiXaml Update="Views\View\EventPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Views\Templates\" />
 	</ItemGroup>
 
 </Project>
