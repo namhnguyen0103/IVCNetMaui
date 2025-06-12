@@ -9,7 +9,7 @@ public partial class EventViewModel : ObservableObject
 {
     [ObservableProperty]
     public List<string> list = new List<string> { "1", "2", "3" };
-    public AsyncRelayCommand GoToEventDetailCommand { get; }
+    public IAsyncRelayCommand GoToEventDetailCommand { get; private set; }
     public EventViewModel()
 	{
         GoToEventDetailCommand = new AsyncRelayCommand(GoToEventDetail);

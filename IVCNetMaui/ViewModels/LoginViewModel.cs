@@ -23,8 +23,8 @@ public partial class LoginViewModel : ObservableObject
 	private async Task OnLoginAsync()
 	{
 		Console.WriteLine("Works");
-		//Application.Current.Windows[0].Page = new AppShell();
-		Application.Current.Windows[0].Page = new MainPage();
+		Application.Current.Windows[0].Page = new AppShell();
+		// Application.Current.Windows[0].Page = new MainPage();
 	}
 
 	

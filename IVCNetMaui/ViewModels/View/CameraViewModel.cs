@@ -11,10 +11,10 @@ public partial class CameraViewModel : ObservableObject
 {
     public List<CameraControl> Cameras { get; }
 
-    public ICommand AddCommand { get; }
+    public ICommand AddCommand { get; private set; }
 
     [ObservableProperty]
-    public int cameraCount = 1;
+    int cameraCount = 1;
 
     // For testing if deleting and adding cameras are correct
     private int count = 1;

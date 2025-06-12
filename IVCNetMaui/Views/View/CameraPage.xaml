@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
              x:Class="IVCNetMaui.Views.View.CameraPage"
+             x:DataType="viewModels:CameraViewModel"
              Title="CameraPage">
-    <ContentPage.BindingContext>
-        <viewModels:CameraViewModel />
-    </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Camera"
                      IconImageSource="right_arrow.png"

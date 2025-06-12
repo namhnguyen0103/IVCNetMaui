@@ -5,7 +5,7 @@ namespace IVCNetMaui.ViewModels.Detail;
 
 public class EventDetailViewModel : ObservableObject
 {
-	public AsyncRelayCommand GoToMediaDetailCommand { get; }
+	public IAsyncRelayCommand GoToMediaDetailCommand { get; }
     public EventDetailViewModel()
 	{
 		GoToMediaDetailCommand = new AsyncRelayCommand(GoToMediaDetail);

@@ -7,6 +7,7 @@ public partial class CameraPage : ContentPage
 {
 	public CameraPage()
 	{
+        BindingContext = new CameraViewModel();
 		InitializeComponent();
         BuildGrid(1);
 	}

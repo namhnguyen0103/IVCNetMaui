@@ -4,16 +4,12 @@
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
              x:Class="IVCNetMaui.Views.View.EventPage"
-             x:Name="this"
+             x:DataType="viewModels:EventViewModel"
              Title="EventPage">
-    <ContentPage.BindingContext>
-        <viewModels:EventViewModel />
-    </ContentPage.BindingContext>
     <VerticalStackLayout>
         <CollectionView ItemsSource="{Binding List}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
-                    <!--<controls:EventCardControl Command="{Binding BindingContext.GoToEventDetailCommand, Source={x:Reference this}}"/>-->
                     <controls:EventCardControl Command="{Binding x:DataType='viewModels:EventViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EventViewModel}}, Path=GoToEventDetailCommand}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>

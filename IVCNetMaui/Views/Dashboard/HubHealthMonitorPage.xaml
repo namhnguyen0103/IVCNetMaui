@@ -3,24 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
-             xmlns:details="clr-namespace:IVCNetMaui.Views.Detail"
              x:Class="IVCNetMaui.Views.Dashboard.HubHealthMonitorPage"
+             x:DataType="viewModels:HubHeathViewModel"
              Title="Hub"
-             Style="{StaticResource MenuContentPage}"
-             >
-    <!--<Shell.TitleView>
-        <HorizontalStackLayout>
-            <Label Text="Test"
-               VerticalOptions="Center"
-               VerticalTextAlignment="Center"
-               FontSize="32"
-               BackgroundColor="White"
-               FontFamily="NunitoBold"/>
-        </HorizontalStackLayout>
-    </Shell.TitleView>-->
-    <ContentPage.BindingContext>
-        <viewModels:HubHeathViewModel/>
-    </ContentPage.BindingContext>
+             Style="{StaticResource MenuContentPage}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

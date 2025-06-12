@@ -7,9 +7,9 @@ using System.ComponentModel;
 
 public partial class HubHeathViewModel : ObservableObject
 {
-	public AsyncRelayCommand GoToSystemDetailCommand { get; }
-	public AsyncRelayCommand GoToVideoProcessDetailCommand { get; }
-	public AsyncRelayCommand GoToUIProcessDetailCommand { get;  }
+	public IAsyncRelayCommand GoToSystemDetailCommand { get; private set; }
+	public IAsyncRelayCommand GoToVideoProcessDetailCommand { get; private set; }
+	public IAsyncRelayCommand GoToUIProcessDetailCommand { get; private set; }
     public HubHeathViewModel()
 	{
 		GoToSystemDetailCommand = new AsyncRelayCommand(GoToSystemDetail);

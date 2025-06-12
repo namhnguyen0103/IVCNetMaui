@@ -5,12 +5,10 @@
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Detail.SystemDetailPage"
+             x:DataType="viewModels:SystemDetailViewModel"
              Title="SystemDetailPage"
              BackgroundColor="{StaticResource Gray200}"
              Padding="16, 8">
-    <ContentPage.BindingContext>
-        <viewModels:SystemDetailViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <!--<ResourceDictionary>
             <Style TargetType="Border">

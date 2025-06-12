@@ -3,10 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
              x:Class="IVCNetMaui.Views.Detail.MediaDetailPage"
+             x:DataType="viewModels:MediaDetailViewModel"
              Title="MediaDetailPage">
-    <ContentPage.BindingContext>
-        <viewModels:MediaDetailViewModel/>
-    </ContentPage.BindingContext>
     <VerticalStackLayout>
         <Button Text="Download"/>
         <Border BackgroundColor="Grey"
