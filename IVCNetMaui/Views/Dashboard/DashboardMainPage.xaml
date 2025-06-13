@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
+             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
+             x:DataType="viewModels:DashboardMainViewModel"
+             Title="DashboardMainPage"
+             Style="{StaticResource MenuContentPage}"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Templates/MenuPageLayout.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView Style="{StaticResource MainPadding}">
+    <VerticalStackLayout Spacing="24">
+        <HorizontalStackLayout Spacing="12">
+            <Image Source="hamburger.png" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToggleFlyoutCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="Dashboard"
+                   FontSize="32"
+                   FontFamily="NunitoBold"/>
+        </HorizontalStackLayout>
+
+            <!--Hub Section--> 
+                <VerticalStackLayout Style="{StaticResource SectionStack}">
+                    <HorizontalStackLayout Style="{StaticResource SectionHeader}">
+                        <HorizontalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToHubCommand}"/>
+                        </HorizontalStackLayout.GestureRecognizers>
+                        <Label Text="Hub"
+                           Style="{StaticResource SectionTitle}"/>
+                        <Image Source="chevron_right.png"
+                           WidthRequest="6"/>
+                    </HorizontalStackLayout>
+                    <Border BackgroundColor="White"
+                        HeightRequest="200"
+                        StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="3" />
+                        </Border.StrokeShape>
+                <Label Text="Summary of hub"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToHubCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Border>
+                </VerticalStackLayout>
+                <!--Edge Section-->
+        <VerticalStackLayout  Style="{StaticResource SectionStack}">
+            <HorizontalStackLayout Style="{StaticResource SectionHeader}">
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToUnitCommand}"/>
+                </HorizontalStackLayout.GestureRecognizers>
+                <Label Text="Edge"
+                           Style="{StaticResource SectionTitle}"/>
+                <Image Source="chevron_right.png"
+                           WidthRequest="6"/>
+            </HorizontalStackLayout>
+            <CollectionView ItemsSource="{Binding List}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                         Span="2"
+                                         VerticalItemSpacing="8"
+                                         HorizontalItemSpacing="8"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <controls:UnitCardControl />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

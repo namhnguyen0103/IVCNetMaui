@@ -2,9 +2,9 @@ using IVCNetMaui.ViewModels.Dashboard;
 
 namespace IVCNetMaui.Views.Dashboard;
 
-public partial class EdgeUnitPage : ContentPage
+public partial class DashboardMainPage : ContentPage
 {
-	public EdgeUnitPage(EdgeUnitViewModel vm)
+	public DashboardMainPage(DashboardMainViewModel vm)
 	{
 		BindingContext = vm;
 		InitializeComponent();

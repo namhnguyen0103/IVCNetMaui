@@ -14,7 +14,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid RowDefinitions="Auto">
+    <Grid RowDefinitions="Auto"
+          Style="{StaticResource MainPadding}">
         <Border Style="{StaticResource MenuBorder}">
             <VerticalStackLayout>
                 <controls:MenuCardControl Title="System"

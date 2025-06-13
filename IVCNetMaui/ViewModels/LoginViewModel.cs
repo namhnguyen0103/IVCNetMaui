@@ -29,7 +29,7 @@ public partial class LoginViewModel : ObservableObject
 	{
 		Console.WriteLine("Works");
 
-		await _navigationService.NavigateToAsync("//hub");
+		await _navigationService.NavigateToAsync("//dashboard");
 		// Application.Current.Windows[0].Page = new AppShell();
 		// Application.Current.Windows[0].Page = new MainPage();
 	}

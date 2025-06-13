@@ -4,21 +4,23 @@
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.EdgeUnitPage"
-             Title="Edge / Unit">
-    <ContentPage.BindingContext>
-        <viewModels:EdgeUnitViewModel/>
-    </ContentPage.BindingContext>
+             x:DataType="viewModels:EdgeUnitViewModel"
+             Title="Unit"
+             Style="{StaticResource MenuContentPage}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="Footer" 
                    TargetType="Label">
                 <Setter Property="FontSize" Value="12"/>
             </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Templates/MenuPageLayout.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <VerticalStackLayout>
+    <VerticalStackLayout Style="{StaticResource MainPadding}">
         <CollectionView ItemsSource="{Binding List}"
-                        ItemsLayout="VerticalGrid, 2">
+                        Style="{StaticResource TwoColumnCollectionView}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
                     <controls:UnitCardControl/>

@@ -14,8 +14,15 @@
     FlyoutBackdrop="#80808080">
     
     <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" Route="login" FlyoutItemIsVisible="False"/>
+
+    <FlyoutItem Title="Dashboard"
+                Route="dashboard">
+        <ShellContent Title="Dashboard"
+                      ContentTemplate="{DataTemplate dashboard:DashboardMainPage}"
+                      Route="main"/>
+    </FlyoutItem>
     
-    <FlyoutItem Title="Hub" 
+    <!--<FlyoutItem Title="Hub" 
                 FlyoutDisplayOptions="AsSingleItem"
                 Route="hub">
         <Tab>
@@ -23,9 +30,9 @@
                           ContentTemplate="{DataTemplate dashboard:HubHealthMonitorPage}" 
                           Route="healthMonitor"/>
         </Tab>
-    </FlyoutItem>
+    </FlyoutItem>-->
 
-    <FlyoutItem Title="Edge" 
+    <!--<FlyoutItem Title="Edge" 
                FlyoutDisplayOptions="AsSingleItem"
                Route="edge">
         <Tab>
@@ -39,7 +46,7 @@
                           ContentTemplate="{DataTemplate dashboard:EdgeUnitPage}" 
                           Route="units"/>
         </Tab>
-    </FlyoutItem>
+    </FlyoutItem>-->
 
     <FlyoutItem Title="Camera View" 
                Route="cameraView">
