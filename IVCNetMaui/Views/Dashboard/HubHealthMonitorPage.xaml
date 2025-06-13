@@ -14,22 +14,35 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid RowDefinitions="Auto"
-          Style="{StaticResource MainPadding}">
-        <Border Style="{StaticResource MenuBorder}">
-            <VerticalStackLayout>
-                <controls:MenuCardControl Title="System"
+    <VerticalStackLayout Style="{StaticResource MainPadding}"
+                         Spacing="24">
+        <Border BackgroundColor="White"
+                HeightRequest="200"
+                StrokeThickness="0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="3" />
+            </Border.StrokeShape>
+            <Label Text="Summary of hub"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center">
+            </Label>
+        </Border>
+        <Grid RowDefinitions="Auto">
+            <Border Style="{StaticResource MenuBorder}">
+                <VerticalStackLayout>
+                    <controls:MenuCardControl Title="System"
                                       Icon="health_white.png"
                                       Command="{Binding GoToSystemDetailCommand}"/>
-                <controls:MenuCardControl Title="Video Process"
+                    <controls:MenuCardControl Title="Video Process"
                                       Icon="heart_white.png"
                                       Command="{Binding GoToVideoProcessDetailCommand}"/>
-                <controls:MenuCardControl Title="UI Process"
+                    <controls:MenuCardControl Title="UI Process"
                                       Icon="trend_white.png"
                                       Command="{Binding GoToUIProcessDetailCommand}" />
-            </VerticalStackLayout>
-        </Border>
-    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </VerticalStackLayout>
 
 
 </ContentPage>

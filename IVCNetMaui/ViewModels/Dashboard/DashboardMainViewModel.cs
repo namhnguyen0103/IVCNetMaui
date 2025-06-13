@@ -20,9 +20,9 @@ namespace IVCNetMaui.ViewModels.Dashboard
             "LVE1", "LVE2", "LVE3", "LVE4",
             "LVE1", "LVE2", "LVE3", "LVE4",
             "LVE1", "LVE2", "LVE3", "LVE4",
-            "LVE1", "LVE2", "LVE3", "LVE4",
-            "LVE1", "LVE2", "LVE3", "LVE4",
-            "LVE1", "LVE2", "LVE3", "LVE4",
+            //"LVE1", "LVE2", "LVE3", "LVE4",
+            //"LVE1", "LVE2", "LVE3", "LVE4",
+            //"LVE1", "LVE2", "LVE3", "LVE4",
         };
 
         public ICommand ToggleFlyoutCommand { get; private set; }

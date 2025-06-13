@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.EdgeUnitPage"
@@ -18,8 +19,12 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <VerticalStackLayout Style="{StaticResource MainPadding}">
-        <CollectionView ItemsSource="{Binding List}"
+    <Grid RowDefinitions="Auto, *"
+        Style="{StaticResource MainPadding}">
+        <SearchBar Background="Transparent"
+                   ios:SearchBar.SearchBarStyle="Minimal"/>
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding List}"
                         Style="{StaticResource TwoColumnCollectionView}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
@@ -27,5 +32,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

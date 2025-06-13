@@ -179,9 +179,6 @@
 	  <MauiXaml Update="Views\MainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Templates\EdgeCollectionStyle.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\Templates\MenuPageLayout.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

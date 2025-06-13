@@ -5,9 +5,9 @@
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
              x:DataType="viewModels:DashboardMainViewModel"
-             Title="DashboardMainPage"
+             Title="Dashboard"
              Style="{StaticResource MenuContentPage}"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="True">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,10 +15,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-
     <ScrollView Style="{StaticResource MainPadding}">
     <VerticalStackLayout Spacing="24">
-        <HorizontalStackLayout Spacing="12">
+        <!--<HorizontalStackLayout Spacing="12">
             <Image Source="hamburger.png" >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ToggleFlyoutCommand}" />
@@ -27,25 +26,25 @@
             <Label Text="Dashboard"
                    FontSize="32"
                    FontFamily="NunitoBold"/>
-        </HorizontalStackLayout>
+        </HorizontalStackLayout>-->
 
-            <!--Hub Section--> 
-                <VerticalStackLayout Style="{StaticResource SectionStack}">
-                    <HorizontalStackLayout Style="{StaticResource SectionHeader}">
-                        <HorizontalStackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding NavigateToHubCommand}"/>
-                        </HorizontalStackLayout.GestureRecognizers>
-                        <Label Text="Hub"
+        <!--Hub Section-->
+        <VerticalStackLayout Style="{StaticResource SectionStack}">
+            <HorizontalStackLayout Style="{StaticResource SectionHeader}">
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToHubCommand}"/>
+                </HorizontalStackLayout.GestureRecognizers>
+                <Label Text="Hub"
                            Style="{StaticResource SectionTitle}"/>
-                        <Image Source="chevron_right.png"
+                <Image Source="chevron_right.png"
                            WidthRequest="6"/>
-                    </HorizontalStackLayout>
-                    <Border BackgroundColor="White"
+            </HorizontalStackLayout>
+            <Border BackgroundColor="White"
                         HeightRequest="200"
                         StrokeThickness="0">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="3" />
-                        </Border.StrokeShape>
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="3" />
+                </Border.StrokeShape>
                 <Label Text="Summary of hub"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Center">
@@ -54,8 +53,8 @@
                     </Label.GestureRecognizers>
                 </Label>
             </Border>
-                </VerticalStackLayout>
-                <!--Edge Section-->
+        </VerticalStackLayout>
+        <!--Edge Section-->
         <VerticalStackLayout  Style="{StaticResource SectionStack}">
             <HorizontalStackLayout Style="{StaticResource SectionHeader}">
                 <HorizontalStackLayout.GestureRecognizers>

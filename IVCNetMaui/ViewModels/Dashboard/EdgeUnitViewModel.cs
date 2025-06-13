@@ -15,7 +15,12 @@ public partial class EdgeUnitViewModel : ViewModelBase
     [ObservableProperty]
     public ObservableCollection<String> list = new ObservableCollection<String>
         {
-            "LVE1", "LVE2", "LVE3", "LVE4"
+            "LVE1", "LVE2", "LVE3", "LVE4",
+            "LVE1", "LVE2", "LVE3", "LVE4",
+            "LVE1", "LVE2", "LVE3", "LVE4",
+            //"LVE1", "LVE2", "LVE3", "LVE4",
+            //"LVE1", "LVE2", "LVE3", "LVE4",
+            //"LVE1", "LVE2", "LVE3", "LVE4",
         };
 
     public EdgeUnitViewModel(INavigationService navigationService) : base(navigationService)
