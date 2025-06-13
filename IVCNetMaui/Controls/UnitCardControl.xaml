@@ -30,13 +30,12 @@
             <RoundRectangle CornerRadius="3"/>
         </Border.StrokeShape>
         <Grid ColumnDefinitions="Auto, *"
-          RowDefinitions="32
-          , Auto"
+          RowDefinitions="Auto, Auto"
           ColumnSpacing="8">
             <Ellipse Fill="Green"
              WidthRequest="8"
              HeightRequest="8"
-             VerticalOptions="Start"/>
+             VerticalOptions="Center"/>
             <Label LineBreakMode="WordWrap" Grid.Column="1" FontSize="12">
                 <Label.FormattedText>
                     <FormattedString>
