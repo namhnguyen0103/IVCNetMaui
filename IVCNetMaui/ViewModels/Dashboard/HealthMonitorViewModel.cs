@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IVCNetMaui.ViewModels.Dashboard
 {
-    internal class HealthMonitorViewModel : ViewModelBase
+    public class HealthMonitorViewModel : ViewModelBase
     {
         public HealthMonitorViewModel(INavigationService navigationService) : base(navigationService)
         {

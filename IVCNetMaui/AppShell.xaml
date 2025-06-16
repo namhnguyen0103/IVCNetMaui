@@ -51,18 +51,4 @@
                           Route="mediaData"/>
         </Tab>
     </FlyoutItem>
-
-    <!--<Shell.FlyoutContent>
-        <CollectionView BindingContext="{x:Reference shell}"
-                        IsGrouped="True"
-                        ItemsSource="{Binding Items}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="local:AppShell">
-                    <Label Text="{Binding}"
-                           TextColor="Black"
-                           FontSize="18" />
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </Shell.FlyoutContent>-->
 </Shell>

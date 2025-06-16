@@ -15,7 +15,7 @@
                 <ResourceDictionary Source="/Resources/Styles/DetailStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <DataTemplate x:Key="Header">
+            <DataTemplate x:Key="Header" x:DataType="material:TabItem">
                 <Border StrokeThickness="0">
                     <Border.Triggers>
                         <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
@@ -223,7 +223,6 @@
                     </VerticalStackLayout>
                 </VerticalStackLayout>
             </DataTemplate>
-            
         </ResourceDictionary>
     </ContentPage.Resources>
     <material:TabView TabHeaderItemTemplate="{StaticResource Header}">

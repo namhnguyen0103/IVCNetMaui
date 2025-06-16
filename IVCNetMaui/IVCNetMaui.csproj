@@ -98,9 +98,6 @@
 	  <Compile Update="Views\Dashboard\EdgeHealthMonitorPage.xaml.cs">
 	    <DependentUpon>EdgeHealthMonitorPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Dashboard\HubHealthMonitorPage.xaml.cs">
-	    <DependentUpon>HubHealthMonitorPage.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\LoginPage.xaml.cs">
 	    <DependentUpon>LoginPage.xaml</DependentUpon>
 	  </Compile>
@@ -149,22 +146,10 @@
 	  <MauiXaml Update="Views\Dashboard\HealthMonitorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Dashboard\HubHealthMonitorPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\Detail\EventDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Detail\MediaDetailPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Detail\ProcessDetailPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Detail\SystemDetailPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\FlyoutMenuPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Historical\HistoricalHealthDataPage.xaml">

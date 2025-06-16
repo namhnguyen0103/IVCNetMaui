@@ -55,7 +55,6 @@ namespace IVCNetMaui
         private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<DashboardMainViewModel>();
-            builder.Services.AddSingleton<HubHealthMonitorViewModel>();
             builder.Services.AddSingleton<EdgeUnitViewModel>();
             builder.Services.AddSingleton<EventViewModel>();
             builder.Services.AddSingleton<HistoricalHealthDataViewModel>();
@@ -72,7 +71,6 @@ namespace IVCNetMaui
         private static MauiAppBuilder RegisterViews(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<DashboardMainPage>();
-            builder.Services.AddSingleton<HubHealthMonitorPage>();
             builder.Services.AddSingleton<EdgeUnitPage>();
             builder.Services.AddSingleton<EventPage>();
             builder.Services.AddSingleton<HistoricalHealthDataPage>();
