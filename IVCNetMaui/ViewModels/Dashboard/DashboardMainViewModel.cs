@@ -28,11 +28,15 @@ namespace IVCNetMaui.ViewModels.Dashboard
         public ICommand ToggleFlyoutCommand { get; private set; }
         public ICommand NavigateToSystemCommand { get; private set; }
         public ICommand NavigateToProcessCommand { get; private set; }
+        public ICommand NavigateToHealthMonitorCommand { get; private set; }
+        public ICommand NavigateToIoTListCommand { get; private set; }
         public DashboardMainViewModel(INavigationService navigationService) : base(navigationService) 
         {
             ToggleFlyoutCommand = new RelayCommand(() => NavigationService.TapFlyoutIcon());
             NavigateToSystemCommand = new AsyncRelayCommand(() => NavigationService.NavigateToAsync("healthMonitor"));
             NavigateToProcessCommand = new AsyncRelayCommand(() => NavigationService.NavigateToAsync("healthMonitor"));
+            NavigateToHealthMonitorCommand = new AsyncRelayCommand(() => NavigationService.NavigateToAsync("healthMonitor"));
+            NavigateToIoTListCommand = new AsyncRelayCommand(() => navigationService.NavigateToAsync("iotList"));
         }
     }
 }
