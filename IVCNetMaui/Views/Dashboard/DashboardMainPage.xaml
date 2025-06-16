@@ -16,69 +16,82 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView Style="{StaticResource MainPadding}">
-    <VerticalStackLayout Spacing="24">
-        <!--<HorizontalStackLayout Spacing="12">
-            <Image Source="hamburger.png" >
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ToggleFlyoutCommand}" />
-                </Image.GestureRecognizers>
-            </Image>
-            <Label Text="Dashboard"
-                   FontSize="32"
-                   FontFamily="NunitoBold"/>
-        </HorizontalStackLayout>-->
-
-        <!--Hub Section-->
-        <VerticalStackLayout Style="{StaticResource SectionStack}">
-            <HorizontalStackLayout Style="{StaticResource SectionHeader}">
-                <HorizontalStackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding NavigateToHubCommand}"/>
-                </HorizontalStackLayout.GestureRecognizers>
-                <Label Text="Hub"
-                           Style="{StaticResource SectionTitle}"/>
-                <Image Source="chevron_right.png"
-                           WidthRequest="6"/>
-            </HorizontalStackLayout>
-            <Border BackgroundColor="White"
-                        HeightRequest="200"
-                        StrokeThickness="0">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="3" />
-                </Border.StrokeShape>
-                <Label Text="Summary of hub"
-                           VerticalTextAlignment="Center"
-                           HorizontalTextAlignment="Center">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NavigateToHubCommand}"/>
-                    </Label.GestureRecognizers>
-                </Label>
-            </Border>
+        <VerticalStackLayout Spacing="24">
+            <!--Hub Section-->
+            <VerticalStackLayout Style="{StaticResource SectionStack}">
+                <HorizontalStackLayout Style="{StaticResource SectionHeader}">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToSystemCommand}"/>
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="Hub"
+                               Style="{StaticResource SectionTitle}"/>
+                    <Image Source="chevron_right.png"
+                               WidthRequest="6"/>
+                </HorizontalStackLayout>
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto, Auto"
+                      ColumnSpacing="8"
+                      RowSpacing="8">
+                        <Border BackgroundColor="White"
+                                HeightRequest="100"
+                                StrokeThickness="0"
+                                Grid.ColumnSpan="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="3" />
+                            </Border.StrokeShape>
+                            <Label Text="System Summary"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToSystemCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>    
+                        </Border>
+                        <Border Grid.Row="1"
+                                HeightRequest="100">
+                            <Label Text="Video Process Summary">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToProcessCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Border>
+                        <Border Grid.Row="2"
+                                Grid.Column="2"
+                                HeightRequest="100">
+                            <Label Text="UI Process Summary">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToProcessCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Border>
+                    </Grid>
+            
+            </VerticalStackLayout>
+            <!--Edge Section-->
+            <VerticalStackLayout  Style="{StaticResource SectionStack}">
+                <HorizontalStackLayout Style="{StaticResource SectionHeader}">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToUnitCommand}"/>
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="Edge"
+                               Style="{StaticResource SectionTitle}"/>
+                    <Image Source="chevron_right.png"
+                               WidthRequest="6"/>
+                </HorizontalStackLayout>
+                <CollectionView ItemsSource="{Binding List}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                             Span="1"
+                                             VerticalItemSpacing="8"
+                                             HorizontalItemSpacing="8"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <controls:UnitCardControl />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
         </VerticalStackLayout>
-        <!--Edge Section-->
-        <VerticalStackLayout  Style="{StaticResource SectionStack}">
-            <HorizontalStackLayout Style="{StaticResource SectionHeader}">
-                <HorizontalStackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding NavigateToUnitCommand}"/>
-                </HorizontalStackLayout.GestureRecognizers>
-                <Label Text="Edge"
-                           Style="{StaticResource SectionTitle}"/>
-                <Image Source="chevron_right.png"
-                           WidthRequest="6"/>
-            </HorizontalStackLayout>
-            <CollectionView ItemsSource="{Binding List}">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"
-                                         Span="2"
-                                         VerticalItemSpacing="8"
-                                         HorizontalItemSpacing="8"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="x:String">
-                        <controls:UnitCardControl />
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </VerticalStackLayout>
-    </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

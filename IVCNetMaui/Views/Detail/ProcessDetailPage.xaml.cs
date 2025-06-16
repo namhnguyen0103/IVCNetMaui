@@ -2,11 +2,11 @@ using IVCNetMaui.ViewModels.Detail;
 
 namespace IVCNetMaui.Views.Detail;
 
-public partial class ProcessDetailPage : ContentPage
+public partial class ProcessDetailPage : ContentView
 {
 	public ProcessDetailPage()
 	{
-		BindingContext = new ProcessDetailViewModel();
+		//BindingContext = new ProcessDetailViewModel();
 		InitializeComponent();
 	}
 }

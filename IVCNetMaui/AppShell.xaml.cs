@@ -13,11 +13,9 @@ namespace IVCNetMaui
             InitializeComponent();
         }
 
-        private static void InitializeRouting()
-        {
-            Routing.RegisterRoute("dashboard/hubHealthMonitor", typeof(Views.Dashboard.HubHealthMonitorPage));
-            Routing.RegisterRoute("dashboard/hubHealthMonitor/systemDetail", typeof(Views.Detail.SystemDetailPage));
-            Routing.RegisterRoute("dashboard/hubHealthMonitor/processDetail", typeof(Views.Detail.ProcessDetailPage));
+        private static void InitializeRouting() 
+        { 
+            Routing.RegisterRoute("dashboard/healthMonitor", typeof(Views.Dashboard.HealthMonitorPage));
             Routing.RegisterRoute("dashboard/edgeUnit", typeof(Views.Dashboard.EdgeUnitPage));
             Routing.RegisterRoute("eventView/eventDetail", typeof(Views.Detail.EventDetailPage));
             Routing.RegisterRoute("eventView/eventDetail/mediaDetail", typeof(Views.Detail.MediaDetailPage));

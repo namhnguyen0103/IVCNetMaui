@@ -11,7 +11,7 @@ public class MauiNavigationService : INavigationService
 
         return routeParameters != null
             ? Shell.Current.GoToAsync(shellNavigation, routeParameters)
-            : Shell.Current.GoToAsync(shellNavigation);    
+            : Shell.Current.GoToAsync(shellNavigation);
     }
 
     public Task PopAsync() =>

@@ -22,7 +22,8 @@ public partial class HubHealthMonitorViewModel : ViewModelBase
 
 	private async Task GoToSystemDetail()
 	{
-		await Shell.Current.GoToAsync("systemDetail");
+		Console.WriteLine("Works");
+		await Shell.Current.GoToAsync("tab");
 	}
 
 	private async Task GoToProcessDetail()

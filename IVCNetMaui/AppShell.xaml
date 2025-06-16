@@ -8,6 +8,7 @@
     xmlns:dashboard="clr-namespace:IVCNetMaui.Views.Dashboard"
     xmlns:view="clr-namespace:IVCNetMaui.Views.View"
     xmlns:historical="clr-namespace:IVCNetMaui.Views.Historical"
+    xmlns:controls="clr-namespace:IVCNetMaui.Controls"
     x:DataType="local:AppShell"
     x:Name="shell"
     Title="IVCNetMaui"
@@ -15,38 +16,13 @@
     
     <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" Route="login" FlyoutItemIsVisible="False"/>
 
-    <FlyoutItem Title="Dashboard"
-                Route="dashboard">
-        <ShellContent Title="Dashboard"
-                      ContentTemplate="{DataTemplate dashboard:DashboardMainPage}"
-                      Route="main"/>
-    </FlyoutItem>
-    
-    <!--<FlyoutItem Title="Hub" 
-                FlyoutDisplayOptions="AsSingleItem"
-                Route="hub">
-        <Tab>
-            <ShellContent Title="Hub Health Monitor" 
-                          ContentTemplate="{DataTemplate dashboard:HubHealthMonitorPage}" 
-                          Route="healthMonitor"/>
-        </Tab>
-    </FlyoutItem>-->
+    <ShellContent Title="Dashboard"
+                    ContentTemplate="{DataTemplate dashboard:DashboardMainPage}"
+                    Route="dashboard">
+    </ShellContent>
 
-    <!--<FlyoutItem Title="Edge" 
-               FlyoutDisplayOptions="AsSingleItem"
-               Route="edge">
-        <Tab>
-            <ShellContent Title="Health Monitor" 
-                          ContentTemplate="{DataTemplate dashboard:EdgeHealthMonitorPage}" 
-                          Route="healthMonitor"/>
-            <ShellContent Title="IoTs"
-                          ContentTemplate="{DataTemplate dashboard:EdgeIoTPage}" 
-                          Route="iots"/>
-            <ShellContent Title="Units"
-                          ContentTemplate="{DataTemplate dashboard:EdgeUnitPage}" 
-                          Route="units"/>
-        </Tab>
-    </FlyoutItem>-->
+    
+
 
     <FlyoutItem Title="Camera View" 
                Route="cameraView">

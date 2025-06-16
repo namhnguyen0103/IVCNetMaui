@@ -36,4 +36,11 @@
                                      HorizontalItemSpacing="8"/>
         </Setter>
     </Style>
+    <Style TargetType="Border">
+        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="StrokeShape" Value="0" />
+        <Setter Property="StrokeShape">
+            <RoundRectangle CornerRadius="3" />
+        </Setter>
+    </Style>
 </ResourceDictionary>

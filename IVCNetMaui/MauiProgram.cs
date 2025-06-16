@@ -59,6 +59,7 @@ namespace IVCNetMaui
             builder.Services.AddSingleton<EdgeUnitViewModel>();
             builder.Services.AddSingleton<EventViewModel>();
             builder.Services.AddSingleton<HistoricalHealthDataViewModel>();
+            builder.Services.AddSingleton<HealthMonitorViewModel>();
             
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<CameraViewModel>();
@@ -75,6 +76,7 @@ namespace IVCNetMaui
             builder.Services.AddSingleton<EdgeUnitPage>();
             builder.Services.AddSingleton<EventPage>();
             builder.Services.AddSingleton<HistoricalHealthDataPage>();
+            builder.Services.AddSingleton<HealthMonitorPage>();
             
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<CameraPage>();

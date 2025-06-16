@@ -146,6 +146,9 @@
 	  <MauiXaml Update="Views\Dashboard\EdgeUnitPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Dashboard\HealthMonitorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Dashboard\HubHealthMonitorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
