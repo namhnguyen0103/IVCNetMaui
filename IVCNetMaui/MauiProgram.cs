@@ -38,6 +38,7 @@ namespace IVCNetMaui
                 fonts.AddFont("Roboto-Regular.ttf", "RobotoRegular");
                 fonts.AddFont("Roboto-Medium.ttf", "RobotoMedium");
                 fonts.AddFont("Roboto-SemiBold.ttf", "RobotoSemiBold");
+                fonts.AddMaterialSymbolsFonts();
             }).UseMauiCommunityToolkit();
 #if DEBUG
             builder.Logging.AddDebug();
