@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
              x:Class="IVCNetMaui.Views.View.CameraPage"
              x:DataType="viewModels:CameraViewModel"
              Title="CameraPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Camera"
-                     IconImageSource="add.png"
-                     Command="{Binding AddCommand}"/>
+                     Command="{Binding AddCommand}"
+                     >
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Add}" Color="Green"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     <Grid x:Name="FlexibleGrid">
     </Grid>
