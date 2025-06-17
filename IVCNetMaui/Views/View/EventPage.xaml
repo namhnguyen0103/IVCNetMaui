@@ -5,7 +5,7 @@
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
              x:Class="IVCNetMaui.Views.View.EventPage"
              x:DataType="viewModels:EventViewModel"
-             Title="EventPage">
+             Title="Event View">
     <VerticalStackLayout>
         <CollectionView ItemsSource="{Binding List}">
             <CollectionView.ItemTemplate>

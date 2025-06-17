@@ -9,7 +9,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Views/Templates/MenuPageLayout.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>

@@ -95,6 +95,9 @@
 	  <Compile Update="Controls\BadgeControl.xaml.cs">
 	    <DependentUpon>BadgeControl.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Resources\Styles\DetailPageStyles.xaml.cs">
+	    <DependentUpon>DetailPageStyles.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Dashboard\EdgeHealthMonitorPage.xaml.cs">
 	    <DependentUpon>EdgeHealthMonitorPage.xaml</DependentUpon>
 	  </Compile>
@@ -128,7 +131,10 @@
 	  <MauiXaml Update="Controls\UsageBarControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\DetailStyles.xaml">
+	  <MauiXaml Update="Resources\Styles\DetailPageStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\MenuPageStyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Dashboard\DashboardMainPage.xaml">

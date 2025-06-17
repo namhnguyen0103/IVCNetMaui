@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IVCNetMaui.Resources.Styles.DetailPageStyles">
+    <Style x:Key="PropertyBorder" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="Padding" Value="12"/>
+    </Style>
+    <Style x:Key="PageTitle" TargetType="Label">
+        <Setter Property="FontFamily" Value="RobotoSemiBold"/>
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+    <Style x:Key="SectionTitle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Gray700}"/>
+        <Setter Property="FontFamily" Value="RobotoRegular" />
+    </Style>
+    <Style x:Key="PropertyPrimaryText" TargetType="Label">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+    </Style>
+    <Style x:Key="PropertySecondaryText" TargetType="Label">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="{StaticResource Gray700}" />
+    </Style>
+    <Style x:Key="PropertyTertiaryText" TargetType="Label">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="{StaticResource Gray600}"/>
+    </Style>
+    <Style x:Key="PropertyGrid" TargetType="Grid">
+        <Setter Property="ColumnSpacing" Value="16"/>
+        <Setter Property="RowSpacing" Value="16"/>
+    </Style>
+    <Style x:Key="SectionStack" TargetType="VerticalStackLayout">
+        <Setter Property="Spacing" Value="4" />
+    </Style>
+    <Style x:Key="MainPadding" TargetType="{x:Type Layout}">
+        <Setter Property="Padding" Value="12, 10, 12, 100"/>
+    </Style>
+</ResourceDictionary>

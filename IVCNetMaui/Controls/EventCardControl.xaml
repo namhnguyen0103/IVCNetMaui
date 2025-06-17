@@ -13,7 +13,7 @@
             <Style x:Key="DetailInfo"
                    TargetType="Label">
                 <Setter Property="FontSize" Value="8"/>
-                <Setter Property="FontFamily" Value="NunitoRegular" />
+                <Setter Property="FontFamily" Value="RobotoRegular" />
             </Style>
             <Style x:Key="DetailHorizontalStack"
                    TargetType="HorizontalStackLayout">
@@ -33,15 +33,20 @@
             <TapGestureRecognizer Command="{Binding Command}"/>
         </Border.GestureRecognizers>
         <VerticalStackLayout>
-            <Label Text="Unit / Name"
-                   FontSize="12"
-                   TextColor="{StaticResource Gray900}"/>
-            <HorizontalStackLayout Spacing="8" Margin="0, 0, 0, 4">
-                <Label Text="DESCRIPTION"
-                       FontFamily="NunitoBold"/>
-                <Label Text="#ID"
-                       TextColor="{StaticResource Gray900}"/>
-            </HorizontalStackLayout>
+            <Label FontSize="12">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Unit" />
+                        <Span Text=" / " TextColor="{StaticResource Gray700}"/>
+                        <Span Text="Name"/>
+                        <Span Text="  "/>
+                        <Span Text="#ID" TextColor="{StaticResource Gray700}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="DESCRIPTION"
+                   FontFamily="RobotoSemiBold"
+                   Margin="0, 0, 0, 4"/>
             <Border Padding="6, 6"
                     StrokeThickness="0"
                     BackgroundColor="{StaticResource Gray100}">

@@ -34,6 +34,10 @@ namespace IVCNetMaui
                 fonts.AddFont("Nunito-Regular.ttf", "NunitoRegular");
                 fonts.AddFont("Nunito-Medium.ttf", "NunitoMedium");
                 fonts.AddFont("Nunito-Bold.ttf", "NunitoBold");
+                fonts.AddFont("Roboto-Light.ttf", "RobotoLight");
+                fonts.AddFont("Roboto-Regular.ttf", "RobotoRegular");
+                fonts.AddFont("Roboto-Medium.ttf", "RobotoMedium");
+                fonts.AddFont("Roboto-SemiBold.ttf", "RobotoSemiBold");
             }).UseMauiCommunityToolkit();
 #if DEBUG
             builder.Logging.AddDebug();

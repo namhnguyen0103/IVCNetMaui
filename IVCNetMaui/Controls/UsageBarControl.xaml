@@ -6,11 +6,11 @@
              x:Name="this">
     <VerticalStackLayout BindingContext="{x:Reference this}" Spacing="4">
         <Grid ColumnDefinitions="*, Auto">
-            <Label Text="{Binding DiskName}" FontFamily="NunitoBold" FontSize="14"/>
+            <Label Text="{Binding DiskName}" FontSize="14"/>
             <Label Text="3.60 GB (53%) of 6.0 GB used"
                    Grid.Column="1"
                    FontSize="12"
-                   TextColor="{StaticResource Gray800}"/>
+                   TextColor="{StaticResource Gray700}"/>
         </Grid>
         <ProgressBar Progress="0.5"/>
     </VerticalStackLayout>

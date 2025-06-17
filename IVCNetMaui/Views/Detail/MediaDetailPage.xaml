@@ -3,22 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
              x:Class="IVCNetMaui.Views.Detail.MediaDetailPage"
-             x:DataType="viewModels:MediaDetailViewModel"
-             Title="MediaDetailPage">
-    <VerticalStackLayout>
-        <Button Text="Download"/>
-        <Border BackgroundColor="Grey"
-                HeightRequest="200">
+             x:DataType="viewModels:MediaDetailViewModel">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Download"
+                     IconImageSource="download.png"/>
+    </ContentPage.ToolbarItems>
+    <Grid RowDefinitions="*, *">
+        <Border BackgroundColor="{StaticResource Gray200}">
             <Label Text="Img/Vid"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"/>
         </Border>
-        <Button Text="Download"/>
-        <Border BackgroundColor="Grey"
-                HeightRequest="200">
+        <Border Grid.Row="1" BackgroundColor="{StaticResource Gray200}">
             <Label Text="Img/Vid"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"/>
         </Border>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

@@ -1,25 +1,77 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
              x:Class="IVCNetMaui.Views.Detail.EventDetailPage"
-             x:DataType="viewModels:EventDetailViewModel"
-             Title="EventDetailPage">
-    <VerticalStackLayout>
-        <Label Text="Unit / Name" />
-        <Label Text="[Category] Description #ID" />
-        <Label Text="Tag: _____" />
-        <Label Text="Received: _____"/>
-        <Label Text="Event: _____"/>
-        <Border>
-            <VerticalStackLayout>
-                <Label Text="Detail:"/>
+             x:DataType="viewModels:EventDetailViewModel">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior TextOverride=""/>
+    </Shell.BackButtonBehavior>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/DetailPageStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="SecondaryLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Gray700}"/>
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            <Style x:Key="SecondaryInfo" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <Grid RowDefinitions="*, Auto">
+            <VerticalStackLayout Grid.ColumnSpan="2" Padding="20, 12">
+                <Label FontSize="14" Margin="0, 0, 0, 4">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Moxa AIG-502-2TB" />
+                            <Span Text=" / " TextColor="{StaticResource Gray700}"/>
+                            <Span Text="DCam1"/>
+                            <Span Text="  "  />
+                            <Span Text="#ID" TextColor="{StaticResource Gray700}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="ALERT:65598:[Liquid Area2]"
+                       Style="{StaticResource PageTitle}"
+                       Margin="0, 0, 0, 8"/>
+                <Border Margin="0, 0, 0, 16">
+                    <Grid ColumnDefinitions="*, *"
+                          RowDefinitions="Auto, Auto, Auto, Auto"
+                          RowSpacing="8"
+                          Padding="12, 12">
+                        <Label Text="Category" Style="{StaticResource PropertySecondaryText}"/>
+                        <Label Text="Tag" Grid.Row="1" Style="{StaticResource PropertySecondaryText}"/>
+                        <Label Text="Received Time" Grid.Row="2" Style="{StaticResource PropertySecondaryText}"/>
+                        <Label Text="Event Time" Grid.Row="3" Style="{StaticResource PropertySecondaryText}"/>
+                        <Label Text="Alarm" Grid.Column="1" Style="{StaticResource PropertyPrimaryText}"/>
+                        <Label Text="IV:Alert" Grid.Row="1" Grid.Column="1" Style="{StaticResource PropertyPrimaryText}"/>
+                        <Label Text="6/17/2025 11:07:41 AM" Grid.Row="2" Grid.Column="1" Style="{StaticResource PropertyPrimaryText}"/>
+                        <Label Text="6/17/2025 11:07:41 AM" Grid.Row="3" Grid.Column="1" Style="{StaticResource PropertyPrimaryText}"/>
+                    </Grid>
+                </Border>
+                <controls:AccordionControl>
+                    <controls:AccordionControl.HeaderContent>
+                        <ControlTemplate>
+                            <Label Text="Detail" Style="{StaticResource SectionTitle}"/>
+                        </ControlTemplate>
+                    </controls:AccordionControl.HeaderContent>
+                    <controls:AccordionControl.BodyContent>
+                        <ControlTemplate>
+                            <Label Text="Detail Body" Style="{StaticResource PropertySecondaryText}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HeightRequest="200" BackgroundColor="{StaticResource Gray200}"/>
+                        </ControlTemplate>
+                    </controls:AccordionControl.BodyContent>
+                </controls:AccordionControl>
             </VerticalStackLayout>
-        </Border>
-        <Button Text="Upload Snaps"
-                Command="{Binding GoToMediaDetailCommand}"/>
-        <Button Text="Upload Clips"
-                Command="{Binding GoToMediaDetailCommand}"/>
-        
-    </VerticalStackLayout>
+            <Grid Grid.Row="1" ColumnDefinitions="*, *" ColumnSpacing="8" Padding="8, 8">
+                <Button Text="Upload Snap" Command="{Binding GoToMediaDetailCommand}"/>
+                <Button Grid.Column="1" Text="Upload Clip" Command="{Binding GoToMediaDetailCommand}"/>
+            </Grid>
+        </Grid>
+    </ScrollView>
 </ContentPage>
