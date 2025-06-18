@@ -2,9 +2,9 @@ using IVCNetMaui.ViewModels.Dashboard;
 
 namespace IVCNetMaui.Views.Dashboard;
 
-public partial class DashboardHubMainPage : ContentPage
+public partial class DashboardMainPage : ContentPage
 {
-	public DashboardHubMainPage(DashboardMainViewModel vm)
+	public DashboardMainPage(DashboardMainViewModel vm)
 	{
 		BindingContext = vm;
 		InitializeComponent();

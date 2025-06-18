@@ -4,7 +4,7 @@
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
-             x:Class="IVCNetMaui.Views.Dashboard.DashboardHubMainPage"
+             x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
              x:DataType="viewModels:DashboardMainViewModel"
              Title="Dashboard"
              Style="{StaticResource MenuContentPage}"
