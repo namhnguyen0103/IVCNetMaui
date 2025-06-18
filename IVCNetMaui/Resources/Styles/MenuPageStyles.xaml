@@ -4,7 +4,8 @@
              x:Class="IVCNetMaui.Resources.Styles.MenuPageStyles">
     <Style x:Key="MenuBorder" TargetType="Border">
         <Setter Property="Padding" Value="16"/>
-        <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="StrokeThickness" Value="1"/>
+        <Setter Property="Stroke" Value="{StaticResource Gray400}"/>
         <Setter Property="StrokeShape">
             <RoundRectangle CornerRadius="3"/>
         </Setter>
