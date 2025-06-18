@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
-             x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
+             x:Class="IVCNetMaui.Views.Dashboard.DashboardHubMainPage"
              x:DataType="viewModels:DashboardMainViewModel"
              Title="Dashboard"
              Style="{StaticResource MenuContentPage}"
@@ -13,124 +14,95 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="Header" x:DataType="material:TabItem">
+                <Border StrokeThickness="0"
+                        Padding="4, 4">
+                    <Border.Triggers>
+                        <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                            <Setter Property="BackgroundColor" Value="{StaticResource Gray200}"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                            <Setter Property="BackgroundColor" Value="White" />
+                        </DataTrigger>
+                    </Border.Triggers>
+                    <Label Text="{Binding Title}" FontSize="16" FontFamily="RobotoRegular" HorizontalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Command}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Border>
+            </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ScrollView Style="{StaticResource MainPadding}">
-        <VerticalStackLayout Spacing="24">
-            <!--Hub Section-->
-            <VerticalStackLayout Style="{StaticResource SectionStack}">
-                <HorizontalStackLayout Style="{StaticResource SectionHeader}">
-                    <HorizontalStackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NavigateToSystemCommand}"/>
-                    </HorizontalStackLayout.GestureRecognizers>
-                    <Label Text="Hub"
-                               Style="{StaticResource SectionTitle}"/>
-                    <Image Source="chevron_right.png"
-                               WidthRequest="6"/>
-                </HorizontalStackLayout>
-                <Grid ColumnDefinitions="*, *"
-                      RowDefinitions="Auto, Auto"
-                      ColumnSpacing="8"
-                      RowSpacing="8">
-                        <Border BackgroundColor="White"
-                                HeightRequest="100"
-                                StrokeThickness="0"
-                                Grid.ColumnSpan="2">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="3" />
-                            </Border.StrokeShape>
-                            <Label Text="System Summary"
-                                   VerticalTextAlignment="Center"
-                                   HorizontalTextAlignment="Center">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding NavigateToSystemCommand}"/>
-                                </Label.GestureRecognizers>
-                            </Label>    
-                        </Border>
-                        <Border Grid.Row="1"
-                                HeightRequest="100">
-                            <Label Text="Video Process Summary">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding NavigateToProcessCommand}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </Border>
-                        <Border Grid.Row="2"
-                                Grid.Column="2"
-                                HeightRequest="100">
-                            <Label Text="UI Process Summary">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding NavigateToProcessCommand}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </Border>
-                    </Grid>
-            
-            </VerticalStackLayout>
-            <!--Edge Section-->
-            <VerticalStackLayout  Style="{StaticResource SectionStack}">
-                <HorizontalStackLayout Style="{StaticResource SectionHeader}">
-                    <Label Text="Edge"
-                               Style="{StaticResource SectionTitle}"/>
-                    <Image Source="chevron_right.png"
-                               WidthRequest="6"/>
-                </HorizontalStackLayout>
-                <CollectionView ItemsSource="{Binding List}">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical"
-                                             Span="1"
-                                             VerticalItemSpacing="8"
-                                             HorizontalItemSpacing="8"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="x:String">
-                            <!--<controls:UnitCardControl />-->
-                            <Border Padding="6, 6">
-                                <Grid RowDefinitions="Auto, Auto, Auto"
-                                      ColumnDefinitions="*, *, *"
-                                      RowSpacing="4"
-                                      ColumnSpacing="4">
-                                    <Label Text="LVE1  #ID" Grid.ColumnSpan="3"/>
-                                    <Border Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="50">
-                                        <Label Text="Health Summary" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToHealthMonitorCommand}" />
-                                            </Label.GestureRecognizers>
-                                        </Label>
-                                    </Border>
+    <material:TabView TabHeaderItemTemplate="{StaticResource Header}">
+            <material:TabItem Title="Hub">
+                <material:TabItem.ContentTemplate>
+                    <DataTemplate>
+                        <controls:HeathMonitorSummaryControl NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}" Style="{StaticResource MainPadding}"/>
+                    </DataTemplate>
+                </material:TabItem.ContentTemplate>
+            </material:TabItem>
 
-                                    <Border Grid.Row="2">
-                                        <Label HorizontalTextAlignment="Center">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="Cameras&#10;"/>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToIoTListCommand}"/>
-                                            </Label.GestureRecognizers>
-                                        </Label>
+            <material:TabItem Title="Edge">
+                <material:TabItem.ContentTemplate>
+                    <DataTemplate>
+                        <CollectionView ItemsSource="{Binding List}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical"
+                                                     Span="1"
+                                                     VerticalItemSpacing="8"
+                                                     HorizontalItemSpacing="8"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <Border Padding="6, 6">
+                                        <Grid RowDefinitions="Auto, Auto, Auto"
+                                                  ColumnDefinitions="*, *, *"
+                                                  RowSpacing="4"
+                                                  ColumnSpacing="4">
+                                            <Label Text="LVE1  #ID  Activated" Grid.ColumnSpan="3"/>
+                                            <Border Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="50">
+                                                <Label Text="Health Summary" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToHealthMonitorCommand}" />
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Border>
+
+                                            <Border Grid.Row="2">
+                                                <Label HorizontalTextAlignment="Center">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Cameras&#10;"/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToIoTListCommand}"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Border>
+                                            <Border Grid.Row="2" Grid.Column="1">
+                                                <Label Text="Weather Stations" HorizontalTextAlignment="Center">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToIoTListCommand}"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Border>
+                                            <Border Grid.Row="2" Grid.Column="2">
+                                                <Label Text="Modbus Devices" HorizontalTextAlignment="Center">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToIoTListCommand}"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Border>
+                                        </Grid>
                                     </Border>
-                                    <Border Grid.Row="2" Grid.Column="1">
-                                        <Label Text="Weather Stations" HorizontalTextAlignment="Center">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToIoTListCommand}"/>
-                                            </Label.GestureRecognizers>
-                                        </Label>
-                                    </Border>
-                                    <Border Grid.Row="2" Grid.Column="2">
-                                        <Label Text="Modbus Devices" HorizontalTextAlignment="Center">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToIoTListCommand}"/>
-                                            </Label.GestureRecognizers>
-                                        </Label>
-                                    </Border>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </VerticalStackLayout>
-        </VerticalStackLayout>
-    </ScrollView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </DataTemplate>
+                </material:TabItem.ContentTemplate>
+            </material:TabItem>
+        </material:TabView>
 </ContentPage>

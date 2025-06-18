@@ -90,9 +90,8 @@
     <FlyoutItem Title="Dashboard"
                 Route="dashboard"
                 FlyoutIcon="dashboard.png">
-        <ShellContent 
-                  ContentTemplate="{DataTemplate dashboard:DashboardMainPage}">
-        </ShellContent>
+        <ShellContent ContentTemplate="{DataTemplate dashboard:DashboardMainPage}"
+                      Title="Hub"/>
     </FlyoutItem>
 
     <FlyoutItem Title="Camera View" 

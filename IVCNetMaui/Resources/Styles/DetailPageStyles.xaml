@@ -4,6 +4,7 @@
              x:Class="IVCNetMaui.Resources.Styles.DetailPageStyles">
     <Style x:Key="PropertyBorder" TargetType="Border">
         <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="StrokeThickness" Value="0"/>
         <Setter Property="Padding" Value="12"/>
     </Style>
     <Style x:Key="PageTitle" TargetType="Label">

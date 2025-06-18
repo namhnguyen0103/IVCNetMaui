@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IVCNetMaui.Controls.HeathMonitorSummaryControl"
+             x:Name="this">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="SummaryValue" TargetType="Label">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontFamily" Value="RobotoSemiBold"/>
+            </Style>
+            <Style x:Key="SummaryLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextColor" Value="{StaticResource Gray700}"/>
+
+            </Style>
+            <Style x:Key="SummaryStack" TargetType="VerticalStackLayout">
+                <Setter Property="Spacing" Value="8"/>
+            </Style>
+            <Style x:Key="SummaryGrid" TargetType="Grid">
+                <Setter Property="RowSpacing" Value="12"/>
+                <Setter Property="ColumnSpacing" Value="12"/>
+            </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <VerticalStackLayout Spacing="16"
+                         BindingContext="{x:Reference this}">
+        <!--System Section-->
+        <Grid RowDefinitions="Auto, Auto"
+              Style="{StaticResource SectionGrid}">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding NavigateToSystemCommand}" />
+            </Grid.GestureRecognizers>
+            <Label Text="System" Style="{StaticResource SectionTitle}"/>
+            <Border Grid.Row="1" Style="{StaticResource MenuBorder}">
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto, Auto"
+                      Style="{StaticResource SummaryGrid}">
+                    <VerticalStackLayout Style="{StaticResource SummaryStack}">
+                        <Label Text="Name" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="2654f7f9c339" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
+                        <Label Text="CPU Usage" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="6.3 %" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="1" Style="{StaticResource SummaryStack}">
+                        <Label Text="Uptime" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="5 day 0 hr 51 min 16 sec" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+        </Grid>
+        
+        <!--Video Process Section-->
+        <Grid ColumnDefinitions="*, Auto"
+              RowDefinitions="Auto, Auto"
+              Style="{StaticResource SectionGrid}">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding NavigateToSystemCommand}" />
+            </Grid.GestureRecognizers>
+            <Label Text="Video Process" Style="{StaticResource SectionTitle}"/>
+            <HorizontalStackLayout Grid.Column="1" Spacing="6">
+                <Ellipse Fill="#92D23A" WidthRequest="12" HeightRequest="12"/>
+                <Label Text="Running" VerticalTextAlignment="Center" FontSize="14"/>
+            </HorizontalStackLayout>
+            <Border Style="{StaticResource MenuBorder}"
+            Grid.Row="1"
+            Grid.ColumnSpan="2">
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto, Auto, Auto"
+                      Style="{StaticResource SummaryGrid}">
+                    <VerticalStackLayout Style="{StaticResource SummaryStack}">
+                        <Label Text="PID" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="25" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
+                        <Label Text="Thread" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="1" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="1" Style="{StaticResource SummaryStack}">
+                        <Label Text="Handle" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="3" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1" Grid.Row="1" Style="{StaticResource SummaryStack}">
+                        <Label Text="CPU Usage" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="3.6 %" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="2" Style="{StaticResource SummaryStack}">
+                        <Label Text="Working RAM" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="5,092 K" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+        </Grid>
+        
+        <!--UI Process Section-->
+        <Grid ColumnDefinitions="*, Auto"
+              RowDefinitions="Auto, Auto"
+              Style="{StaticResource SectionGrid}">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding NavigateToSystemCommand}" />
+            </Grid.GestureRecognizers>
+            <Label Text="UI Process" Style="{StaticResource SectionTitle}"/>
+            <HorizontalStackLayout Grid.Column="1" Spacing="6">
+                <Ellipse Fill="#92D23A" WidthRequest="12" HeightRequest="12"/>
+                <Label Text="Running" VerticalTextAlignment="Center" FontSize="14"/>
+            </HorizontalStackLayout>
+            <Border Style="{StaticResource MenuBorder}"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2">
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto, Auto, Auto"
+                      Style="{StaticResource SummaryGrid}">
+                    <VerticalStackLayout Style="{StaticResource SummaryStack}">
+                        <Label Text="PID" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="25" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
+                        <Label Text="Thread" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="1" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="1" Style="{StaticResource SummaryStack}">
+                        <Label Text="Handle" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="3" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1" Grid.Row="1" Style="{StaticResource SummaryStack}">
+                        <Label Text="CPU Usage" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="3.6 %" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="2" Style="{StaticResource SummaryStack}">
+                        <Label Text="Working RAM" Style="{StaticResource SummaryLabel}"/>
+                        <Label Text="5,092 K" Style="{StaticResource SummaryValue}"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+        </Grid>
+    </VerticalStackLayout>
+</ContentView>

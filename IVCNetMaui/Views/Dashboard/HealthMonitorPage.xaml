@@ -36,7 +36,7 @@
             </DataTemplate>
             
             <DataTemplate x:Key="Process">
-                <VerticalStackLayout Spacing="5" Style="{StaticResource MainPadding}">
+                <VerticalStackLayout Spacing="16" Style="{StaticResource MainPadding}">
                     <VerticalStackLayout Style="{StaticResource SectionStack}">
                         <Label Text="Status" Style="{StaticResource SectionTitle}"/>
                         <Border Style="{StaticResource PropertyBorder}">
@@ -106,7 +106,7 @@
                         </VerticalStackLayout>
                     </Grid>
                     <VerticalStackLayout Style="{StaticResource SectionStack}">
-                        <Label Text="Status" Style="{StaticResource SectionTitle}"/>
+                        <Label Text="RAM" Style="{StaticResource SectionTitle}"/>
                         <Border Style="{StaticResource PropertyBorder}">
                             <Grid ColumnDefinitions="*, *"
                                   RowDefinitions="Auto, Auto"
