@@ -40,7 +40,9 @@
             <material:TabItem Title="Hub">
                 <material:TabItem.ContentTemplate>
                 <DataTemplate x:DataType="viewModels:DashboardMainViewModel">
-                        <controls:HeathMonitorSummaryControl NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}" Style="{StaticResource MainPadding}"/>
+                        <ScrollView>
+                            <controls:HeathMonitorSummaryControl NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}" Style="{StaticResource MainPadding}"/>
+                        </ScrollView>
                     </DataTemplate>
                 </material:TabItem.ContentTemplate>
             </material:TabItem>

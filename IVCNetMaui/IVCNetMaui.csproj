@@ -102,9 +102,6 @@
 	  <Compile Update="Resources\Styles\DetailPageStyles.xaml.cs">
 	    <DependentUpon>DetailPageStyles.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Dashboard\EdgeHealthMonitorPage.xaml.cs">
-	    <DependentUpon>EdgeHealthMonitorPage.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\LoginPage.xaml.cs">
 	    <DependentUpon>LoginPage.xaml</DependentUpon>
 	  </Compile>
@@ -147,13 +144,7 @@
 	  <MauiXaml Update="Views\Dashboard\DashboardMainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Dashboard\EdgeHealthMonitorPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\Dashboard\EdgeIoTPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Dashboard\EdgeUnitPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Dashboard\HealthMonitorPage.xaml">
