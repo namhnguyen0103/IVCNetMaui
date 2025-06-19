@@ -27,16 +27,13 @@
             
         </ResourceDictionary>
     </ContentView.Resources>
-    
-    <VerticalStackLayout BindingContext="{x:Reference this}">
-        <VerticalStackLayout.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding Command}"/>
-        </VerticalStackLayout.GestureRecognizers>
+
+    <Border BackgroundColor="White">
         <Grid ColumnDefinitions="*, *, *"
-          RowDefinitions="Auto, Auto, Auto"
-          RowSpacing="4"
-          ColumnSpacing="4"
-          Padding="12">
+        RowDefinitions="Auto, Auto, Auto"
+        RowSpacing="4"
+        ColumnSpacing="4"
+        Padding="12">
         <Label Grid.ColumnSpan="3">
             <Label.FormattedText>
                 <FormattedString>
@@ -48,7 +45,7 @@
         </Label>
         <Border Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource PropertyBorder}">
             <Grid RowDefinitions="Auto, Auto, Auto, Auto"
-              ColumnDefinitions="*, *">
+            ColumnDefinitions="*, *">
                 <Label Text="Version" Style="{StaticResource PropertySecondary}"/>
                 <Label Grid.Column="1" Text="2.8.0.1" Style="{StaticResource PropertyPrimary}"/>
                 <Label Grid.Row="1" Text="System" Style="{StaticResource PropertySecondary}"/>
@@ -78,6 +75,5 @@
             </VerticalStackLayout>
         </Border>
     </Grid>
-        <BoxView HeightRequest="0.5" Color="{StaticResource Gray400}"/>
-    </VerticalStackLayout>
+    </Border>
 </ContentView>

@@ -6,8 +6,7 @@
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
              x:DataType="viewModels:DashboardMainViewModel"
-             Title="Dashboard"
-             Shell.NavBarIsVisible="True">
+             Title="Dashboard">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -50,7 +49,11 @@
             <material:TabItem Title="Edge">
                 <material:TabItem.ContentTemplate>
                 <DataTemplate  x:DataType="viewModels:DashboardMainViewModel">
-                    <CollectionView ItemsSource="{Binding List}">
+                    <CollectionView ItemsSource="{Binding List}" BackgroundColor="{StaticResource Gray200}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical"
+                                               ItemSpacing="8" />
+                        </CollectionView.ItemsLayout>
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType='viewModels:DashboardMainViewModel'>
                                 <controls:EdgeCardControl Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToEdgeDetailCommand}"/>
