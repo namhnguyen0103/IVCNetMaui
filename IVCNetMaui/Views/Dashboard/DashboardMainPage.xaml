@@ -9,17 +9,18 @@
              Title="Dashboard">
     <ContentPage.Resources>
         <ResourceDictionary>
+            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
             
-            <DataTemplate x:Key="Header" x:DataType="material:TabItem">
+            <!--<DataTemplate x:Key="Header" x:DataType="material:TabItem">
                 <Border StrokeThickness="0"
-                        Padding="4, 4">
+                        Padding="4, 4"
+                        Margin="12, 6">
                     <Border.Triggers>
                         <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
-                            <Setter Property="BackgroundColor" Value="{StaticResource Gray200}"/>
+                            <Setter Property="BackgroundColor" Value="{StaticResource Gray300}"/>
                         </DataTrigger>
                         <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
                             <Setter Property="BackgroundColor" Value="White" />
@@ -31,12 +32,13 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Border>
-            </DataTemplate>
-
+            </DataTemplate>-->
+            
         </ResourceDictionary>
     </ContentPage.Resources>
+
     <material:TabView TabHeaderItemTemplate="{StaticResource Header}">
-            <material:TabItem Title="Hub">
+        <material:TabItem Title="Hub">
                 <material:TabItem.ContentTemplate>
                 <DataTemplate x:DataType="viewModels:DashboardMainViewModel">
                         <ScrollView>
@@ -46,22 +48,23 @@
                 </material:TabItem.ContentTemplate>
             </material:TabItem>
 
-            <material:TabItem Title="Edge">
-                <material:TabItem.ContentTemplate>
-                <DataTemplate  x:DataType="viewModels:DashboardMainViewModel">
-                    <CollectionView ItemsSource="{Binding List}" BackgroundColor="{StaticResource Gray200}">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Vertical"
-                                               ItemSpacing="8" />
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType='viewModels:DashboardMainViewModel'>
-                                <controls:EdgeCardControl Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToEdgeDetailCommand}"/>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </DataTemplate>
-                </material:TabItem.ContentTemplate>
-            </material:TabItem>
-        </material:TabView>
+        <material:TabItem Title="Edge">
+            <material:TabItem.ContentTemplate>
+            <DataTemplate  x:DataType="viewModels:DashboardMainViewModel">
+                <CollectionView ItemsSource="{Binding List}" BackgroundColor="{StaticResource Gray200}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                            ItemSpacing="8" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType='viewModels:DashboardMainViewModel'>
+                            <controls:EdgeCardControl Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToEdgeDetailCommand}"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </DataTemplate>
+            </material:TabItem.ContentTemplate>
+        </material:TabItem>
+        
+    </material:TabView>
 </ContentPage>

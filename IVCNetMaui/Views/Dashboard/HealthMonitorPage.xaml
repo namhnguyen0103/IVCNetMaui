@@ -17,7 +17,7 @@
                 <ResourceDictionary Source="/Resources/Styles/DetailPageStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <DataTemplate x:Key="Header" x:DataType="material:TabItem">
+            <!--<DataTemplate x:Key="Header" x:DataType="material:TabItem">
                 <Border StrokeThickness="0">
                     <Border.Triggers>
                         <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
@@ -33,7 +33,7 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Border>
-            </DataTemplate>
+            </DataTemplate>-->
             
             <DataTemplate x:Key="Process">
                 <VerticalStackLayout Spacing="16" Style="{StaticResource MainPadding}">
