@@ -96,6 +96,9 @@
 	  <Compile Update="Controls\BadgeControl.xaml.cs">
 	    <DependentUpon>BadgeControl.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Controls\EdgeCardControl.xaml.cs">
+	    <DependentUpon>EdgeCardControl.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Styles\DetailPageStyles.xaml.cs">
 	    <DependentUpon>DetailPageStyles.xaml</DependentUpon>
 	  </Compile>
@@ -129,7 +132,7 @@
 	  <MauiXaml Update="Controls\BadgeControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\UnitCardControl.xaml">
+	  <MauiXaml Update="Controls\EdgeCardControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\UsageBarControl.xaml">
@@ -139,9 +142,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\MenuPageStyles.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Dashboard\DashboardEdgeMainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Dashboard\DashboardMainPage.xaml">
@@ -160,6 +160,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Dashboard\IoTListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Detail\EdgeDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Detail\EventDetailPage.xaml">

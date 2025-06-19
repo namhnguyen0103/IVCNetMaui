@@ -28,7 +28,7 @@
                         Style="{StaticResource TwoColumnCollectionView}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
-                    <controls:UnitCardControl/>
+                    <controls:EdgeCardControl/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

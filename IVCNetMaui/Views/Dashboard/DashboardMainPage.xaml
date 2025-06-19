@@ -7,7 +7,6 @@
              x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
              x:DataType="viewModels:DashboardMainViewModel"
              Title="Dashboard"
-             Style="{StaticResource MenuContentPage}"
              Shell.NavBarIsVisible="True">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -15,6 +14,7 @@
                 <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            
             <DataTemplate x:Key="Header" x:DataType="material:TabItem">
                 <Border StrokeThickness="0"
                         Padding="4, 4">
@@ -33,6 +33,7 @@
                     </Label>
                 </Border>
             </DataTemplate>
+
         </ResourceDictionary>
     </ContentPage.Resources>
     <material:TabView TabHeaderItemTemplate="{StaticResource Header}">
@@ -47,61 +48,14 @@
             <material:TabItem Title="Edge">
                 <material:TabItem.ContentTemplate>
                     <DataTemplate>
-                        <CollectionView ItemsSource="{Binding List}">
-                            <CollectionView.ItemsLayout>
-                                <GridItemsLayout Orientation="Vertical"
-                                                     Span="1"
-                                                     VerticalItemSpacing="8"
-                                                     HorizontalItemSpacing="8"/>
-                            </CollectionView.ItemsLayout>
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="x:String">
-                                    <Border Padding="6, 6">
-                                        <Grid RowDefinitions="Auto, Auto, Auto"
-                                                  ColumnDefinitions="*, *, *"
-                                                  RowSpacing="4"
-                                                  ColumnSpacing="4">
-                                            <Label Text="LVE1  #ID  Activated" Grid.ColumnSpan="3"/>
-                                            <Border Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="50">
-                                                <Label Text="Health Summary" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
-                                                    <Label.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToHealthMonitorCommand}" />
-                                                    </Label.GestureRecognizers>
-                                                </Label>
-                                            </Border>
-
-                                            <Border Grid.Row="2">
-                                                <Label HorizontalTextAlignment="Center">
-                                                    <Label.FormattedText>
-                                                        <FormattedString>
-                                                            <Span Text="Cameras&#10;"/>
-                                                        </FormattedString>
-                                                    </Label.FormattedText>
-                                                    <Label.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToIoTListCommand}"/>
-                                                    </Label.GestureRecognizers>
-                                                </Label>
-                                            </Border>
-                                            <Border Grid.Row="2" Grid.Column="1">
-                                                <Label Text="Weather Stations" HorizontalTextAlignment="Center">
-                                                    <Label.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToIoTListCommand}"/>
-                                                    </Label.GestureRecognizers>
-                                                </Label>
-                                            </Border>
-                                            <Border Grid.Row="2" Grid.Column="2">
-                                                <Label Text="Modbus Devices" HorizontalTextAlignment="Center">
-                                                    <Label.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToIoTListCommand}"/>
-                                                    </Label.GestureRecognizers>
-                                                </Label>
-                                            </Border>
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </DataTemplate>
+                    <CollectionView ItemsSource="{Binding List}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <controls:EdgeCardControl Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToEdgeDetailCommand}"/>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </DataTemplate>
                 </material:TabItem.ContentTemplate>
             </material:TabItem>
         </material:TabView>

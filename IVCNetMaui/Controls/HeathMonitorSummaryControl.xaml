@@ -5,17 +5,17 @@
              x:Name="this">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Style x:Key="SummaryValue" TargetType="Label">
+            <Style x:Key="SummaryPrimary" TargetType="Label">
                 <Setter Property="FontSize" Value="16"/>
-                <Setter Property="FontFamily" Value="RobotoSemiBold"/>
+                <Setter Property="FontFamily" Value="RobotoMedium"/>
             </Style>
-            <Style x:Key="SummaryLabel" TargetType="Label">
+            <Style x:Key="SummarySecondary" TargetType="Label">
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="TextColor" Value="{StaticResource Gray700}"/>
 
             </Style>
             <Style x:Key="SummaryStack" TargetType="VerticalStackLayout">
-                <Setter Property="Spacing" Value="8"/>
+                <Setter Property="Spacing" Value="4"/>
             </Style>
             <Style x:Key="SummaryGrid" TargetType="Grid">
                 <Setter Property="RowSpacing" Value="12"/>
@@ -41,18 +41,18 @@
                       RowDefinitions="Auto, Auto"
                       Style="{StaticResource SummaryGrid}">
                     <VerticalStackLayout Style="{StaticResource SummaryStack}">
-                        <Label Text="Name" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="2654f7f9c339" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="Name" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="2654f7f9c339" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
-                        <Label Text="CPU Usage" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="6.3 %" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="CPU Usage" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="6.3 %" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Row="1" Style="{StaticResource SummaryStack}">
-                        <Label Text="Uptime" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="5 day 0 hr 51 min 16 sec" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="Uptime" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="5 day 0 hr 51 min 16 sec" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
                 </Grid>
             </Border>
@@ -77,28 +77,28 @@
                       RowDefinitions="Auto, Auto, Auto"
                       Style="{StaticResource SummaryGrid}">
                     <VerticalStackLayout Style="{StaticResource SummaryStack}">
-                        <Label Text="PID" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="25" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="PID" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="25" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
-                        <Label Text="Thread" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="1" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="Thread" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="1" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Row="1" Style="{StaticResource SummaryStack}">
-                        <Label Text="Handle" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="3" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="Handle" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="3" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Column="1" Grid.Row="1" Style="{StaticResource SummaryStack}">
-                        <Label Text="CPU Usage" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="3.6 %" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="CPU Usage" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="3.6 %" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Row="2" Style="{StaticResource SummaryStack}">
-                        <Label Text="Working RAM" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="5,092 K" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="Working RAM" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="5,092 K" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
                 </Grid>
             </Border>
@@ -123,28 +123,28 @@
                       RowDefinitions="Auto, Auto, Auto"
                       Style="{StaticResource SummaryGrid}">
                     <VerticalStackLayout Style="{StaticResource SummaryStack}">
-                        <Label Text="PID" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="25" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="PID" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="25" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
-                        <Label Text="Thread" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="1" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="Thread" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="1" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Row="1" Style="{StaticResource SummaryStack}">
-                        <Label Text="Handle" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="3" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="Handle" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="3" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Column="1" Grid.Row="1" Style="{StaticResource SummaryStack}">
-                        <Label Text="CPU Usage" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="3.6 %" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="CPU Usage" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="3.6 %" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Grid.Row="2" Style="{StaticResource SummaryStack}">
-                        <Label Text="Working RAM" Style="{StaticResource SummaryLabel}"/>
-                        <Label Text="5,092 K" Style="{StaticResource SummaryValue}"/>
+                        <Label Text="Working RAM" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="5,092 K" Style="{StaticResource SummaryPrimary}"/>
                     </VerticalStackLayout>
                 </Grid>
             </Border>

@@ -21,8 +21,6 @@ namespace IVCNetMaui.ViewModels.Dashboard
             //"LVE1", "LVE2", "LVE3", "LVE4",
             //"LVE1", "LVE2", "LVE3", "LVE4",
             //"LVE1", "LVE2", "LVE3", "LVE4",
-            //"LVE1", "LVE2", "LVE3", "LVE4",
-            //"LVE1", "LVE2", "LVE3", "LVE4",
         };
 
         public ICommand ToggleFlyoutCommand { get; private set; }
@@ -30,6 +28,7 @@ namespace IVCNetMaui.ViewModels.Dashboard
         public ICommand NavigateToProcessCommand { get; private set; }
         public ICommand NavigateToHealthMonitorCommand { get; private set; }
         public ICommand NavigateToIoTListCommand { get; private set; }
+        public ICommand NavigateToEdgeDetailCommand { get; private set; }
         public DashboardMainViewModel(INavigationService navigationService) : base(navigationService) 
         {
             ToggleFlyoutCommand = new RelayCommand(() => NavigationService.TapFlyoutIcon());
@@ -37,6 +36,7 @@ namespace IVCNetMaui.ViewModels.Dashboard
             NavigateToProcessCommand = new AsyncRelayCommand(() => NavigationService.NavigateToAsync("healthMonitor"));
             NavigateToHealthMonitorCommand = new AsyncRelayCommand(() => NavigationService.NavigateToAsync("healthMonitor"));
             NavigateToIoTListCommand = new AsyncRelayCommand(() => navigationService.NavigateToAsync("iotList"));
+            NavigateToEdgeDetailCommand = new AsyncRelayCommand(() => navigationService.NavigateToAsync("edgeDetail"));
         }
     }
 }

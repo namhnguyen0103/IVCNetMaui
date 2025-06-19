@@ -7,7 +7,7 @@
         <Setter Property="StrokeThickness" Value="1"/>
         <Setter Property="Stroke" Value="{StaticResource Gray400}"/>
         <Setter Property="StrokeShape">
-            <RoundRectangle CornerRadius="3"/>
+            <RoundRectangle CornerRadius="10"/>
         </Setter>
     </Style>
     <Style x:Key="MenuContentPage" TargetType="ContentPage">

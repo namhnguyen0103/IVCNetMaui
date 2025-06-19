@@ -16,7 +16,7 @@
     Title="IVCNetMaui"
     FlyoutBackdrop="#80808080">
 
-    <Shell.ItemTemplate>
+    <!--<Shell.ItemTemplate>
         <DataTemplate x:DataType="FlyoutItem">
             <Border 
                 Margin="12, 0, 0, 0" 
@@ -65,16 +65,11 @@
                     </VisualStateGroupList>
                 </VisualStateManager.VisualStateGroups>
                 <Grid ColumnDefinitions="Auto, *" Padding="12, 12" ColumnSpacing="20">
-                    <Image>
-                        <Image.Source>
-                            <FontImageSource x:Name="IconImage" FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Flag}" Color="{StaticResource Gray700}"/>
-                        </Image.Source>
-                    </Image>
                     <Label x:Name="TitleLabel" Grid.Column="1" Text="{Binding Title}" VerticalTextAlignment="Center"/>
                 </Grid>
             </Border>
         </DataTemplate>
-    </Shell.ItemTemplate>
+    </Shell.ItemTemplate>-->
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -88,30 +83,38 @@
     <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" Route="login" FlyoutItemIsVisible="False"/>
 
     <FlyoutItem Title="Dashboard"
-                Route="dashboard"
-                FlyoutIcon="dashboard.png">
+                Route="dashboard">
+        <FlyoutItem.FlyoutIcon>
+            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Dashboard}" Color="{StaticResource Gray700}"/>
+        </FlyoutItem.FlyoutIcon>
         <ShellContent ContentTemplate="{DataTemplate dashboard:DashboardMainPage}"
                       Title="Hub"/>
     </FlyoutItem>
 
     <FlyoutItem Title="Camera View" 
-                Route="cameraView"
-                FlyoutIcon="videocam.png">
+                Route="cameraView">
+        <FlyoutItem.FlyoutIcon>
+            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Videocam}" Color="{StaticResource Gray700}"/>
+        </FlyoutItem.FlyoutIcon>
         <ShellContent Title="Camera View" 
                       ContentTemplate="{DataTemplate view:CameraPage}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Event View"
-                Route="eventView"
-                FlyoutIcon="flag.png">
+                Route="eventView">
+        <FlyoutItem.FlyoutIcon>
+            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Flag}" Color="{StaticResource Gray700}"/>
+        </FlyoutItem.FlyoutIcon>
         <ShellContent Title="Event View" 
                           ContentTemplate="{DataTemplate view:EventPage}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Historical" 
                 FlyoutDisplayOptions="AsSingleItem"
-                Route="historical"
-                FlyoutIcon="history.png">
+                Route="historical">
+        <FlyoutItem.FlyoutIcon>
+            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.History}" Color="{StaticResource Gray700}"/>
+        </FlyoutItem.FlyoutIcon>
         <Tab>
             <ShellContent Title="Health Data"
                           ContentTemplate="{DataTemplate historical:HistoricalHealthDataPage}" 
@@ -124,4 +127,10 @@
                           Route="mediaData"/>
         </Tab>
     </FlyoutItem>
+
+    <MenuItem Text="Logout" Clicked="MenuItem_Clicked">
+        <MenuItem.IconImageSource>
+            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Logout}" Color="{StaticResource Gray700}"/>
+        </MenuItem.IconImageSource>
+    </MenuItem>
 </Shell>

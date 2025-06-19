@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             x:Class="IVCNetMaui.Controls.EdgeCardControl"
+             x:Name="this">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="PropertySecondary" TargetType="Label">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="TextColor" Value="{StaticResource Gray700}"/>
+            </Style>
+
+            <Style x:Key="PropertyPrimary" TargetType="Label">
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+
+            <Style x:Key="PropertyBorder" TargetType="Border">
+                <Setter Property="Padding" Value="8"/>
+                <Setter Property="StrokeThickness" Value="0.5"/>
+                <Setter Property="StrokeShape">
+                    <RoundRectangle CornerRadius="3"/>
+                </Setter>
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <VerticalStackLayout BindingContext="{x:Reference this}">
+        <VerticalStackLayout.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding Command}"/>
+        </VerticalStackLayout.GestureRecognizers>
+        <Grid ColumnDefinitions="*, *, *"
+          RowDefinitions="Auto, Auto, Auto"
+          RowSpacing="4"
+          ColumnSpacing="4"
+          Padding="12">
+        <Label Grid.ColumnSpan="3">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="LVE1" FontFamily="RobotoSemiBold"/>
+                    <Span Text="  "/>
+                    <Span Text="#ID" TextColor="{StaticResource Gray700}"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Border Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource PropertyBorder}">
+            <Grid RowDefinitions="Auto, Auto, Auto, Auto"
+              ColumnDefinitions="*, *">
+                <Label Text="Version" Style="{StaticResource PropertySecondary}"/>
+                <Label Grid.Column="1" Text="2.8.0.1" Style="{StaticResource PropertyPrimary}"/>
+                <Label Grid.Row="1" Text="System" Style="{StaticResource PropertySecondary}"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="Activated • 3.4% CPU Usage" Style="{StaticResource PropertyPrimary}"/>
+                <Label Grid.Row="2" Text="Video Process" Style="{StaticResource PropertySecondary}"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="Activated • 3.4% CPU Usage" Style="{StaticResource PropertyPrimary}"/>
+                <Label Grid.Row="3" Text="UI Process" Style="{StaticResource PropertySecondary}"/>
+                <Label Grid.Row="3" Grid.Column="1" Text="Activated • 3.4% CPU Usage" Style="{StaticResource PropertyPrimary}"/>
+            </Grid>
+        </Border>
+        <Border Grid.Row="2" Style="{StaticResource PropertyBorder}">
+            <VerticalStackLayout>
+                <Label Text="3 Cameras" Style="{StaticResource PropertyPrimary}"/>
+                <Label Text="1 Up / 2 Activated" Style="{StaticResource PropertySecondary}"/>
+            </VerticalStackLayout>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource PropertyBorder}">
+            <VerticalStackLayout>
+                <Label Text="5 Modbus Devices" Style="{StaticResource PropertyPrimary}"/>
+                <Label Text="1 Up / 0 Activated" Style="{StaticResource PropertySecondary}"/>
+            </VerticalStackLayout>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource PropertyBorder}">
+            <VerticalStackLayout>
+                <Label Text="2 Weather Stations" Style="{StaticResource PropertyPrimary}"/>
+                <Label Text="1 Up / 1 Activated" Style="{StaticResource PropertySecondary}"/>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+        <BoxView HeightRequest="0.5" Color="{StaticResource Gray400}"/>
+    </VerticalStackLayout>
+</ContentView>
