@@ -4,7 +4,8 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.EdgeCardControl"
-             x:Name="this">
+             x:Name="this"
+             x:DataType="controls:EdgeCardControl">
     <ContentView.Resources>
         <ResourceDictionary>
             <Style x:Key="PropertySecondary" TargetType="Label">
@@ -51,11 +52,11 @@
                 <Label Text="Version" Style="{StaticResource PropertySecondary}"/>
                 <Label Grid.Column="1" Text="2.8.0.1" Style="{StaticResource PropertyPrimary}"/>
                 <Label Grid.Row="1" Text="System" Style="{StaticResource PropertySecondary}"/>
-                <Label Grid.Row="1" Grid.Column="1" Text="Activated • 3.4% CPU Usage" Style="{StaticResource PropertyPrimary}"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="Activated • 3.4% CPU used" Style="{StaticResource PropertyPrimary}"/>
                 <Label Grid.Row="2" Text="Video Process" Style="{StaticResource PropertySecondary}"/>
-                <Label Grid.Row="2" Grid.Column="1" Text="Activated • 3.4% CPU Usage" Style="{StaticResource PropertyPrimary}"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="Activated • 3.4% CPU used" Style="{StaticResource PropertyPrimary}"/>
                 <Label Grid.Row="3" Text="UI Process" Style="{StaticResource PropertySecondary}"/>
-                <Label Grid.Row="3" Grid.Column="1" Text="Activated • 3.4% CPU Usage" Style="{StaticResource PropertyPrimary}"/>
+                <Label Grid.Row="3" Grid.Column="1" Text="Activated • 3.4% CPU used" Style="{StaticResource PropertyPrimary}"/>
             </Grid>
         </Border>
         <Border Grid.Row="2" Style="{StaticResource PropertyBorder}">

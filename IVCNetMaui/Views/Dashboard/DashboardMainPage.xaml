@@ -39,7 +39,7 @@
     <material:TabView TabHeaderItemTemplate="{StaticResource Header}">
             <material:TabItem Title="Hub">
                 <material:TabItem.ContentTemplate>
-                    <DataTemplate>
+                <DataTemplate x:DataType="viewModels:DashboardMainViewModel">
                         <controls:HeathMonitorSummaryControl NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}" Style="{StaticResource MainPadding}"/>
                     </DataTemplate>
                 </material:TabItem.ContentTemplate>
@@ -47,11 +47,11 @@
 
             <material:TabItem Title="Edge">
                 <material:TabItem.ContentTemplate>
-                    <DataTemplate>
+                <DataTemplate  x:DataType="viewModels:DashboardMainViewModel">
                     <CollectionView ItemsSource="{Binding List}">
                         <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <controls:EdgeCardControl Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToEdgeDetailCommand}"/>
+                            <DataTemplate x:DataType='viewModels:DashboardMainViewModel'>
+                                <controls:EdgeCardControl Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToEdgeDetailCommand}"/>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
