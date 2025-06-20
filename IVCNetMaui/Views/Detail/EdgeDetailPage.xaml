@@ -53,7 +53,7 @@
             </Border>
 
             <!--Tab View-->
-            <Border Grid.Row="1" StrokeShape="Rectangle" BackgroundColor="White" Padding="0, 8, 0, 0">
+            <Border Grid.Row="1" StrokeShape="Rectangle" BackgroundColor="White">
                 <material:TabView TabHeaderItemTemplate="{StaticResource Header}">
                     <!--Health Monitor Tab-->
                     <material:TabItem Title="Health Monitor">
