@@ -5,8 +5,7 @@
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
              x:Class="IVCNetMaui.Views.Detail.EdgeDetailPage"
-             Title="Moxa 1200"
-             BackgroundColor="{StaticResource Gray200}">
+             Title="Moxa 1200 [Ver. 2.9.1.0]">
     <Shell.BackButtonBehavior>
         <BackButtonBehavior TextOverride=""/>
     </Shell.BackButtonBehavior>
@@ -38,8 +37,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView>
-        <Grid RowDefinitions="Auto, Auto" RowSpacing="14">
-            <!--Edge Information-->
+        <Grid RowDefinitions="Auto, Auto" RowSpacing="0">
+            <!--Edge Information--><!--
             <Border StrokeShape="Rectangle">
                 <VerticalStackLayout BackgroundColor="White" Padding="12">
                     <HorizontalStackLayout Spacing="8">
@@ -50,10 +49,10 @@
                     <Label Text="Debian 9 Azure Cloud VAE Docker Deployment" Margin="0,0,0,8"/>
                     <Label Text="192.168.20.19 • 7081, 7444" TextColor="{StaticResource Gray700}"/>
                 </VerticalStackLayout>
-            </Border>
+            </Border>-->
 
             <!--Tab View-->
-            <Border Grid.Row="1" StrokeShape="Rectangle" BackgroundColor="White">
+            <!--<Border Grid.Row="1" StrokeShape="Rectangle" BackgroundColor="White">-->
                 <material:TabView TabHeaderItemTemplate="{StaticResource Header}">
                     <!--Health Monitor Tab-->
                     <material:TabItem Title="Health Monitor">
@@ -84,7 +83,7 @@
                         </material:TabItem.ContentTemplate>
                     </material:TabItem>
                 </material:TabView>
-            </Border>
+            <!--</Border>-->
         </Grid>
     </ScrollView>
 
