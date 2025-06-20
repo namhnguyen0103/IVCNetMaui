@@ -134,7 +134,7 @@
                 </VerticalStackLayout>
             </DataTemplate>
 
-            <DataTemplate x:Key="System">
+            <DataTemplate x:Key="System" x:DataType="viewModels:HealthMonitorViewModel">
                 <VerticalStackLayout Spacing="16" Style="{StaticResource MainPadding}">
                     <VerticalStackLayout Style="{StaticResource SectionStack}">
                         <Label Text="Status" Style="{StaticResource SectionTitle}"/>
@@ -222,6 +222,28 @@
                     <VerticalStackLayout>
                         <Label Text="Network" Style="{StaticResource SectionTitle}"/>
                         <Border Style="{StaticResource PropertyBorder}">
+                            <Grid>
+                            <material:DataGrid ItemsSource="{Binding Networks}">
+                                <material:DataGrid.TitleTemplate>
+                                    <DataTemplate x:DataType="material:DataGridColumn">
+                                        <Label Text="{Binding Title}" Style="{StaticResource PropertyPrimaryText}"/>
+                                    </DataTemplate>
+                                </material:DataGrid.TitleTemplate>
+
+                                    <material:DataGrid.CellItemTemplate>
+                                        <DataTemplate x:DataType="material:DataGrid">
+                                            <Label Text="{material:DataGridValueBinding}" Style="{StaticResource PropertySecondaryText}"/>
+                                        </DataTemplate>
+                                    </material:DataGrid.CellItemTemplate>
+                                <material:DataGrid.Columns>
+                                    <material:DataGridColumn ValueBinding="{Binding Name}" Title="Name" Width="*"/>
+                                    <material:DataGridColumn ValueBinding="{Binding NIT}" Title="NIT" Width="40"/>
+                                    <material:DataGridColumn ValueBinding="{Binding Send}" Title="Send" Width="*"/>
+                                    <material:DataGridColumn ValueBinding="{Binding Receive}" Title="Receive" Width="*"/>
+                                    <material:DataGridColumn ValueBinding="{Binding PktQd}" Title="PktQd" Width="40"/>
+                                </material:DataGrid.Columns>
+                            </material:DataGrid>
+                            </Grid>
                         </Border>
                     </VerticalStackLayout>
                 </VerticalStackLayout>
