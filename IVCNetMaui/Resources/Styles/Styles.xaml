@@ -7,7 +7,7 @@
 
     <DataTemplate x:Key="Header" x:DataType="material:TabItem">
         <Border StrokeThickness="0"
-            Padding="6, 4"
+            Padding="12, 4"
             Margin="12, 6">
             <Border.Triggers>
                 <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">

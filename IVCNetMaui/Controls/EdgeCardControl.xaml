@@ -4,8 +4,8 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.EdgeCardControl"
-             x:Name="this"
-             x:DataType="controls:EdgeCardControl">
+             x:Name="this">
+    <!--x:DataType="controls:EdgeCardControl"-->
     <ContentView.Resources>
         <ResourceDictionary>
             <Style x:Key="PropertySecondary" TargetType="Label">
@@ -30,26 +30,55 @@
 
     <Border BackgroundColor="White" StrokeShape="Rectangle">
         <Grid ColumnDefinitions="*, *, *"
-        RowDefinitions="Auto, Auto, Auto"
-        RowSpacing="4"
-        ColumnSpacing="4"
-        Padding="12">
+              RowDefinitions="Auto, Auto, Auto"
+              RowSpacing="4"
+              ColumnSpacing="4"
+              Padding="12"
+              BindingContext="{x:Reference this}">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Command}" />
+            </Grid.GestureRecognizers>
             <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8" Grid.ColumnSpan="3">
-                <Label Text="LVE1" FontFamily="RobotoSemiBold" MaxLines="1" LineBreakMode="TailTruncation"/>
-                <Label Grid.Column="1" Text="#ID" TextColor="{StaticResource Gray700}"/>
+                <Label Text="Moxa 1200" FontFamily="RobotoSemiBold" MaxLines="1" LineBreakMode="TailTruncation"/>
+                <Label Grid.Column="1" Text="#2" TextColor="{StaticResource Gray700}"/>
             </Grid>   
        
             <Border Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource PropertyBorder}">
                 <Grid RowDefinitions="Auto, Auto, Auto, Auto"
-                ColumnDefinitions="*, *">
+                      ColumnDefinitions="*, *"
+                      RowSpacing="6">
                     <Label Text="Version" Style="{StaticResource PropertySecondary}"/>
-                    <Label Grid.Column="1" Text="2.8.0.1" Style="{StaticResource PropertyPrimary}"/>
+                    <Label Grid.Column="1" Text="2.9.1.0" Style="{StaticResource PropertyPrimary}"/>
                     <Label Grid.Row="1" Text="System" Style="{StaticResource PropertySecondary}"/>
-                    <Label Grid.Row="1" Grid.Column="1" Text="Activated • 3.4% CPU used" Style="{StaticResource PropertyPrimary}"/>
+                    <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource PropertyPrimary}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Activated"/>
+                                <Span Text="&#10;"/>
+                                <Span Text="3.4% CPU used"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                     <Label Grid.Row="2" Text="Video Process" Style="{StaticResource PropertySecondary}"/>
-                    <Label Grid.Row="2" Grid.Column="1" Text="Activated • 3.4% CPU used" Style="{StaticResource PropertyPrimary}"/>
+                    <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource PropertyPrimary}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Activated"/>
+                                <Span Text="&#10;"/>
+                                <Span Text="5.0% CPU used"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                     <Label Grid.Row="3" Text="UI Process" Style="{StaticResource PropertySecondary}"/>
-                    <Label Grid.Row="3" Grid.Column="1" Text="Activated • 3.4% CPU used" Style="{StaticResource PropertyPrimary}"/>
+                    <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource PropertyPrimary}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Activated"/>
+                                <Span Text="&#10;"/>
+                                <Span Text="1.2% CPU used"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                 </Grid>
             </Border>
             <Border Grid.Row="2" Style="{StaticResource PropertyBorder}">

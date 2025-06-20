@@ -15,7 +15,7 @@
     <Grid RowDefinitions="Auto">
         <Border Style="{StaticResource MenuBorder}">
             <VerticalStackLayout>
-                <controls:MenuCardControl Title="Cameras"
+                <!--<controls:MenuCardControl Title="Cameras"
                                           Icon="videocam_white.png"
                                              Count="6" />
                 <controls:MenuCardControl Title="Weather Stations" 
@@ -23,7 +23,7 @@
                                              Count="3" />
                 <controls:MenuCardControl Title="Modbus Devices"
                                           Icon="router_white.png"
-                                             Count="3" />
+                                             Count="3" />-->
             </VerticalStackLayout>
         </Border>
     </Grid>

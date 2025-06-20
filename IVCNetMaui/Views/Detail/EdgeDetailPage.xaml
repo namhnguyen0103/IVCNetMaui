@@ -1,12 +1,91 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
              x:Class="IVCNetMaui.Views.Detail.EdgeDetailPage"
-             Title="EdgeDetailPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Moxa 1200"
+             BackgroundColor="{StaticResource Gray200}">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior TextOverride=""/>
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <ControlTemplate x:Key="IoTSummary">
+                <Grid ColumnDefinitions="*, *, *" Style="{StaticResource SummaryGrid}">
+                    <VerticalStackLayout Style="{StaticResource SummaryStack}">
+                        <Label Text="Total" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="1000" Style="{StaticResource SummaryPrimary}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
+                        <Label Text="Up" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="500" Style="{StaticResource SummaryPrimary}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="2" Style="{StaticResource SummaryStack}">
+                        <Label Text="Activated" Style="{StaticResource SummarySecondary}"/>
+                        <Label Text="250" Style="{StaticResource SummaryPrimary}"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <Grid RowDefinitions="Auto, Auto" RowSpacing="14">
+            <!--Edge Information-->
+            <Border StrokeShape="Rectangle">
+                <VerticalStackLayout BackgroundColor="White" Padding="12">
+                    <HorizontalStackLayout Spacing="8">
+                        <Label Text="Moxa 1200" FontFamily="RobotoMedium" FontSize="20"/>
+                        <Label Text="#2" FontSize="20" TextColor="{StaticResource Gray700}"/>
+                    </HorizontalStackLayout>
+                    <Label Text="Version 2.9.1.0" TextColor="{StaticResource Gray700}" Margin="0,0,0,8"/>
+                    <Label Text="Debian 9 Azure Cloud VAE Docker Deployment" Margin="0,0,0,8"/>
+                    <Label Text="192.168.20.19 • 7081, 7444" TextColor="{StaticResource Gray700}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!--Tab View-->
+            <Border Grid.Row="1" StrokeShape="Rectangle" BackgroundColor="White" Padding="0, 8, 0, 0">
+                <material:TabView TabHeaderItemTemplate="{StaticResource Header}">
+                    <!--Health Monitor Tab-->
+                    <material:TabItem Title="Health Monitor">
+                        <material:TabItem.ContentTemplate>
+                        <DataTemplate x:DataType="viewModels:EdgeDetailViewModel">
+                            <ScrollView>
+                                <controls:HeathMonitorSummaryControl Style="{StaticResource MainPadding}" NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}"/>
+                            </ScrollView>
+                        </DataTemplate>
+                    </material:TabItem.ContentTemplate>
+                    </material:TabItem>
+
+                    <!--IoT Tab-->
+                    <material:TabItem Title="IoT">
+                        <material:TabItem.ContentTemplate>
+                            <DataTemplate x:DataType="viewModels:EdgeDetailViewModel">
+                                <VerticalStackLayout Style="{StaticResource MainPadding}" Spacing="16">
+                                    <controls:MenuCardControl Title="Camera" BodyContent="{StaticResource IoTSummary}">
+                                    </controls:MenuCardControl>
+
+                                    <controls:MenuCardControl Title="Modbus Devices" BodyContent="{StaticResource IoTSummary}">
+                                    </controls:MenuCardControl>
+
+                                    <controls:MenuCardControl Title="Weather Stations" BodyContent="{StaticResource IoTSummary}">
+                                    </controls:MenuCardControl>
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </material:TabItem.ContentTemplate>
+                    </material:TabItem>
+                </material:TabView>
+            </Border>
+        </Grid>
+    </ScrollView>
+
 </ContentPage>

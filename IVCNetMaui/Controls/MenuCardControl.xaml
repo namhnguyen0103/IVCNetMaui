@@ -11,37 +11,36 @@
             <Style TargetType="Label">
                 <Setter Property="VerticalTextAlignment" Value="Center" />
             </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentView.Resources>
-    <Grid x:Name="Card"
-          BindingContext="{x:Reference this}"
-          Padding="16, 12"
-          ColumnDefinitions="Auto, *, Auto, Auto"
-          ColumnSpacing="12">
-        <Grid.Behaviors>
-            <toolkit:TouchBehavior 
-                PressedBackgroundColor="{StaticResource Gray300}"
-                DefaultBackgroundColor="Transparent"/>
-        </Grid.Behaviors>
-        <Grid.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding Command}"/>
-        </Grid.GestureRecognizers>
-        <Border Grid.Column="0"
-            WidthRequest="32"
-            HeightRequest="32"
-            StrokeThickness="0"
-            BackgroundColor="{StaticResource Gray950}">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="3,3,3,3" />
-            </Border.StrokeShape>
-            <Image Source="{Binding Icon}" WidthRequest="20" />
-        </Border>
-        <Label Grid.Column="1"
-           Text="{Binding Title}" />
-        <Label Grid.Column="2"
-               Text="{Binding Count, FallbackValue=''}"/>
-        <Image Grid.Column="3"
-           Source="right_arrow.png" 
-           WidthRequest="20"/>
-    </Grid>
+    <Border Style="{StaticResource MenuBorder}" BackgroundColor="White" BindingContext="{x:Reference this}">
+        <VerticalStackLayout>
+            <VerticalStackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Command}"/>
+            </VerticalStackLayout.GestureRecognizers>
+            <Label Text="{Binding Title}" Style="{StaticResource SectionTitle}"/>
+            <!--<Grid Grid.Row="1" ColumnDefinitions="*, *"
+                RowDefinitions="Auto, Auto"
+                Style="{StaticResource SummaryGrid}">
+                <VerticalStackLayout Style="{StaticResource SummaryStack}">
+                    <Label Text="Name" Style="{StaticResource SummarySecondary}"/>
+                    <Label Text="2654f7f9c339" Style="{StaticResource SummaryPrimary}"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
+                    <Label Text="CPU Usage" Style="{StaticResource SummarySecondary}"/>
+                    <Label Text="6.3 %" Style="{StaticResource SummaryPrimary}"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1" Style="{StaticResource SummaryStack}">
+                    <Label Text="Uptime" Style="{StaticResource SummarySecondary}"/>
+                    <Label Text="5 day 0 hr 51 min 16 sec" Style="{StaticResource SummaryPrimary}"/>
+                </VerticalStackLayout>
+            </Grid>-->
+            <ContentView Grid.Row="1" ControlTemplate="{Binding BodyContent}"/>
+        </VerticalStackLayout>
+    </Border>
 </ContentView>
