@@ -16,12 +16,12 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentView.Resources>
-    <Border Style="{StaticResource MenuBorder}" BackgroundColor="White" BindingContext="{x:Reference this}">
+    <Border Style="{StaticResource MenuBorder}" BindingContext="{x:Reference this}">
         <VerticalStackLayout>
             <VerticalStackLayout.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding Command}"/>
             </VerticalStackLayout.GestureRecognizers>
-            <Label Text="{Binding Title}" Style="{StaticResource SectionTitle}"/>
+            <Label Text="{Binding Title}" Style="{StaticResource SectionTitleWithoutGrid}"/>
             <!--<Grid Grid.Row="1" ColumnDefinitions="*, *"
                 RowDefinitions="Auto, Auto"
                 Style="{StaticResource SummaryGrid}">

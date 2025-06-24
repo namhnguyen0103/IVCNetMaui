@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.AccordionControl"
              x:Name="This"
              x:DataType="controls:AccordionControl">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Border Style="{StaticResource MenuBorder}">
         <toolkit:Expander BindingContext="{x:Reference This}"
               ExpandedChanged="OnExpandedChanged"
               x:Name="MainExpander">
             <toolkit:Expander.Header>
-                <Grid ColumnDefinitions="*, Auto">
+                <Grid ColumnDefinitions="*, Auto" Style="{StaticResource SectionHeaderGrid}">
                     <ContentView ControlTemplate="{Binding HeaderContent}"/>
-                    <Image x:Name="HeaderIcon" Source="down_arrow.png" Grid.Column="1" WidthRequest="15"/>
+                    <Image x:Name="HeaderIcon" Grid.Column="1" WidthRequest="14">
+                        <Image.Source>
+                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_down}" Color="{StaticResource Gray900}"/>
+                        </Image.Source>
+                    </Image>
                 </Grid>
             </toolkit:Expander.Header>
             <ContentView ControlTemplate="{Binding BodyContent}"/>
         </toolkit:Expander>
+    </Border>
 </ContentView>

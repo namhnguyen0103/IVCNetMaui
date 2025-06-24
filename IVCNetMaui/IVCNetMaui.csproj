@@ -25,7 +25,7 @@
 		<ApplicationTitle>IVCNetMaui</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.ivcnetmaui</ApplicationId>
+		<ApplicationId>com.ivcco.ivcnetmaui</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

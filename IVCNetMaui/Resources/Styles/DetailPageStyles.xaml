@@ -17,7 +17,6 @@
     </Style>
     <Style x:Key="PropertyPrimaryText" TargetType="Label">
         <Setter Property="FontSize" Value="12"/>
-        <!--<Setter Property="FontFamily" Value="RobotoMedium"/>-->
         <Setter Property="LineBreakMode" Value="WordWrap" />
     </Style>
     <Style x:Key="PropertySecondaryText" TargetType="Label">
@@ -35,7 +34,7 @@
     <Style x:Key="SectionStack" TargetType="VerticalStackLayout">
         <Setter Property="Spacing" Value="4" />
     </Style>
-    <Style x:Key="MainPadding" TargetType="{x:Type Layout}">
+    <Style x:Key="MainPadding" TargetType="Layout">
         <Setter Property="Padding" Value="12, 10, 12, 100"/>
     </Style>
 </ResourceDictionary>

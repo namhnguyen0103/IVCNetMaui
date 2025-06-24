@@ -75,7 +75,7 @@
         <ResourceDictionary>
             <Style TargetType="Label"
                    Class="FlyoutItemLabelStye">
-                <Setter Property="BackgroundColor" Value="{StaticResource BluePrimary}"/>
+                <Setter Property="TextColor" Value="{StaticResource BluePrimary}"/>
             </Style>
         </ResourceDictionary>
     </Shell.Resources>

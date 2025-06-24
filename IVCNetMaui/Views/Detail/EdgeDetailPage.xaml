@@ -78,7 +78,24 @@
 
                                     <controls:MenuCardControl Title="Weather Stations" BodyContent="{StaticResource IoTSummary}">
                                     </controls:MenuCardControl>
-                                </VerticalStackLayout>
+
+                                <controls:AccordionControl>
+                                    <controls:AccordionControl.HeaderContent>
+                                        <ControlTemplate>
+                                            <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
+                                                <Label Text="Camera" Style="{StaticResource SectionTitle}"/>
+                                                <Label Text="10 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource SummarySecondary}" VerticalTextAlignment="Center"/>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </controls:AccordionControl.HeaderContent>
+
+                                    <controls:AccordionControl.BodyContent>
+                                        <ControlTemplate>
+                                            <Label Text="Testing"/>
+                                        </ControlTemplate>
+                                    </controls:AccordionControl.BodyContent>
+                                </controls:AccordionControl>
+                            </VerticalStackLayout>
                             </DataTemplate>
                         </material:TabItem.ContentTemplate>
                     </material:TabItem>
