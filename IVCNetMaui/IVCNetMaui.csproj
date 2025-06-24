@@ -50,6 +50,7 @@
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-ios'">
 		<SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+		<ProvisioningType>manual</ProvisioningType>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-maccatalyst'">
