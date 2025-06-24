@@ -34,6 +34,22 @@
                     </VerticalStackLayout>
                 </Grid>
             </ControlTemplate>
+
+            <ControlTemplate x:Key="IoTHeader" x:DataType="controls:AccordionControl">
+                <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
+                    <Label Text="Camera" Style="{StaticResource SectionTitle}"/>
+                    <Label Text="2 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource SummarySecondary}" VerticalTextAlignment="Center"/>
+                </Grid>
+            </ControlTemplate>
+
+            <DataTemplate x:Key="IoTCard" x:DataType="x:String">
+                <Grid ColumnDefinitions="*, 80" ColumnSpacing="8" Padding="12, 12">
+                    <Label Text="DC Cam1 Thermal  #ID" Style="{StaticResource SummaryPrimary}" VerticalTextAlignment="Center"/>
+                    <Border Grid.Column="1" StrokeShape="RoundRectangle 20"  HeightRequest="24">
+                        <Label Text="Unknown" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="12" TextColor="{StaticResource Gray700}"/>
+                    </Border>
+                </Grid>
+            </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView>
@@ -52,55 +68,78 @@
             </Border>-->
 
             <!--Tab View-->
-            <!--<Border Grid.Row="1" StrokeShape="Rectangle" BackgroundColor="White">-->
-                <material:TabView TabHeaderItemTemplate="{StaticResource Header}">
-                    <!--Health Monitor Tab-->
-                    <material:TabItem Title="Health Monitor">
-                        <material:TabItem.ContentTemplate>
+            <material:TabView TabHeaderItemTemplate="{StaticResource Header}">
+                <!--Health Monitor Tab-->
+                <material:TabItem Title="Health Monitor">
+                    <material:TabItem.ContentTemplate>
                         <DataTemplate x:DataType="viewModels:EdgeDetailViewModel">
                             <ScrollView>
                                 <controls:HeathMonitorSummaryControl Style="{StaticResource MainPadding}" NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}"/>
                             </ScrollView>
                         </DataTemplate>
                     </material:TabItem.ContentTemplate>
-                    </material:TabItem>
+                </material:TabItem>
 
-                    <!--IoT Tab-->
-                    <material:TabItem Title="IoT">
-                        <material:TabItem.ContentTemplate>
-                            <DataTemplate x:DataType="viewModels:EdgeDetailViewModel">
-                                <VerticalStackLayout Style="{StaticResource MainPadding}" Spacing="16">
-                                    <controls:MenuCardControl Title="Camera" BodyContent="{StaticResource IoTSummary}">
-                                    </controls:MenuCardControl>
-
-                                    <controls:MenuCardControl Title="Modbus Devices" BodyContent="{StaticResource IoTSummary}">
-                                    </controls:MenuCardControl>
-
-                                    <controls:MenuCardControl Title="Weather Stations" BodyContent="{StaticResource IoTSummary}">
-                                    </controls:MenuCardControl>
-
+                <!--IoT Tab-->
+                <material:TabItem Title="IoT">
+                    <material:TabItem.ContentTemplate>
+                        <DataTemplate x:DataType="viewModels:EdgeDetailViewModel">
+                            <VerticalStackLayout Style="{StaticResource MainPadding}" Spacing="16">
                                 <controls:AccordionControl>
                                     <controls:AccordionControl.HeaderContent>
                                         <ControlTemplate>
                                             <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
                                                 <Label Text="Camera" Style="{StaticResource SectionTitle}"/>
-                                                <Label Text="10 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource SummarySecondary}" VerticalTextAlignment="Center"/>
+                                                <Label Text="2 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource SummarySecondary}" VerticalTextAlignment="Center"/>
                                             </Grid>
                                         </ControlTemplate>
                                     </controls:AccordionControl.HeaderContent>
-
                                     <controls:AccordionControl.BodyContent>
                                         <ControlTemplate>
-                                            <Label Text="Testing"/>
+                                            <CollectionView ItemTemplate="{StaticResource IoTCard}" 
+                                                            ItemsSource="{Binding x:DataType='viewModels:EdgeDetailViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=Cameras}"/>
+                                        </ControlTemplate>
+                                    </controls:AccordionControl.BodyContent>
+                                </controls:AccordionControl>
+
+                                <controls:AccordionControl>
+                                    <controls:AccordionControl.HeaderContent>
+                                        <ControlTemplate>
+                                            <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
+                                                <Label Text="Modbus Device" Style="{StaticResource SectionTitle}"/>
+                                                <Label Text="2 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource SummarySecondary}" VerticalTextAlignment="Center"/>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </controls:AccordionControl.HeaderContent>
+                                    <controls:AccordionControl.BodyContent>
+                                        <ControlTemplate>
+                                            <CollectionView ItemTemplate="{StaticResource IoTCard}" 
+                                                            ItemsSource="{Binding x:DataType='viewModels:EdgeDetailViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=Cameras}"/>
+                                        </ControlTemplate>
+                                    </controls:AccordionControl.BodyContent>
+                                </controls:AccordionControl>
+
+                                <controls:AccordionControl>
+                                    <controls:AccordionControl.HeaderContent>
+                                        <ControlTemplate>
+                                            <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
+                                                <Label Text="Weather Station" Style="{StaticResource SectionTitle}"/>
+                                                <Label Text="2 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource SummarySecondary}" VerticalTextAlignment="Center"/>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </controls:AccordionControl.HeaderContent>
+                                    <controls:AccordionControl.BodyContent>
+                                        <ControlTemplate>
+                                            <CollectionView ItemTemplate="{StaticResource IoTCard}" 
+                                                            ItemsSource="{Binding x:DataType='viewModels:EdgeDetailViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=Cameras}"/>
                                         </ControlTemplate>
                                     </controls:AccordionControl.BodyContent>
                                 </controls:AccordionControl>
                             </VerticalStackLayout>
-                            </DataTemplate>
-                        </material:TabItem.ContentTemplate>
-                    </material:TabItem>
-                </material:TabView>
-            <!--</Border>-->
+                        </DataTemplate>
+                    </material:TabItem.ContentTemplate>
+                </material:TabItem>
+            </material:TabView>
         </Grid>
     </ScrollView>
 

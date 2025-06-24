@@ -10,31 +10,9 @@
              Title="Dashboard">
     <ContentPage.Resources>
         <ResourceDictionary>
-            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
-            <!--<DataTemplate x:Key="Header" x:DataType="material:TabItem">
-                <Border StrokeThickness="0"
-                        Padding="4, 4"
-                        Margin="12, 6">
-                    <Border.Triggers>
-                        <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
-                            <Setter Property="BackgroundColor" Value="{StaticResource Gray300}"/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
-                            <Setter Property="BackgroundColor" Value="White" />
-                        </DataTrigger>
-                    </Border.Triggers>
-                    <Label Text="{Binding Title}" FontSize="16" FontFamily="RobotoRegular" HorizontalTextAlignment="Center">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Command}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Border>
-            </DataTemplate>-->
-            
         </ResourceDictionary>
     </ContentPage.Resources>
 
