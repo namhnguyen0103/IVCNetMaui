@@ -12,6 +12,7 @@ using IVCNetMaui.Views.Historical;
 using IVCNetMaui.Views.View;
 using Microsoft.Extensions.Logging;
 using UraniumUI;
+using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace IVCNetMaui
 {
@@ -25,6 +26,7 @@ namespace IVCNetMaui
                    .UseMauiCommunityToolkitMediaElement()
                    .UseUraniumUI()
                    .UseUraniumUIMaterial()
+                   .ConfigureSyncfusionToolkit()
                    .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

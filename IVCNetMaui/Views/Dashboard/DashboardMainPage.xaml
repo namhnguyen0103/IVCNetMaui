@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
@@ -14,28 +15,45 @@
                 <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+
+        <Style TargetType="syncfusion:SfTabItem">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Normal"/>
+                        <VisualState Name="Pressed" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
     </ContentPage.Resources>
 
-    <material:TabView TabHeaderItemTemplate="{StaticResource Header}">
-        <material:TabItem Title="Hub">
-                <material:TabItem.ContentTemplate>
-                    <DataTemplate x:DataType="viewModels:DashboardMainViewModel">
-                        <ScrollView>
-                            <controls:HeathMonitorSummaryControl NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}" Style="{StaticResource MainPadding}"/>
-                        </ScrollView>
-                    </DataTemplate>
-                </material:TabItem.ContentTemplate>
-        </material:TabItem>
+    <syncfusion:SfTabView>
+        <syncfusion:SfTabView.HeaderItemTemplate>
+            <DataTemplate>
+                <VerticalStackLayout>
+                    <Label Text="Testing"/>
+                    <BoxView HeightRequest="1" Color="{StaticResource Gray200}"/>
+                </VerticalStackLayout>
+            </DataTemplate>
+        </syncfusion:SfTabView.HeaderItemTemplate>
+        <syncfusion:SfTabView.Items>
+            <syncfusion:SfTabItem Header="Hub">
+                <syncfusion:SfTabItem.Content>
+                    <ScrollView>
+                        <controls:HeathMonitorSummaryControl NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}" Style="{StaticResource MainPadding}"/>
+                    </ScrollView>
+                </syncfusion:SfTabItem.Content>
+            </syncfusion:SfTabItem>
 
-        <material:TabItem Title="Edge">
-            <material:TabItem.ContentTemplate>
-            <DataTemplate  x:DataType="viewModels:DashboardMainViewModel">
+            <syncfusion:SfTabItem Header="Edge">
+                <syncfusion:SfTabItem.Content>
                     <Grid RowDefinitions="Auto, *">
                         <SearchBar ios:SearchBar.SearchBarStyle="Minimal" Placeholder="Search"/>
                         <CollectionView Grid.Row="1" ItemsSource="{Binding List}" BackgroundColor="{StaticResource Gray200}">
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Vertical"
-                                                ItemSpacing="8" />
+                                                   ItemSpacing="8" />
                             </CollectionView.ItemsLayout>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType='x:String'>
@@ -44,9 +62,8 @@
                             </CollectionView.ItemTemplate>
                         </CollectionView>
                     </Grid>
-                </DataTemplate>
-            </material:TabItem.ContentTemplate>
-        </material:TabItem>
-        
-    </material:TabView>
+                </syncfusion:SfTabItem.Content>
+            </syncfusion:SfTabItem>
+        </syncfusion:SfTabView.Items>
+    </syncfusion:SfTabView>
 </ContentPage>

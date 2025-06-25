@@ -3,7 +3,8 @@
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material">
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit">
 
     <!--<DataTemplate x:Key="Header" x:DataType="material:TabItem">
         <VerticalStackLayout BackgroundColor="White">
@@ -22,6 +23,19 @@
             </BoxView>
         </VerticalStackLayout>
     </DataTemplate>-->
+
+    <Style TargetType="syncfusion:SfTabView">
+        <Setter Property="TabBarHeight" Value="32"/>
+        <Setter Property="IndicatorWidthMode" Value="Stretch"/>
+        <Setter Property="IndicatorStrokeThickness" Value="0.5"/>
+        <Setter Property="IndicatorBackground" Value="{StaticResource Gray950}"/>
+        <Setter Property="ContentTransitionDuration" Value="0"/>
+    </Style>
+
+    <Style TargetType="syncfusion:SfTabItem">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="RobotoRegular"/>
+    </Style>
 
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
