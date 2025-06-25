@@ -39,7 +39,7 @@
                 <TapGestureRecognizer Command="{Binding Command}" />
             </Grid.GestureRecognizers>
             <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8" Grid.ColumnSpan="3">
-                <Label Text="Moxa 1200" FontFamily="RobotoSemiBold" MaxLines="1" LineBreakMode="TailTruncation"/>
+                <Label Text="Moxa 1200" FontFamily="RobotoMedium" FontSize="20" MaxLines="1" LineBreakMode="TailTruncation"/>
                 <Label Grid.Column="1" Text="#2" TextColor="{StaticResource Gray700}"/>
             </Grid>   
        

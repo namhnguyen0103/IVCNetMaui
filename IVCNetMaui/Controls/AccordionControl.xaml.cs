@@ -5,6 +5,14 @@ namespace IVCNetMaui.Controls;
 
 public partial class AccordionControl : ContentView
 {
+    public static readonly BindableProperty IsExpandedProperty = BindableProperty.Create(nameof(IsExpanded), typeof(Boolean), typeof(AccordionControl), false);
+
+    public Boolean IsExpanded
+    {
+        get => (Boolean)this.GetValue(IsExpandedProperty);
+        set => SetValue(IsExpandedProperty, value);
+    }
+
     public static readonly BindableProperty HeaderContentProperty = BindableProperty.Create(nameof(HeaderContent), typeof(ControlTemplate), typeof(AccordionControl));
 
     public ControlTemplate HeaderContent
@@ -36,5 +44,6 @@ public partial class AccordionControl : ContentView
         {
             await HeaderIcon.RotateTo(0, 200, Easing.SinInOut);
         }
+        Console.WriteLine(IsExpanded);
     }
 }

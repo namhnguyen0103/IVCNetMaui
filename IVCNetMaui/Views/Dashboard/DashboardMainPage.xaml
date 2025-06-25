@@ -16,19 +16,27 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
-        <Style TargetType="syncfusion:SfTabItem">
+        <!--<Style TargetType="syncfusion:SfTabItem">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup>
-                        <VisualState x:Name="Normal"/>
-                        <VisualState Name="Pressed" />
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property=""
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="blue"/>
+                            </VisualState.Setters>
+                        </VisualState>
                     </VisualStateGroup>
                 </VisualStateGroupList>
             </Setter>
-        </Style>
+        </Style>-->
     </ContentPage.Resources>
 
-    <syncfusion:SfTabView>
+    <syncfusion:SfTabView Style="{StaticResource Header}">
         <syncfusion:SfTabView.HeaderItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout>

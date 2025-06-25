@@ -17,7 +17,8 @@
     <Border Style="{StaticResource MenuBorder}">
         <toolkit:Expander BindingContext="{x:Reference This}"
               ExpandedChanged="OnExpandedChanged"
-              x:Name="MainExpander">
+              x:Name="MainExpander"
+              IsExpanded="{Binding IsExpanded, FallbackValue=false, Mode=TwoWay}">
             <toolkit:Expander.Header>
                 <Grid ColumnDefinitions="*, Auto" Style="{StaticResource SectionHeaderGrid}">
                     <ContentView ControlTemplate="{Binding HeaderContent}"/>

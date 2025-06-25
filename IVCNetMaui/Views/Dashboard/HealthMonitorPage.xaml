@@ -13,7 +13,7 @@
         <BackButtonBehavior TextOverride=""/>
     </Shell.BackButtonBehavior>
 
-    <syncfusion:SfTabView TabBarBackground="White">
+    <syncfusion:SfTabView TabBarBackground="White" Style="{StaticResource Header}">
         <syncfusion:SfTabView.Items>
             <syncfusion:SfTabItem Header="System" Content="{controls:SystemDetailControl}"/>
 
