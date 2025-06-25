@@ -2,39 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
              x:DataType="viewModels:DashboardMainViewModel"
              Title="Dashboard">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-
-        <!--<Style TargetType="syncfusion:SfTabItem">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup>
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property=""
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="TextColor" Value="blue"/>
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>-->
-    </ContentPage.Resources>
+    <!-- <ContentPage.Resources> -->
+    <!--     <ResourceDictionary> -->
+    <!--         <ResourceDictionary.MergedDictionaries> -->
+    <!--             <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/> -->
+    <!--         </ResourceDictionary.MergedDictionaries> -->
+    <!--     </ResourceDictionary> -->
+    <!-- </ContentPage.Resources> -->
 
     <syncfusion:SfTabView Style="{StaticResource Header}">
         <syncfusion:SfTabView.HeaderItemTemplate>

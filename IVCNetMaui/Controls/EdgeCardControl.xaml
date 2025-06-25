@@ -8,15 +8,6 @@
     <!--x:DataType="controls:EdgeCardControl"-->
     <ContentView.Resources>
         <ResourceDictionary>
-            <Style x:Key="PropertySecondary" TargetType="Label">
-                <Setter Property="FontSize" Value="12"/>
-                <Setter Property="TextColor" Value="{StaticResource Gray700}"/>
-            </Style>
-
-            <Style x:Key="PropertyPrimary" TargetType="Label">
-                <Setter Property="FontSize" Value="12"/>
-            </Style>
-
             <Style x:Key="PropertyBorder" TargetType="Border">
                 <Setter Property="Padding" Value="8"/>
                 <Setter Property="StrokeThickness" Value="0.5"/>
@@ -25,6 +16,7 @@
                 </Setter>
             </Style>
             
+            <Style TargetType="Label" BasedOn="{StaticResource Body-S}"/>
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -39,18 +31,18 @@
                 <TapGestureRecognizer Command="{Binding Command}" />
             </Grid.GestureRecognizers>
             <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8" Grid.ColumnSpan="3">
-                <Label Text="Moxa 1200" FontFamily="RobotoMedium" FontSize="20" MaxLines="1" LineBreakMode="TailTruncation"/>
-                <Label Grid.Column="1" Text="#2" TextColor="{StaticResource Gray700}"/>
+                <Label Text="Moxa 1200" Style="{StaticResource Title-L}" MaxLines="1" LineBreakMode="TailTruncation"/>
+                <Label Grid.Column="1" Text="#2" Style="{StaticResource Title-L}" TextColor="{StaticResource Gray700}"/>
             </Grid>   
        
             <Border Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource PropertyBorder}">
                 <Grid RowDefinitions="Auto, Auto, Auto, Auto"
                       ColumnDefinitions="*, *"
                       RowSpacing="6">
-                    <Label Text="Version" Style="{StaticResource PropertySecondary}"/>
-                    <Label Grid.Column="1" Text="2.9.1.0" Style="{StaticResource PropertyPrimary}"/>
-                    <Label Grid.Row="1" Text="System" Style="{StaticResource PropertySecondary}"/>
-                    <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource PropertyPrimary}">
+                    <Label Text="Version" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
+                    <Label Grid.Column="1" Text="2.9.1.0" Style="{StaticResource Body-S}"/>
+                    <Label Grid.Row="1" Text="System" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
+                    <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource Body-S}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="Activated"/>
@@ -59,8 +51,8 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label Grid.Row="2" Text="Video Process" Style="{StaticResource PropertySecondary}"/>
-                    <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource PropertyPrimary}">
+                    <Label Grid.Row="2" Text="Video Process" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
+                    <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Body-S}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="Activated"/>
@@ -69,8 +61,8 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label Grid.Row="3" Text="UI Process" Style="{StaticResource PropertySecondary}"/>
-                    <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource PropertyPrimary}">
+                    <Label Grid.Row="3" Text="UI Process" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
+                    <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource Body-S}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="Activated"/>
@@ -83,20 +75,20 @@
             </Border>
             <Border Grid.Row="2" Style="{StaticResource PropertyBorder}">
                 <VerticalStackLayout>
-                    <Label Text="3 Cameras" Style="{StaticResource PropertyPrimary}"/>
-                    <Label Text="1 Up / 2 Activated" Style="{StaticResource PropertySecondary}"/>
+                    <Label Text="3 Cameras" Style="{StaticResource Body-S}"/>
+                    <Label Text="1 Up / 2 Activated" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
                 </VerticalStackLayout>
             </Border>
             <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource PropertyBorder}">
                 <VerticalStackLayout>
-                    <Label Text="5 Modbus Devices" Style="{StaticResource PropertyPrimary}"/>
-                    <Label Text="1 Up / 0 Activated" Style="{StaticResource PropertySecondary}"/>
+                    <Label Text="5 Modbus Devices" Style="{StaticResource Body-S}"/>
+                    <Label Text="1 Up / 0 Activated" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
                 </VerticalStackLayout>
             </Border>
             <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource PropertyBorder}">
                 <VerticalStackLayout>
-                    <Label Text="2 Weather Stations" Style="{StaticResource PropertyPrimary}"/>
-                    <Label Text="1 Up / 1 Activated" Style="{StaticResource PropertySecondary}"/>
+                    <Label Text="2 Weather Stations" Style="{StaticResource Body-S}"/>
+                    <Label Text="1 Up / 1 Activated" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
                 </VerticalStackLayout>
             </Border>
     </Grid>
