@@ -2,40 +2,33 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:tabView="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
              x:DataType="viewModels:DashboardMainViewModel"
              Title="Dashboard">
-    <!-- <ContentPage.Resources> -->
-    <!--     <ResourceDictionary> -->
-    <!--         <ResourceDictionary.MergedDictionaries> -->
-    <!--             <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/> -->
-    <!--         </ResourceDictionary.MergedDictionaries> -->
-    <!--     </ResourceDictionary> -->
-    <!-- </ContentPage.Resources> -->
 
-    <syncfusion:SfTabView Style="{StaticResource Header}">
-        <syncfusion:SfTabView.HeaderItemTemplate>
+    <tabView:SfTabView Style="{StaticResource Header}">
+        <tabView:SfTabView.HeaderItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout>
                     <Label Text="Testing"/>
                     <BoxView HeightRequest="1" Color="{StaticResource Gray200}"/>
                 </VerticalStackLayout>
             </DataTemplate>
-        </syncfusion:SfTabView.HeaderItemTemplate>
-        <syncfusion:SfTabView.Items>
-            <syncfusion:SfTabItem Header="Hub">
-                <syncfusion:SfTabItem.Content>
+        </tabView:SfTabView.HeaderItemTemplate>
+        <tabView:SfTabView.Items>
+            <tabView:SfTabItem Header="Hub">
+                <tabView:SfTabItem.Content>
                     <ScrollView>
                         <controls:HeathMonitorSummaryControl NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}" Padding="{StaticResource MainPadding}"/>
                     </ScrollView>
-                </syncfusion:SfTabItem.Content>
-            </syncfusion:SfTabItem>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
 
-            <syncfusion:SfTabItem Header="Edge">
-                <syncfusion:SfTabItem.Content>
+            <tabView:SfTabItem Header="Edge">
+                <tabView:SfTabItem.Content>
                     <Grid RowDefinitions="Auto, *">
                         <SearchBar ios:SearchBar.SearchBarStyle="Minimal" Placeholder="Search"/>
                         <CollectionView Grid.Row="1" ItemsSource="{Binding List}" BackgroundColor="{StaticResource Gray200}">
@@ -50,8 +43,8 @@
                             </CollectionView.ItemTemplate>
                         </CollectionView>
                     </Grid>
-                </syncfusion:SfTabItem.Content>
-            </syncfusion:SfTabItem>
-        </syncfusion:SfTabView.Items>
-    </syncfusion:SfTabView>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+        </tabView:SfTabView.Items>
+    </tabView:SfTabView>
 </ContentPage>

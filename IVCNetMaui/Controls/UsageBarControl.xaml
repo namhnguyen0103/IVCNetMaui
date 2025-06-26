@@ -2,6 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:IVCNetMaui.Views.Detail"
+             xmlns:progressBar="clr-namespace:Syncfusion.Maui.Toolkit.ProgressBar;assembly=Syncfusion.Maui.Toolkit"
              x:Class="IVCNetMaui.Controls.UsageBarControl"
              x:Name="this">
     <VerticalStackLayout BindingContext="{x:Reference this}" Spacing="4">
@@ -12,6 +13,6 @@
                    FontSize="12"
                    TextColor="{StaticResource Gray700}"/>
         </Grid>
-        <ProgressBar Progress="0.5"/>
+        <progressBar:SfLinearProgressBar Progress="50" TrackHeight="14" ProgressHeight="14" TrackCornerRadius="4" ProgressCornerRadius="4" TrackFill="{StaticResource BlueExtraLight}" ProgressFill="{StaticResource BluePrimary}"/>
     </VerticalStackLayout>
 </ContentView>

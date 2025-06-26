@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:tabView="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
@@ -39,17 +39,17 @@
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <syncfusion:SfTabView Style="{StaticResource Header}">
-        <syncfusion:SfTabView.Items>
+    <tabView:SfTabView Style="{StaticResource Header}">
+        <tabView:SfTabView.Items>
             <!--Health Monitor Tab-->
-            <syncfusion:SfTabItem Header="Health Monitor">
+            <tabView:SfTabItem Header="Health Monitor">
                 <ScrollView>
                     <controls:HeathMonitorSummaryControl Padding="{StaticResource MainPadding}" NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}"/>
                 </ScrollView>
-            </syncfusion:SfTabItem>
+            </tabView:SfTabItem>
 
             <!--IoT Tab-->
-            <syncfusion:SfTabItem Header="IoT">
+            <tabView:SfTabItem Header="IoT">
                 <VerticalStackLayout Padding="{StaticResource MainPadding}" Spacing="16">
                     <controls:AccordionControl HeaderContent="{StaticResource IoTHeader}" IsExpanded="True">
                         <controls:AccordionControl.BodyContent>
@@ -94,9 +94,9 @@
                         </controls:AccordionControl.BodyContent>
                     </controls:AccordionControl>
                 </VerticalStackLayout>
-            </syncfusion:SfTabItem>
-        </syncfusion:SfTabView.Items>
-    </syncfusion:SfTabView>
+            </tabView:SfTabItem>
+        </tabView:SfTabView.Items>
+    </tabView:SfTabView>
        
 
 </ContentPage>
