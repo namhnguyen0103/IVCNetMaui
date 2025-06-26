@@ -9,7 +9,11 @@
              x:DataType="viewModels:DashboardMainViewModel"
              Title="Dashboard">
 
-    <tabView:SfTabView Style="{StaticResource Header}">
+    <tabView:SfTabView>
+        
+    </tabView:SfTabView>
+    
+    <!--<tabView:SfTabView Style="{StaticResource Header}">
         <tabView:SfTabView.HeaderItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout>
@@ -46,5 +50,5 @@
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
         </tabView:SfTabView.Items>
-    </tabView:SfTabView>
+    </tabView:SfTabView>-->
 </ContentPage>
