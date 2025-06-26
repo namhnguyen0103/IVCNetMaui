@@ -7,23 +7,14 @@
              Style="{StaticResource MenuContentPage}">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
+            <!--<ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>-->
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid RowDefinitions="Auto">
         <Border Style="{StaticResource MenuBorder}">
             <VerticalStackLayout>
-                <!--<controls:MenuCardControl Title="Cameras"
-                                          Icon="videocam_white.png"
-                                             Count="6" />
-                <controls:MenuCardControl Title="Weather Stations" 
-                                          Icon="solar_power_white.png"
-                                             Count="3" />
-                <controls:MenuCardControl Title="Modbus Devices"
-                                          Icon="router_white.png"
-                                             Count="3" />-->
             </VerticalStackLayout>
         </Border>
     </Grid>

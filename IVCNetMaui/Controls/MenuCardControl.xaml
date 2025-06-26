@@ -6,40 +6,12 @@
              x:Class="IVCNetMaui.Controls.MenuCardControl"
              x:Name="this"
              x:DataType="controls:MenuCardControl">
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Label">
-                <Setter Property="VerticalTextAlignment" Value="Center" />
-            </Style>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentView.Resources>
     <Border Style="{StaticResource MenuBorder}" BindingContext="{x:Reference this}">
         <VerticalStackLayout>
             <VerticalStackLayout.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding Command}"/>
             </VerticalStackLayout.GestureRecognizers>
-            <Label Text="{Binding Title}" Style="{StaticResource SectionTitleWithoutGrid}"/>
-            <!--<Grid Grid.Row="1" ColumnDefinitions="*, *"
-                RowDefinitions="Auto, Auto"
-                Style="{StaticResource SummaryGrid}">
-                <VerticalStackLayout Style="{StaticResource SummaryStack}">
-                    <Label Text="Name" Style="{StaticResource SummarySecondary}"/>
-                    <Label Text="2654f7f9c339" Style="{StaticResource SummaryPrimary}"/>
-                </VerticalStackLayout>
-
-                <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
-                    <Label Text="CPU Usage" Style="{StaticResource SummarySecondary}"/>
-                    <Label Text="6.3 %" Style="{StaticResource SummaryPrimary}"/>
-                </VerticalStackLayout>
-
-                <VerticalStackLayout Grid.Row="1" Style="{StaticResource SummaryStack}">
-                    <Label Text="Uptime" Style="{StaticResource SummarySecondary}"/>
-                    <Label Text="5 day 0 hr 51 min 16 sec" Style="{StaticResource SummaryPrimary}"/>
-                </VerticalStackLayout>
-            </Grid>-->
+            <Label Text="{Binding Title}" Padding="{StaticResource CardPadding}" Style="{StaticResource Body-L}" BackgroundColor="{StaticResource Gray200}"/>
             <ContentView Grid.Row="1" ControlTemplate="{Binding BodyContent}"/>
         </VerticalStackLayout>
     </Border>

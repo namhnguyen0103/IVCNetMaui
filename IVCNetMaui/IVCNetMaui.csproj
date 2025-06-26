@@ -146,7 +146,7 @@
 	  <MauiXaml Update="Resources\Styles\DetailPageStyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\MenuPageStyles.xaml">
+	  <MauiXaml Update="Resources\Styles\Spacing.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Typescale.xaml">

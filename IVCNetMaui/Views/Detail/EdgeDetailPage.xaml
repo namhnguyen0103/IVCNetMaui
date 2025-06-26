@@ -13,33 +13,10 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-
-            <ControlTemplate x:Key="IoTSummary">
-                <Grid ColumnDefinitions="*, *, *" Style="{StaticResource SummaryGrid}">
-                    <VerticalStackLayout Style="{StaticResource SummaryStack}">
-                        <Label Text="Total" Style="{StaticResource SummarySecondary}"/>
-                        <Label Text="1000" Style="{StaticResource SummaryPrimary}"/>
-                    </VerticalStackLayout>
-
-                    <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
-                        <Label Text="Up" Style="{StaticResource SummarySecondary}"/>
-                        <Label Text="500" Style="{StaticResource SummaryPrimary}"/>
-                    </VerticalStackLayout>
-
-                    <VerticalStackLayout Grid.Column="2" Style="{StaticResource SummaryStack}">
-                        <Label Text="Activated" Style="{StaticResource SummarySecondary}"/>
-                        <Label Text="250" Style="{StaticResource SummaryPrimary}"/>
-                    </VerticalStackLayout>
-                </Grid>
-            </ControlTemplate>
-
             <ControlTemplate x:Key="IoTHeader" x:DataType="controls:AccordionControl">
                 <Grid ColumnDefinitions="*, Auto" ColumnSpacing="12"  Margin="0, 0, 12, 0">
-                    <Label Text="Camera" Style="{StaticResource SectionTitle}" VerticalTextAlignment="Center"/>
-                    <Label Grid.Column="1" Style="{StaticResource SummarySecondary}" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center">
+                    <Label Text="Camera" Style="{StaticResource Body-L}" VerticalTextAlignment="Center"/>
+                    <Label Grid.Column="1" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="5 Total" TextColor="{StaticResource Gray700}"/>
@@ -54,9 +31,9 @@
 
             <DataTemplate x:Key="IoTCard" x:DataType="x:String">
                 <Grid ColumnDefinitions="*, 80" ColumnSpacing="8" Padding="12, 12">
-                    <Label Text="DC Cam1 Thermal  #ID" Style="{StaticResource SummaryPrimary}" VerticalTextAlignment="Center"/>
+                    <Label Text="DC Cam1 Thermal  #ID" Style="{StaticResource Body-M}" VerticalTextAlignment="Center"/>
                     <Border Grid.Column="1" StrokeShape="RoundRectangle 20"  HeightRequest="24">
-                        <Label Text="Unknown" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="12" TextColor="{StaticResource Gray700}"/>
+                        <Label Text="Unknown" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
                     </Border>
                 </Grid>
             </DataTemplate>
@@ -67,13 +44,13 @@
             <!--Health Monitor Tab-->
             <syncfusion:SfTabItem Header="Health Monitor">
                 <ScrollView>
-                    <controls:HeathMonitorSummaryControl Style="{StaticResource MainPadding}" NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}"/>
+                    <controls:HeathMonitorSummaryControl Padding="{StaticResource MainPadding}" NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}"/>
                 </ScrollView>
             </syncfusion:SfTabItem>
 
             <!--IoT Tab-->
             <syncfusion:SfTabItem Header="IoT">
-                <VerticalStackLayout Style="{StaticResource MainPadding}" Spacing="16">
+                <VerticalStackLayout Padding="{StaticResource MainPadding}" Spacing="16">
                     <controls:AccordionControl HeaderContent="{StaticResource IoTHeader}" IsExpanded="True">
                         <controls:AccordionControl.BodyContent>
                             <ControlTemplate>
@@ -88,7 +65,7 @@
                             <ControlTemplate>
                                 <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
                                     <Label Text="Modbus Device" Style="{StaticResource SectionTitle}"/>
-                                    <Label Text="2 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource SummarySecondary}" VerticalTextAlignment="Center"/>
+                                    <Label Text="3 Total  /  2 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource Body-S}" VerticalTextAlignment="Center"/>
                                 </Grid>
                             </ControlTemplate>
                         </controls:AccordionControl.HeaderContent>
@@ -105,7 +82,7 @@
                             <ControlTemplate>
                                 <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
                                     <Label Text="Weather Station" Style="{StaticResource SectionTitle}"/>
-                                    <Label Text="2 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource SummarySecondary}" VerticalTextAlignment="Center"/>
+                                    <Label Text="2 Total  /  2 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource Body-S}" VerticalTextAlignment="Center"/>
                                 </Grid>
                             </ControlTemplate>
                         </controls:AccordionControl.HeaderContent>

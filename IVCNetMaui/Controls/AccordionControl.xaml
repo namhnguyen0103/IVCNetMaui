@@ -9,18 +9,18 @@
              x:DataType="controls:AccordionControl">
     <ContentView.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
+            <!--<ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>-->
         </ResourceDictionary>
     </ContentView.Resources>
-    <Border Style="{StaticResource MenuBorder}">
+    <Border>
         <toolkit:Expander BindingContext="{x:Reference This}"
               ExpandedChanged="OnExpandedChanged"
               x:Name="MainExpander"
               IsExpanded="{Binding IsExpanded, FallbackValue=false, Mode=TwoWay}">
             <toolkit:Expander.Header>
-                <Grid ColumnDefinitions="*, Auto" Style="{StaticResource SectionHeaderGrid}">
+                <Grid ColumnDefinitions="*, Auto" Padding="{StaticResource CardPadding}" BackgroundColor="{StaticResource Gray200}">
                     <ContentView ControlTemplate="{Binding HeaderContent}"/>
                     <Image x:Name="HeaderIcon" Grid.Column="1" WidthRequest="14">
                         <Image.Source>

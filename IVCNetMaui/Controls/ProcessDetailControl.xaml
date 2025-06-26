@@ -12,7 +12,7 @@
         </ResourceDictionary>
     </ContentView.Resources>
     
-    <VerticalStackLayout Spacing="16" Style="{StaticResource MainPadding}">
+    <VerticalStackLayout Spacing="16" Padding="{StaticResource MainPadding}">
         <VerticalStackLayout Style="{StaticResource SectionStack}">
             <Label Text="Status" Style="{StaticResource SectionTitle}"/>
             <Border Style="{StaticResource PropertyBorder}">

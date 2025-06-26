@@ -4,25 +4,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
-    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit">
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:local="clr-namespace:IVCNetMaui.Resources.Styles">
 
-    <!--<DataTemplate x:Key="Header" x:DataType="material:TabItem">
-        <VerticalStackLayout BackgroundColor="White">
-            <Label x:Name="HeaderTitle" Text="{Binding Title}" FontSize="14" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Padding="0, 8">
-                
-            </Label>
-            <BoxView x:Name="HeaderHighlight" HeightRequest="1" Color="{StaticResource Gray200}">
-                <BoxView.Triggers>
-                    <DataTrigger TargetType="BoxView" Binding="{Binding IsSelected}" Value="True">
-                        <Setter Property="Color" Value="{StaticResource Gray950}"/>
-                    </DataTrigger>
-                    <DataTrigger TargetType="BoxView" Binding="{Binding IsSelected}" Value="False">
-                        <Setter Property="Color" Value="{StaticResource Gray200}"/>
-                    </DataTrigger>
-                </BoxView.Triggers>
-            </BoxView>
-        </VerticalStackLayout>
-    </DataTemplate>-->
+    <ResourceDictionary.MergedDictionaries>
+        <local:Typescale/>
+        <local:Spacing/>
+    </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="Header" TargetType="syncfusion:SfTabView">
         <Setter Property="TabBarHeight" Value="32"/>
@@ -47,10 +35,8 @@
     </Style>
 
     <Style TargetType="Border">
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}" />
-        <Setter Property="StrokeShape">
-            <RoundRectangle CornerRadius="4"/>
-        </Setter>
+        <Setter Property="Stroke" Value="{StaticResource Gray400}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 4, 4, 4, 4"/>
         <Setter Property="StrokeThickness" Value="0.5"/>
     </Style>
 
@@ -436,30 +422,6 @@
             </VisualStateGroupList>
         </Setter>
     </Style>
-  
-    <!--
-    <Style TargetType="TitleBar">
-        <Setter Property="MinimumHeightRequest" Value="32"/>
-        <Setter Property="VisualStateManager.VisualStateGroups">
-            <VisualStateGroupList>
-                <VisualStateGroup x:Name="TitleActiveStates">
-                    <VisualState x:Name="TitleBarTitleActive">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="Transparent" />
-                            <Setter Property="ForegroundColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
-                        </VisualState.Setters>
-                    </VisualState>
-                    <VisualState x:Name="TitleBarTitleInactive">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
-                            <Setter Property="ForegroundColor" Value="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}" />
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateGroupList>
-        </Setter>
-    </Style>
-    -->
 
     <Style TargetType="Page" ApplyToDerivedTypes="True">
         <Setter Property="Padding" Value="0"/>
@@ -491,9 +453,5 @@
         <Setter Property="UnselectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
-
-    <!--<Style Class="FlyoutItemLabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="Red"></Setter>
-    </Style>-->
 
 </ResourceDictionary>

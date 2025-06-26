@@ -5,17 +5,12 @@
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.EdgeCardControl"
              x:Name="this">
-    <!--x:DataType="controls:EdgeCardControl"-->
     <ContentView.Resources>
         <ResourceDictionary>
             <Style x:Key="PropertyBorder" TargetType="Border">
                 <Setter Property="Padding" Value="8"/>
-                <Setter Property="StrokeThickness" Value="0.5"/>
-                <Setter Property="StrokeShape">
-                    <RoundRectangle CornerRadius="3"/>
-                </Setter>
             </Style>
-            
+
             <Style TargetType="Label" BasedOn="{StaticResource Body-S}"/>
         </ResourceDictionary>
     </ContentView.Resources>
@@ -25,7 +20,7 @@
               RowDefinitions="Auto, Auto, Auto"
               RowSpacing="4"
               ColumnSpacing="4"
-              Padding="12"
+              Padding="{StaticResource CardPadding}"
               BindingContext="{x:Reference this}">
             <Grid.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding Command}" />
@@ -39,10 +34,10 @@
                 <Grid RowDefinitions="Auto, Auto, Auto, Auto"
                       ColumnDefinitions="*, *"
                       RowSpacing="6">
-                    <Label Text="Version" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
-                    <Label Grid.Column="1" Text="2.9.1.0" Style="{StaticResource Body-S}"/>
-                    <Label Grid.Row="1" Text="System" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
-                    <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource Body-S}">
+                    <Label Text="Version" TextColor="{StaticResource Gray700}"/>
+                    <Label Grid.Column="1" Text="2.9.1.0"/>
+                    <Label Grid.Row="1" Text="System" TextColor="{StaticResource Gray700}"/>
+                    <Label Grid.Row="1" Grid.Column="1">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="Activated"/>
@@ -51,8 +46,8 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label Grid.Row="2" Text="Video Process" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
-                    <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Body-S}">
+                    <Label Grid.Row="2" Text="Video Process" TextColor="{StaticResource Gray700}"/>
+                    <Label Grid.Row="2" Grid.Column="1">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="Activated"/>
@@ -61,8 +56,8 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label Grid.Row="3" Text="UI Process" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
-                    <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource Body-S}">
+                    <Label Grid.Row="3" Text="UI Process" TextColor="{StaticResource Gray700}"/>
+                    <Label Grid.Row="3" Grid.Column="1">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="Activated"/>
@@ -75,22 +70,22 @@
             </Border>
             <Border Grid.Row="2" Style="{StaticResource PropertyBorder}">
                 <VerticalStackLayout>
-                    <Label Text="3 Cameras" Style="{StaticResource Body-S}"/>
-                    <Label Text="1 Up / 2 Activated" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
+                    <Label Text="3 Cameras"/>
+                    <Label Text="1 Up / 2 Activated" TextColor="{StaticResource Gray700}"/>
                 </VerticalStackLayout>
             </Border>
             <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource PropertyBorder}">
                 <VerticalStackLayout>
-                    <Label Text="5 Modbus Devices" Style="{StaticResource Body-S}"/>
-                    <Label Text="1 Up / 0 Activated" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
+                    <Label Text="5 Modbus Devices"/>
+                    <Label Text="1 Up / 0 Activated" TextColor="{StaticResource Gray700}"/>
                 </VerticalStackLayout>
             </Border>
             <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource PropertyBorder}">
                 <VerticalStackLayout>
-                    <Label Text="2 Weather Stations" Style="{StaticResource Body-S}"/>
-                    <Label Text="1 Up / 1 Activated" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
+                    <Label Text="2 Weather Stations"/>
+                    <Label Text="1 Up / 1 Activated" TextColor="{StaticResource Gray700}"/>
                 </VerticalStackLayout>
             </Border>
-    </Grid>
+        </Grid>
     </Border>
 </ContentView>

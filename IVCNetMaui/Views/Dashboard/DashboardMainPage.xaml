@@ -29,7 +29,7 @@
             <syncfusion:SfTabItem Header="Hub">
                 <syncfusion:SfTabItem.Content>
                     <ScrollView>
-                        <controls:HeathMonitorSummaryControl NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}" Style="{StaticResource MainPadding}"/>
+                        <controls:HeathMonitorSummaryControl NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}" Padding="{StaticResource MainPadding}"/>
                     </ScrollView>
                 </syncfusion:SfTabItem.Content>
             </syncfusion:SfTabItem>

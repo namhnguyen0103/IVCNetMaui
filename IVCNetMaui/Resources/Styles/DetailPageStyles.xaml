@@ -7,24 +7,17 @@
         <Setter Property="StrokeThickness" Value="0"/>
         <Setter Property="Padding" Value="12"/>
     </Style>
-    <Style x:Key="PageTitle" TargetType="Label">
-        <Setter Property="FontFamily" Value="RobotoSemiBold"/>
-        <Setter Property="FontSize" Value="16" />
-    </Style>
-    <Style x:Key="SectionTitle" TargetType="Label">
+    <Style x:Key="SectionTitle" TargetType="Label" BasedOn="{StaticResource Body-L}">
         <Setter Property="TextColor" Value="{StaticResource Gray700}"/>
         <Setter Property="FontFamily" Value="RobotoRegular" />
     </Style>
-    <Style x:Key="PropertyPrimaryText" TargetType="Label">
-        <Setter Property="FontSize" Value="12"/>
+    <Style x:Key="PropertyPrimaryText" TargetType="Label" BasedOn="{StaticResource Body-S}">
         <Setter Property="LineBreakMode" Value="WordWrap" />
     </Style>
-    <Style x:Key="PropertySecondaryText" TargetType="Label">
-        <Setter Property="FontSize" Value="12"/>
+    <Style x:Key="PropertySecondaryText" TargetType="Label" BasedOn="{StaticResource Body-S}">
         <Setter Property="TextColor" Value="{StaticResource Gray700}" />
     </Style>
-    <Style x:Key="PropertyTertiaryText" TargetType="Label">
-        <Setter Property="FontSize" Value="12"/>
+    <Style x:Key="PropertyTertiaryText" TargetType="Label" BasedOn="{StaticResource Body-S}">
         <Setter Property="TextColor" Value="{StaticResource Gray600}"/>
     </Style>
     <Style x:Key="PropertyGrid" TargetType="Grid">
@@ -33,8 +26,5 @@
     </Style>
     <Style x:Key="SectionStack" TargetType="VerticalStackLayout">
         <Setter Property="Spacing" Value="4" />
-    </Style>
-    <Style x:Key="MainPadding" TargetType="Layout">
-        <Setter Property="Padding" Value="12, 10, 12, 100"/>
     </Style>
 </ResourceDictionary>
