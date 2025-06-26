@@ -10,14 +10,6 @@
              Title="Dashboard">
     
     <tabView:SfTabView Style="{StaticResource Header}">
-        <tabView:SfTabView.HeaderItemTemplate>
-            <DataTemplate>
-                <VerticalStackLayout>
-                    <Label Text="Testing"/>
-                    <BoxView HeightRequest="1" Color="{StaticResource Gray200}"/>
-                </VerticalStackLayout>
-            </DataTemplate>
-        </tabView:SfTabView.HeaderItemTemplate>
         <tabView:SfTabView.Items>
             <tabView:SfTabItem Header="Hub">
                 <tabView:SfTabItem.Content>
