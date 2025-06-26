@@ -8,12 +8,8 @@
              x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
              x:DataType="viewModels:DashboardMainViewModel"
              Title="Dashboard">
-
-    <tabView:SfTabView>
-        
-    </tabView:SfTabView>
     
-    <!--<tabView:SfTabView Style="{StaticResource Header}">
+    <tabView:SfTabView Style="{StaticResource Header}">
         <tabView:SfTabView.HeaderItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout>
@@ -50,5 +46,5 @@
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
         </tabView:SfTabView.Items>
-    </tabView:SfTabView>-->
+    </tabView:SfTabView>
 </ContentPage>

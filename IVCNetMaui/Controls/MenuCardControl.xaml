@@ -6,7 +6,7 @@
              x:Class="IVCNetMaui.Controls.MenuCardControl"
              x:Name="this"
              x:DataType="controls:MenuCardControl">
-    <Border Style="{StaticResource MenuBorder}" BindingContext="{x:Reference this}">
+    <Border BindingContext="{x:Reference this}">
         <VerticalStackLayout>
             <VerticalStackLayout.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding Command}"/>
