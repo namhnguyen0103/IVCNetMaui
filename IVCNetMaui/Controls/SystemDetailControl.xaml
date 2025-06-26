@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls" 
-             x:Class="IVCNetMaui.Controls.SystemDetailControl">
+             x:Class="IVCNetMaui.Controls.SystemDetailControl"
+             x:DataType="controls:SystemDetailControl">
     <ContentView.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

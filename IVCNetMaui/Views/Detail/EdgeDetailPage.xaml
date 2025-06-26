@@ -6,7 +6,8 @@
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
              x:Class="IVCNetMaui.Views.Detail.EdgeDetailPage"
-             Title="Moxa 1200 [Ver. 2.9.1.0]">
+             Title="Moxa 1200 [Ver. 2.9.1.0]"
+             x:DataType="viewModels:EdgeDetailViewModel">
     <Shell.BackButtonBehavior>
         <BackButtonBehavior TextOverride=""/>
     </Shell.BackButtonBehavior>

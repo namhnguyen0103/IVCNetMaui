@@ -38,7 +38,6 @@
                     </Label.FormattedText>
                 </Label>
                 <Label Text="ALERT:65598:[Liquid Area2]"
-                       Style="{StaticResource PageTitle}"
                        Margin="0, 0, 0, 8"/>
                 <Border Margin="0, 0, 0, 16">
                     <Grid ColumnDefinitions="*, *"

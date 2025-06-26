@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:IVCNetMaui.Views.Detail"
              xmlns:progressBar="clr-namespace:Syncfusion.Maui.Toolkit.ProgressBar;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.UsageBarControl"
-             x:Name="this">
+             x:Name="this"
+             x:DataType="controls:UsageBarControl">
     <VerticalStackLayout BindingContext="{x:Reference this}" Spacing="4">
         <Grid ColumnDefinitions="*, Auto">
             <Label Text="{Binding DiskName}" FontSize="14"/>
@@ -13,6 +15,6 @@
                    FontSize="12"
                    TextColor="{StaticResource Gray700}"/>
         </Grid>
-        <progressBar:SfLinearProgressBar Progress="50" TrackHeight="14" ProgressHeight="14" TrackCornerRadius="4" ProgressCornerRadius="4" TrackFill="{StaticResource BlueExtraLight}" ProgressFill="{StaticResource BluePrimary}"/>
+        <progressBar:SfLinearProgressBar AnimationDuration="0" Progress="50" TrackHeight="14" ProgressHeight="14" TrackCornerRadius="4" ProgressCornerRadius="4" TrackFill="{StaticResource BlueExtraLight}" ProgressFill="{StaticResource BluePrimary}"/>
     </VerticalStackLayout>
 </ContentView>
