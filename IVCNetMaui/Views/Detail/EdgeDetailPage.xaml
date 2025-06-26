@@ -64,7 +64,7 @@
                         <controls:AccordionControl.HeaderContent>
                             <ControlTemplate>
                                 <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
-                                    <Label Text="Modbus Device" Style="{StaticResource SectionTitle}"/>
+                                    <Label Text="Modbus Device"/>
                                     <Label Text="3 Total  /  2 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource Body-S}" VerticalTextAlignment="Center"/>
                                 </Grid>
                             </ControlTemplate>
@@ -81,7 +81,7 @@
                         <controls:AccordionControl.HeaderContent>
                             <ControlTemplate>
                                 <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
-                                    <Label Text="Weather Station" Style="{StaticResource SectionTitle}"/>
+                                    <Label Text="Weather Station"/>
                                     <Label Text="2 Total  /  2 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource Body-S}" VerticalTextAlignment="Center"/>
                                 </Grid>
                             </ControlTemplate>
