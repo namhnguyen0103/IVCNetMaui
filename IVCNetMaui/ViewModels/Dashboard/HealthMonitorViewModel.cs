@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using IVCNetMaui.Services.Navigation;
+﻿using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
 using System;
 using System.Collections.Generic;

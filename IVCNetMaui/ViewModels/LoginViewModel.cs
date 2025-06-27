@@ -1,3 +1,4 @@
+using System.Net;
 using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
 
@@ -17,8 +18,36 @@ public partial class LoginViewModel(INavigationService navigationService) : View
 	private string _password = string.Empty;
 
 	[RelayCommand]
-	private Task Login()
+	private async Task Login()
 	{
-		return NavigationService.NavigateToAsync("//dashboard");
+		// HttpClientHandler handler = new HttpClientHandler
+		// {
+		// 	Credentials = new CredentialCache
+		// 	{
+		// 		{
+		// 			new Uri("http://192.168.25.42:7181"), // URI of the server
+		// 			"Digest",
+		// 			new NetworkCredential("admin", "admin.123")
+		// 		}
+		// 	}
+		// };
+		HttpClient client = new HttpClient();
+		try
+		{
+			string responseBody = await client.GetStringAsync("http://192.168.25.42:7181/api/v1/version");
+			Console.WriteLine(responseBody);
+		}
+		catch (HttpRequestException e)
+		{
+			Console.WriteLine("\nException Caught!");
+			Console.WriteLine("Message :{0} ", e.Message);
+		}
+		// finally
+		// {
+		// 	await NavigationService.NavigateToAsync("//dashboard");
+		// }
+		
+
+
 	}
 }
