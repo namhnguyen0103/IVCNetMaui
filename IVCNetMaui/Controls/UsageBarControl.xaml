@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:resources="clr-namespace:IVCNetMaui.Views.Detail"
              xmlns:progressBar="clr-namespace:Syncfusion.Maui.Toolkit.ProgressBar;assembly=Syncfusion.Maui.Toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.UsageBarControl"
-             x:Name="this"
+             x:Name="This"
              x:DataType="controls:UsageBarControl">
-    <VerticalStackLayout BindingContext="{x:Reference this}" Spacing="4">
+    <VerticalStackLayout BindingContext="{x:Reference This}" Spacing="4">
         <Grid ColumnDefinitions="*, Auto">
             <Label Text="{Binding DiskName}" FontSize="14"/>
             <Label Text="3.0 GB free of 6.0 GB"

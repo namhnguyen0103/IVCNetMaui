@@ -4,7 +4,7 @@
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.CameraControl"
-             x:Name="this"
+             x:Name="This"
              x:DataType="controls:CameraControl">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -14,7 +14,7 @@
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
-    <Grid Grid.Row="1" RowDefinitions="Auto, *" BindingContext="{x:Reference this}">
+    <Grid RowDefinitions="Auto, *" BindingContext="{x:Reference This}">
         <Grid ColumnDefinitions="125, 125, *, Auto"
                   ColumnSpacing="12"
                   Padding="12, 0"

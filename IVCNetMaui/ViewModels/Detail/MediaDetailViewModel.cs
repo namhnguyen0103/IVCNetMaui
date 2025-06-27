@@ -4,9 +4,7 @@ using IVCNetMaui.ViewModels.Base;
 
 namespace IVCNetMaui.ViewModels.Detail;
 
-public class MediaDetailViewModel : ViewModelBase
+public class MediaDetailViewModel(INavigationService navigationService) : ViewModelBase(navigationService)
 {
-	public MediaDetailViewModel(INavigationService navigationService) : base(navigationService)
-	{
-	}
-}
+    
+};

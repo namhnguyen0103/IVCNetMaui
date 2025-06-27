@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using IVCNetMaui.Services.Navigation;
+using IVCNetMaui.Services.Settings;
 using IVCNetMaui.ViewModels;
 using IVCNetMaui.ViewModels.Dashboard;
 using IVCNetMaui.ViewModels.Detail;
@@ -56,6 +57,7 @@ namespace IVCNetMaui
         private static MauiAppBuilder RegisterAppServices(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
+            builder.Services.AddSingleton<ISettingService, SettingService>();
             
             return builder;
         }

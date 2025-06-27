@@ -5,15 +5,11 @@ using IVCNetMaui.ViewModels.Base;
 
 namespace IVCNetMaui.ViewModels.Detail;
 
-public class EventDetailViewModel : ViewModelBase
+public partial class EventDetailViewModel(INavigationService navigationService) : ViewModelBase(navigationService)
 {
-	public IAsyncRelayCommand GoToMediaDetailCommand { get; }
-    public EventDetailViewModel(INavigationService navigationService) : base(navigationService)
-    {
-		GoToMediaDetailCommand = new AsyncRelayCommand(GoToMediaDetail);
-	}
-	private async Task GoToMediaDetail()
+	[RelayCommand]
+	private Task NavigateToMediaDetail()
 	{
-		await NavigationService.NavigateToAsync("mediaDetail");
+		return NavigationService.NavigateToAsync("mediaDetail");
 	}
 }

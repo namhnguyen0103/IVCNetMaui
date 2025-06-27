@@ -13,16 +13,19 @@ using System.Windows.Input;
 
 namespace IVCNetMaui.ViewModels.Detail
 {
-    public partial class EdgeDetailViewModel : ViewModelBase
+    public partial class EdgeDetailViewModel(INavigationService navigationService) : ViewModelBase(navigationService)
     {
-        public ICommand NavigateToHealthMonitorCommand { get; private set; }
         [ObservableProperty]
-        public ObservableCollection<String> cameras = new();
-        public EdgeDetailViewModel(INavigationService navigationService) : base(navigationService) 
+        private ObservableCollection<string> _cameras = 
+        [
+            "Camera 1",
+            "Camera 2",
+        ];
+
+        [RelayCommand]
+        private Task NavigateToHealthMonitor()
         {
-            NavigateToHealthMonitorCommand = new AsyncRelayCommand(() => NavigationService.NavigateToAsync("healthMonitor"));
-            Cameras.Add("Item 1");
-            Cameras.Add("Item 2");
+            return NavigationService.NavigateToAsync("healthMonitor");
         }
     }
 }

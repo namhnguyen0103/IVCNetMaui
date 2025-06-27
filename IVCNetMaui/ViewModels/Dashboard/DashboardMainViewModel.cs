@@ -12,31 +12,36 @@ using System.Windows.Input;
 
 namespace IVCNetMaui.ViewModels.Dashboard
 {
-    public partial class DashboardMainViewModel : ViewModelBase
+    public partial class DashboardMainViewModel(INavigationService navigationService) : ViewModelBase(navigationService)
     {
         [ObservableProperty]
-        public ObservableCollection<String> list = new ObservableCollection<String>
+        private ObservableCollection<string> _list =
+        [
+            "LVE1", "LVE2", "LVE3", "LVE4"
+        ];
+        
+        [RelayCommand]
+        private Task NavigateToHealthMonitor()
         {
-            "LVE1", "LVE2", "LVE3", "LVE4",
-            //"LVE1", "LVE2", "LVE3", "LVE4",
-            //"LVE1", "LVE2", "LVE3", "LVE4",
-            //"LVE1", "LVE2", "LVE3", "LVE4",
-        };
+            return NavigationService.NavigateToAsync("healthMonitor");
+        }
+        
+        [RelayCommand]
+        private Task NavigateToSystem()
+        {
+            return NavigationService.NavigateToAsync("healthMonitor");
+        }
+        
+        [RelayCommand]
+        private Task NavigateToProcess()
+        {
+            return NavigationService.NavigateToAsync("healthMonitor");
+        }
 
-        public ICommand ToggleFlyoutCommand { get; private set; }
-        public ICommand NavigateToSystemCommand { get; private set; }
-        public ICommand NavigateToProcessCommand { get; private set; }
-        public ICommand NavigateToHealthMonitorCommand { get; private set; }
-        public ICommand NavigateToIoTListCommand { get; private set; }
-        public ICommand NavigateToEdgeDetailCommand { get; private set; }
-        public DashboardMainViewModel(INavigationService navigationService) : base(navigationService) 
+        [RelayCommand]
+        private Task NavigateToEdgeDetail()
         {
-            ToggleFlyoutCommand = new RelayCommand(() => NavigationService.TapFlyoutIcon());
-            NavigateToSystemCommand = new AsyncRelayCommand(() => NavigationService.NavigateToAsync("healthMonitor"));
-            NavigateToProcessCommand = new AsyncRelayCommand(() => NavigationService.NavigateToAsync("healthMonitor"));
-            NavigateToHealthMonitorCommand = new AsyncRelayCommand(() => NavigationService.NavigateToAsync("healthMonitor"));
-            NavigateToIoTListCommand = new AsyncRelayCommand(() => navigationService.NavigateToAsync("iotList"));
-            NavigateToEdgeDetailCommand = new AsyncRelayCommand(() => navigationService.NavigateToAsync("edgeDetail"));
+            return NavigationService.NavigateToAsync("edgeDetail");
         }
     }
 }

@@ -6,7 +6,7 @@ namespace IVCNetMaui.Controls;
 public partial class HeathMonitorSummaryControl : ContentView
 {
     public static readonly BindableProperty NavigateToSystemCommandProperty =
-        BindableProperty.Create(nameof(NavigateToSystemCommand), typeof(ICommand), typeof(HeathMonitorSummaryControl));
+        BindableProperty.Create(nameof(NavigateToSystemCommand), typeof(AsyncRelayCommand), typeof(HeathMonitorSummaryControl));
 
     public AsyncRelayCommand NavigateToSystemCommand
     {

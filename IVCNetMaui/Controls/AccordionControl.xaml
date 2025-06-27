@@ -7,13 +7,6 @@
              x:Class="IVCNetMaui.Controls.AccordionControl"
              x:Name="This"
              x:DataType="controls:AccordionControl">
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <!--<ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles/MenuPageStyles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>-->
-        </ResourceDictionary>
-    </ContentView.Resources>
     <Border>
         <toolkit:Expander BindingContext="{x:Reference This}"
               ExpandedChanged="OnExpandedChanged"

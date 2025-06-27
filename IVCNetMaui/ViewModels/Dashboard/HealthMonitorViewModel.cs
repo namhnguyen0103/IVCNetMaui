@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace IVCNetMaui.ViewModels.Dashboard
 {
-    public partial class HealthMonitorViewModel : ViewModelBase
+    public partial class HealthMonitorViewModel(INavigationService navigationService) : ViewModelBase(navigationService)
     {
         [ObservableProperty]
-        public ObservableCollection<Network> networks = new ObservableCollection<Network>
-        {
+        private ObservableCollection<Network> _networks =
+        [
             new() {
                 Name = "eth0",
                 NIT = "6",
@@ -22,19 +22,15 @@ namespace IVCNetMaui.ViewModels.Dashboard
                 Receive = "23.76 Kbps",
                 PktQd = "0"
             }
-        };
-        public HealthMonitorViewModel(INavigationService navigationService) : base(navigationService)
-        {
-
-        }
+        ];
 
         public class Network
         {
-            public string Name { get; set; }
-            public string NIT { get; set; }
-            public string Send { get; set; }
-            public string Receive { get; set; }
-            public string PktQd { get; set; }
+            public string Name { get; set; } = string.Empty;
+            public string NIT { get; set; } = string.Empty;
+            public string Send { get; set; } = string.Empty;
+            public string Receive { get; set; } = string.Empty;
+            public string PktQd { get; set; } = string.Empty;
         }
     }
 }

@@ -1,4 +1,5 @@
 using IVCNetMaui.Services.Navigation;
+using IVCNetMaui.ViewModels.Base;
 
 namespace IVCNetMaui.ViewModels.View;
 using CommunityToolkit.Mvvm;
@@ -7,20 +8,23 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-public partial class EventViewModel : ObservableObject
+public partial class EventViewModel : ViewModelBase
 {
-    private readonly INavigationService _navigationService;
-    
     [ObservableProperty]
-    public List<string> list = new List<string> { "1", "2", "3" };
+    private List<string> _list =
+        [
+            "1", 
+            "2", 
+            "3" 
+        ];
     public IRelayCommand GoToEventDetailCommand { get; private set; }
-    public EventViewModel(INavigationService navigationService)
-	{
-        _navigationService = navigationService;
-        GoToEventDetailCommand = new AsyncRelayCommand(GoToEventDetail);
-    }
-    private async Task GoToEventDetail()
+
+    [RelayCommand]
+    private Task NavigateToEventDetail()
     {
-        await _navigationService.NavigateToAsync("eventDetail");
+        return NavigationService.NavigateToAsync("eventDetail");
+    }
+    public EventViewModel(INavigationService navigationService) : base(navigationService)
+	{
     }
 }

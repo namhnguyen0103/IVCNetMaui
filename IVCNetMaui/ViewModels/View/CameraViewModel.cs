@@ -17,23 +17,23 @@ public partial class CameraViewModel : ViewModelBase
     public ICommand AddCommand { get; private set; }
 
     [ObservableProperty]
-    int cameraCount = 1;
+    private int _cameraCount = 1;
 
     // For testing if deleting and adding cameras are correct
-    private int count = 1;
+    private int _count = 1;
     public CameraViewModel(INavigationService navigationService) : base(navigationService)
 	{
         AddCommand = new Command(AddCamera, CanAddCamera);
-        Cameras = new()
-        {
+        Cameras = 
+        [
             new CameraControl(){ Title = "0", DeleteCommand = new Command<CameraControl>(DeleteCamera)}
-        };
+        ];
     }
 
     private void AddCamera()
     {
-        Cameras.Add(new CameraControl() { Title = count.ToString(), DeleteCommand = new Command<CameraControl>(DeleteCamera) });
-        count++;
+        Cameras.Add(new CameraControl() { Title = _count.ToString(), DeleteCommand = new Command<CameraControl>(DeleteCamera) });
+        _count++;
         CameraCount++;
     }
 

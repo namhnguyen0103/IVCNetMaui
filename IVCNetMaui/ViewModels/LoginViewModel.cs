@@ -1,4 +1,5 @@
 using IVCNetMaui.Services.Navigation;
+using IVCNetMaui.ViewModels.Base;
 
 namespace IVCNetMaui.ViewModels;
 using CommunityToolkit.Mvvm;
@@ -7,32 +8,17 @@ using CommunityToolkit.Mvvm.Input;
 using IVCNetMaui.Views;
 using System.ComponentModel;
 
-public partial class LoginViewModel : ObservableObject
+public partial class LoginViewModel(INavigationService navigationService) : ViewModelBase(navigationService)
 {
-    public IAsyncRelayCommand LoginCommand { get; private set; }
+	[ObservableProperty]
+	private string _username = string.Empty;
 
 	[ObservableProperty]
-	private string username;
+	private string _password = string.Empty;
 
-	[ObservableProperty]
-	private string password;
-	
-	private readonly INavigationService _navigationService;
-
-    public LoginViewModel(INavigationService navigationService)
+	[RelayCommand]
+	private Task Login()
 	{
-		_navigationService = navigationService;
-		LoginCommand = new AsyncRelayCommand(OnLoginAsync);
+		return NavigationService.NavigateToAsync("//dashboard");
 	}
-
-	private async Task OnLoginAsync()
-	{
-		Console.WriteLine("Works");
-
-		await _navigationService.NavigateToAsync("//dashboard");
-		// Application.Current.Windows[0].Page = new AppShell();
-		// Application.Current.Windows[0].Page = new MainPage();
-	}
-
-	
 }
