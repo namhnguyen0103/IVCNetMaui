@@ -71,7 +71,6 @@ namespace IVCNetMaui
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<HealthMonitorViewModel>();
             builder.Services.AddTransient<EdgeDetailViewModel>();
-            builder.Services.AddTransient<IoTListViewModel>();
             builder.Services.AddTransient<CameraViewModel>();
             builder.Services.AddTransient<EventDetailViewModel>();
             builder.Services.AddTransient<MediaDetailViewModel>();
@@ -88,7 +87,6 @@ namespace IVCNetMaui
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<HealthMonitorPage>();
             builder.Services.AddTransient<EdgeDetailPage>();
-            builder.Services.AddTransient<IoTListPage>();
             builder.Services.AddTransient<CameraPage>();
             builder.Services.AddTransient<EventDetailPage>();
             builder.Services.AddTransient<MediaDetailPage>();
