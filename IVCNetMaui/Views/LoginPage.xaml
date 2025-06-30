@@ -19,10 +19,12 @@
                FontSize="16"
                Margin="0, 0, 0, 24"/>
         <Entry Placeholder="Enter your username"
-               Margin="0, 0, 0, 16" />
+               Margin="0, 0, 0, 16" 
+               Text="{Binding Username, Mode=TwoWay}"/>
         <Entry Placeholder="Enter your password"
                IsPassword="True"
-               Margin="0, 0, 0, 32"/>
+               Margin="0, 0, 0, 32"
+               Text="{Binding Password, Mode=TwoWay}"/>
         <Button Text="Log in"
                 Command="{Binding LoginCommand}"/>
     </VerticalStackLayout>

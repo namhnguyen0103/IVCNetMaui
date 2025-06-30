@@ -54,6 +54,7 @@
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-ios'">
 		<SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
 		<ProvisioningType>manual</ProvisioningType>
+		<CustomEntitlements>Platforms/iOS/Entitlements.plist</CustomEntitlements>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-maccatalyst'">
