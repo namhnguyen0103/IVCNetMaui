@@ -10,14 +10,7 @@ using System.ComponentModel;
 
 public partial class EventViewModel : ViewModelBase
 {
-    [ObservableProperty]
-    private List<string> _list =
-        [
-            "1", 
-            "2", 
-            "3" 
-        ];
-    public IRelayCommand GoToEventDetailCommand { get; private set; }
+    [ObservableProperty] private ObservableCollection<string> _list;
 
     [RelayCommand]
     private Task NavigateToEventDetail()
@@ -26,5 +19,16 @@ public partial class EventViewModel : ViewModelBase
     }
     public EventViewModel(INavigationService navigationService) : base(navigationService)
 	{
+    }
+
+    public override async Task InitializeAsync()
+    {
+        Console.WriteLine("InitializeAsync");
+        await Task.Delay(2000);
+        List = new()
+        {
+            "1", "2", "3"
+        };
+        Console.WriteLine("Completed");
     }
 }

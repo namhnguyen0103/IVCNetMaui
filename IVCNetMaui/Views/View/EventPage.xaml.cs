@@ -9,4 +9,14 @@ public partial class EventPage : ContentPage
 		BindingContext = vm;
 		InitializeComponent();
 	}
+
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+
+		if (BindingContext is EventViewModel vm && vm.InitializeAsyncCommand.CanExecute(null))
+		{
+			vm.InitializeAsyncCommand.Execute(null);
+		}
+	}
 }

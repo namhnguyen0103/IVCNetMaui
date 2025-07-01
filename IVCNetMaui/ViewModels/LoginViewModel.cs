@@ -24,7 +24,8 @@ public partial class LoginViewModel : ViewModelBase
 	{
 		try
 		{
-			Console.WriteLine(await _authenticationService.LoginAsync(Username, Password));
+			// Console.WriteLine(await _authenticationService.LoginAsync(Username, Password));
+			await NavigationService.NavigateToAsync("//dashboard");
 		}
 		catch (HttpRequestException e)
 		{

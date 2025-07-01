@@ -11,6 +11,7 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
     public bool IsBusy => Interlocked.Read(ref _isBusy) > 0;
     
     [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(InitializeAsyncCommand))]
     private bool _isInitialized;
     public INavigationService NavigationService { get; }
     
@@ -21,11 +22,13 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
         NavigationService = navigationService;
 
         InitializeAsyncCommand = 
-            new AsyncRelayCommand(async () =>
-            {
-                await IsBusyFor(InitializeAsync);
-                IsInitialized = true;
-            });
+            new AsyncRelayCommand(
+                async () =>
+                    {
+                        await IsBusyFor(InitializeAsync);
+                        IsInitialized = true;
+                    }, 
+                () => !IsInitialized);
     }
 
     public virtual Task InitializeAsync()
