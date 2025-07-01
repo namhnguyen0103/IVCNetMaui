@@ -19,10 +19,12 @@ public class AuthenticationService : IAuthenticationService
         _requestProvider = requestProvider;
         _credentialService = credentialService;
     }
-    public async Task<string> LoginAsync(string username, string password)
+    public async Task<string> LoginAsync(string username, string password, string ip, int port, string type)
     {
         await _credentialService.SaveAsync(username, password);
-        var response = await _requestProvider.GetAsync<string>(GlobalSetting.Instance.GetDefaultEndpoints + ApiUrlBase);
+        //var response = await _requestProvider.GetAsync<string>(GlobalSetting.Instance.GetDefaultEndpoints + ApiUrlBase);
+        var uri = $"http://{ip}:{port}/" + ApiUrlBase;
+        var response = await _requestProvider.GetAsync<string>(uri);
         return response;
     }
 

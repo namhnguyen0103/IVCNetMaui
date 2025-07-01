@@ -3,6 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:IVCNetMaui"
              xmlns:viewModel="clr-namespace:IVCNetMaui.ViewModels"
+             xmlns:behaviors="clr-namespace:IVCNetMaui.Behaviors"
+             xmlns:picker="clr-namespace:Syncfusion.Maui.Toolkit.Picker;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              x:Class="IVCNetMaui.Views.LoginPage"
              x:DataType="viewModel:LoginViewModel"
              Title="Login"
@@ -11,21 +15,41 @@
                          Padding="24, 80">
         <Image Source="ivc_logo.png"
                WidthRequest="168"
-               Margin="0, 0, 0, 32"/>
-        <!--Add Longwatch i3 (VAH)-->
-        <Label Text="Longwatch i3"
-               Style="{StaticResource Display-L}"/>
-        <Label Text="Log into your account"
-               HorizontalOptions="Center" 
-               FontFamily="NunitoBold"
-               FontSize="16"
-               Margin="0, 0, 0, 24"/>
-        <Entry Placeholder="Enter your username"
+               Margin="0, 0, 0, 32">
+            <FlyoutBase.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="Pause">
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem Text="Stop">
+                    </MenuFlyoutItem>
+                </MenuFlyout>
+            </FlyoutBase.ContextFlyout>
+        </Image>
+        <HorizontalStackLayout HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Spacing="8"
+                               Margin="0, 0, 0, 16">
+            <Label Text="Longwatch i3"
+               Style="{StaticResource Title-L}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Picker FontSize="16" HeightRequest="32" WidthRequest="{OnPlatform 96, iOS=64}" BackgroundColor="{StaticResource Gray100}"
+                    ItemsSource="{Binding LongwatchType}" SelectedItem="{Binding Type}">
+                
+            </Picker>
+        </HorizontalStackLayout>
+        <Grid ColumnDefinitions="3*, *" ColumnSpacing="12" Margin="0, 0, 0, 16">
+            <Entry Placeholder="Server Name/IP" Text="{Binding Ip, Mode=TwoWay}"/>
+            <Entry x:Name="PortEntry" Grid.Column="1" Placeholder="Port" Text="{Binding Port, Mode=TwoWay}">
+                <Entry.Behaviors>
+                    <behaviors:PortEntryBehavior/>
+                </Entry.Behaviors>
+            </Entry>
+        </Grid>
+        <Entry Placeholder="Username"
                Margin="0, 0, 0, 16" 
                Text="{Binding Username, Mode=TwoWay}"/>
-        <Entry Placeholder="Enter your password"
+        <Entry Placeholder="Password"
                IsPassword="True"
-               Margin="0, 0, 0, 32"
+               Margin="0, 0, 0, 64"
                Text="{Binding Password, Mode=TwoWay}"/>
         <Button Text="Log in"
                 Command="{Binding LoginCommand}"/>

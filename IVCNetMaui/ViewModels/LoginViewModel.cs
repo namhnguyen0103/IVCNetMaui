@@ -14,9 +14,31 @@ public partial class LoginViewModel : ViewModelBase
 	[ObservableProperty]
 	private string _password = string.Empty;
 
+	[ObservableProperty]
+	private string _ip = string.Empty;
+
+	[ObservableProperty]
+	private int _port;
+
+	[ObservableProperty]
+	private string _type = string.Empty;
+
+	[ObservableProperty]
+	private List<string> _longwatchType = new() { "VAH", "VAE" };
+
 	public LoginViewModel(INavigationService navigationService, IAuthenticationService authenticationService) : base(navigationService)
 	{
 		_authenticationService = authenticationService;
+		Type = "VAH";
+	}
+
+	partial void OnTypeChanged(string? oldValue, string newValue)
+	{
+		if (oldValue == newValue) return;
+		else if (newValue == "VAH")
+			Port = 7544;
+		else if (newValue == "VAE")
+			Port = 7444;
 	}
 
 	[RelayCommand]
@@ -24,7 +46,7 @@ public partial class LoginViewModel : ViewModelBase
 	{
 		try
 		{
-			// Console.WriteLine(await _authenticationService.LoginAsync(Username, Password));
+			Console.WriteLine(await _authenticationService.LoginAsync(Username, Password, Ip, Port, Type));
 			await NavigationService.NavigateToAsync("//dashboard");
 		}
 		catch (HttpRequestException e)
