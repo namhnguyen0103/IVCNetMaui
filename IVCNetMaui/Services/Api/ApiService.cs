@@ -41,7 +41,7 @@ public class ApiService : IApiService
         {
             var response = await _requestProvider.GetAsync<List<Unit>>($"{_globalSetting.BaseApiEndpoint}/video/feeds");
             Console.WriteLine("ApiService Video Retrieved!");
-            Console.WriteLine("Response : {0}", response[0]);
+            Console.WriteLine("Response : {0}", response);
             return response;
         }
         catch (Exception e)

@@ -80,7 +80,7 @@ public partial class LoginViewModel : ViewModelBase
 			{
 				_globalSetting.BaseApiEndpoint = $"http://{Ip}:{Port}/api/v1";
 				_globalSetting.Permissions = await ApiService.GetPermissions();
-				await ApiService.GetVideoFeeds();
+				_globalSetting.Units = await ApiService.GetVideoFeeds();
 				await NavigationService.NavigateToAsync("//dashboard");
 			}
 			else

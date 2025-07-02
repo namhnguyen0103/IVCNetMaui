@@ -7,5 +7,5 @@ public class Unit
     public bool IsValid { get; set; }
     public bool IsEnabled { get; set; }
     public List<Feed> Feeds { get; set; } = new List<Feed>();
-    public StreamingModes? StreamingModes { get; set; }
+    public StreamingModes StreamingModes { get; set; }
 }
