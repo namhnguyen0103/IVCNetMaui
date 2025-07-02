@@ -10,10 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using IVCNetMaui.Services.Api;
 
 namespace IVCNetMaui.ViewModels.Detail
 {
-    public partial class EdgeDetailViewModel(INavigationService navigationService) : ViewModelBase(navigationService)
+    public partial class EdgeDetailViewModel(INavigationService navigationService, IApiService apiService) : ViewModelBase(navigationService, apiService)
     {
         [ObservableProperty]
         private ObservableCollection<string> _cameras = 

@@ -1,3 +1,4 @@
+using IVCNetMaui.Services.Api;
 using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
 
@@ -9,7 +10,7 @@ using System.ComponentModel;
 
 public partial class HistoricalHealthDataViewModel : ViewModelBase
 {
-    public HistoricalHealthDataViewModel(INavigationService navigationService) : base(navigationService)
+    public HistoricalHealthDataViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService, apiService)
 	{
 	}
 

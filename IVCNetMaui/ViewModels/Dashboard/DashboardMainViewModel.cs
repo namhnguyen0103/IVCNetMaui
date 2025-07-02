@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using IVCNetMaui.Services.Api;
 
 namespace IVCNetMaui.ViewModels.Dashboard
 {
-    public partial class DashboardMainViewModel(INavigationService navigationService) : ViewModelBase(navigationService)
+    public partial class DashboardMainViewModel(INavigationService navigationService, IApiService apiService) : ViewModelBase(navigationService, apiService)
     {
         [ObservableProperty]
         private ObservableCollection<string> _list =

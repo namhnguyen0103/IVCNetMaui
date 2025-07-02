@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using IVCNetMaui.Services.Api;
 using IVCNetMaui.Services.Authentication;
 using IVCNetMaui.Services.Credential;
 using IVCNetMaui.Services.Navigation;
@@ -64,6 +65,8 @@ namespace IVCNetMaui
             builder.Services.AddSingleton<IRequestProvider, RequestProvider>();
             builder.Services.AddSingleton<ICredentialService, CredentialService>();
             builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
+            builder.Services.AddSingleton<IApiService, ApiService>();
+            builder.Services.AddSingleton<GlobalSetting>();
             
             return builder;
         }

@@ -1,3 +1,4 @@
+using IVCNetMaui.Services.Api;
 using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
 
@@ -17,7 +18,7 @@ public partial class EventViewModel : ViewModelBase
     {
         return NavigationService.NavigateToAsync("eventDetail");
     }
-    public EventViewModel(INavigationService navigationService) : base(navigationService)
+    public EventViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService, apiService)
 	{
     }
 

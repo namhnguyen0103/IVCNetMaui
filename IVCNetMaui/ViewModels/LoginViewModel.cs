@@ -1,3 +1,5 @@
+using IVCNetMaui.Models;
+using IVCNetMaui.Services.Api;
 using IVCNetMaui.Services.Authentication;
 using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
@@ -7,6 +9,8 @@ namespace IVCNetMaui.ViewModels;
 public partial class LoginViewModel : ViewModelBase
 {
 	private readonly IAuthenticationService _authenticationService;
+	
+	private readonly GlobalSetting _globalSetting;
 	
 	[ObservableProperty]
 	private string _username = string.Empty;
@@ -26,32 +30,66 @@ public partial class LoginViewModel : ViewModelBase
 	[ObservableProperty]
 	private List<string> _longwatchType = new() { "VAH", "VAE" };
 
-	public LoginViewModel(INavigationService navigationService, IAuthenticationService authenticationService) : base(navigationService)
+	[ObservableProperty] 
+	private bool _error = false;
+	
+	[ObservableProperty]
+	private string _errorMessage = string.Empty;
+
+	public LoginViewModel(INavigationService navigationService, IApiService apiService, IAuthenticationService authenticationService, GlobalSetting globalSetting) : base(navigationService, apiService)
 	{
 		_authenticationService = authenticationService;
+		_globalSetting = globalSetting;
 		Type = "VAH";
 	}
 
 	partial void OnTypeChanged(string? oldValue, string newValue)
 	{
 		if (oldValue == newValue) return;
-		else if (newValue == "VAH")
-			Port = 7544;
-		else if (newValue == "VAE")
-			Port = 7444;
+
+		Port = newValue switch
+		{
+			"VAH" => 7544,
+			"VAE" => 7444,
+			_ => Port
+		};
 	}
 
 	[RelayCommand]
-	private async Task Login()
+	private Task Login()
+	{
+		return IsBusyFor(LoginAsync);
+	}	
+	
+	private async Task LoginAsync()
 	{
 		try
 		{
-			Console.WriteLine(await _authenticationService.LoginAsync(Username, Password, Ip, Port, Type));
-			await NavigationService.NavigateToAsync("//dashboard");
+			ErrorMessage = string.Empty;
+			var loginCredential = new LoginCredential
+			{
+				Username = Username,
+				Password = Password,
+				Ip = Ip,
+				Port = Port,
+				Type = Type
+			};
+			var result = await _authenticationService.LoginAsync(loginCredential);
+			if (result)
+			{
+				_globalSetting.BaseApiEndpoint = $"http://{Ip}:{Port}/api/v1/";
+				_globalSetting.Permissions = await ApiService.GetPermissions();
+				await NavigationService.NavigateToAsync("//dashboard");
+			}
+			else
+			{
+				ErrorMessage = "Invalid Login Credentials";
+			}
 		}
 		catch (HttpRequestException e)
 		{
-			Console.WriteLine("\nException Caught!");
+			ErrorMessage = "Login Error";
+			Console.WriteLine("Login Exception Caught!");
 			Console.WriteLine("Message : {0} ", e.Message);
 		}
 	}

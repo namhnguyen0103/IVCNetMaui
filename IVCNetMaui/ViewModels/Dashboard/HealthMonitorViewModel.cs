@@ -6,10 +6,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IVCNetMaui.Services.Api;
 
 namespace IVCNetMaui.ViewModels.Dashboard
 {
-    public partial class HealthMonitorViewModel(INavigationService navigationService) : ViewModelBase(navigationService)
+    public partial class HealthMonitorViewModel(INavigationService navigationService, IApiService apiService) : ViewModelBase(navigationService, apiService)
     {
         [ObservableProperty]
         private ObservableCollection<Network> _networks =

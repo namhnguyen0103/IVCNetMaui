@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using IVCNetMaui.Services.Api;
 using IVCNetMaui.Services.Navigation;
 
 namespace IVCNetMaui.ViewModels.Base;
@@ -14,12 +15,14 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
     [NotifyCanExecuteChangedFor(nameof(InitializeAsyncCommand))]
     private bool _isInitialized;
     public INavigationService NavigationService { get; }
-    
+    public IApiService ApiService { get; }
+
     public IAsyncRelayCommand InitializeAsyncCommand { get; }
 
-    public ViewModelBase(INavigationService navigationService)
+    public ViewModelBase(INavigationService navigationService, IApiService apiService)
     {
         NavigationService = navigationService;
+        ApiService = apiService;
 
         InitializeAsyncCommand = 
             new AsyncRelayCommand(

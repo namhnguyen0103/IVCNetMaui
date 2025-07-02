@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:IVCNetMaui"
              xmlns:viewModel="clr-namespace:IVCNetMaui.ViewModels"
              xmlns:behaviors="clr-namespace:IVCNetMaui.Behaviors"
-             xmlns:picker="clr-namespace:Syncfusion.Maui.Toolkit.Picker;assembly=Syncfusion.Maui.Toolkit"
-             xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
-             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              x:Class="IVCNetMaui.Views.LoginPage"
              x:DataType="viewModel:LoginViewModel"
              Title="Login"
@@ -37,8 +33,8 @@
             </Picker>
         </HorizontalStackLayout>
         <Grid ColumnDefinitions="3*, *" ColumnSpacing="12" Margin="0, 0, 0, 16">
-            <Entry Placeholder="Server Name/IP" Text="{Binding Ip, Mode=TwoWay}"/>
-            <Entry x:Name="PortEntry" Grid.Column="1" Placeholder="Port" Text="{Binding Port, Mode=TwoWay}">
+            <Entry Placeholder="Server Name/IP" Text="{Binding Ip, Mode=TwoWay}" Keyboard="Url"/>
+            <Entry Grid.Column="1" Placeholder="Port" Text="{Binding Port, Mode=TwoWay}" Keyboard="Numeric">
                 <Entry.Behaviors>
                     <behaviors:PortEntryBehavior/>
                 </Entry.Behaviors>
@@ -46,12 +42,23 @@
         </Grid>
         <Entry Placeholder="Username"
                Margin="0, 0, 0, 16" 
-               Text="{Binding Username, Mode=TwoWay}"/>
+               Text="{Binding Username, Mode=TwoWay}">
+            <Entry.Keyboard>
+                <Keyboard x:FactoryMethod="Create">
+                    <x:Arguments>
+                        <KeyboardFlags>CapitalizeNone</KeyboardFlags>
+                    </x:Arguments>
+                </Keyboard>
+            </Entry.Keyboard>
+        </Entry>
         <Entry Placeholder="Password"
                IsPassword="True"
-               Margin="0, 0, 0, 64"
+               Margin="0, 0, 0, 16"
                Text="{Binding Password, Mode=TwoWay}"/>
+        <Label Text="{Binding ErrorMessage}" Style="{StaticResource Body-M}" TextColor="Red" HorizontalTextAlignment="Center" Margin="0, 0, 0, 32"
+               />
         <Button Text="Log in"
                 Command="{Binding LoginCommand}"/>
+        <ActivityIndicator IsRunning="{Binding IsBusy}"/>
     </VerticalStackLayout>
 </ContentPage>

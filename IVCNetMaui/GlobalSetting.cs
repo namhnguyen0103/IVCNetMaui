@@ -1,12 +1,10 @@
+using IVCNetMaui.Models;
+
 namespace IVCNetMaui;
 
 public class GlobalSetting
 {
-    private const string DefaultEndpoints = "http://192.168.25.42:7181/";
-    public static GlobalSetting Instance { get; } = new GlobalSetting();
-
-    public string GetDefaultEndpoints
-    {
-        get => DefaultEndpoints;
-    }
+    public string BaseApiEndpoint { get; set; } = string.Empty;
+    
+    public List<Permission> Permissions { get; set; } = new List<Permission>();
 }

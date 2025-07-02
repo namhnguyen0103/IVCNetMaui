@@ -1,5 +1,6 @@
 using System.Net.Http.Headers;
 using System.Text;
+using IVCNetMaui.Models;
 using IVCNetMaui.Services.Credential;
 using IVCNetMaui.Services.RequestProvider;
 
@@ -19,13 +20,24 @@ public class AuthenticationService : IAuthenticationService
         _requestProvider = requestProvider;
         _credentialService = credentialService;
     }
-    public async Task<string> LoginAsync(string username, string password, string ip, int port, string type)
+    public async Task<bool> LoginAsync(LoginCredential loginCredential)
     {
-        await _credentialService.SaveAsync(username, password);
-        //var response = await _requestProvider.GetAsync<string>(GlobalSetting.Instance.GetDefaultEndpoints + ApiUrlBase);
-        var uri = $"http://{ip}:{port}/" + ApiUrlBase;
-        var response = await _requestProvider.GetAsync<string>(uri);
-        return response;
+        try
+        {
+            await _credentialService.SaveAsync(loginCredential.Username, loginCredential.Password);
+            var uri = $"http://{loginCredential.Ip}:{loginCredential.Port}/" + ApiUrlBase;
+            var response = await _requestProvider.GetAsync<string>(uri);
+            Console.WriteLine("AuthenticationService Login Success!");
+            Console.WriteLine("Response : {0}", response);
+            
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("AuthenticationService Exception Caught!");
+            Console.WriteLine("Message : {0} ", ex.Message);
+            return false;
+        }
     }
 
     public Task LogoutAsync()

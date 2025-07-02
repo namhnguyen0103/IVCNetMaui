@@ -1,3 +1,4 @@
+using IVCNetMaui.Services.Api;
 using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
 
@@ -21,7 +22,7 @@ public partial class CameraViewModel : ViewModelBase
 
     // For testing if deleting and adding cameras are correct
     private int _count = 1;
-    public CameraViewModel(INavigationService navigationService) : base(navigationService)
+    public CameraViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService, apiService)
 	{
         AddCommand = new Command(AddCamera, CanAddCamera);
         Cameras = 
