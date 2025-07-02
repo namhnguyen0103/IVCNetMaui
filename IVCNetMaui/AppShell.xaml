@@ -16,61 +16,6 @@
     Title="IVCNetMaui"
     FlyoutBackdrop="#80808080">
 
-    <!--<Shell.ItemTemplate>
-        <DataTemplate x:DataType="FlyoutItem">
-            <Border 
-                Margin="12, 0, 0, 0" 
-                StrokeThickness="0" 
-                BackgroundColor="{StaticResource Gray200}"
-                x:Name="FlyoutBorder">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="3, 0, 3, 0"/>
-                </Border.StrokeShape>
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter 
-                                        TargetName="FlyoutBorder" 
-                                        Property="BackgroundColor"
-                                        Value="Transparent" />
-                                    <Setter 
-                                        TargetName="TitleLabel" 
-                                        Property="Label.TextColor" 
-                                        Value="{StaticResource Gray950}" />
-                                    <Setter
-                                        TargetName="IconImage"
-                                        Property="FontImageSource.Color"
-                                        Value="{StaticResource Gray700}"/>
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Selected">
-                                <VisualState.Setters>
-                                    <Setter 
-                                        TargetName="FlyoutBorder" 
-                                        Property="BackgroundColor"
-                                        Value="{StaticResource BlueExtraLight}" />
-                                    <Setter 
-                                        TargetName="TitleLabel" 
-                                        Property="Label.TextColor" 
-                                        Value="{StaticResource BluePrimary}" />
-                                    <Setter
-                                        TargetName="IconImage"
-                                        Property="FontImageSource.Color"
-                                        Value="{StaticResource BluePrimary}"/>
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
-                <Grid ColumnDefinitions="Auto, *" Padding="12, 12" ColumnSpacing="20">
-                    <Label x:Name="TitleLabel" Grid.Column="1" Text="{Binding Title}" VerticalTextAlignment="Center"/>
-                </Grid>
-            </Border>
-        </DataTemplate>
-    </Shell.ItemTemplate>-->
-
     <Shell.Resources>
         <ResourceDictionary>
             <Style TargetType="Label"
@@ -92,7 +37,8 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Camera View" 
-                Route="cameraView">
+                Route="cameraView"
+                IsVisible="False">
         <FlyoutItem.FlyoutIcon>
             <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Videocam}" Color="{StaticResource Gray700}"/>
         </FlyoutItem.FlyoutIcon>

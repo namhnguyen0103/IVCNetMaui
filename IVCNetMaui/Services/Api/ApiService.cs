@@ -23,9 +23,25 @@ public class ApiService : IApiService
     {
         try
         {
-            var response = await _requestProvider.GetAsync<List<Permission>>($"{_globalSetting.BaseApiEndpoint}permissions");
+            var response = await _requestProvider.GetAsync<List<Permission>>($"{_globalSetting.BaseApiEndpoint}/permissions");
             Console.WriteLine("ApiService Permissions Retrieved!");
             Console.WriteLine("Response : {0}", response);
+            return response;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<List<Unit>> GetVideoFeeds()
+    {
+        try
+        {
+            var response = await _requestProvider.GetAsync<List<Unit>>($"{_globalSetting.BaseApiEndpoint}/video/feeds");
+            Console.WriteLine("ApiService Video Retrieved!");
+            Console.WriteLine("Response : {0}", response[0]);
             return response;
         }
         catch (Exception e)

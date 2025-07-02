@@ -65,6 +65,7 @@ public partial class LoginViewModel : ViewModelBase
 	{
 		try
 		{
+			// await NavigationService.NavigateToAsync("//dashboard");
 			ErrorMessage = string.Empty;
 			var loginCredential = new LoginCredential
 			{
@@ -77,8 +78,9 @@ public partial class LoginViewModel : ViewModelBase
 			var result = await _authenticationService.LoginAsync(loginCredential);
 			if (result)
 			{
-				_globalSetting.BaseApiEndpoint = $"http://{Ip}:{Port}/api/v1/";
+				_globalSetting.BaseApiEndpoint = $"http://{Ip}:{Port}/api/v1";
 				_globalSetting.Permissions = await ApiService.GetPermissions();
+				await ApiService.GetVideoFeeds();
 				await NavigationService.NavigateToAsync("//dashboard");
 			}
 			else
