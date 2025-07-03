@@ -16,5 +16,6 @@ public class GlobalSetting
         }
     }
     
+    public List<Role> Roles { get; set; } = new List<Role>();
     public List<Unit> Units { get; set; } = new List<Unit>();
 }

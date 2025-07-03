@@ -110,7 +110,7 @@ namespace IVCNetMaui
         { 
             Routing.RegisterRoute("dashboard/healthMonitor", typeof(Views.Dashboard.HealthMonitorPage));
             Routing.RegisterRoute("dashboard/edgeDetail", typeof(Views.Detail.EdgeDetailPage));
-            Routing.RegisterRoute("dashboard/edgeDetail/healthMonitor", typeof(Views.Dashboard.HealthMonitorPage));
+            Routing.RegisterRoute("dashboard/edgeDetail/healthMonitor", typeof(HealthMonitorPage));
             Routing.RegisterRoute("eventView/eventDetail", typeof(Views.Detail.EventDetailPage));
             Routing.RegisterRoute("eventView/eventDetail/mediaDetail", typeof(Views.Detail.MediaDetailPage));
         }
@@ -121,6 +121,11 @@ namespace IVCNetMaui
             // Add logic for logout
         }
 
+        private void AssignAccess()
+        {
+            
+        }
+        
         private FontImageSource GetIcon(string iconName)
         {
             return new FontImageSource

@@ -3,6 +3,7 @@ using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using IVCNetMaui.Services.Authentication;
 using IVCNetMaui.Services.Credential;
 
@@ -47,9 +48,26 @@ public class RequestProvider : IRequestProvider
         return await response.Content.ReadFromJsonAsync<TResult>();
     }
 
-    public Task<TResult> PostAsync<TResult>(string uri, TResult data, string header = "")
+    public async Task<TResult> PostAsync<TResult, TInput>(string uri, TInput data)
     {
-        throw new NotImplementedException();
+        HttpClient httpClient = _httpClient.Value;
+        
+        var credential = await _credentialService.GetAsync();
+        var byteArray = Encoding.ASCII.GetBytes($"{credential.Value.Username}:{credential.Value.Password}");
+        
+        string json = JsonSerializer.Serialize<TInput>(data);
+        StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+        
+        var request = new HttpRequestMessage(HttpMethod.Post, uri)
+        {
+            Content = content
+        };
+        request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
+        
+        HttpResponseMessage response = await httpClient.SendAsync(request);
+        await HandleResponse(response);
+        
+        return await response.Content.ReadFromJsonAsync<TResult>();
     }
 
     public Task<TResult> PutAsync<TResult>(string uri, string clientId, string clientSecret)

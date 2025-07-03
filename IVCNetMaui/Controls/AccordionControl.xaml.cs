@@ -44,6 +44,5 @@ public partial class AccordionControl : ContentView
         {
             await HeaderIcon.RotateTo(0, 200, Easing.SinInOut);
         }
-        Console.WriteLine(IsExpanded);
     }
 }

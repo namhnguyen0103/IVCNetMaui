@@ -4,7 +4,7 @@ public interface IRequestProvider
 {
     Task<TResult> GetAsync<TResult>(string uri);
     
-    Task<TResult> PostAsync<TResult>(string uri, TResult data,  string header = "");
+    Task<TResult> PostAsync<TResult, TInput>(string uri, TInput data);
     
     Task<TResult> PutAsync<TResult>(string uri, string clientId, string clientSecret);
     

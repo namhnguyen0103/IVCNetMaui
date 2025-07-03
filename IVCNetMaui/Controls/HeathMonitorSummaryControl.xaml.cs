@@ -15,7 +15,6 @@ public partial class HeathMonitorSummaryControl : ContentView
     }
     public HeathMonitorSummaryControl()
 	{
-        BindingContext = this;
 		InitializeComponent();
 	}
 }

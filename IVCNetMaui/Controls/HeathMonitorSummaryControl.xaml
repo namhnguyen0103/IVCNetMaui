@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.HeathMonitorSummaryControl"
+             x:Name="This"
              x:DataType="controls:HeathMonitorSummaryControl">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -29,7 +30,7 @@
 
     </ContentView.Resources>
     
-    <VerticalStackLayout Spacing="16">
+    <VerticalStackLayout Spacing="16" BindingContext="{x:Reference This}">
         <!--System Section-->
         <controls:MenuCardControl Title="System" Command="{Binding NavigateToSystemCommand}">
             <controls:MenuCardControl.BodyContent>

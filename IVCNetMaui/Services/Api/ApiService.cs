@@ -35,6 +35,23 @@ public class ApiService : IApiService
         }
     }
 
+    public async Task<List<Role>> GetRoleAsync()
+    {
+        try
+        {
+            var response = 
+                await _requestProvider.PostAsync<List<Role>, string[]>($"{_globalSetting.BaseApiEndpoint}/Roles/ByGroupNames", ["admin"]);
+            return response;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("ApiService Exception Caught!");
+            Console.WriteLine("Message: {0}",  e.Message);
+        }
+
+        return [];
+    }
+
     public async Task<List<Unit>> GetVideoFeedsAsync()
     {
         try

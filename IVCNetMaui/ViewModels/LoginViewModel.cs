@@ -83,8 +83,8 @@ public partial class LoginViewModel : ViewModelBase
 				_globalSetting.BaseApiEndpoint = $"http://{Ip}:{Port}/api/v1";
 				_globalSetting.Permissions = await ApiService.GetPermissionsAsync();
 				_globalSetting.Units = await ApiService.GetVideoFeedsAsync();
-				Application.Current.MainPage = _serviceProvider.GetRequiredService<AppShell>();;
-				// await NavigationService.NavigateToAsync("//dashboard");
+				_globalSetting.Roles = await ApiService.GetRoleAsync();
+				Application.Current.MainPage = _serviceProvider.GetRequiredService<AppShell>();
 			}
 			else
 			{
@@ -97,10 +97,5 @@ public partial class LoginViewModel : ViewModelBase
 			Console.WriteLine("Login Exception Caught!");
 			Console.WriteLine("Message : {0} ", ex.Message);
 		}
-	}
-
-	private void ManageAccess()
-	{
-		
 	}
 }
