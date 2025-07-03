@@ -19,7 +19,7 @@ public class ApiService : IApiService
         _globalSetting = globalSetting;
     }
     
-    public async Task<List<Permission>> GetPermissions()
+    public async Task<List<Permission>> GetPermissionsAsync()
     {
         try
         {
@@ -35,7 +35,7 @@ public class ApiService : IApiService
         }
     }
 
-    public async Task<List<Unit>> GetVideoFeeds()
+    public async Task<List<Unit>> GetVideoFeedsAsync()
     {
         try
         {

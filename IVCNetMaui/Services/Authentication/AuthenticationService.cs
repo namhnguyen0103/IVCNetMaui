@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using IVCNetMaui.Models;
@@ -27,12 +28,13 @@ public class AuthenticationService : IAuthenticationService
             await _credentialService.SaveAsync(loginCredential.Username, loginCredential.Password);
             var uri = $"http://{loginCredential.Ip}:{loginCredential.Port}/" + ApiUrlBase;
             var response = await _requestProvider.GetAsync<string>(uri);
+            
             Console.WriteLine("AuthenticationService Login Success!");
             Console.WriteLine("Response : {0}", response);
             
             return true;
         }
-        catch (Exception ex)
+        catch (ServiceAuthenticationException ex)
         {
             Console.WriteLine("AuthenticationService Exception Caught!");
             Console.WriteLine("Message : {0} ", ex.Message);

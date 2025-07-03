@@ -1,7 +1,9 @@
+using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
+using IVCNetMaui.Services.Authentication;
 using IVCNetMaui.Services.Credential;
 
 namespace IVCNetMaui.Services.RequestProvider;
@@ -26,15 +28,17 @@ public class RequestProvider : IRequestProvider
     public async Task<TResult> GetAsync<TResult>(string uri)
     {
         HttpClient httpClient = _httpClient.Value;
+        
         var credential = await _credentialService.GetAsync();
+        var byteArray = Encoding.ASCII.GetBytes($"{credential.Value.Username}:{credential.Value.Password}");
         
         var request = new HttpRequestMessage(HttpMethod.Get, uri);
-        
-        var byteArray = Encoding.ASCII.GetBytes($"{credential.Value.Username}:{credential.Value.Password}");
         request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
         
         HttpResponseMessage response = await httpClient.SendAsync(request);
-        response.EnsureSuccessStatusCode();
+
+        await HandleResponse(response);
+        
         if (typeof(TResult) == typeof(string))
         {
             string raw = await response.Content.ReadAsStringAsync();
@@ -57,13 +61,19 @@ public class RequestProvider : IRequestProvider
     {
         throw new NotImplementedException();
     }
+    
+    private static async Task HandleResponse(HttpResponseMessage response)
+    {
+        if (!response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
 
-    // private static void AddBasicAuthenticationHeader(HttpClient httpClient, string clientId, string clientSecret)
-    // {
-    //     if (string.IsNullOrWhiteSpace(clientId) || string.IsNullOrWhiteSpace(clientSecret))
-    //         return;
-    //     
-    //     var byteArray = Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}");
-    //     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
-    // }
+            if (response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                throw new ServiceAuthenticationException(content);
+            }
+            
+            throw new HttpRequestException(content);
+        }
+    }
 }

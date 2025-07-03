@@ -4,6 +4,6 @@ namespace IVCNetMaui.Services.Api;
 
 public interface IApiService
 {
-    Task<List<Permission>> GetPermissions();
-    Task<List<Unit>> GetVideoFeeds();
+    Task<List<Permission>> GetPermissionsAsync();
+    Task<List<Unit>> GetVideoFeedsAsync();
 }

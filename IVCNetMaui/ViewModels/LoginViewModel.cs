@@ -9,17 +9,17 @@ namespace IVCNetMaui.ViewModels;
 public partial class LoginViewModel : ViewModelBase
 {
 	private readonly IAuthenticationService _authenticationService;
-	
+	private readonly IServiceProvider _serviceProvider;
 	private readonly GlobalSetting _globalSetting;
 	
 	[ObservableProperty]
-	private string _username = string.Empty;
+	private string _username = "admin";
 
 	[ObservableProperty]
-	private string _password = string.Empty;
+	private string _password = "admin.123";
 
 	[ObservableProperty]
-	private string _ip = string.Empty;
+	private string _ip = "192.168.25.42";
 
 	[ObservableProperty]
 	private int _port;
@@ -36,11 +36,14 @@ public partial class LoginViewModel : ViewModelBase
 	[ObservableProperty]
 	private string _errorMessage = string.Empty;
 
-	public LoginViewModel(INavigationService navigationService, IApiService apiService, IAuthenticationService authenticationService, GlobalSetting globalSetting) : base(navigationService, apiService)
+	public LoginViewModel(INavigationService navigationService, IApiService apiService, IAuthenticationService authenticationService, GlobalSetting globalSetting,
+		IServiceProvider serviceProvider) : base(navigationService, apiService)
 	{
 		_authenticationService = authenticationService;
+		_serviceProvider = serviceProvider;
 		_globalSetting = globalSetting;
 		Type = "VAH";
+		Port = 7181;
 	}
 
 	partial void OnTypeChanged(string? oldValue, string newValue)
@@ -65,7 +68,6 @@ public partial class LoginViewModel : ViewModelBase
 	{
 		try
 		{
-			// await NavigationService.NavigateToAsync("//dashboard");
 			ErrorMessage = string.Empty;
 			var loginCredential = new LoginCredential
 			{
@@ -79,20 +81,26 @@ public partial class LoginViewModel : ViewModelBase
 			if (result)
 			{
 				_globalSetting.BaseApiEndpoint = $"http://{Ip}:{Port}/api/v1";
-				_globalSetting.Permissions = await ApiService.GetPermissions();
-				_globalSetting.Units = await ApiService.GetVideoFeeds();
-				await NavigationService.NavigateToAsync("//dashboard");
+				_globalSetting.Permissions = await ApiService.GetPermissionsAsync();
+				_globalSetting.Units = await ApiService.GetVideoFeedsAsync();
+				Application.Current.MainPage = _serviceProvider.GetRequiredService<AppShell>();;
+				// await NavigationService.NavigateToAsync("//dashboard");
 			}
 			else
 			{
 				ErrorMessage = "Invalid Login Credentials";
 			}
 		}
-		catch (HttpRequestException e)
+		catch (Exception ex)
 		{
 			ErrorMessage = "Login Error";
 			Console.WriteLine("Login Exception Caught!");
-			Console.WriteLine("Message : {0} ", e.Message);
+			Console.WriteLine("Message : {0} ", ex.Message);
 		}
+	}
+
+	private void ManageAccess()
+	{
+		
 	}
 }

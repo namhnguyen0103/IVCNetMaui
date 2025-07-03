@@ -89,6 +89,8 @@ namespace IVCNetMaui
         
         private static MauiAppBuilder RegisterViews(this MauiAppBuilder builder)
         {
+            builder.Services.AddTransient<AppShell>();
+            
             builder.Services.AddSingleton<DashboardMainPage>();
             builder.Services.AddSingleton<EventPage>();
             builder.Services.AddSingleton<HistoricalHealthDataPage>();

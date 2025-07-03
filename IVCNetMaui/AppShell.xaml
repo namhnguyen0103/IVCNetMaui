@@ -5,76 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
     xmlns:local="clr-namespace:IVCNetMaui"
-    xmlns:converters="clr-namespace:IVCNetMaui.Converters"
-    xmlns:views="clr-namespace:IVCNetMaui.Views"
-    xmlns:dashboard="clr-namespace:IVCNetMaui.Views.Dashboard"
-    xmlns:view="clr-namespace:IVCNetMaui.Views.View"
-    xmlns:historical="clr-namespace:IVCNetMaui.Views.Historical"
-    xmlns:controls="clr-namespace:IVCNetMaui.Controls"
     x:DataType="local:AppShell"
     x:Name="shell"
     Title="IVCNetMaui"
     FlyoutBackdrop="#80808080">
 
-    <Shell.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Label"
-                   Class="FlyoutItemLabelStye">
-                <Setter Property="TextColor" Value="{StaticResource BluePrimary}"/>
-            </Style>
-        </ResourceDictionary>
-    </Shell.Resources>
-
-    <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" Route="login" FlyoutItemIsVisible="False"/>
-
-    <FlyoutItem Title="Dashboard"
-                Route="dashboard">
-        <FlyoutItem.FlyoutIcon>
-            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Dashboard}" Color="{StaticResource Gray700}"/>
-        </FlyoutItem.FlyoutIcon>
-        <ShellContent ContentTemplate="{DataTemplate dashboard:DashboardMainPage}"
-                      Title="Hub"/>
-    </FlyoutItem>
-
-    <FlyoutItem Title="Camera View" 
-                Route="cameraView"
-                IsVisible="False">
-        <FlyoutItem.FlyoutIcon>
-            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Videocam}" Color="{StaticResource Gray700}"/>
-        </FlyoutItem.FlyoutIcon>
-        <ShellContent Title="Camera View" 
-                      ContentTemplate="{DataTemplate view:CameraPage}" />
-    </FlyoutItem>
-
-    <FlyoutItem Title="Event View"
-                Route="eventView">
-        <FlyoutItem.FlyoutIcon>
-            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Flag}" Color="{StaticResource Gray700}"/>
-        </FlyoutItem.FlyoutIcon>
-        <ShellContent Title="Event View" 
-                          ContentTemplate="{DataTemplate view:EventPage}" />
-    </FlyoutItem>
-
-    <FlyoutItem Title="Historical" 
-                FlyoutDisplayOptions="AsSingleItem"
-                Route="historical">
-        <FlyoutItem.FlyoutIcon>
-            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.History}" Color="{StaticResource Gray700}"/>
-        </FlyoutItem.FlyoutIcon>
-        <Tab>
-            <ShellContent Title="Health Data"
-                          ContentTemplate="{DataTemplate historical:HistoricalHealthDataPage}" 
-                          Route="healthData"/>
-            <ShellContent Title="IoT Data"
-                          ContentTemplate="{DataTemplate historical:IoTDataPage}" 
-                          Route="iotData"/>
-            <ShellContent Title="Media Data"
-                          ContentTemplate="{DataTemplate historical:MediaDataPage}" 
-                          Route="mediaData"/>
-        </Tab>
-    </FlyoutItem>
-
-    <MenuItem Text="Logout" Clicked="MenuItem_Clicked">
+    <MenuItem Text="Logout" Clicked="LogoutMenuItem_Clicked">
         <MenuItem.IconImageSource>
             <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Logout}" Color="{StaticResource Gray700}"/>
         </MenuItem.IconImageSource>
