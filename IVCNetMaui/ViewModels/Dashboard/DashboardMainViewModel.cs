@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using IVCNetMaui.Models.HealthStatus;
 using IVCNetMaui.Services.Api;
 
 namespace IVCNetMaui.ViewModels.Dashboard
@@ -18,6 +19,22 @@ namespace IVCNetMaui.ViewModels.Dashboard
         [
             "LVE1", "LVE2", "LVE3", "LVE4"
         ];
+
+        [ObservableProperty] 
+        private HealthStatus _healthStatus = new HealthStatus();
+
+        public override async Task InitializeAsync()
+        {
+            try
+            {
+                HealthStatus = await ApiService.GetHealthStatusAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception Caught!");
+                Console.WriteLine(e);
+            }
+        }
         
         [RelayCommand]
         private Task NavigateToHealthMonitor()

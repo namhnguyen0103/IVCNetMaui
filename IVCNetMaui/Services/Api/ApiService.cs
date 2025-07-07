@@ -1,4 +1,5 @@
 using IVCNetMaui.Models;
+using IVCNetMaui.Models.HealthStatus;
 using IVCNetMaui.Services.Credential;
 using IVCNetMaui.Services.RequestProvider;
 
@@ -76,6 +77,24 @@ public class ApiService : IApiService
                 await _requestProvider.GetAsync<CurrentLocalApiUserInfo>(
                     $"{_globalSetting.BaseApiEndpoint}/auth/currentlocalapiuserinfo");
             Console.WriteLine("ApiService User Info Retrieved!");
+            Console.WriteLine("Response : {0}", response);
+            return response;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<HealthStatus> GetHealthStatusAsync()
+    {
+        try
+        {
+            var response =
+                await _requestProvider.GetAsync<HealthStatus>(
+                    $"{_globalSetting.BaseApiEndpoint}/health/status?appname");
+            Console.WriteLine("ApiService Health Status Retrieved!");
             Console.WriteLine("Response : {0}", response);
             return response;
         }

@@ -19,10 +19,4 @@ public partial class LoginPage : ContentPage
 #endif
 		}
 	}
-
-	private async void ButtonBase_OnClicked(object? sender, EventArgs e)
-	{
-		await Task.Delay(2000);
-	}
 }
-

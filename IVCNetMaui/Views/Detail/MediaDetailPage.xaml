@@ -2,11 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
+             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              x:Class="IVCNetMaui.Views.Detail.MediaDetailPage"
              x:DataType="viewModels:MediaDetailViewModel">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Download"
-                     IconImageSource="download.png"/>
+        <ToolbarItem Text="Download">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Download}"  />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     <Grid RowDefinitions="*, *">
         <Border BackgroundColor="{StaticResource Gray200}">

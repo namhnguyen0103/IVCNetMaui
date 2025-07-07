@@ -9,4 +9,14 @@ public partial class DashboardMainPage : ContentPage
 		BindingContext = vm;
 		InitializeComponent();
 	}
+
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+
+		if (BindingContext is DashboardMainViewModel vm && vm.InitializeAsyncCommand.CanExecute(null))
+		{
+			vm.InitializeAsyncCommand.Execute(null);
+		}
+	}
 }
