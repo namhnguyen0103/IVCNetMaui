@@ -7,7 +7,8 @@
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
              x:DataType="viewModels:DashboardMainViewModel"
-             Title="Dashboard">
+             Title="Dashboard"
+             HideSoftInputOnTapped="True">
     
     <tabView:SfTabView Style="{StaticResource Header}">
         <tabView:SfTabView.Items>

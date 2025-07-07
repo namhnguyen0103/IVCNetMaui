@@ -31,7 +31,7 @@ public partial class LoginViewModel : ViewModelBase
 	private List<string> _longwatchType = new() { "VAH", "VAE" };
 
 	[ObservableProperty] 
-	private bool _error = false;
+	private bool _error;
 	
 	[ObservableProperty]
 	private string _errorMessage = string.Empty;
@@ -83,6 +83,7 @@ public partial class LoginViewModel : ViewModelBase
 				_globalSetting.BaseApiEndpoint = $"http://{Ip}:{Port}/api/v1";
 				_globalSetting.Permissions = await ApiService.GetPermissionsAsync();
 				_globalSetting.Units = await ApiService.GetVideoFeedsAsync();
+				_globalSetting.ApiUserInfo = await ApiService.GetUserInfoAsync();
 				_globalSetting.Roles = await ApiService.GetRoleAsync();
 				Application.Current.MainPage = _serviceProvider.GetRequiredService<AppShell>();
 			}

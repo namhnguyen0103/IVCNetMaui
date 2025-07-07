@@ -40,7 +40,7 @@ public class ApiService : IApiService
         try
         {
             var response = 
-                await _requestProvider.PostAsync<List<Role>, string[]>($"{_globalSetting.BaseApiEndpoint}/Roles/ByGroupNames", ["admin"]);
+                await _requestProvider.PostAsync<List<Role>, string[]>($"{_globalSetting.BaseApiEndpoint}/Roles/ByGroupNames", _globalSetting.ApiUserInfo.Roles);
             return response;
         }
         catch (Exception e)
@@ -58,6 +58,24 @@ public class ApiService : IApiService
         {
             var response = await _requestProvider.GetAsync<List<Unit>>($"{_globalSetting.BaseApiEndpoint}/video/feeds");
             Console.WriteLine("ApiService Video Retrieved!");
+            Console.WriteLine("Response : {0}", response);
+            return response;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<CurrentLocalApiUserInfo> GetUserInfoAsync()
+    {
+        try
+        {
+            var response =
+                await _requestProvider.GetAsync<CurrentLocalApiUserInfo>(
+                    $"{_globalSetting.BaseApiEndpoint}/auth/currentlocalapiuserinfo");
+            Console.WriteLine("ApiService User Info Retrieved!");
             Console.WriteLine("Response : {0}", response);
             return response;
         }

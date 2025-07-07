@@ -51,4 +51,6 @@ public class GlobalSetting
         {105, 0},
         {106, 0},
     };
+    
+    public CurrentLocalApiUserInfo ApiUserInfo { get; set; } = new CurrentLocalApiUserInfo();
 }

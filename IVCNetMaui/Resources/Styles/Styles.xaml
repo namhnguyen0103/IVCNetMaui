@@ -3,8 +3,8 @@
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:sfButton="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
     xmlns:local="clr-namespace:IVCNetMaui.Resources.Styles">
 
     <ResourceDictionary.MergedDictionaries>
@@ -26,7 +26,7 @@
     </Style>
 
     <Style TargetType="ActivityIndicator">
-        <Setter Property="Color" Value="{StaticResource BluePrimary}" />
+        <Setter Property="Color" Value="{StaticResource Gray700}" />
     </Style>
 
     <Style TargetType="IndicatorView">
@@ -78,6 +78,38 @@
             </VisualStateGroupList>
         </Setter>
     </Style>
+    
+    <Style TargetType="sfButton:SfButton">
+        <Setter Property="Background" Value="{StaticResource BluePrimary}"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="HeightRequest" Value="44"/>
+        <Setter Property="EnableRippleEffect" Value="False"/>
+        <Setter Property="Content">
+            <DataTemplate x:DataType="sfButton:SfButton">
+                <Grid>
+                    <Label x:Name="Label" Text="{Binding Text}" Style="{StaticResource Title-L}" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                    <ActivityIndicator x:Name="Indicator" Color="{StaticResource Gray700}"/>
+                </Grid>
+            </DataTemplate>
+        </Setter>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="{StaticResource BlueMedium}"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="#BFC3C7"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style> 
 
     <Style TargetType="CheckBox">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
@@ -146,7 +178,7 @@
         <Setter Property="FontFamily" Value="RobotoRegular"/>
         <Setter Property="FontSize" Value="14" />
         <Setter Property="PlaceholderColor" Value="{StaticResource Gray600}" />
-        <Setter Property="MinimumHeightRequest" Value="32"/>
+        <Setter Property="MinimumHeightRequest" Value="40"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
@@ -211,21 +243,7 @@
     </Style>
 
     <Style TargetType="Span">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
-    </Style>
-
-    <Style TargetType="Label" x:Key="Headline">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource MidnightBlue}, Dark={StaticResource White}}" />
-        <Setter Property="FontSize" Value="32" />
-        <Setter Property="HorizontalOptions" Value="Center" />
-        <Setter Property="HorizontalTextAlignment" Value="Center" />
-    </Style>
-
-    <Style TargetType="Label" x:Key="SubHeadline">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource MidnightBlue}, Dark={StaticResource White}}" />
-        <Setter Property="FontSize" Value="24" />
-        <Setter Property="HorizontalOptions" Value="Center" />
-        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="TextColor" Value="{StaticResource Gray950}"/>
     </Style>
 
     <Style TargetType="ListView">
@@ -296,7 +314,7 @@
     </Style>
 
     <Style TargetType="SearchBar">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+        <Setter Property="TextColor" Value="{StaticResource Gray900}"/>
         <Setter Property="PlaceholderColor" Value="{StaticResource Gray500}" />
         <Setter Property="CancelButtonColor" Value="{StaticResource Gray500}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
@@ -427,21 +445,22 @@
     </Style>
 
     <Style TargetType="Shell" ApplyToDerivedTypes="True">
-        <Setter Property="Shell.BackgroundColor" Value="White"/>
-        <Setter Property="Shell.ForegroundColor" Value="{StaticResource Gray950}"/>
-        <Setter Property="Shell.TitleColor" Value="{StaticResource Gray950}"/>
-        <Setter Property="Shell.DisabledColor" Value="{StaticResource Gray200}"/>
-        <Setter Property="Shell.UnselectedColor" Value="{StaticResource Gray200}"/>
-        <Setter Property="Shell.NavBarHasShadow" Value="False" />
-        <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Gray950}"/>
-        <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource BluePrimary}"/>
-        <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource BluePrimary}" />
-        <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource Gray900}"/>
-        <Setter Property="Shell.FlyoutBackgroundColor" Value="White"/>
+        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="ForegroundColor" Value="{StaticResource Gray950}"/>
+        <Setter Property="TitleColor" Value="{StaticResource Gray950}"/>
+        <Setter Property="DisabledColor" Value="{StaticResource Gray200}"/>
+        <Setter Property="UnselectedColor" Value="{StaticResource Gray200}"/>
+        <Setter Property="NavBarHasShadow" Value="False" />
+        <Setter Property="TabBarBackgroundColor" Value="{StaticResource Gray950}"/>
+        <Setter Property="TabBarForegroundColor" Value="{StaticResource BluePrimary}"/>
+        <Setter Property="TabBarTitleColor" Value="{StaticResource BluePrimary}" />
+        <Setter Property="TabBarUnselectedColor" Value="{StaticResource Gray900}"/>
+        <Setter Property="FlyoutBackground" Value="White"/>
+        <Setter Property="FlyoutBackdrop" Value="#80808080" />
     </Style>
 
     <Style TargetType="NavigationPage">
-        <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
+        <Setter Property="BarBackgroundColor" Value="White"/>
         <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource White}}" />
         <Setter Property="IconColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource White}}" />
     </Style>

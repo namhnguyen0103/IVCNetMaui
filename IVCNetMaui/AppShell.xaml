@@ -8,7 +8,7 @@
     x:DataType="local:AppShell"
     x:Name="shell"
     Title="IVCNetMaui"
-    FlyoutBackdrop="#80808080">
+    >
 
     <MenuItem Text="Logout" Clicked="LogoutMenuItem_Clicked">
         <MenuItem.IconImageSource>

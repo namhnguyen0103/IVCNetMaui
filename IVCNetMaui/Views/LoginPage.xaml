@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:IVCNetMaui.Converters"
              xmlns:viewModel="clr-namespace:IVCNetMaui.ViewModels"
              xmlns:behaviors="clr-namespace:IVCNetMaui.Behaviors"
+             xmlns:sfButton="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
              x:Class="IVCNetMaui.Views.LoginPage"
              x:DataType="viewModel:LoginViewModel"
              Title="Login"
-             Shell.NavBarIsVisible="False">
+             HideSoftInputOnTapped="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <VerticalStackLayout VerticalOptions="Start"
                          Padding="24, 80">
+        <VerticalStackLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="Page_Clicked"/>
+            <SwipeGestureRecognizer Direction="Down, Up" Swiped="Page_Clicked"/>
+        </VerticalStackLayout.GestureRecognizers>
+        
         <Image Source="ivc_logo.png"
                WidthRequest="168"
                Margin="0, 0, 0, 32">
@@ -57,8 +69,15 @@
                Text="{Binding Password, Mode=TwoWay}"/>
         <Label Text="{Binding ErrorMessage}" Style="{StaticResource Body-M}" TextColor="Red" HorizontalTextAlignment="Center" Margin="0, 0, 0, 32"
                />
-        <Button Text="Log in"
-                Command="{Binding LoginCommand}"/>
-        <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+        <sfButton:SfButton Text="Log in" Command="{Binding LoginCommand}" >
+            <sfButton:SfButton.Content>
+                <DataTemplate>
+                    <Grid>
+                        <Label x:Name="Label" Text="Log in" Style="{StaticResource Title-L}" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
+                        <ActivityIndicator x:Name="Indicator" Color="{StaticResource Gray700}" IsRunning="{Binding IsBusy}"/>
+                    </Grid>
+                </DataTemplate>
+            </sfButton:SfButton.Content>
+        </sfButton:SfButton>
     </VerticalStackLayout>
 </ContentPage>

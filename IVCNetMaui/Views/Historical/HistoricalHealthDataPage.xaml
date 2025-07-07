@@ -5,7 +5,7 @@
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Historical"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Historical.HistoricalHealthDataPage"
-             Title="HealthDataPage"
+             Title="Historical"
              Padding="20, 12">
     <ContentPage.Resources>
         <Style TargetType="Label">

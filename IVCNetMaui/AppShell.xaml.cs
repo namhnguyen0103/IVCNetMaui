@@ -30,8 +30,7 @@ namespace IVCNetMaui
 
         private void InitializeAccess()
         {
-            // var webPortalFlag = _globalSetting.Roles[0].WebPortalPermFlags;
-            var webPortalFlag = 5;
+            var webPortalFlag = _globalSetting.Roles[0].WebPortalPermFlags;
 
             // Allow access to Navigation Section
             if ((webPortalFlag & _globalSetting.Flags[100]) != 0)

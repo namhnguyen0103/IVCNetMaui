@@ -5,7 +5,7 @@
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
              x:Class="IVCNetMaui.Views.View.CameraPage"
              x:DataType="viewModels:CameraViewModel"
-             Title="CameraPage">
+             Title="Camera View">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Camera"
                      Command="{Binding AddCommand}"
