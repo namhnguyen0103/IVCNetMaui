@@ -5,17 +5,28 @@
              xmlns:tabView="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             xmlns:converters="clr-namespace:IVCNetMaui.Converters"
              x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
              x:DataType="viewModels:DashboardMainViewModel"
              Title="Dashboard"
              HideSoftInputOnTapped="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DummyConverter x:Key="DummyConverter"></converters:DummyConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     
     <tabView:SfTabView Style="{StaticResource Header}">
         <tabView:SfTabView.Items>
             <tabView:SfTabItem Header="Hub">
                 <tabView:SfTabItem.Content>
                     <ScrollView>
-                        <controls:HeathMonitorSummaryControl NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}" Padding="{StaticResource MainPadding}"/>
+                            <controls:HealthMonitorSummaryControl 
+                                HealthStatus="{Binding HealthStatus}" 
+                                NavigateToSystemCommand="{Binding NavigateToSystemCommand}" 
+                                NavigateToVideoProcessCommand="{Binding NavigateToVideoProcessCommand}"
+                                NavigateToUiProcessCommand="{Binding NavigateToUiProcessCommand}"
+                                Padding="{StaticResource MainPadding}"/>
                     </ScrollView>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>

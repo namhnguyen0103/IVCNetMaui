@@ -9,14 +9,12 @@ public class ApiService : IApiService
 {
     private readonly HttpClient _httpClient;
     private readonly IRequestProvider  _requestProvider;
-    private readonly ICredentialService  _credentialService;
     private readonly GlobalSetting _globalSetting;
 
-    public ApiService(IRequestProvider requestProvider, ICredentialService credentialService, GlobalSetting globalSetting)
+    public ApiService(IRequestProvider requestProvider, GlobalSetting globalSetting)
     {
         _httpClient = new HttpClient();
         _requestProvider = requestProvider;
-        _credentialService = credentialService;
         _globalSetting = globalSetting;
     }
     

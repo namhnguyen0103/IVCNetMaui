@@ -1,15 +1,11 @@
 ﻿using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IVCNetMaui.Services.Api;
 
 namespace IVCNetMaui.ViewModels.Dashboard
 {
+    [QueryProperty(nameof(InitialPage), "InitialPage")]
     public partial class HealthMonitorViewModel(INavigationService navigationService, IApiService apiService) : ViewModelBase(navigationService, apiService)
     {
         [ObservableProperty]
@@ -23,6 +19,9 @@ namespace IVCNetMaui.ViewModels.Dashboard
                 PktQd = "0"
             }
         ];
+        
+        [ObservableProperty]
+        private int _initialPage;
 
         public class Network
         {

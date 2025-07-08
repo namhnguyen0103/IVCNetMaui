@@ -6,8 +6,8 @@ public partial class EventPage : ContentPage
 {
 	public EventPage(EventViewModel vm)
 	{
-		BindingContext = vm;
 		InitializeComponent();
+		BindingContext = vm;
 	}
 
 	protected override void OnAppearing()

@@ -130,7 +130,7 @@
 	  <MauiXaml Update="Controls\EventCardControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\HeathMonitorSummaryControl.xaml">
+	  <MauiXaml Update="Controls\HealthMonitorSummaryControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\MenuCardControl.xaml">

@@ -1,12 +1,6 @@
 ﻿using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using IVCNetMaui.Models.HealthStatus;
 using IVCNetMaui.Services.Api;
 
@@ -20,26 +14,20 @@ namespace IVCNetMaui.ViewModels.Dashboard
             "LVE1", "LVE2", "LVE3", "LVE4"
         ];
 
-        [ObservableProperty] 
-        private HealthStatus _healthStatus = new HealthStatus();
+        [ObservableProperty]
+        private HealthStatus? _healthStatus;
 
         public override async Task InitializeAsync()
         {
             try
             {
                 HealthStatus = await ApiService.GetHealthStatusAsync();
+                _ = GetHealthStatusPeriodically();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception Caught!");
                 Console.WriteLine(e);
             }
-        }
-        
-        [RelayCommand]
-        private Task NavigateToHealthMonitor()
-        {
-            return NavigationService.NavigateToAsync("healthMonitor");
         }
         
         [RelayCommand]
@@ -49,15 +37,36 @@ namespace IVCNetMaui.ViewModels.Dashboard
         }
         
         [RelayCommand]
-        private Task NavigateToProcess()
+        private Task NavigateToVideoProcess()
         {
-            return NavigationService.NavigateToAsync("healthMonitor");
+            return NavigationService.NavigateToAsync("healthMonitor", new ShellNavigationQueryParameters()
+            {
+                { "InitialPage", 1 }
+            });
+        }
+        
+        [RelayCommand]
+        private Task NavigateToUiProcess()
+        {
+            return NavigationService.NavigateToAsync("healthMonitor", new ShellNavigationQueryParameters()
+            {
+                { "InitialPage", 2 }
+            });
         }
 
         [RelayCommand]
         private Task NavigateToEdgeDetail()
         {
             return NavigationService.NavigateToAsync("edgeDetail");
+        }
+
+        private async Task GetHealthStatusPeriodically()
+        {
+            while (true)
+            {
+                await Task.Delay(5000);
+                HealthStatus = await ApiService.GetHealthStatusAsync();
+            }
         }
     }
 }

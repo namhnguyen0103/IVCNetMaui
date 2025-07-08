@@ -2,9 +2,10 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
-             x:Class="IVCNetMaui.Controls.HeathMonitorSummaryControl"
+             xmlns:converters="clr-namespace:IVCNetMaui.Converters"
+             x:Class="IVCNetMaui.Controls.HealthMonitorSummaryControl"
              x:Name="This"
-             x:DataType="controls:HeathMonitorSummaryControl">
+             x:DataType="controls:HealthMonitorSummaryControl">
     <ContentView.Resources>
         <ResourceDictionary>
             <Style TargetType="Grid">
@@ -26,6 +27,9 @@
                 <Setter Property="ColumnSpacing" Value="12"/>
                 <Setter Property="Padding" Value="12, 4, 12, 12"/>
             </Style>
+            
+            <converters:TimeSpanConverter x:Key="TimeSpanConverter"/>
+            <converters:ThousandsFormatConverter x:Key="ThousandsFormatConverter"/>
         </ResourceDictionary>
 
     </ContentView.Resources>
@@ -40,17 +44,17 @@
                           Style="{StaticResource SummaryGrid}">
                         <VerticalStackLayout Style="{StaticResource SummaryStack}">
                             <Label Text="Name" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="2654f7f9c339" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding Name, Source={x:Reference This}, TargetNullValue='N/A', FallbackValue='Unknown'}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
                             <Label Text="CPU Usage" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="6.3 %" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding CpuUsage, Source={x:Reference This}, StringFormat='{0} %', FallbackValue='0'}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Row="1" Style="{StaticResource SummaryStack}">
                             <Label Text="Uptime" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="5 day 0 hr 51 min 16 sec" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding UpTime, Source={x:Reference This}, Converter={StaticResource TimeSpanConverter}}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
                     </Grid>
                 </ControlTemplate>
@@ -58,7 +62,7 @@
         </controls:MenuCardControl>
 
         <!--Video Process Section-->
-        <controls:MenuCardControl Title="Video Process" Command="{Binding NavigateToSystemCommand}">
+        <controls:MenuCardControl Title="Video Process" Command="{Binding NavigateToVideoProcessCommand}">
             <controls:MenuCardControl.BodyContent>
                 <ControlTemplate>
                     <Grid ColumnDefinitions="*, *"
@@ -66,32 +70,32 @@
                           Style="{StaticResource SummaryGrid}">
                         <VerticalStackLayout Style="{StaticResource SummaryStack}">
                             <Label Text="Status" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="Running" Style="{StaticResource SummaryPrimary}" TextColor="#66A80A"/>
+                            <Label Text="{Binding VideoStatus, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}" TextColor="#66A80A"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
                             <Label Text="PID" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="25" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding VideoPid, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1" Grid.Row="1" Style="{StaticResource SummaryStack}">
                             <Label Text="Thread" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="1" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding VideoThreads, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Row="1" Style="{StaticResource SummaryStack}">
                             <Label Text="Handle" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="3" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding VideoHandle, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1" Grid.Row="2" Style="{StaticResource SummaryStack}">
                             <Label Text="CPU Usage" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="3.6 %" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding VideoCpuUsage, Source={x:Reference This}, StringFormat='{0} %'}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Row="2" Style="{StaticResource SummaryStack}">
                             <Label Text="Working RAM" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="5,092 K" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding VideoWorkingRam, Source={x:Reference This}, Converter={StaticResource ThousandsFormatConverter}}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
                     </Grid>
                 </ControlTemplate>
@@ -99,7 +103,7 @@
         </controls:MenuCardControl>
         
         <!--UI Process Section-->
-        <controls:MenuCardControl Title="UI Process" Command="{Binding NavigateToSystemCommand}">
+        <controls:MenuCardControl Title="UI Process" Command="{Binding NavigateToUiProcessCommand}">
             <controls:MenuCardControl.BodyContent>
                 <ControlTemplate>
                     <Grid ColumnDefinitions="*, *"
@@ -107,36 +111,37 @@
                   Style="{StaticResource SummaryGrid}">
                         <VerticalStackLayout Style="{StaticResource SummaryStack}">
                             <Label Text="Status" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="Running" Style="{StaticResource SummaryPrimary}" TextColor="#66A80A"/>
+                            <Label Text="{Binding UiStatus, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}" TextColor="#66A80A"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
                             <Label Text="PID" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="25" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding UiPid, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1" Grid.Row="1" Style="{StaticResource SummaryStack}">
                             <Label Text="Thread" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="1" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding UiThreads, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Row="1" Style="{StaticResource SummaryStack}">
                             <Label Text="Handle" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="3" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding UiHandle, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1" Grid.Row="2" Style="{StaticResource SummaryStack}">
                             <Label Text="CPU Usage" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="3.6 %" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding UiCpuUsage, Source={x:Reference This}, StringFormat='{0} %'}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Row="2" Style="{StaticResource SummaryStack}">
                             <Label Text="Working RAM" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="5,092 K" Style="{StaticResource SummaryPrimary}"/>
+                            <Label Text="{Binding UiWorkingRam, Source={x:Reference This}, Converter={StaticResource ThousandsFormatConverter}}" Style="{StaticResource SummaryPrimary}"/>
                         </VerticalStackLayout>
                     </Grid>
                 </ControlTemplate>
             </controls:MenuCardControl.BodyContent>
         </controls:MenuCardControl>
+        <Label Text="{Binding LastUpdate, StringFormat='Last Update: {0}'}" Style="{StaticResource Label-S}" TextColor="{StaticResource Gray600}"/>
     </VerticalStackLayout>
 </ContentView>

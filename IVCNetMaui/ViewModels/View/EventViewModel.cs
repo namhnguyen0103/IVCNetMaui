@@ -20,6 +20,7 @@ public partial class EventViewModel : ViewModelBase
     }
     public EventViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService, apiService)
 	{
+        
     }
 
     public override async Task InitializeAsync()

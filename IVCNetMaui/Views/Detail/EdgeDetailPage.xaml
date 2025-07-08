@@ -45,7 +45,7 @@
             <!--Health Monitor Tab-->
             <tabView:SfTabItem Header="Health Monitor">
                 <ScrollView>
-                    <controls:HeathMonitorSummaryControl Padding="{StaticResource MainPadding}" NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}"/>
+                    <controls:HealthMonitorSummaryControl Padding="{StaticResource MainPadding}" NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}"/>
                 </ScrollView>
             </tabView:SfTabItem>
 
