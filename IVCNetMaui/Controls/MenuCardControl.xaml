@@ -11,7 +11,7 @@
             <toolkit:TouchBehavior 
                 PressedBackgroundColor="{StaticResource Gray100}"
                 DefaultBackgroundColor="White"
-                />
+                PressedScale="0.99"/>
         </Border.Behaviors>
         <Border.GestureRecognizers>
             <TapGestureRecognizer Command="{Binding Command}"/>

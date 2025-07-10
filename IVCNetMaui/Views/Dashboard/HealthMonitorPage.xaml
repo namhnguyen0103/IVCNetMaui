@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls" 
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              x:Class="IVCNetMaui.Views.Dashboard.HealthMonitorPage"
@@ -25,21 +26,24 @@
         <syncfusion:SfTabView TabBarBackground="White" Style="{StaticResource Header}" SelectedIndex="{Binding InitialPage, Mode=OneWay}">
             <syncfusion:SfTabView.Items>
                 <syncfusion:SfTabItem Header="System">
-                    <!-- <syncfusion:SfTabItem.Content> -->
-                    <!--     <controls:SystemDetailControl SystemStatus="{Binding SystemStatus}"/> -->
-                    <!-- </syncfusion:SfTabItem.Content> -->
+                    <syncfusion:SfTabItem.Content>
+                        <!-- <controls:SystemDetailControl SystemStatus="{Binding SystemStatus}"/> -->
+                        <!-- <toolkit:LazyView x:Name="Lazy" x:TypeArguments="controls:SystemDetailControl"/> -->
+                    </syncfusion:SfTabItem.Content>
                 </syncfusion:SfTabItem>
 
                 <syncfusion:SfTabItem Header="Video Process">
-                    <!-- <syncfusion:SfTabItem.Content> -->
-                    <!--     <controls:ProcessDetailControl ProcessStatus="{Binding VideoProcessStatus}"/> -->
-                    <!-- </syncfusion:SfTabItem.Content> -->
+                    <syncfusion:SfTabItem.Content>
+                        <!-- <controls:ProcessDetailControl ProcessStatus="{Binding VideoProcessStatus}"/> -->
+                        <!-- <toolkit:LazyView x:Name="Lazy2" x:TypeArguments="controls:ProcessDetailControl"/> -->
+                    </syncfusion:SfTabItem.Content>
                 </syncfusion:SfTabItem>
 
                 <syncfusion:SfTabItem Header="UI Process">
-                    <!-- <syncfusion:SfTabItem.Content> -->
-                    <!--     <controls:ProcessDetailControl ProcessStatus="{Binding UiProcessStatus}"/> -->
-                    <!-- </syncfusion:SfTabItem.Content> -->
+                    <syncfusion:SfTabItem.Content>
+                        <!-- <controls:ProcessDetailControl ProcessStatus="{Binding UiProcessStatus}"/> -->
+                        <!-- <toolkit:LazyView x:Name="Lazy3" x:TypeArguments="controls:ProcessDetailControl"/> -->
+                    </syncfusion:SfTabItem.Content>
                 </syncfusion:SfTabItem>
             </syncfusion:SfTabView.Items>
         </syncfusion:SfTabView>

@@ -109,23 +109,23 @@
                 <Label Text="Network" Style="{StaticResource SectionTitle}"/>
                 <Border Style="{StaticResource PropertyBorder}">
                     <Grid>
-                        <material:DataGrid ItemsSource="{Binding Network}" UseAutoColumns="False" >
-                            <material:DataGrid.TitleTemplate>
-                                <DataTemplate x:DataType="material:DataGridColumn">
-                                    <Label Text="{Binding Title}" Style="{StaticResource PropertyPrimaryText}"/>
-                                </DataTemplate>
-                            </material:DataGrid.TitleTemplate>
-                            
-                            <material:DataGrid.CellItemTemplate>
-                                <DataTemplate x:DataType="material:DataGrid">
-                                    <Label Text="{material:DataGridValueBinding}" Style="{StaticResource PropertySecondaryText}"/>
-                                </DataTemplate>
-                            </material:DataGrid.CellItemTemplate>
-
-                            <material:DataGrid.Columns>
-                                <material:DataGridColumn ></material:DataGridColumn>
-                            </material:DataGrid.Columns>
-                        </material:DataGrid>
+                        <!-- <material:DataGrid ItemsSource="{Binding Network}" UseAutoColumns="False" > -->
+                        <!--     <material:DataGrid.TitleTemplate> -->
+                        <!--         <DataTemplate x:DataType="material:DataGridColumn"> -->
+                        <!--             <Label Text="{Binding Title}" Style="{StaticResource PropertyPrimaryText}"/> -->
+                        <!--         </DataTemplate> -->
+                        <!--     </material:DataGrid.TitleTemplate> -->
+                        <!--      -->
+                        <!--     <material:DataGrid.CellItemTemplate> -->
+                        <!--         <DataTemplate x:DataType="material:DataGrid"> -->
+                        <!--             <Label Text="{material:DataGridValueBinding}" Style="{StaticResource PropertySecondaryText}"/> -->
+                        <!--         </DataTemplate> -->
+                        <!--     </material:DataGrid.CellItemTemplate> -->
+                        <!-- -->
+                        <!--     <material:DataGrid.Columns> -->
+                        <!--         <material:DataGridColumn ></material:DataGridColumn> -->
+                        <!--     </material:DataGrid.Columns> -->
+                        <!-- </material:DataGrid> -->
                     </Grid>
                 </Border>
             </VerticalStackLayout>

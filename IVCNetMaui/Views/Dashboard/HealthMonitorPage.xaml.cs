@@ -10,10 +10,9 @@ public partial class HealthMonitorPage : ContentPage
 		InitializeComponent();
 	}
 	
-	protected override void OnAppearing()
+	protected override async void OnAppearing()
 	{
 		base.OnAppearing();
-
 		if (BindingContext is HealthMonitorViewModel vm && vm.InitializeAsyncCommand.CanExecute(null))
 		{
 			vm.InitializeAsyncCommand.Execute(null);
