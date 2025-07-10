@@ -5,52 +5,49 @@
              xmlns:tabView="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
-             xmlns:converters="clr-namespace:IVCNetMaui.Converters"
              x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
              x:DataType="viewModels:DashboardMainViewModel"
              Title="Dashboard"
              HideSoftInputOnTapped="True">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:DummyConverter x:Key="DummyConverter"></converters:DummyConverter>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     
-    <tabView:SfTabView Style="{StaticResource Header}">
-        <tabView:SfTabView.Items>
-            <tabView:SfTabItem Header="Hub">
-                <tabView:SfTabItem.Content>
-                    <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
-                        <ScrollView>
-                        <controls:HealthMonitorSummaryControl 
-                                HealthStatus="{Binding HealthStatus}" 
-                                NavigateToSystemCommand="{Binding NavigateToSystemCommand}" 
-                                NavigateToVideoProcessCommand="{Binding NavigateToVideoProcessCommand}"
-                                NavigateToUiProcessCommand="{Binding NavigateToUiProcessCommand}"
-                                Padding="{StaticResource MainPadding}"/>
-                        </ScrollView>
-                    </RefreshView>
-                </tabView:SfTabItem.Content>
-            </tabView:SfTabItem>
+    <Grid>
+        <tabView:SfTabView Style="{StaticResource Header}">
+            <tabView:SfTabView.Items>
+                <tabView:SfTabItem Header="Hub">
+                    <tabView:SfTabItem.Content>
+                        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+                            <ScrollView>
+                            <controls:HealthMonitorSummaryControl 
+                                    HealthStatus="{Binding HealthStatus}" 
+                                    NavigateToSystemCommand="{Binding NavigateToSystemCommand}" 
+                                    NavigateToVideoProcessCommand="{Binding NavigateToVideoProcessCommand}"
+                                    NavigateToUiProcessCommand="{Binding NavigateToUiProcessCommand}"
+                                    Padding="{StaticResource MainPadding}"/>
+                            </ScrollView>
+                        </RefreshView>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
 
-            <tabView:SfTabItem Header="Edge">
-                <tabView:SfTabItem.Content>
-                    <Grid RowDefinitions="Auto, *">
-                        <SearchBar ios:SearchBar.SearchBarStyle="Minimal" Placeholder="Search"/>
-                        <CollectionView Grid.Row="1" ItemsSource="{Binding List}" BackgroundColor="{StaticResource Gray200}">
-                            <CollectionView.ItemsLayout>
-                                <LinearItemsLayout Orientation="Vertical"
-                                                   ItemSpacing="8" />
-                            </CollectionView.ItemsLayout>
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType='x:String'>
-                                    <controls:EdgeCardControl Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToEdgeDetailCommand}"/>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </Grid>
-                </tabView:SfTabItem.Content>
-            </tabView:SfTabItem>
-        </tabView:SfTabView.Items>
-    </tabView:SfTabView>
+                <tabView:SfTabItem Header="Edge">
+                    <tabView:SfTabItem.Content>
+                        <Grid RowDefinitions="Auto, *">
+                            <SearchBar ios:SearchBar.SearchBarStyle="Minimal" Placeholder="Search"/>
+                            <CollectionView Grid.Row="1" ItemsSource="{Binding List}" BackgroundColor="{StaticResource Gray200}">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Vertical"
+                                                       ItemSpacing="8" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType='x:String'>
+                                        <controls:EdgeCardControl Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToEdgeDetailCommand}"/>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+            </tabView:SfTabView.Items>
+        </tabView:SfTabView>
+        <!-- <ActivityIndicator BackgroundColor="Red" IsRunning="{Binding IsBusy}"/> -->
+    </Grid>
 </ContentPage>

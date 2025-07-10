@@ -6,7 +6,8 @@ using IVCNetMaui.Services.Api;
 
 namespace IVCNetMaui.ViewModels.Dashboard
 {
-    public partial class DashboardMainViewModel(INavigationService navigationService, IApiService apiService) : ViewModelBase(navigationService, apiService)
+    public partial class DashboardMainViewModel(INavigationService navigationService, IApiService apiService)
+        : ViewModelBase(navigationService, apiService)
     {
         [ObservableProperty]
         private ObservableCollection<string> _list =
@@ -24,34 +25,48 @@ namespace IVCNetMaui.ViewModels.Dashboard
         {
             await UpdateHealthStatusAsync();
         }
-        
-        [RelayCommand]
-        private async Task Refresh()
-        {
-            await UpdateHealthStatusAsync();
-            await Task.Delay(500);
-            IsRefreshing = false;
-        }
-        
+
         [RelayCommand]
         private Task NavigateToSystem()
         {
-            return NavigationService.NavigateToAsync("healthMonitor");
+            return IsBusyFor(NavigateToSystemAsync);
         }
         
         [RelayCommand]
         private Task NavigateToVideoProcess()
         {
-            return NavigationService.NavigateToAsync("healthMonitor", new ShellNavigationQueryParameters()
+            return IsBusyFor(NavigateToVideoProcessAsync);
+        }
+        [RelayCommand]
+        private Task NavigateToUiProcess()
+        {
+            return IsBusyFor(NavigateToUiProcessAsync);
+        }
+        
+        [RelayCommand]
+        private async Task Refresh()
+        {
+            await UpdateHealthStatusAsync();
+            IsRefreshing = false;
+        }
+        
+        private async Task NavigateToSystemAsync()
+        {
+            // await Task.Delay(500);
+            await NavigationService.NavigateToAsync("healthMonitor");
+        }
+        
+        private async Task NavigateToVideoProcessAsync()
+        {
+            await NavigationService.NavigateToAsync("healthMonitor", new ShellNavigationQueryParameters()
             {
                 { "InitialPage", 1 }
             });
         }
         
-        [RelayCommand]
-        private Task NavigateToUiProcess()
+        private async Task NavigateToUiProcessAsync()
         {
-            return NavigationService.NavigateToAsync("healthMonitor", new ShellNavigationQueryParameters()
+            await NavigationService.NavigateToAsync("healthMonitor", new ShellNavigationQueryParameters()
             {
                 { "InitialPage", 2 }
             });

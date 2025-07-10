@@ -109,5 +109,6 @@
                 </Grid>
             </Border>
         </VerticalStackLayout>
+        <Label Text="{Binding LastUpdate, StringFormat='Last Update: {0}'}" Style="{StaticResource Label-S}" TextColor="{StaticResource Gray600}"/>
     </VerticalStackLayout>
 </ContentView>

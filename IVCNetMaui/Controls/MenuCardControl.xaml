@@ -7,12 +7,18 @@
              x:Name="This"
              x:DataType="controls:MenuCardControl">
     <Border BindingContext="{x:Reference This}">
+        <Border.Behaviors>
+            <toolkit:TouchBehavior 
+                PressedBackgroundColor="{StaticResource Gray100}"
+                DefaultBackgroundColor="White"
+                />
+        </Border.Behaviors>
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding Command}"/>
+        </Border.GestureRecognizers>
         <VerticalStackLayout>
-            <VerticalStackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding Command}"/>
-            </VerticalStackLayout.GestureRecognizers>
             <Label Text="{Binding Title}" Padding="{StaticResource CardPadding}" Style="{StaticResource Body-L}" BackgroundColor="{StaticResource Gray200}"/>
-            <ContentView Grid.Row="1" ControlTemplate="{Binding BodyContent}"/>
+            <ContentView ControlTemplate="{Binding BodyContent}"/>
         </VerticalStackLayout>
     </Border>
 </ContentView>

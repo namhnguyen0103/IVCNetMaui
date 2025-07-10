@@ -74,7 +74,7 @@
                 <DataTemplate>
                     <Grid>
                         <Label x:Name="Label" Text="Log in" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
-                        <ActivityIndicator x:Name="Indicator" Color="{StaticResource Gray700}" IsRunning="{Binding IsBusy}"/>
+                        <ActivityIndicator Color="{StaticResource Gray700}" IsRunning="{Binding IsBusy}"/>
                     </Grid>
                 </DataTemplate>
             </sfButton:SfButton.Content>

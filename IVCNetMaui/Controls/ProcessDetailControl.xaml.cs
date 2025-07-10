@@ -8,6 +8,7 @@ public partial class ProcessDetailControl : ContentView
 		(bindable, _, _) =>
 		{
 			var control = (ProcessDetailControl)bindable;
+			control.LastUpdate = DateTime.Now;
 			NotifyAllPropertyChanged(control);
 		});
 	public ProcessStatus? ProcessStatus
@@ -34,6 +35,8 @@ public partial class ProcessDetailControl : ContentView
 	}
 	public long RamWorking => ProcessStatus?.RamWorking ?? 0;
 	public long RamPeakWorking => ProcessStatus?.RamPeakWorking ?? 0;
+	
+	public DateTime LastUpdate { get; set; } = DateTime.Now;
 
 	public ProcessDetailControl()
 	{
@@ -50,6 +53,7 @@ public partial class ProcessDetailControl : ContentView
 		control.OnPropertyChanged(nameof(CpuUsage));
 		control.OnPropertyChanged(nameof(RamWorking));
 		control.OnPropertyChanged(nameof(RamPeakWorking));
+		control.OnPropertyChanged(nameof(LastUpdate));
 	}
 	
 	private double CalculateCpuUsage(double used, double total)

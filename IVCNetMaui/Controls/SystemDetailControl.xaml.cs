@@ -9,6 +9,7 @@ public partial class SystemDetailControl : ContentView
 		(bindable, _, _) =>
 		{
 			var control = (SystemDetailControl)bindable;
+			control.LastUpdate = DateTime.Now;
 			NotifyAllPropertyChanged(control);
 		});
 	public SystemStatus? SystemStatus
@@ -42,6 +43,8 @@ public partial class SystemDetailControl : ContentView
 	public List<Disk> Disks => SystemStatus?.Disks ?? [];
 	public List<Models.HealthStatus.Network> Network => SystemStatus?.Network ?? [];
 	
+	public DateTime LastUpdate { get; set; } = DateTime.Now;
+	
 	public SystemDetailControl()
 	{
 		InitializeComponent();
@@ -60,6 +63,7 @@ public partial class SystemDetailControl : ContentView
 		control.OnPropertyChanged(nameof(RamVirtualUsed));
 		control.OnPropertyChanged(nameof(Disks));
 		control.OnPropertyChanged(nameof(Network));
+		control.OnPropertyChanged(nameof(LastUpdate));
 	}
 	private double CalculateCpuUsage(double used, double total)
 	{

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
-             xmlns:details="clr-namespace:IVCNetMaui.Views.Detail"
+             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls" 
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              x:Class="IVCNetMaui.Views.Dashboard.HealthMonitorPage"
@@ -12,33 +12,38 @@
     <Shell.BackButtonBehavior>
         <BackButtonBehavior TextOverride=""/>
     </Shell.BackButtonBehavior>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Download" Command="{Binding RefreshCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Refresh}"  />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
 
     <Grid>
         <syncfusion:SfTabView TabBarBackground="White" Style="{StaticResource Header}" SelectedIndex="{Binding InitialPage, Mode=OneWay}">
             <syncfusion:SfTabView.Items>
                 <syncfusion:SfTabItem Header="System">
-                    <syncfusion:SfTabItem.Content>
-                        <controls:SystemDetailControl SystemStatus="{Binding SystemStatus}"/>
-                    </syncfusion:SfTabItem.Content>
+                    <!-- <syncfusion:SfTabItem.Content> -->
+                    <!--     <controls:SystemDetailControl SystemStatus="{Binding SystemStatus}"/> -->
+                    <!-- </syncfusion:SfTabItem.Content> -->
                 </syncfusion:SfTabItem>
-                <!-- <syncfusion:SfTabItem Header="System"/> -->
 
                 <syncfusion:SfTabItem Header="Video Process">
-                    <syncfusion:SfTabItem.Content>
-                        <controls:ProcessDetailControl ProcessStatus="{Binding VideoProcessStatus}"/>
-                    </syncfusion:SfTabItem.Content>
+                    <!-- <syncfusion:SfTabItem.Content> -->
+                    <!--     <controls:ProcessDetailControl ProcessStatus="{Binding VideoProcessStatus}"/> -->
+                    <!-- </syncfusion:SfTabItem.Content> -->
                 </syncfusion:SfTabItem>
-                <!-- <syncfusion:SfTabItem Header="Video Process"/> -->
 
                 <syncfusion:SfTabItem Header="UI Process">
-                    <syncfusion:SfTabItem.Content>
-                        <controls:ProcessDetailControl ProcessStatus="{Binding UiProcessStatus}"/>
-                    </syncfusion:SfTabItem.Content>
+                    <!-- <syncfusion:SfTabItem.Content> -->
+                    <!--     <controls:ProcessDetailControl ProcessStatus="{Binding UiProcessStatus}"/> -->
+                    <!-- </syncfusion:SfTabItem.Content> -->
                 </syncfusion:SfTabItem>
-                <!-- <syncfusion:SfTabItem Header="UI Process" /> -->
             </syncfusion:SfTabView.Items>
         </syncfusion:SfTabView>
-        <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+        <!-- <ActivityIndicator IsRunning="{Binding IsBusy}" BackgroundColor="#80808080"/> -->
     </Grid>
 
 </ContentPage>

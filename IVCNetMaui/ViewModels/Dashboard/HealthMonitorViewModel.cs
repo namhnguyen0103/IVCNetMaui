@@ -7,7 +7,7 @@ using IVCNetMaui.Services.Api;
 namespace IVCNetMaui.ViewModels.Dashboard
 {
     [QueryProperty(nameof(InitialPage), "InitialPage")]
-    public partial class HealthMonitorViewModel(INavigationService navigationService, IApiService apiService) : ViewModelBase(navigationService, apiService)
+    public partial class HealthMonitorViewModel : ViewModelBase
     {
         [ObservableProperty]
         private int _initialPage;
@@ -21,6 +21,8 @@ namespace IVCNetMaui.ViewModels.Dashboard
         public SystemStatus? SystemStatus => HealthStatus?.SystemStatus;
         public ProcessStatus? VideoProcessStatus => HealthStatus?.VideoProcessStatus;
         public ProcessStatus? UiProcessStatus => HealthStatus?.UiProcessStatus;
+        
+        public AsyncRelayCommand RefreshCommand { get; }
         
         public override async Task InitializeAsync()
         {
@@ -37,6 +39,12 @@ namespace IVCNetMaui.ViewModels.Dashboard
             {
                 Console.WriteLine(e);
             }
+        }
+
+        public HealthMonitorViewModel(INavigationService navigationService, IApiService apiService) : base(
+            navigationService, apiService)
+        {
+            RefreshCommand = new AsyncRelayCommand(async () => await IsBusyFor(UpdateHealthStatusAsync));
         }
         
     }
