@@ -20,14 +20,16 @@
         <tabView:SfTabView.Items>
             <tabView:SfTabItem Header="Hub">
                 <tabView:SfTabItem.Content>
-                    <ScrollView>
-                            <controls:HealthMonitorSummaryControl 
+                    <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+                        <ScrollView>
+                        <controls:HealthMonitorSummaryControl 
                                 HealthStatus="{Binding HealthStatus}" 
                                 NavigateToSystemCommand="{Binding NavigateToSystemCommand}" 
                                 NavigateToVideoProcessCommand="{Binding NavigateToVideoProcessCommand}"
                                 NavigateToUiProcessCommand="{Binding NavigateToUiProcessCommand}"
                                 Padding="{StaticResource MainPadding}"/>
-                    </ScrollView>
+                        </ScrollView>
+                    </RefreshView>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
 

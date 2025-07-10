@@ -9,7 +9,6 @@
     </Style>
     <Style x:Key="SectionTitle" TargetType="Label" BasedOn="{StaticResource Body-L}">
         <Setter Property="TextColor" Value="{StaticResource Gray700}"/>
-        <Setter Property="FontFamily" Value="RobotoRegular" />
     </Style>
     <Style x:Key="PropertyPrimaryText" TargetType="Label" BasedOn="{StaticResource Body-S}">
         <Setter Property="LineBreakMode" Value="WordWrap" />

@@ -3,126 +3,132 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls" 
+             xmlns:converters="clr-namespace:IVCNetMaui.Converters"
+             xmlns:models="clr-namespace:IVCNetMaui.Models.HealthStatus"
              x:Class="IVCNetMaui.Controls.SystemDetailControl"
-             x:DataType="controls:SystemDetailControl">
+             x:DataType="controls:SystemDetailControl"
+             x:Name="This">
     <ContentView.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Styles/DetailPageStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            
+            <converters:TimeSpanConverter x:Key="TimeSpanConverter"/>
         </ResourceDictionary>
     </ContentView.Resources>
     
-    <VerticalStackLayout Spacing="16" Padding="{StaticResource MainPadding}">
-        <VerticalStackLayout Style="{StaticResource SectionStack}">
-            <Label Text="Status" Style="{StaticResource SectionTitle}"/>
-            <Border Style="{StaticResource PropertyBorder}">
-                <Grid ColumnDefinitions="*, *"
-                  RowDefinitions="Auto, Auto"
-                  Style="{StaticResource PropertyGrid}">
-                    <VerticalStackLayout>
-                        <Label Text="Name:" Style="{StaticResource PropertyTertiaryText}"/>
-                        <Label Text="WIN-JQGG2HC608K" Style="{StaticResource PropertyPrimaryText}"/>
-                    </VerticalStackLayout>
-                    <VerticalStackLayout Grid.Column="1">
-                        <Label Text="Started:" Style="{StaticResource PropertyTertiaryText}"/>
-                        <Label Text="6/4/2025 2:38:46 PM" Style="{StaticResource PropertyPrimaryText}"/>
-                    </VerticalStackLayout>
-                    <VerticalStackLayout Grid.Row="1">
-                        <Label Text="OS:" Style="{StaticResource PropertyTertiaryText}"/>
-                        <Label Text="Microsoft Windows NT 10.0.17763.0" Style="{StaticResource PropertyPrimaryText}"/>
-                    </VerticalStackLayout>
-                    <VerticalStackLayout Grid.Column="1" Grid.Row="1">
-                        <Label Text="Uptime:" Style="{StaticResource PropertyTertiaryText}"/>
-                        <Label Text="5 day 22 hr 51 min 56 sec" Style="{StaticResource PropertyPrimaryText}"/>
-                    </VerticalStackLayout>
-                </Grid>
-            </Border>
-        </VerticalStackLayout>
-        <Grid ColumnDefinitions="*, *"
-          ColumnSpacing="12">
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" Padding="{StaticResource MainPadding}" BindingContext="{x:Reference This}">
             <VerticalStackLayout Style="{StaticResource SectionStack}">
-                <Label Text="CPU" Style="{StaticResource SectionTitle}"/>
+                <Label Text="Status" Style="{StaticResource SectionTitle}"/>
                 <Border Style="{StaticResource PropertyBorder}">
                     <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto, Auto"
                       Style="{StaticResource PropertyGrid}">
                         <VerticalStackLayout>
-                            <Label Text="Total:" Style="{StaticResource PropertyTertiaryText}"/>
-                            <Label Text="2" Style="{StaticResource PropertyPrimaryText}"/>
+                            <Label Text="Name:" Style="{StaticResource PropertyTertiaryText}"/>
+                            <Label Text="{Binding Name}" Style="{StaticResource PropertyPrimaryText}"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Grid.Column="1">
-                            <Label Text="Used:" Style="{StaticResource PropertyTertiaryText}"/>
-                            <Label Text="4.2%" Style="{StaticResource PropertyPrimaryText}"/>
+                            <Label Text="Started:" Style="{StaticResource PropertyTertiaryText}"/>
+                            <Label Text="{Binding Started}" Style="{StaticResource PropertyPrimaryText}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Row="1">
+                            <Label Text="OS:" Style="{StaticResource PropertyTertiaryText}"/>
+                            <Label Text="{Binding OsVersion}" Style="{StaticResource PropertyPrimaryText}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Grid.Row="1">
+                            <Label Text="Uptime:" Style="{StaticResource PropertyTertiaryText}"/>
+                            <Label Text="{Binding UpTime, Converter={StaticResource TimeSpanConverter}}" Style="{StaticResource PropertyPrimaryText}"/>
                         </VerticalStackLayout>
                     </Grid>
                 </Border>
             </VerticalStackLayout>
-            <VerticalStackLayout Grid.Column="1" Style="{StaticResource SectionStack}">
-                <Label Text="GPU" Style="{StaticResource SectionTitle}"/>
+            <Grid ColumnDefinitions="*, *"
+              ColumnSpacing="12">
+                <VerticalStackLayout Style="{StaticResource SectionStack}">
+                    <Label Text="CPU" Style="{StaticResource SectionTitle}"/>
+                    <Border Style="{StaticResource PropertyBorder}">
+                        <Grid ColumnDefinitions="*, *"
+                          Style="{StaticResource PropertyGrid}">
+                            <VerticalStackLayout>
+                                <Label Text="Total:" Style="{StaticResource PropertyTertiaryText}"/>
+                                <Label Text="{Binding CpuTotal}" Style="{StaticResource PropertyPrimaryText}"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label Text="Used:" Style="{StaticResource PropertyTertiaryText}"/>
+                                <Label Text="{Binding CpuUsage, StringFormat='{0}%', FallbackValue='0'}" Style="{StaticResource PropertyPrimaryText}"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Style="{StaticResource SectionStack}">
+                    <Label Text="GPU" Style="{StaticResource SectionTitle}"/>
+                    <Border Style="{StaticResource PropertyBorder}">
+                        <Grid ColumnDefinitions="*, *"
+                          Style="{StaticResource PropertyGrid}">
+                            <VerticalStackLayout>
+                                <Label Text="Total:" Style="{StaticResource PropertyTertiaryText}"/>
+                                <Label Text="N/A" Style="{StaticResource PropertyPrimaryText}"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label Text="Used:" Style="{StaticResource PropertyTertiaryText}"/>
+                                <Label Text="N/A" Style="{StaticResource PropertyPrimaryText}"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </Grid>
+            <VerticalStackLayout Style="{StaticResource SectionStack}">
+                <Label Text="RAM" Style="{StaticResource SectionTitle}"/>
                 <Border Style="{StaticResource PropertyBorder}">
-                    <Grid ColumnDefinitions="*, *"
-                      Style="{StaticResource PropertyGrid}">
-                        <VerticalStackLayout>
-                            <Label Text="Total:" Style="{StaticResource PropertyTertiaryText}"/>
-                            <Label Text="2" Style="{StaticResource PropertyPrimaryText}"/>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout Grid.Column="1">
-                            <Label Text="Used:" Style="{StaticResource PropertyTertiaryText}"/>
-                            <Label Text="4.2%" Style="{StaticResource PropertyPrimaryText}"/>
-                        </VerticalStackLayout>
-                    </Grid>
+                    <VerticalStackLayout Spacing="12">
+                        <controls:UsageBarControl DiskName="Physical" Total="{Binding RamPhysicalTotal}" Usage="{Binding RamPhysicalUsed}"/>
+                        <controls:UsageBarControl DiskName="Virtual" Total="{Binding RamVirtualTotal}" Usage="{Binding RamVirtualUsed}" />
+                    </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>
-        </Grid>
-        <VerticalStackLayout Style="{StaticResource SectionStack}">
-            <Label Text="RAM" Style="{StaticResource SectionTitle}"/>
-            <Border Style="{StaticResource PropertyBorder}">
-                <VerticalStackLayout Spacing="12">
-                    <controls:UsageBarControl DiskName="Physical"
-                          DiskCapacity="6.0"
-                          DiskUsage="3.6"/>
-                    <controls:UsageBarControl DiskName="Virtual"
-                          DiskCapacity="6.0"
-                          DiskUsage="3.6"/>
-                </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
-        <VerticalStackLayout Style="{StaticResource SectionStack}">
-            <Label Text="Disks" Style="{StaticResource SectionTitle}"/>
-            <Border Style="{StaticResource PropertyBorder}">
-                <VerticalStackLayout>
-                    <controls:UsageBarControl DiskName="C:"
-                          DiskCapacity="6.0"
-                          DiskUsage="3.6"/>
-                </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
-        <VerticalStackLayout>
-            <Label Text="Network" Style="{StaticResource SectionTitle}"/>
-            <Border Style="{StaticResource PropertyBorder}">
-                <Grid>
-                    <material:DataGrid ItemsSource="{Binding Networks}">
-                        <material:DataGrid.TitleTemplate>
-                            <DataTemplate x:DataType="material:DataGridColumn">
-                                <Label Text="{Binding Title}" Style="{StaticResource PropertyPrimaryText}"/>
+            <VerticalStackLayout Style="{StaticResource SectionStack}">
+                <Label Text="Disks" Style="{StaticResource SectionTitle}"/>
+                <Border Style="{StaticResource PropertyBorder}">
+                    <CollectionView ItemsSource="{Binding Disks}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical"
+                                               ItemSpacing="12" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Disk">
+                                <controls:UsageBarControl DiskName="{Binding DiskName}" Total="{Binding Total}" Usage="{Binding Used}"/>
                             </DataTemplate>
-                        </material:DataGrid.TitleTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>   
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="Network" Style="{StaticResource SectionTitle}"/>
+                <Border Style="{StaticResource PropertyBorder}">
+                    <Grid>
+                        <material:DataGrid ItemsSource="{Binding Network}" UseAutoColumns="False" >
+                            <material:DataGrid.TitleTemplate>
+                                <DataTemplate x:DataType="material:DataGridColumn">
+                                    <Label Text="{Binding Title}" Style="{StaticResource PropertyPrimaryText}"/>
+                                </DataTemplate>
+                            </material:DataGrid.TitleTemplate>
+                            
+                            <material:DataGrid.CellItemTemplate>
+                                <DataTemplate x:DataType="material:DataGrid">
+                                    <Label Text="{material:DataGridValueBinding}" Style="{StaticResource PropertySecondaryText}"/>
+                                </DataTemplate>
+                            </material:DataGrid.CellItemTemplate>
 
-                        <material:DataGrid.CellItemTemplate>
-                            <DataTemplate x:DataType="material:DataGrid">
-                                <Label Text="{material:DataGridValueBinding}" Style="{StaticResource PropertySecondaryText}"/>
-                            </DataTemplate>
-                        </material:DataGrid.CellItemTemplate>
-                        <material:DataGrid.Columns>
-                            <material:DataGridColumn ValueBinding="{Binding Name}" Title="Name" Width="*"/>
-                            <material:DataGridColumn ValueBinding="{Binding NIT}" Title="NIT" Width="40"/>
-                            <material:DataGridColumn ValueBinding="{Binding Send}" Title="Send" Width="*"/>
-                            <material:DataGridColumn ValueBinding="{Binding Receive}" Title="Receive" Width="*"/>
-                            <material:DataGridColumn ValueBinding="{Binding PktQd}" Title="PktQd" Width="40"/>
-                        </material:DataGrid.Columns>
-                    </material:DataGrid>
-                </Grid>
-            </Border>
+                            <material:DataGrid.Columns>
+                                <material:DataGridColumn ></material:DataGridColumn>
+                            </material:DataGrid.Columns>
+                        </material:DataGrid>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
         </VerticalStackLayout>
-    </VerticalStackLayout>
+    </ScrollView>
 </ContentView>

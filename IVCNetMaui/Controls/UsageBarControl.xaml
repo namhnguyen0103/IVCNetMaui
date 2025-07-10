@@ -3,17 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:progressBar="clr-namespace:Syncfusion.Maui.Toolkit.ProgressBar;assembly=Syncfusion.Maui.Toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             xmlns:converters="clr-namespace:IVCNetMaui.Converters"
              x:Class="IVCNetMaui.Controls.UsageBarControl"
              x:Name="This"
              x:DataType="controls:UsageBarControl">
-    <VerticalStackLayout BindingContext="{x:Reference This}" Spacing="4">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:ThousandsFormatConverter x:Key="ThousandsFormatConverter"/>
+            <converters:DummyConverter x:Key="DummyConverter"></converters:DummyConverter>
+            
+            <Style TargetType="Span">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="TextColor" Value="{StaticResource Gray700}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout BindingContext="{x:Reference This}" Spacing="8">
         <Grid ColumnDefinitions="*, Auto">
-            <Label Text="{Binding DiskName}" FontSize="14"/>
-            <Label Text="3.0 GB free of 6.0 GB"
-                   Grid.Column="1"
-                   FontSize="12"
-                   TextColor="{StaticResource Gray700}"/>
+            <Label Text="{Binding DiskName}" FontSize="12"/>
+            <Label Grid.Column="1">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Free, Converter={StaticResource ThousandsFormatConverter}}"/>
+                        <Span Text=" free of "/>
+                        <Span Text="{Binding Total, Converter={StaticResource ThousandsFormatConverter}}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </Grid>
-        <progressBar:SfLinearProgressBar AnimationDuration="0" Progress="50" TrackHeight="14" ProgressHeight="14" TrackCornerRadius="4" ProgressCornerRadius="4" TrackFill="{StaticResource BlueExtraLight}" ProgressFill="{StaticResource BluePrimary}"/>
+        <progressBar:SfLinearProgressBar AnimationDuration="0" Progress="{Binding Progress}" TrackHeight="6" ProgressHeight="6" TrackCornerRadius="4" ProgressCornerRadius="3" TrackFill="{StaticResource BlueExtraLight}" ProgressFill="{StaticResource BlueMedium}"/>
     </VerticalStackLayout>
 </ContentView>

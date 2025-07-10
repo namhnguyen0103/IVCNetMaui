@@ -13,13 +13,13 @@
     <Color x:Key="SecondaryDarkText">#53A5FF</Color>
     <Color x:Key="Tertiary">#043871</Color>
 
-    <Color x:Key="BlueExtraLight">#E3F0FF</Color>
-    <Color x:Key="BlueLight">#9ACAFF</Color>
+    <Color x:Key="BlueExtraLight">#E0F5FF</Color>
+    <Color x:Key="BlueLight">#B2DEFF</Color>
     <Color x:Key="BlueMedium">#53A5FF</Color>
     <Color x:Key="BluePrimary">#0868D2</Color>
     <Color x:Key="BlueDark">#0552A8</Color>
-    <Color x:Key="BlueExtraDark">#043871</Color>
-    <Color x:Key="BlueBlack">#002752</Color>
+    <Color x:Key="BlueExtraDark">#033D7C</Color>
+    <Color x:Key="BlueBlack">#003066</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>

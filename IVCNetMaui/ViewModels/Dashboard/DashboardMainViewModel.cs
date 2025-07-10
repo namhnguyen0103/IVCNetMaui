@@ -17,23 +17,20 @@ namespace IVCNetMaui.ViewModels.Dashboard
         [ObservableProperty]
         private HealthStatus? _healthStatus;
 
+        [ObservableProperty] 
+        private bool _isRefreshing;
+
         public override async Task InitializeAsync()
         {
-            try
-            {
-                HealthStatus = await ApiService.GetHealthStatusAsync();
-                _ = GetHealthStatusPeriodically();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            await UpdateHealthStatusAsync();
         }
         
         [RelayCommand]
-        private Task NavigateToSystem()
+        private async Task Refresh()
         {
-            return NavigationService.NavigateToAsync("healthMonitor");
+            await UpdateHealthStatusAsync();
+            await Task.Delay(500);
+            IsRefreshing = false;
         }
         
         [RelayCommand]
@@ -60,12 +57,15 @@ namespace IVCNetMaui.ViewModels.Dashboard
             return NavigationService.NavigateToAsync("edgeDetail");
         }
 
-        private async Task GetHealthStatusPeriodically()
+        private async Task UpdateHealthStatusAsync()
         {
-            while (true)
+            try
             {
-                await Task.Delay(5000);
                 HealthStatus = await ApiService.GetHealthStatusAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
     }

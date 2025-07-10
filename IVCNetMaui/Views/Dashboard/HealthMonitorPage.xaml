@@ -16,13 +16,25 @@
     <Grid>
         <syncfusion:SfTabView TabBarBackground="White" Style="{StaticResource Header}" SelectedIndex="{Binding InitialPage, Mode=OneWay}">
             <syncfusion:SfTabView.Items>
-                <syncfusion:SfTabItem Header="System" Content="{controls:SystemDetailControl}"/>
+                <syncfusion:SfTabItem Header="System">
+                    <syncfusion:SfTabItem.Content>
+                        <controls:SystemDetailControl SystemStatus="{Binding SystemStatus}"/>
+                    </syncfusion:SfTabItem.Content>
+                </syncfusion:SfTabItem>
                 <!-- <syncfusion:SfTabItem Header="System"/> -->
 
-                <syncfusion:SfTabItem Header="Video Process" Content="{controls:ProcessDetailControl}"/>
+                <syncfusion:SfTabItem Header="Video Process">
+                    <syncfusion:SfTabItem.Content>
+                        <controls:ProcessDetailControl ProcessStatus="{Binding VideoProcessStatus}"/>
+                    </syncfusion:SfTabItem.Content>
+                </syncfusion:SfTabItem>
                 <!-- <syncfusion:SfTabItem Header="Video Process"/> -->
 
-                <syncfusion:SfTabItem Header="UI Process" Content="{controls:ProcessDetailControl}"/>
+                <syncfusion:SfTabItem Header="UI Process">
+                    <syncfusion:SfTabItem.Content>
+                        <controls:ProcessDetailControl ProcessStatus="{Binding UiProcessStatus}"/>
+                    </syncfusion:SfTabItem.Content>
+                </syncfusion:SfTabItem>
                 <!-- <syncfusion:SfTabItem Header="UI Process" /> -->
             </syncfusion:SfTabView.Items>
         </syncfusion:SfTabView>

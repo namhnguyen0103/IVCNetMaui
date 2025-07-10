@@ -1,6 +1,7 @@
 ﻿using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
 using System.Collections.ObjectModel;
+using IVCNetMaui.Models.HealthStatus;
 using IVCNetMaui.Services.Api;
 
 namespace IVCNetMaui.ViewModels.Dashboard
@@ -9,27 +10,34 @@ namespace IVCNetMaui.ViewModels.Dashboard
     public partial class HealthMonitorViewModel(INavigationService navigationService, IApiService apiService) : ViewModelBase(navigationService, apiService)
     {
         [ObservableProperty]
-        private ObservableCollection<Network> _networks =
-        [
-            new() {
-                Name = "eth0",
-                NIT = "6",
-                Send = "10.54 Kbps",
-                Receive = "23.76 Kbps",
-                PktQd = "0"
-            }
-        ];
+        private int _initialPage;
         
         [ObservableProperty]
-        private int _initialPage;
-
-        public class Network
+        [NotifyPropertyChangedFor(nameof(SystemStatus))]
+        [NotifyPropertyChangedFor(nameof(VideoProcessStatus))]
+        [NotifyPropertyChangedFor(nameof(UiProcessStatus))]
+        private HealthStatus? _healthStatus;
+        
+        public SystemStatus? SystemStatus => HealthStatus?.SystemStatus;
+        public ProcessStatus? VideoProcessStatus => HealthStatus?.VideoProcessStatus;
+        public ProcessStatus? UiProcessStatus => HealthStatus?.UiProcessStatus;
+        
+        public override async Task InitializeAsync()
         {
-            public string Name { get; set; } = string.Empty;
-            public string NIT { get; set; } = string.Empty;
-            public string Send { get; set; } = string.Empty;
-            public string Receive { get; set; } = string.Empty;
-            public string PktQd { get; set; } = string.Empty;
+            await UpdateHealthStatusAsync();
         }
+        
+        private async Task UpdateHealthStatusAsync()
+        {
+            try
+            {
+                HealthStatus = await ApiService.GetHealthStatusAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+        
     }
 }
