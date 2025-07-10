@@ -34,6 +34,12 @@ namespace IVCNetMaui.ViewModels.Dashboard
         }
         
         [RelayCommand]
+        private Task NavigateToSystem()
+        {
+            return NavigationService.NavigateToAsync("healthMonitor");
+        }
+        
+        [RelayCommand]
         private Task NavigateToVideoProcess()
         {
             return NavigationService.NavigateToAsync("healthMonitor", new ShellNavigationQueryParameters()
