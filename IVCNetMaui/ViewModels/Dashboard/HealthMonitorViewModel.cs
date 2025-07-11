@@ -9,6 +9,8 @@ namespace IVCNetMaui.ViewModels.Dashboard
     [QueryProperty(nameof(InitialPage), "InitialPage")]
     public partial class HealthMonitorViewModel : ViewModelBase
     {
+        public event Func<Task>? RequestLazyViewLoad;
+        
         [ObservableProperty]
         private int _initialPage;
         
@@ -33,6 +35,7 @@ namespace IVCNetMaui.ViewModels.Dashboard
         {
             try
             {
+                await Task.Delay(1000);
                 HealthStatus = await ApiService.GetHealthStatusAsync();
             }
             catch (Exception e)

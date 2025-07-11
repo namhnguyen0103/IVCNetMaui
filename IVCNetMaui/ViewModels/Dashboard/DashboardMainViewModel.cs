@@ -9,6 +9,7 @@ namespace IVCNetMaui.ViewModels.Dashboard
     public partial class DashboardMainViewModel(INavigationService navigationService, IApiService apiService)
         : ViewModelBase(navigationService, apiService)
     {
+        
         [ObservableProperty]
         private ObservableCollection<string> _list =
         [

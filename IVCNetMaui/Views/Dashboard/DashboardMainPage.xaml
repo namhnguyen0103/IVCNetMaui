@@ -9,9 +9,8 @@
              x:DataType="viewModels:DashboardMainViewModel"
              Title="Dashboard"
              HideSoftInputOnTapped="True">
-    
-    <Grid>
-        <tabView:SfTabView Style="{StaticResource Header}">
+
+        <tabView:SfTabView Style="{StaticResource Header}" EnableVirtualization="True">
             <tabView:SfTabView.Items>
                 <tabView:SfTabItem Header="Hub">
                     <tabView:SfTabItem.Content>
@@ -48,6 +47,4 @@
                 </tabView:SfTabItem>
             </tabView:SfTabView.Items>
         </tabView:SfTabView>
-        <!-- <ActivityIndicator BackgroundColor="Red" IsRunning="{Binding IsBusy}"/> -->
-    </Grid>
 </ContentPage>
