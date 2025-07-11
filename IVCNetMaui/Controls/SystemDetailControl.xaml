@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls" 
              xmlns:converters="clr-namespace:IVCNetMaui.Converters"
              xmlns:models="clr-namespace:IVCNetMaui.Models.HealthStatus"
@@ -15,6 +14,7 @@
             </ResourceDictionary.MergedDictionaries>
             
             <converters:TimeSpanConverter x:Key="TimeSpanConverter"/>
+            <converters:ThousandsFormatConverter x:Key="ThousandsFormatConverter"/>
         </ResourceDictionary>
     </ContentView.Resources>
     
@@ -108,25 +108,28 @@
             <VerticalStackLayout>
                 <Label Text="Network" Style="{StaticResource SectionTitle}"/>
                 <Border Style="{StaticResource PropertyBorder}">
-                    <Grid>
-                        <!-- <material:DataGrid ItemsSource="{Binding Network}" UseAutoColumns="False" > -->
-                        <!--     <material:DataGrid.TitleTemplate> -->
-                        <!--         <DataTemplate x:DataType="material:DataGridColumn"> -->
-                        <!--             <Label Text="{Binding Title}" Style="{StaticResource PropertyPrimaryText}"/> -->
-                        <!--         </DataTemplate> -->
-                        <!--     </material:DataGrid.TitleTemplate> -->
-                        <!--      -->
-                        <!--     <material:DataGrid.CellItemTemplate> -->
-                        <!--         <DataTemplate x:DataType="material:DataGrid"> -->
-                        <!--             <Label Text="{material:DataGridValueBinding}" Style="{StaticResource PropertySecondaryText}"/> -->
-                        <!--         </DataTemplate> -->
-                        <!--     </material:DataGrid.CellItemTemplate> -->
-                        <!-- -->
-                        <!--     <material:DataGrid.Columns> -->
-                        <!--         <material:DataGridColumn ></material:DataGridColumn> -->
-                        <!--     </material:DataGrid.Columns> -->
-                        <!-- </material:DataGrid> -->
-                    </Grid>
+                    <VerticalStackLayout Spacing="12">
+                        <Grid ColumnDefinitions="*, 40, *, *, 40">
+                            <Label Text="Name" Style="{StaticResource PropertySecondaryText}"/>
+                            <Label Grid.Column="1" Text="NIT" Style="{StaticResource PropertySecondaryText}" />
+                            <Label Grid.Column="2" Text="Send" Style="{StaticResource PropertySecondaryText}" />
+                            <Label Grid.Column="3" Text="Receive" Style="{StaticResource PropertySecondaryText}" />
+                            <Label Grid.Column="4" Text="PktQd" Style="{StaticResource PropertySecondaryText}" />
+                        </Grid>
+                        <CollectionView ItemsSource="{Binding Network}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:Network">
+                                    <Grid ColumnDefinitions="*, 40, *, *, 40">
+                                        <Label Text="{Binding Name}" Style="{StaticResource PropertyPrimaryText}" />
+                                        <Label Grid.Column="1" Text="{Binding NetworkInterfaceType}" Style="{StaticResource PropertyPrimaryText}" />
+                                        <Label Grid.Column="2" Text="{Binding BytesSendPerSecond,  Converter={StaticResource ThousandsFormatConverter}, ConverterParameter='BitsPerSecond'}" Style="{StaticResource PropertyPrimaryText}" />
+                                        <Label Grid.Column="3" Text="{Binding BytesReceivePerSecond, Converter={StaticResource ThousandsFormatConverter}, ConverterParameter='BitsPerSecond'}" Style="{StaticResource PropertyPrimaryText}" />
+                                        <Label Grid.Column="4" Text="{Binding PacketsQueued}" Style="{StaticResource PropertyPrimaryText}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>
             <Label Text="{Binding LastUpdate, StringFormat='Last Update: {0}'}" Style="{StaticResource Label-S}" TextColor="{StaticResource Gray600}"/>

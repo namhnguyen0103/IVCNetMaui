@@ -27,21 +27,21 @@
             <syncfusion:SfTabView.Items>
                 <syncfusion:SfTabItem Header="System">
                     <syncfusion:SfTabItem.Content>
-                        <!-- <controls:SystemDetailControl SystemStatus="{Binding SystemStatus}"/> -->
+                        <controls:SystemDetailControl SystemStatus="{Binding SystemStatus}"/>
                         <!-- <toolkit:LazyView x:Name="Lazy" x:TypeArguments="controls:SystemDetailControl"/> -->
                     </syncfusion:SfTabItem.Content>
                 </syncfusion:SfTabItem>
 
                 <syncfusion:SfTabItem Header="Video Process">
                     <syncfusion:SfTabItem.Content>
-                        <!-- <controls:ProcessDetailControl ProcessStatus="{Binding VideoProcessStatus}"/> -->
+                        <controls:ProcessDetailControl ProcessStatus="{Binding VideoProcessStatus}"/>
                         <!-- <toolkit:LazyView x:Name="Lazy2" x:TypeArguments="controls:ProcessDetailControl"/> -->
                     </syncfusion:SfTabItem.Content>
                 </syncfusion:SfTabItem>
 
                 <syncfusion:SfTabItem Header="UI Process">
                     <syncfusion:SfTabItem.Content>
-                        <!-- <controls:ProcessDetailControl ProcessStatus="{Binding UiProcessStatus}"/> -->
+                        <controls:ProcessDetailControl ProcessStatus="{Binding UiProcessStatus}"/>
                         <!-- <toolkit:LazyView x:Name="Lazy3" x:TypeArguments="controls:ProcessDetailControl"/> -->
                     </syncfusion:SfTabItem.Content>
                 </syncfusion:SfTabItem>

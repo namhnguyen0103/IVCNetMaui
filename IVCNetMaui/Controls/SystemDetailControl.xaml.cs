@@ -34,15 +34,12 @@ public partial class SystemDetailControl : ContentView
 			return 0;
 		}
 	}
-	
 	public long RamPhysicalTotal => SystemStatus?.RamPhysicalTotal ?? 0;
 	public long RamPhysicalUsed => SystemStatus?.RamPhysicalUsed ?? 0;
 	public long RamVirtualTotal => SystemStatus?.RamVirtualTotal ?? 0;
 	public long RamVirtualUsed => SystemStatus?.RamVirtualUsed ?? 0;
-	
 	public List<Disk> Disks => SystemStatus?.Disks ?? [];
 	public List<Models.HealthStatus.Network> Network => SystemStatus?.Network ?? [];
-	
 	public DateTime LastUpdate { get; set; } = DateTime.Now;
 	
 	public SystemDetailControl()
