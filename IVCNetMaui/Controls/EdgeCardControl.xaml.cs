@@ -1,6 +1,7 @@
     using CommunityToolkit.Mvvm.Input;
+    using IVCNetMaui.Models;
 
-namespace IVCNetMaui.Controls;
+    namespace IVCNetMaui.Controls;
 
 public partial class EdgeCardControl : ContentView
 {
@@ -13,7 +14,16 @@ public partial class EdgeCardControl : ContentView
         get => (AsyncRelayCommand)GetValue(CommandProperty);
         set => SetValue(CommandProperty, value);
     }
+    
+    public static readonly BindableProperty UnitProperty =
+        BindableProperty.Create(nameof(Unit), typeof(VaEdgeUnit), typeof(EdgeCardControl));
 
+    public VaEdgeUnit Unit
+    {
+        get => (VaEdgeUnit)GetValue(UnitProperty);
+        set => SetValue(UnitProperty, value);
+    }
+    
     public EdgeCardControl()
 	{
 		InitializeComponent();

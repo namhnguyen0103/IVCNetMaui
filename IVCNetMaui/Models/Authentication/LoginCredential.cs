@@ -1,4 +1,4 @@
-namespace IVCNetMaui.Models;
+namespace IVCNetMaui.Models.Authentication;
 
 public class LoginCredential
 {

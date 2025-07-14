@@ -1,4 +1,5 @@
 using IVCNetMaui.Models;
+using IVCNetMaui.Models.Authentication;
 using IVCNetMaui.Models.HealthStatus;
 using IVCNetMaui.Services.Credential;
 using IVCNetMaui.Services.RequestProvider;
@@ -93,6 +94,22 @@ public class ApiService : IApiService
                 await _requestProvider.GetAsync<HealthStatus>(
                     $"{_globalSetting.BaseApiEndpoint}/health/status?appname");
             Console.WriteLine("ApiService Health Status Retrieved!");
+            Console.WriteLine("Response : {0}", response);
+            return response;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<List<VaEdgeUnit>> GetVaEdgeUnitsAsync()
+    {
+        try
+        {
+            var response = await _requestProvider.GetAsync<List<VaEdgeUnit>>($"{_globalSetting.BaseApiEndpoint}/vaedgeunit");
+            Console.WriteLine("ApiService VaEdge Retrieved!");
             Console.WriteLine("Response : {0}", response);
             return response;
         }

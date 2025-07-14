@@ -1,4 +1,5 @@
 using IVCNetMaui.Models;
+using IVCNetMaui.Models.Authentication;
 
 namespace IVCNetMaui.Services.Authentication;
 

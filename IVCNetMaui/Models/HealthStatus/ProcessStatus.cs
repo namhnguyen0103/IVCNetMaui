@@ -2,9 +2,9 @@ namespace IVCNetMaui.Models.HealthStatus;
 
 public class ProcessStatus
 {
-    public string ApplicationName { get; set; } = string.Empty;
-    public string State { get; set; } = string.Empty;
-    public string Error { get; set; } = string.Empty;
+    public string? ApplicationName { get; set; }
+    public string? State { get; set; } 
+    public string? Error { get; set; } 
     public int Pid { get; set; }
     public DateTime LastExitTime { get; set; }
     public int LastExitCode { get; set; } = -1;

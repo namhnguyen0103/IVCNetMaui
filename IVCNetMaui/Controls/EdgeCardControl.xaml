@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.EdgeCardControl"
              x:Name="This"
@@ -11,7 +12,9 @@
                 <Setter Property="Padding" Value="8"/>
             </Style>
 
-            <Style TargetType="Label" BasedOn="{StaticResource Body-S}"/>
+            <Style TargetType="Label" BasedOn="{StaticResource Body-S}">
+                <Setter Property="TextColor" Value="{StaticResource Gray950}"/>
+            </Style>
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -25,9 +28,13 @@
             <Grid.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding Command}" />
             </Grid.GestureRecognizers>
+            <Grid.Behaviors>
+                <toolkit:TouchBehavior PressedBackgroundColor="{StaticResource Gray300}"
+                                       DefaultBackgroundColor="White"/>
+            </Grid.Behaviors>
             <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8" Grid.ColumnSpan="3">
-                <Label Text="Moxa 1200" Style="{StaticResource Title-L}" MaxLines="1" LineBreakMode="TailTruncation"/>
-                <Label Grid.Column="1" Text="#2" Style="{StaticResource Title-L}" TextColor="{StaticResource Gray700}"/>
+                <Label Text="{Binding Unit.Name, TargetNullValue='Unknown', FallbackValue='Unknown'}" Style="{StaticResource Title-L}" MaxLines="1" LineBreakMode="TailTruncation"/>
+                <Label Grid.Column="1" Text="{Binding Unit.Id, StringFormat='#{0}', FallbackValue='-1'}" Style="{StaticResource Title-L}" TextColor="{StaticResource Gray700}"/>
             </Grid>   
        
             <Border Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource PropertyBorder}">

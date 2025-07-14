@@ -1,4 +1,5 @@
 using IVCNetMaui.Models;
+using IVCNetMaui.Models.Authentication;
 using IVCNetMaui.Services.Api;
 using IVCNetMaui.Services.Authentication;
 using IVCNetMaui.Services.Navigation;

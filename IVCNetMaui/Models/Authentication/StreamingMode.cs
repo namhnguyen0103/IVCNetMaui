@@ -1,4 +1,4 @@
-namespace IVCNetMaui.Models;
+namespace IVCNetMaui.Models.Authentication;
 
 public class StreamingMode
 {
@@ -10,6 +10,6 @@ public class StreamingMode
 
 public class StreamingModes
 {
-    public required StreamingMode Live { get; set; }
-    public required StreamingMode Guard { get; set; }
+    public StreamingMode? Live { get; set; }
+    public StreamingMode? Guard { get; set; }
 }

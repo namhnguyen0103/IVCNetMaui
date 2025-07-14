@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:tabView="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
-             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
              x:Class="IVCNetMaui.Views.Detail.EdgeDetailPage"
@@ -32,7 +31,15 @@
 
             <DataTemplate x:Key="IoTCard" x:DataType="x:String">
                 <Grid ColumnDefinitions="*, 80" ColumnSpacing="8" Padding="12, 12">
-                    <Label Text="DC Cam1 Thermal  #ID" Style="{StaticResource Body-M}" VerticalTextAlignment="Center"/>
+                    <Label Style="{StaticResource Body-M}" VerticalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="DC Cam1 Thermal" />
+                                <Span Text="  " />
+                                <Span Text="#ID" TextColor="{StaticResource Gray700}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                     <Border Grid.Column="1" StrokeShape="RoundRectangle 20"  HeightRequest="24">
                         <Label Text="Unknown" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
                     </Border>
@@ -56,7 +63,7 @@
                         <controls:AccordionControl.BodyContent>
                             <ControlTemplate>
                                 <CollectionView ItemTemplate="{StaticResource IoTCard}" 
-                                                        ItemsSource="{Binding x:DataType='viewModels:EdgeDetailViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=Cameras}"/>
+                                                ItemsSource="{Binding x:DataType='viewModels:EdgeDetailViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=Cameras}"/>
                             </ControlTemplate>
                         </controls:AccordionControl.BodyContent>
                     </controls:AccordionControl>
@@ -73,7 +80,7 @@
                         <controls:AccordionControl.BodyContent>
                             <ControlTemplate>
                                 <CollectionView ItemTemplate="{StaticResource IoTCard}" 
-                                                        ItemsSource="{Binding x:DataType='viewModels:EdgeDetailViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=Cameras}"/>
+                                                ItemsSource="{Binding x:DataType='viewModels:EdgeDetailViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=Cameras}"/>
                             </ControlTemplate>
                         </controls:AccordionControl.BodyContent>
                     </controls:AccordionControl>
@@ -90,7 +97,7 @@
                         <controls:AccordionControl.BodyContent>
                             <ControlTemplate>
                                 <CollectionView ItemTemplate="{StaticResource IoTCard}" 
-                                                        ItemsSource="{Binding x:DataType='viewModels:EdgeDetailViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=Cameras}"/>
+                                                ItemsSource="{Binding x:DataType='viewModels:EdgeDetailViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=Cameras}"/>
                             </ControlTemplate>
                         </controls:AccordionControl.BodyContent>
                     </controls:AccordionControl>

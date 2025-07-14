@@ -1,3 +1,5 @@
+using IVCNetMaui.Models.Authentication;
+
 namespace IVCNetMaui.Models;
 
 public class Unit
@@ -6,6 +8,6 @@ public class Unit
     public string Name { get; set; } = string.Empty;
     public bool IsValid { get; set; }
     public bool IsEnabled { get; set; }
-    public List<Feed> Feeds { get; set; } = new List<Feed>();
-    public StreamingModes StreamingModes { get; set; }
+    public Feed[] Feeds { get; set; } = [];
+    public StreamingModes? StreamingModes { get; set; }
 }

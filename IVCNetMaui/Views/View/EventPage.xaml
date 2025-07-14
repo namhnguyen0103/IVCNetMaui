@@ -7,7 +7,8 @@
              x:Class="IVCNetMaui.Views.View.EventPage"
              x:DataType="viewModels:EventViewModel"
              x:Name="This"
-             Title="Event View">
+             Title="Event View"
+             BackgroundColor="{StaticResource Gray200}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:DummyConverter x:Key="DummyConverter"></converters:DummyConverter>
@@ -15,6 +16,10 @@
     </ContentPage.Resources>
     <Grid RowDefinitions="*">
         <CollectionView ItemsSource="{Binding List}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="8" />
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
                     <controls:EventCardControl>

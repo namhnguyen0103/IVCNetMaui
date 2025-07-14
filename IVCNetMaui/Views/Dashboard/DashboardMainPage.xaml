@@ -4,13 +4,14 @@
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:tabView="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
+             xmlns:models="clr-namespace:IVCNetMaui.Models"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.Dashboard.DashboardMainPage"
              x:DataType="viewModels:DashboardMainViewModel"
              Title="Dashboard"
              HideSoftInputOnTapped="True">
 
-        <tabView:SfTabView Style="{StaticResource Header}" EnableVirtualization="True">
+        <tabView:SfTabView Style="{StaticResource Header}">
             <tabView:SfTabView.Items>
                 <tabView:SfTabItem Header="Hub">
                     <tabView:SfTabItem.Content>
@@ -31,14 +32,14 @@
                     <tabView:SfTabItem.Content>
                         <Grid RowDefinitions="Auto, *">
                             <SearchBar ios:SearchBar.SearchBarStyle="Minimal" Placeholder="Search"/>
-                            <CollectionView Grid.Row="1" ItemsSource="{Binding List}" BackgroundColor="{StaticResource Gray200}">
+                            <CollectionView Grid.Row="1" ItemsSource="{Binding VaEdgeUnits}" BackgroundColor="{StaticResource Gray200}">
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout Orientation="Vertical"
                                                        ItemSpacing="8" />
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
-                                    <DataTemplate x:DataType='x:String'>
-                                        <controls:EdgeCardControl Command="{Binding x:DataType='viewModels:DashboardMainViewModel', Source={RelativeSource AncestorType={x:Type viewModels:DashboardMainViewModel}}, Path=NavigateToEdgeDetailCommand}"/>
+                                    <DataTemplate x:DataType='models:VaEdgeUnit'>
+                                        <controls:EdgeCardControl Unit="{Binding }"/>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>

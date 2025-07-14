@@ -47,31 +47,31 @@ public partial class HealthMonitorSummaryControl
     
     public DateTime LastUpdate { get; set; } = DateTime.Now;
 
-    public string Name => HealthStatus?.SystemStatus.MachineName ?? string.Empty;
+    public string Name => HealthStatus?.SystemStatus?.MachineName ?? "Unknown";
     public double CpuUsage
     {
         get
         {
-            if (HealthStatus != null && HealthStatus.SystemStatus.CpuTotal != 0)
+            if (HealthStatus is { SystemStatus: not null } && HealthStatus.SystemStatus.CpuTotal != 0)
             {
                 return CalculateCpuUsage(HealthStatus.SystemStatus.CpuUsed, HealthStatus.SystemStatus.CpuTotal);
             }
             return 0;
         }
     }
-    public TimeSpan UpTime => HealthStatus?.SystemStatus.UpTime ?? TimeSpan.Zero;
+    public TimeSpan UpTime => HealthStatus?.SystemStatus?.UpTime ?? TimeSpan.Zero;
 
-    public string VideoStatus => HealthStatus?.VideoProcessStatus.State ?? "Unknown";
-    public int VideoPid => HealthStatus?.VideoProcessStatus.Pid ?? 0;
-    public int VideoHandle => HealthStatus?.VideoProcessStatus.Handles ?? 0;
-    public int VideoThreads => HealthStatus?.VideoProcessStatus.Threads ?? 0;
-    public long VideoWorkingRam => HealthStatus?.VideoProcessStatus.RamWorking ?? 0;
+    public string VideoStatus => HealthStatus?.VideoProcessStatus?.State ?? "Unknown";
+    public int VideoPid => HealthStatus?.VideoProcessStatus?.Pid ?? 0;
+    public int VideoHandle => HealthStatus?.VideoProcessStatus?.Handles ?? 0;
+    public int VideoThreads => HealthStatus?.VideoProcessStatus?.Threads ?? 0;
+    public long VideoWorkingRam => HealthStatus?.VideoProcessStatus?.RamWorking ?? 0;
 
     public double VideoCpuUsage
     {
         get
         {
-            if (HealthStatus != null && HealthStatus.VideoProcessStatus.CpuTotal != 0)
+            if (HealthStatus is { VideoProcessStatus: not null } && HealthStatus.VideoProcessStatus?.CpuTotal != 0)
             {
                 return CalculateCpuUsage(HealthStatus.VideoProcessStatus.CpuUsed, HealthStatus.VideoProcessStatus.CpuTotal);
             }
@@ -79,17 +79,17 @@ public partial class HealthMonitorSummaryControl
         }
     }
 
-    public string UiStatus => HealthStatus?.UiProcessStatus.State ?? "Unknown";
-    public int UiPid => HealthStatus?.UiProcessStatus.Pid ?? 0;
-    public int UiHandle => HealthStatus?.UiProcessStatus.Handles ?? 0;
-    public int UiThreads => HealthStatus?.UiProcessStatus.Threads ?? 0;
-    public long UiWorkingRam => HealthStatus?.UiProcessStatus.RamWorking ?? 0;
+    public string UiStatus => HealthStatus?.UiProcessStatus?.State ?? "Unknown";
+    public int UiPid => HealthStatus?.UiProcessStatus?.Pid ?? 0;
+    public int UiHandle => HealthStatus?.UiProcessStatus?.Handles ?? 0;
+    public int UiThreads => HealthStatus?.UiProcessStatus?.Threads ?? 0;
+    public long UiWorkingRam => HealthStatus?.UiProcessStatus?.RamWorking ?? 0;
 
     public double UiCpuUsage
     {
         get
         {
-            if (HealthStatus != null && HealthStatus.UiProcessStatus.CpuTotal != 0)
+            if (HealthStatus is { UiProcessStatus: not null } && HealthStatus.UiProcessStatus.CpuTotal != 0)
             {
                 return CalculateCpuUsage(HealthStatus.UiProcessStatus.CpuUsed, HealthStatus.UiProcessStatus.CpuTotal);
             }

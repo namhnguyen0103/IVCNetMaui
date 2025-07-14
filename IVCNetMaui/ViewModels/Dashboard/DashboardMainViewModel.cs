@@ -1,6 +1,7 @@
 ﻿using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
 using System.Collections.ObjectModel;
+using IVCNetMaui.Models;
 using IVCNetMaui.Models.HealthStatus;
 using IVCNetMaui.Services.Api;
 
@@ -9,12 +10,9 @@ namespace IVCNetMaui.ViewModels.Dashboard
     public partial class DashboardMainViewModel(INavigationService navigationService, IApiService apiService)
         : ViewModelBase(navigationService, apiService)
     {
-        
-        [ObservableProperty]
-        private ObservableCollection<string> _list =
-        [
-            "LVE1", "LVE2", "LVE3", "LVE4"
-        ];
+
+        [ObservableProperty] 
+        private ObservableCollection<VaEdgeUnit> _vaEdgeUnits = [];
 
         [ObservableProperty]
         private HealthStatus? _healthStatus;
@@ -24,7 +22,8 @@ namespace IVCNetMaui.ViewModels.Dashboard
 
         public override async Task InitializeAsync()
         {
-            await UpdateHealthStatusAsync();
+            var tasks = new List<Task>() { UpdateHealthStatusAsync(), UpdateVaEdgeUnitsAsync() };
+            await Task.WhenAll(tasks);
         }
 
         [RelayCommand]
@@ -53,7 +52,6 @@ namespace IVCNetMaui.ViewModels.Dashboard
         
         private async Task NavigateToSystemAsync()
         {
-            // await Task.Delay(500);
             await NavigationService.NavigateToAsync("healthMonitor");
         }
         
@@ -84,6 +82,19 @@ namespace IVCNetMaui.ViewModels.Dashboard
             try
             {
                 HealthStatus = await ApiService.GetHealthStatusAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        private async Task UpdateVaEdgeUnitsAsync()
+        {
+            try
+            {
+                var vaEdge = await ApiService.GetVaEdgeUnitsAsync();
+                VaEdgeUnits = new ObservableCollection<VaEdgeUnit>(vaEdge);
             }
             catch (Exception e)
             {

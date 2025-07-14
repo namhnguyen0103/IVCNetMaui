@@ -19,7 +19,7 @@ public partial class SystemDetailControl : ContentView
 	}
 	
 	public string Name => SystemStatus?.MachineName ?? "N/A";
-	public string OsVersion => SystemStatus?.OSVersion ?? "N/A";
+	public string OsVersion => SystemStatus?.OsVersion ?? "N/A";
 	public DateTime Started => SystemStatus?.Started ?? DateTime.MinValue;
 	public TimeSpan UpTime => SystemStatus?.UpTime ?? TimeSpan.Zero;
 	public double CpuTotal => SystemStatus?.CpuTotal ?? 0;

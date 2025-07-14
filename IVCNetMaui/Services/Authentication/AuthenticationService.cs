@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using IVCNetMaui.Models;
+using IVCNetMaui.Models.Authentication;
 using IVCNetMaui.Services.Credential;
 using IVCNetMaui.Services.RequestProvider;
 

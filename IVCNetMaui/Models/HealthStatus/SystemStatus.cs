@@ -2,8 +2,8 @@ namespace IVCNetMaui.Models.HealthStatus;
 
 public class SystemStatus
 {
-    public string MachineName { get; set; } = string.Empty;
-    public string OSVersion { get; set; } = string.Empty;
+    public string? MachineName { get; set; }
+    public string? OsVersion { get; set; }
     public DateTime Started { get; set; }
     public TimeSpan UpTime { get; set; }
     public double CpuTotal { get; set; }
