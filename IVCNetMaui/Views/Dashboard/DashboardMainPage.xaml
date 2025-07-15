@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:tabView="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:converters="clr-namespace:IVCNetMaui.Converters"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:models="clr-namespace:IVCNetMaui.Models"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
@@ -10,21 +11,30 @@
              x:DataType="viewModels:DashboardMainViewModel"
              Title="Dashboard"
              HideSoftInputOnTapped="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-        <tabView:SfTabView Style="{StaticResource Header}">
+    <tabView:SfTabView Style="{StaticResource Header}">
             <tabView:SfTabView.Items>
                 <tabView:SfTabItem Header="Hub">
                     <tabView:SfTabItem.Content>
-                        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
-                            <ScrollView>
-                            <controls:HealthMonitorSummaryControl 
-                                    HealthStatus="{Binding HealthStatus}" 
-                                    NavigateToSystemCommand="{Binding NavigateToSystemCommand}" 
-                                    NavigateToVideoProcessCommand="{Binding NavigateToVideoProcessCommand}"
-                                    NavigateToUiProcessCommand="{Binding NavigateToUiProcessCommand}"
-                                    Padding="{StaticResource MainPadding}"/>
-                            </ScrollView>
-                        </RefreshView>
+                        <Grid RowDefinitions="*">
+                            <RefreshView Command="{Binding RefreshCommand}" IsVisible="{Binding HubInitializing, Converter={StaticResource InverseBooleanConverter}}" IsRefreshing="{Binding IsRefreshing}">
+                                <ScrollView>
+                                    <controls:HealthMonitorSummaryControl 
+                                        HealthStatus="{Binding HealthStatus}" 
+                                        NavigateToSystemCommand="{Binding NavigateToSystemCommand}" 
+                                        NavigateToVideoProcessCommand="{Binding NavigateToVideoProcessCommand}"
+                                        NavigateToUiProcessCommand="{Binding NavigateToUiProcessCommand}"
+                                        Padding="{StaticResource MainPadding}"/>
+                                </ScrollView>
+                            </RefreshView>
+                            <ActivityIndicator IsRunning="{Binding HubInitializing}" />
+                        </Grid>
+                        
                     </tabView:SfTabItem.Content>
                 </tabView:SfTabItem>
 
@@ -32,20 +42,22 @@
                     <tabView:SfTabItem.Content>
                         <Grid RowDefinitions="Auto, *">
                             <SearchBar ios:SearchBar.SearchBarStyle="Minimal" Placeholder="Search"/>
-                            <CollectionView Grid.Row="1" ItemsSource="{Binding VaEdgeUnits}" BackgroundColor="{StaticResource Gray200}">
+                            <CollectionView Grid.Row="1" ItemsSource="{Binding VaEdgeUnits}" IsVisible="{Binding EdgeInitializing, Converter={StaticResource InverseBooleanConverter}}" BackgroundColor="{StaticResource Gray200}">
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout Orientation="Vertical"
                                                        ItemSpacing="8" />
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
-                                    <DataTemplate x:DataType='models:VaEdgeUnit'>
+                                    <DataTemplate x:DataType='models:Edge'>
                                         <controls:EdgeCardControl Unit="{Binding }"/>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
+                            <ActivityIndicator Grid.Row="1" IsRunning="{Binding EdgeInitializing}" />
                         </Grid>
                     </tabView:SfTabItem.Content>
                 </tabView:SfTabItem>
             </tabView:SfTabView.Items>
         </tabView:SfTabView>
+
 </ContentPage>

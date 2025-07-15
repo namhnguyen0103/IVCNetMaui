@@ -2,7 +2,7 @@ using IVCNetMaui.Models.Authentication;
 
 namespace IVCNetMaui.Models;
 
-public class VaEdgeUnit
+public class Edge
 {
     public bool SoftDeleted { get; set; }
     public int Status { get; set; }
@@ -34,11 +34,22 @@ public class VaEdgeUnit
     public int NumLicensedFeeds { get; set; }
     public Feed[] Feeds { get; set; } = [];
     public int Id { get; set; } = -1;
+    public EdgeStatus? EdgeStatus { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime ModifiedDate { get; set; }
 }
 
-public class HealthMetrics
+public class EdgeStatus
 {
-    
+    public string? Version { get; set; }
+    public string? UiStatus { get; set; }
+    public string? VeStatus { get; set; }
+    public string? UnitName { get; set; }
+    public string? UnitId { get; set; }
+    public string? Licid { get; set; }
+    public string? Licserial { get; set; }
+    public string? Licissuer { get; set; }
+    public string? Licexpiration { get; set; }
+    public int Licfeeds { get; set; }
+    public string? Licstatus { get; set; }
 }

@@ -1,3 +1,4 @@
+using System.Text.Json;
 using IVCNetMaui.Models;
 using IVCNetMaui.Models.Authentication;
 using IVCNetMaui.Models.HealthStatus;
@@ -104,13 +105,18 @@ public class ApiService : IApiService
         }
     }
 
-    public async Task<List<VaEdgeUnit>> GetVaEdgeUnitsAsync()
+    public async Task<List<Edge>> GetVaEdgeUnitsAsync()
     {
         try
         {
-            var response = await _requestProvider.GetAsync<List<VaEdgeUnit>>($"{_globalSetting.BaseApiEndpoint}/vaedgeunit");
+            var response = await _requestProvider.GetAsync<List<Edge>>($"{_globalSetting.BaseApiEndpoint}/vaedgeunit");
             Console.WriteLine("ApiService VaEdge Retrieved!");
             Console.WriteLine("Response : {0}", response);
+            var tasks = response.Select(async (edge) =>
+            {
+                edge.EdgeStatus = await GetEdgeStatusAsync(edge.Id);
+            });
+            await Task.WhenAll(tasks);
             return response;
         }
         catch (Exception e)
@@ -118,5 +124,38 @@ public class ApiService : IApiService
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    public async Task<EdgeStatus> GetEdgeStatusAsync(int unit)
+    {
+        try
+        {
+            var response = await _requestProvider.GetAsync<EdgeStatus>($"{_globalSetting.BaseApiEndpoint}/vaedge/status?unit={unit}");
+            return response;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<HealthStatus> GetVaEdgeUnitHealthStatusAsync(int unit)
+    {
+        // try
+        // {
+        //     var response = await _requestProvider.GetAsync<JsonDocument>($"{_globalSetting.BaseApiEndpoint}/vaedge/health/status?unit={unit}");
+        //     var healthStatus = new HealthStatus()
+        //     {
+        //         SystemStatus = new SystemStatus()
+        //         {
+        //         }
+        //     };
+        // }
+        // catch (Exception e)
+        // {
+        //     Console.WriteLine(e);
+        // }
+        throw new NotImplementedException();
     }
 }

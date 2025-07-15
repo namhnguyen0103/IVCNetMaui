@@ -11,18 +11,28 @@ namespace IVCNetMaui.ViewModels.Dashboard
         : ViewModelBase(navigationService, apiService)
     {
 
-        [ObservableProperty] 
-        private ObservableCollection<VaEdgeUnit> _vaEdgeUnits = [];
-
-        [ObservableProperty]
-        private HealthStatus? _healthStatus;
-
-        [ObservableProperty] 
-        private bool _isRefreshing;
+        [ObservableProperty] private ObservableCollection<Edge> _vaEdgeUnits = [];
+        [ObservableProperty] private HealthStatus? _healthStatus;
+        [ObservableProperty] private bool _isRefreshing;
+        [ObservableProperty] private bool _hubInitializing = true;
+        [ObservableProperty] private bool _edgeInitializing = true;
 
         public override async Task InitializeAsync()
         {
-            var tasks = new List<Task>() { UpdateHealthStatusAsync(), UpdateVaEdgeUnitsAsync() };
+            // var tasks = new List<Task>() { UpdateHealthStatusAsync(), UpdateVaEdgeUnitsAsync() };
+            var tasks = new List<Task>()
+            {
+                Task.Run(async () =>
+                {
+                    await UpdateHealthStatusAsync();
+                    HubInitializing = false;
+                }),
+                Task.Run(async () =>
+                {
+                    await UpdateVaEdgeUnitsAsync();
+                    EdgeInitializing = false;
+                })
+            };
             await Task.WhenAll(tasks);
         }
 
@@ -94,7 +104,7 @@ namespace IVCNetMaui.ViewModels.Dashboard
             try
             {
                 var vaEdge = await ApiService.GetVaEdgeUnitsAsync();
-                VaEdgeUnits = new ObservableCollection<VaEdgeUnit>(vaEdge);
+                VaEdgeUnits = new ObservableCollection<Edge>(vaEdge);
             }
             catch (Exception e)
             {

@@ -42,7 +42,7 @@
                       ColumnDefinitions="*, *"
                       RowSpacing="6">
                     <Label Text="Version" TextColor="{StaticResource Gray700}"/>
-                    <Label Grid.Column="1" Text="2.9.1.0"/>
+                    <Label Grid.Column="1" Text="{Binding Version}"/>
                     <Label Grid.Row="1" Text="System" TextColor="{StaticResource Gray700}"/>
                     <Label Grid.Row="1" Grid.Column="1">
                         <Label.FormattedText>

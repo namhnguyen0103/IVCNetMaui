@@ -12,6 +12,6 @@ public class SystemStatus
     public long RamPhysicalUsed { get; set; }
     public long RamVirtualTotal { get; set; }
     public long RamVirtualUsed { get; set; }
-    public List<Disk> Disks { get; set; } = new List<Disk>();
-    public List<Network> Network { get; set; } =  new List<Network>();
+    public Disk[] Disks { get; set; } = [];
+    public Network[] Network { get; set; } =  [];
 }
