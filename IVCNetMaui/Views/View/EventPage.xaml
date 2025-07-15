@@ -3,17 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
-             xmlns:converters="clr-namespace:IVCNetMaui.Converters"
              x:Class="IVCNetMaui.Views.View.EventPage"
              x:DataType="viewModels:EventViewModel"
-             x:Name="This"
              Title="Event View"
              BackgroundColor="{StaticResource Gray200}">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:DummyConverter x:Key="DummyConverter"></converters:DummyConverter>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+
     <Grid RowDefinitions="*">
         <CollectionView ItemsSource="{Binding List}">
             <CollectionView.ItemsLayout>
@@ -22,13 +16,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
-                    <controls:EventCardControl>
-                        <controls:EventCardControl.Command>
-                            <Binding x:DataType='viewModels:EventViewModel'
-                                     Source="{RelativeSource AncestorType={x:Type viewModels:EventViewModel}}"
-                                     Path="NavigateToEventDetailCommand"/>
-                        </controls:EventCardControl.Command>
-                    </controls:EventCardControl>
+                    <controls:EventCardControl Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EventViewModel}}, Path=NavigateToEventDetailCommand}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -28,19 +28,6 @@ public partial class EdgeCardControl : ContentView
         get => (Edge)GetValue(UnitProperty);
         set => SetValue(UnitProperty, value);
     }
-    
-    // public static readonly BindableProperty StatusProperty =
-    //     BindableProperty.Create(nameof(Status), typeof(EdgeStatus), typeof(EdgeCardControl), propertyChanged:
-    //         (bindable, _, _) =>
-    //         {
-    //             var control = (EdgeCardControl)bindable;
-    //         });
-    //
-    // public EdgeStatus? Status
-    // {
-    //     get => (EdgeStatus)GetValue(UnitProperty);
-    //     set => SetValue(UnitProperty, value);
-    // }
 
     public string Version => Unit?.EdgeStatus?.Version ?? "Unknown";
 
