@@ -1,7 +1,7 @@
 ﻿using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
 using System.Collections.ObjectModel;
-using IVCNetMaui.Models.HealthStatus;
+using IVCNetMaui.Models.Status;
 using IVCNetMaui.Services.Api;
 
 namespace IVCNetMaui.ViewModels.Dashboard

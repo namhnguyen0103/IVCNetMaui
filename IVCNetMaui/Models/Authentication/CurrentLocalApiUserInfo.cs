@@ -1,6 +1,4 @@
-using IVCNetMaui.Models.Authentication;
-
-namespace IVCNetMaui.Models;
+namespace IVCNetMaui.Models.Authentication;
 
 public class CurrentLocalApiUserInfo
 {

@@ -1,4 +1,4 @@
-namespace IVCNetMaui.Models.HealthStatus;
+namespace IVCNetMaui.Models.Status;
 
 public class ProcessStatus
 {
@@ -6,8 +6,8 @@ public class ProcessStatus
     public string? State { get; set; } 
     public string? Error { get; set; } 
     public int Pid { get; set; }
-    public DateTime LastExitTime { get; set; }
-    public int LastExitCode { get; set; } = -1;
+    public DateTime? LastExitTime { get; set; }
+    public int? LastExitCode { get; set; } = -1;
     public int CpuTotal { get; set; }
     public double CpuUsed { get; set; }
     public long RamPeakWorking { get; set; }

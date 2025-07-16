@@ -1,4 +1,5 @@
-using IVCNetMaui.Models.HealthStatus;
+using IVCNetMaui.Models.Metric;
+using IVCNetMaui.Models.Status;
 using UraniumUI.Material.Controls;
 
 namespace IVCNetMaui.Controls;
@@ -39,7 +40,7 @@ public partial class SystemDetailControl : ContentView
 	public long RamVirtualTotal => SystemStatus?.RamVirtualTotal ?? 0;
 	public long RamVirtualUsed => SystemStatus?.RamVirtualUsed ?? 0;
 	public Disk[] Disks => SystemStatus?.Disks ?? [];
-	public Models.HealthStatus.Network[] Network => SystemStatus?.Network ?? [];
+	public Models.Metric.Network[] Network => SystemStatus?.Network ?? [];
 	public DateTime LastUpdate { get; set; } = DateTime.Now;
 	
 	public SystemDetailControl()

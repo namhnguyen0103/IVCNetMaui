@@ -1,4 +1,5 @@
 using IVCNetMaui.Models.Authentication;
+using IVCNetMaui.Models.Metric;
 
 namespace IVCNetMaui.Models;
 
@@ -34,7 +35,6 @@ public class Edge
     public int NumLicensedFeeds { get; set; }
     public Feed[] Feeds { get; set; } = [];
     public int Id { get; set; } = -1;
-    public EdgeStatus? EdgeStatus { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime ModifiedDate { get; set; }
 }
@@ -53,3 +53,52 @@ public class EdgeStatus
     public int Licfeeds { get; set; }
     public string? Licstatus { get; set; }
 }
+
+public class EdgeHealth
+{
+    public System? System { get; set; }
+    public Process? Vae_ui { get; set; }
+    public Process? Vae_video { get; set; }
+}
+
+public class Process
+{
+    public string? State { get; set; }
+    public string? Error { get; set; }
+    public int Pid { get; set; }
+    public DateTime? LastExitTime { get; set; }
+    public int? LastExitCode { get; set; }
+    public Cpu? Cpus { get; set; }
+    public Ram? RamBytes { get; set; }
+    public int Threads { get; set; }
+    public int Handles { get; set; }
+}
+
+public class System
+{
+    public SystemInfo? Info { get; set; }
+    public Cpu? Cpus { get; set; }
+    public Dictionary<String, Disk>? RamBytes { get; set; }
+    public Dictionary<String, Disk>? DiskBytes { get; set; }
+    public Dictionary<String, Metric.Network>? Network { get; set; }
+}
+
+public class SystemInfo
+{
+    public string? MachineName { get; set; }
+    public string? OsVersion { get; set; }
+    public DateTime Started { get; set; }
+    public TimeSpan UpTime { get; set; }
+}
+
+public class Cpu
+{
+    public double Total { get; set; }
+    public double Used { get; set; }
+}
+
+public class HealthMetricRoot
+{
+    public EdgeHealth? HealthMetrics { get; set; }
+}
+

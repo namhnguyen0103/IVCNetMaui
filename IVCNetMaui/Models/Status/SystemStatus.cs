@@ -1,4 +1,6 @@
-namespace IVCNetMaui.Models.HealthStatus;
+using IVCNetMaui.Models.Metric;
+
+namespace IVCNetMaui.Models.Status;
 
 public class SystemStatus
 {
@@ -13,5 +15,5 @@ public class SystemStatus
     public long RamVirtualTotal { get; set; }
     public long RamVirtualUsed { get; set; }
     public Disk[] Disks { get; set; } = [];
-    public Network[] Network { get; set; } =  [];
+    public Metric.Network[] Network { get; set; } =  [];
 }

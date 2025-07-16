@@ -30,6 +30,7 @@
             
             <converters:TimeSpanConverter x:Key="TimeSpanConverter"/>
             <converters:ThousandsFormatConverter x:Key="ThousandsFormatConverter"/>
+            <converters:StatusToColorConverter x:Key="StatusToColorConverter" />
         </ResourceDictionary>
 
     </ContentView.Resources>
@@ -70,7 +71,7 @@
                           Style="{StaticResource SummaryGrid}">
                         <VerticalStackLayout Style="{StaticResource SummaryStack}">
                             <Label Text="Status" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="{Binding VideoStatus, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}" TextColor="#66A80A"/>
+                            <Label Text="{Binding VideoStatus, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}" TextColor="{Binding VideoStatus, Source={x:Reference This}, Converter={StaticResource StatusToColorConverter}}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
@@ -111,7 +112,7 @@
                   Style="{StaticResource SummaryGrid}">
                         <VerticalStackLayout Style="{StaticResource SummaryStack}">
                             <Label Text="Status" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="{Binding UiStatus, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}" TextColor="#66A80A"/>
+                            <Label Text="{Binding UiStatus, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}" TextColor="{Binding UiStatus, Source={x:Reference This}, Converter={StaticResource StatusToColorConverter}}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">

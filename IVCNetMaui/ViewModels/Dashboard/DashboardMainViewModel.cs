@@ -2,7 +2,7 @@
 using IVCNetMaui.ViewModels.Base;
 using System.Collections.ObjectModel;
 using IVCNetMaui.Models;
-using IVCNetMaui.Models.HealthStatus;
+using IVCNetMaui.Models.Status;
 using IVCNetMaui.Services.Api;
 
 namespace IVCNetMaui.ViewModels.Dashboard
@@ -12,6 +12,7 @@ namespace IVCNetMaui.ViewModels.Dashboard
     {
 
         [ObservableProperty] private ObservableCollection<Edge> _vaEdgeUnits = [];
+        [ObservableProperty] private ObservableCollection<EdgeCardViewModel> _vaEdgeCards = [];
         [ObservableProperty] private HealthStatus? _healthStatus;
         [ObservableProperty] private bool _isRefreshing;
         [ObservableProperty] private bool _hubInitializing = true;
@@ -19,7 +20,6 @@ namespace IVCNetMaui.ViewModels.Dashboard
 
         public override async Task InitializeAsync()
         {
-            // var tasks = new List<Task>() { UpdateHealthStatusAsync(), UpdateVaEdgeUnitsAsync() };
             var tasks = new List<Task>()
             {
                 Task.Run(async () =>
@@ -29,7 +29,7 @@ namespace IVCNetMaui.ViewModels.Dashboard
                 }),
                 Task.Run(async () =>
                 {
-                    await UpdateVaEdgeUnitsAsync();
+                    await UpdateEdgesAsync();
                     EdgeInitializing = false;
                 })
             };
@@ -99,12 +99,14 @@ namespace IVCNetMaui.ViewModels.Dashboard
             }
         }
 
-        private async Task UpdateVaEdgeUnitsAsync()
+        private async Task UpdateEdgesAsync()
         {
             try
             {
-                var vaEdge = await ApiService.GetVaEdgeUnitsAsync();
-                VaEdgeUnits = new ObservableCollection<Edge>(vaEdge);
+                var edges = await ApiService.GetEdgesAsync();
+                var edgesViewModels = edges.Select((edge) => new EdgeCardViewModel(edge, NavigationService, ApiService));
+                // VaEdgeUnits = new ObservableCollection<Edge>(edges);
+                VaEdgeCards = new ObservableCollection<EdgeCardViewModel>(edgesViewModels);
             }
             catch (Exception e)
             {

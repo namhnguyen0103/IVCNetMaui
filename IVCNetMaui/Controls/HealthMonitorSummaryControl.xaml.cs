@@ -1,4 +1,4 @@
-using IVCNetMaui.Models.HealthStatus;
+using IVCNetMaui.Models.Status;
 using IVCNetMaui.Services.Navigation;
 
 namespace IVCNetMaui.Controls;

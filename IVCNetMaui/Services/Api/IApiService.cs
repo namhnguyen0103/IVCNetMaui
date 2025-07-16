@@ -1,6 +1,6 @@
 using IVCNetMaui.Models;
 using IVCNetMaui.Models.Authentication;
-using IVCNetMaui.Models.HealthStatus;
+using IVCNetMaui.Models.Status;
 
 namespace IVCNetMaui.Services.Api;
 
@@ -11,7 +11,7 @@ public interface IApiService
     Task<List<Role>> GetRoleAsync();
     Task<CurrentLocalApiUserInfo> GetUserInfoAsync();
     Task<HealthStatus> GetHealthStatusAsync();
-    Task<List<Edge>> GetVaEdgeUnitsAsync();
+    Task<List<Edge>> GetEdgesAsync();
     Task<EdgeStatus> GetEdgeStatusAsync(int unit);
-    Task<HealthStatus> GetVaEdgeUnitHealthStatusAsync(int unit);
+    Task<EdgeHealth?> GetEdgeHealthAsync(int unit);
 }

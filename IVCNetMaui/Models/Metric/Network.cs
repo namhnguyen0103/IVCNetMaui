@@ -1,4 +1,4 @@
-namespace IVCNetMaui.Models.HealthStatus;
+namespace IVCNetMaui.Models.Metric;
 
 public class Network
 {

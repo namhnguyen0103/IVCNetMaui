@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls" 
              xmlns:converters="clr-namespace:IVCNetMaui.Converters"
-             xmlns:models="clr-namespace:IVCNetMaui.Models.HealthStatus"
+             xmlns:metric="clr-namespace:IVCNetMaui.Models.Metric"
              x:Class="IVCNetMaui.Controls.SystemDetailControl"
              x:DataType="controls:SystemDetailControl"
              x:Name="This">
@@ -98,7 +98,7 @@
                                                ItemSpacing="12" />
                         </CollectionView.ItemsLayout>
                         <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="models:Disk">
+                            <DataTemplate x:DataType="metric:Disk">
                                 <controls:UsageBarControl DiskName="{Binding DiskName}" Total="{Binding Total}" Usage="{Binding Used}"/>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
@@ -118,7 +118,7 @@
                         </Grid>
                         <CollectionView ItemsSource="{Binding Network}">
                             <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="models:Network">
+                                <DataTemplate x:DataType="metric:Network">
                                     <Grid ColumnDefinitions="*, 40, *, *, 40">
                                         <Label Text="{Binding Name}" Style="{StaticResource PropertyPrimaryText}" />
                                         <Label Grid.Column="1" Text="{Binding NetworkInterfaceType}" Style="{StaticResource PropertyPrimaryText}" />
