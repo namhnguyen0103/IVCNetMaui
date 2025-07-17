@@ -39,7 +39,7 @@
             </Label>
             
             <Label Text="Description"
-                   Style="{StaticResource Title-L}"
+                   Style="{StaticResource Title-M}"
                    Margin="0, 0, 0, 4"/>
             
             <Border Padding="8">

@@ -199,8 +199,4 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Views\Templates\" />
-	</ItemGroup>
-
 </Project>

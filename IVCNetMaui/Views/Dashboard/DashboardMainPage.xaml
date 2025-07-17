@@ -53,7 +53,7 @@
                                                        VerticalItemSpacing="8"
                                                        HorizontalItemSpacing="8">
                                         <GridItemsLayout.Span>
-                                            <OnIdiom x:TypeArguments="system:Int32" Phone="1" Default="2" />
+                                            <OnIdiom x:TypeArguments="system:Int32" Phone="1" Default="1" />
                                         </GridItemsLayout.Span>
                                     </GridItemsLayout>
                                 </CollectionView.ItemsLayout>

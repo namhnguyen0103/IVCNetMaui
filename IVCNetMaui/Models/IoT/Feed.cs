@@ -1,4 +1,4 @@
-namespace IVCNetMaui.Models;
+namespace IVCNetMaui.Models.IoT;
 
 public class Feed
 {

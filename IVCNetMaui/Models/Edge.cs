@@ -1,4 +1,5 @@
 using IVCNetMaui.Models.Authentication;
+using IVCNetMaui.Models.IoT;
 using IVCNetMaui.Models.Metric;
 
 namespace IVCNetMaui.Models;

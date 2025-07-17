@@ -1,6 +1,7 @@
 using System.Text.Json;
 using IVCNetMaui.Models;
 using IVCNetMaui.Models.Authentication;
+using IVCNetMaui.Models.IoT;
 using IVCNetMaui.Models.Status;
 using IVCNetMaui.Services.Credential;
 using IVCNetMaui.Services.RequestProvider;
@@ -139,6 +140,54 @@ public class ApiService : IApiService
         {
             var response = await _requestProvider.GetAsync<HealthMetricRoot>($"{_globalSetting.BaseApiEndpoint}/vaedge/health/status?unit={unit}");
             return response.HealthMetrics;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<List<Camera>> GetCamerasAsync(int unit)
+    {
+        try
+        {
+            var response =
+                await _requestProvider.GetAsync<List<Camera>>(
+                    $"{_globalSetting.BaseApiEndpoint}/vaedge/iot/inventory/cameras?unit={unit}");
+            return response;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<List<ModbusDevice>> GetModbusDeviceAsync(int unit)
+    {
+        try
+        {
+            var response =
+                await _requestProvider.GetAsync<List<ModbusDevice>>(
+                    $"{_globalSetting.BaseApiEndpoint}/vaedge/iot/inventory/modbuses?unit={unit}");
+            return response;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<List<WeatherStation>> GetWeatherStationAsync(int unit)
+    {
+        try
+        {
+            var response =
+                await _requestProvider.GetAsync<List<WeatherStation>>(
+                    $"{_globalSetting.BaseApiEndpoint}/vaedge/iot/inventory/weatherstations?unit={unit}");
+            return response;
         }
         catch (Exception e)
         {

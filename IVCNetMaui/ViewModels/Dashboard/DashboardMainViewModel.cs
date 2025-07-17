@@ -10,8 +10,6 @@ namespace IVCNetMaui.ViewModels.Dashboard
     public partial class DashboardMainViewModel(INavigationService navigationService, IApiService apiService)
         : ViewModelBase(navigationService, apiService)
     {
-
-        [ObservableProperty] private ObservableCollection<Edge> _vaEdgeUnits = [];
         [ObservableProperty] private ObservableCollection<EdgeCardViewModel> _vaEdgeCards = [];
         [ObservableProperty] private HealthStatus? _healthStatus;
         [ObservableProperty] private bool _isRefreshing;
@@ -105,7 +103,6 @@ namespace IVCNetMaui.ViewModels.Dashboard
             {
                 var edges = await ApiService.GetEdgesAsync();
                 var edgesViewModels = edges.Select((edge) => new EdgeCardViewModel(edge, NavigationService, ApiService));
-                // VaEdgeUnits = new ObservableCollection<Edge>(edges);
                 VaEdgeCards = new ObservableCollection<EdgeCardViewModel>(edgesViewModels);
             }
             catch (Exception e)

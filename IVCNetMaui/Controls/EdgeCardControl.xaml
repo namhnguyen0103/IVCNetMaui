@@ -21,79 +21,104 @@
     </ContentView.Resources>
 
     <Border BackgroundColor="White" StrokeShape="Rectangle">
-        <Grid ColumnDefinitions="*, *, *"
-              RowDefinitions="Auto, Auto, Auto"
-              RowSpacing="4"
-              ColumnSpacing="4"
+        <VerticalStackLayout 
+              Spacing="4"
               Padding="{StaticResource CardPadding}">
-            <Grid.GestureRecognizers>
+            <VerticalStackLayout.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding NavigateToEdgeDetailCommand}"></TapGestureRecognizer>
-            </Grid.GestureRecognizers>
-            <Grid.Behaviors>
+            </VerticalStackLayout.GestureRecognizers>
+            <VerticalStackLayout.Behaviors>
                 <toolkit:TouchBehavior PressedBackgroundColor="{StaticResource Gray300}"
                                        DefaultBackgroundColor="White"/>
-            </Grid.Behaviors>
-            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8" Grid.ColumnSpan="3">
-                <Label Text="{Binding EdgeInfo.Name, TargetNullValue='Unknown', FallbackValue='Unknown'}" Style="{StaticResource Title-L}" MaxLines="1" LineBreakMode="TailTruncation"/>
-                <Label Grid.Column="1" Text="{Binding EdgeInfo.Id, StringFormat='#{0}', FallbackValue='-1'}" Style="{StaticResource Title-L}" TextColor="{StaticResource Gray700}"/>
+            </VerticalStackLayout.Behaviors>
+            <Grid ColumnDefinitions="Auto, Auto, *" ColumnSpacing="4" >
+                <Border StrokeThickness="0" BackgroundColor="{Binding EdgeState, Converter={StaticResource StatusConverter}}" Padding="6, 0">
+                    <Label Text="{Binding EdgeState}" TextColor="{Binding EdgeState, Converter={StaticResource StatusConverter}, ConverterParameter='Label'}" Style="{StaticResource Label-S}" VerticalTextAlignment="Center"/>
+                </Border>
+                <Label Grid.Column="1" Text="{Binding EdgeInfo.Name, TargetNullValue='Unknown', FallbackValue='Unknown'}" Style="{StaticResource Title-M}" MaxLines="1" LineBreakMode="TailTruncation"/>
+                <Label Grid.Column="2" Text="{Binding EdgeInfo.Id, StringFormat='#{0}', FallbackValue='-1'}" Style="{StaticResource Body-L}" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center"/>
             </Grid>   
        
-            <Border Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource PropertyBorder}">
-                <Grid RowDefinitions="Auto, Auto, Auto, Auto"
+            <Border Style="{StaticResource PropertyBorder}" IsVisible="{Binding HealthIsVisible}">
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
                       ColumnDefinitions="*, *"
                       RowSpacing="6">
                     <Label Text="Version" TextColor="{StaticResource Gray700}"/>
-                    <Label Grid.Column="1" Text="{Binding Version}"/>
-                    <Label Grid.Row="1" Text="System" TextColor="{StaticResource Gray700}"/>
-                    <Label Grid.Row="1" Grid.Column="1">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding SystemState}" TextColor="{Binding SystemState, Converter={StaticResource StatusConverter}}"/>
-                                <Span Text="&#10;"/>
-                                <Span Text="3.4% CPU used"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Label Grid.Row="2" Text="Video Process" TextColor="{StaticResource Gray700}"/>
+                    <Label Grid.Column="1" Text="{Binding Version}" />
+                    <Label Grid.Row="1" Text="Uptime" TextColor="{StaticResource Gray700}"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Uptime, StringFormat='{0:%d\\.hh\\:mm\\:ss}'}"/>
+                    <Label Grid.Row="2" Text="System" TextColor="{StaticResource Gray700}"/>
                     <Label Grid.Row="2" Grid.Column="1">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Binding VideoState}" TextColor="{Binding VideoState, Converter={StaticResource StatusConverter}}"/>
-                                <Span Text="&#10;"/>
-                                <Span Text="5.0% CPU used"/>
+                                <Span Text="{Binding CpuUsage, StringFormat='{0}% CPU'}"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label Grid.Row="3" Text="UI Process" TextColor="{StaticResource Gray700}"/>
+                    <Label Grid.Row="3" Text="Video Process" TextColor="{StaticResource Gray700}"/>
                     <Label Grid.Row="3" Grid.Column="1">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Binding UiState}" TextColor="{Binding UiState, Converter={StaticResource StatusConverter}}"/>
-                                <Span Text="&#10;"/>
-                                <Span Text="1.2% CPU used"/>
+                                <Span Text="{Binding VideoState}" TextColor="{Binding VideoState, Converter={StaticResource StatusConverter}, ConverterParameter='Label'}"/>
+                                <Span Text=" • "/>
+                                <Span Text="{Binding VideoCpuUsage, StringFormat='{0}% CPU'}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Grid.Row="4" Text="UI Process" TextColor="{StaticResource Gray700}"/>
+                    <Label Grid.Row="4" Grid.Column="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding UiState}" TextColor="{Binding UiState, Converter={StaticResource StatusConverter}, ConverterParameter='Label'}"/>
+                                <Span Text=" • "/>
+                                <Span Text="{Binding UiCpuUsage, StringFormat='{0}% CPU'}"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                 </Grid>
             </Border>
-            <Border Grid.Row="2" Style="{StaticResource PropertyBorder}">
-                <VerticalStackLayout>
-                    <Label Text="3 Cameras"/>
-                    <Label Text="1 Up / 2 Activated" TextColor="{StaticResource Gray700}"/>
+            
+            <Border Style="{StaticResource PropertyBorder}" IsVisible="{Binding IoTIsVisible}">
+                <VerticalStackLayout Spacing="6">
+                    <Grid ColumnDefinitions="*, *" IsVisible="{Binding CameraIsVisible}">
+                        <Label Text="Camera" TextColor="{StaticResource Gray700}"/>
+                        <Label Grid.Column="1">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Cameras.Count}"/>
+                                    <Span Text="{Binding CameraActivated, StringFormat=' • {0} Active'}"/>
+                                    <Span Text=" • 0 Up"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                    <Grid ColumnDefinitions="*, *" IsVisible="{Binding ModbusDeviceIsVisible}">
+                        <Label Text="Modbus Device" TextColor="{StaticResource Gray700}"/>
+                        <Label Grid.Column="1">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding ModbusDevices.Count}"/>
+                                    <Span Text="{Binding ModbusDeviceActivated, StringFormat=' • {0} Active'}"/>
+                                    <Span Text=" • 0 Up"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="*, *" IsVisible="{Binding WeatherStationIsVisible}">
+                        <Label Text="Weather Station" TextColor="{StaticResource Gray700}"/>
+                        <Label Grid.Column="1">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding WeatherStations.Count}"/>
+                                    <Span Text="{Binding WeatherStationActivated, StringFormat=' • {0} Active'}"/>
+                                    <Span Text=" • 0 Up"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
                 </VerticalStackLayout>
             </Border>
-            <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource PropertyBorder}">
-                <VerticalStackLayout>
-                    <Label Text="5 Modbus Devices"/>
-                    <Label Text="1 Up / 0 Activated" TextColor="{StaticResource Gray700}"/>
-                </VerticalStackLayout>
-            </Border>
-            <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource PropertyBorder}">
-                <VerticalStackLayout>
-                    <Label Text="2 Weather Stations"/>
-                    <Label Text="1 Up / 1 Activated" TextColor="{StaticResource Gray700}"/>
-                </VerticalStackLayout>
-            </Border>
-        </Grid>
+        </VerticalStackLayout>
     </Border>
 </ContentView>

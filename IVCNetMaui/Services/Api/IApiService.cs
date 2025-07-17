@@ -1,5 +1,6 @@
 using IVCNetMaui.Models;
 using IVCNetMaui.Models.Authentication;
+using IVCNetMaui.Models.IoT;
 using IVCNetMaui.Models.Status;
 
 namespace IVCNetMaui.Services.Api;
@@ -14,4 +15,7 @@ public interface IApiService
     Task<List<Edge>> GetEdgesAsync();
     Task<EdgeStatus> GetEdgeStatusAsync(int unit);
     Task<EdgeHealth?> GetEdgeHealthAsync(int unit);
+    Task<List<Camera>> GetCamerasAsync(int unit);
+    Task<List<ModbusDevice>> GetModbusDeviceAsync(int unit);
+    Task<List<WeatherStation>> GetWeatherStationAsync(int unit);
 }

@@ -75,7 +75,6 @@ namespace IVCNetMaui
             builder.Services.AddSingleton<DashboardMainViewModel>();
             builder.Services.AddSingleton<EventViewModel>();
             builder.Services.AddSingleton<HistoricalHealthDataViewModel>();
-
             
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<HealthMonitorViewModel>();
@@ -83,6 +82,7 @@ namespace IVCNetMaui
             builder.Services.AddTransient<CameraViewModel>();
             builder.Services.AddTransient<EventDetailViewModel>();
             builder.Services.AddTransient<MediaDetailViewModel>();
+            builder.Services.AddTransient<EdgeCardViewModel>();
             
             return builder;
         }

@@ -13,6 +13,7 @@
             </ResourceDictionary.MergedDictionaries>
             
             <converters:ThousandsFormatConverter x:Key="ThousandsFormatConverter"/>
+            <converters:StatusToColorConverter x:Key="StatusToColorConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
     
@@ -29,7 +30,7 @@
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Column="1">
                         <Label Text="State:" Style="{StaticResource PropertyTertiaryText}"/>
-                        <Label Text="{Binding State}" Style="{StaticResource PropertyPrimaryText}"/>
+                        <Label Text="{Binding State}" Style="{StaticResource PropertyPrimaryText}" TextColor="{Binding State, Converter={StaticResource StatusToColorConverter}, ConverterParameter='Label'}"/>
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Row="1">
                         <Label Text="Threads:" Style="{StaticResource PropertyTertiaryText}"/>

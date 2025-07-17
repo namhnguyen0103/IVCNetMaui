@@ -1,4 +1,5 @@
 using IVCNetMaui.Models.Authentication;
+using IVCNetMaui.Models.IoT;
 
 namespace IVCNetMaui.Models;
 

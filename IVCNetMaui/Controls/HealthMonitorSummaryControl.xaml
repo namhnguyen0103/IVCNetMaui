@@ -71,7 +71,7 @@
                           Style="{StaticResource SummaryGrid}">
                         <VerticalStackLayout Style="{StaticResource SummaryStack}">
                             <Label Text="Status" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="{Binding VideoStatus, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}" TextColor="{Binding VideoStatus, Source={x:Reference This}, Converter={StaticResource StatusToColorConverter}}"/>
+                            <Label Text="{Binding VideoStatus, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}" TextColor="{Binding VideoStatus, Source={x:Reference This}, Converter={StaticResource StatusToColorConverter}, ConverterParameter='Label'}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
@@ -112,7 +112,7 @@
                   Style="{StaticResource SummaryGrid}">
                         <VerticalStackLayout Style="{StaticResource SummaryStack}">
                             <Label Text="Status" Style="{StaticResource SummarySecondary}"/>
-                            <Label Text="{Binding UiStatus, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}" TextColor="{Binding UiStatus, Source={x:Reference This}, Converter={StaticResource StatusToColorConverter}}"/>
+                            <Label Text="{Binding UiStatus, Source={x:Reference This}}" Style="{StaticResource SummaryPrimary}" TextColor="{Binding UiStatus, Source={x:Reference This}, Converter={StaticResource StatusToColorConverter}, ConverterParameter='Label'}"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1" Style="{StaticResource SummaryStack}">
