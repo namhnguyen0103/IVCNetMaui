@@ -1,13 +1,11 @@
 namespace IVCNetMaui.Models.IoT;
 
-public class ModbusDevice
+public class ModbusDevice : IoTBase
 {
     public bool SoftDeleted { get; set; }
     public bool Historicized { get; set; }
     public int ServerCode { get; set; }
     public int Protocol { get; set; }
-    public string? IpAddress { get; set; }
-    public int Port { get; set; }
     public int ComPort { get; set; }
     public int CommunicationMethod { get; set; }
     public int TransmissionMode { get; set; }
@@ -22,13 +20,8 @@ public class ModbusDevice
     public int EndAddress { get; set; }
     public int PollInterval { get; set; }
     public Auxiliary[]? Auxiliaries { get; set; }
-    public int Status { get; set; }
-    public string? Name { get; set; }
     public string? Tag { get; set; }
     public string? Description { get; set; }
-    public int Id { get; set; }
-    public DateTime CreatedDate { get; set; }
-    public DateTime ModifiedDate { get; set; }
 }
 
 public class Auxiliary

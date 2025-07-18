@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:IVCNetMaui.Converters"
+             xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
+             x:Class="IVCNetMaui.Controls.IoTCardControl"
+             x:DataType="viewModels:IoTCardViewModel">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:StatusToColorConverter x:Key="StatusToColorConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <Grid ColumnDefinitions="*, 80" ColumnSpacing="8" Padding="12, 12">
+        <Label Style="{StaticResource Body-S}" VerticalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="{Binding IotInfo.Name}" />
+                    <Span Text="{Binding IotInfo.Id, StringFormat=' #{0}'}" TextColor="{StaticResource Gray700}"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Border Grid.Column="1" HeightRequest="24" StrokeThickness="0" BackgroundColor="{Binding StatusString, Converter={StaticResource StatusToColorConverter}}" HorizontalOptions="End" Padding="6, 0">
+            <Label Text="{Binding StatusString}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Style="{StaticResource Label-S}" TextColor="{Binding IotInfo.Status, Converter={StaticResource StatusToColorConverter}, ConverterParameter='Label'}">
+            </Label>
+        </Border>
+    </Grid>
+</ContentView>

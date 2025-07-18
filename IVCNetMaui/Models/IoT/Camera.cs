@@ -1,10 +1,8 @@
 namespace IVCNetMaui.Models.IoT;
 
-public class Camera
+public class Camera : IoTBase
 {
-    public int Status { get; set; }
     public int CameraId { get; set; }
-    public string? Name { get; set; }
     public int VideoServerCode { get; set; }
     public int VideoCodec { get; set; }
     public int AudioCodec { get; set; }
@@ -13,8 +11,6 @@ public class Camera
     public int RtspTransportScheme { get; set; }
     public string? VideoStreamerUri { get; set; }
     public string? SnapshotUri { get; set; }
-    public string? IpAddress { get; set; }
-    public int Port { get; set; }
     public string? UserName { get; set; }
     public string? Password { get; set; }
     public int ChannelId { get; set; }
@@ -29,10 +25,7 @@ public class Camera
     public int BufferCapacity { get; set; }
     public bool EnableDvr { get; set; }
     public int DvrSegmentMinutes { get; set; }
-    public CameraPreset[] Presets { get; set; } = Array.Empty<CameraPreset>();
-    public int Id { get; set; }
-    public DateTime CreatedDate { get; set; }
-    public DateTime ModifiedDate { get; set; }
+    public CameraPreset[] Presets { get; set; } = [];
 }
 
 public class CameraPreset : Preset

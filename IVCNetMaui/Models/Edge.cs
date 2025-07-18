@@ -38,6 +38,9 @@ public class Edge
     public int Id { get; set; } = -1;
     public DateTime CreatedDate { get; set; }
     public DateTime ModifiedDate { get; set; }
+    
+    public EdgeStatus? EdgeStatus { get; set; }
+    public EdgeHealth? EdgeHealth { get; set; }
 }
 
 public class EdgeStatus

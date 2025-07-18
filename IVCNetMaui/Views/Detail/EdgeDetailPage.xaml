@@ -3,9 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:tabView="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
-             xmlns:converters="clr-namespace:IVCNetMaui.Converters"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
-             xmlns:ioT="clr-namespace:IVCNetMaui.Models.IoT"
              x:Class="IVCNetMaui.Views.Detail.EdgeDetailPage"
              Title="{Binding PageTitle}"
              x:DataType="viewModels:EdgeDetailViewModel">
@@ -15,23 +13,27 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:StatusToColorConverter x:Key="StatusToColorConverter"/>
+            <!-- <converters:StatusToColorConverter x:Key="StatusToColorConverter"/> -->
             
-            <DataTemplate x:Key="IoTCard" x:DataType="ioT:IoTStatus">
-                <Grid ColumnDefinitions="*, 80" ColumnSpacing="8" Padding="12, 12">
-                    <Label Style="{StaticResource Body-S}" VerticalTextAlignment="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding IotName}" />
-                                <Span Text="{Binding IotId, StringFormat=' #{0}'}" TextColor="{StaticResource Gray700}"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Border Grid.Column="1" HeightRequest="24" StrokeThickness="0" BackgroundColor="{Binding Status, Converter={StaticResource StatusToColorConverter}}" HorizontalOptions="End" Padding="6, 0">
-                        <Label Text="{Binding Status}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Style="{StaticResource Label-S}" TextColor="{Binding Status, Converter={StaticResource StatusToColorConverter}, ConverterParameter='Label'}"/>
-                    </Border>
-                </Grid>
-            </DataTemplate>
+            <!-- <DataTemplate x:Key="IoTCard" x:DataType="ioT:IoTBase"> -->
+            <!--     <Grid ColumnDefinitions="*, 80" ColumnSpacing="8" Padding="12, 12"> -->
+            <!--         <Label Style="{StaticResource Body-S}" VerticalTextAlignment="Center"> -->
+            <!--             <Label.FormattedText> -->
+            <!--                 <FormattedString> -->
+            <!--                     <Span Text="{Binding Name}" /> -->
+            <!--                     <Span Text="{Binding Id, StringFormat=' #{0}'}" TextColor="{StaticResource Gray700}"/> -->
+            <!--                 </FormattedString> -->
+            <!--             </Label.FormattedText> -->
+            <!--         </Label> -->
+            <!--         <Border Grid.Column="1" HeightRequest="24" StrokeThickness="0" BackgroundColor="{Binding Status, Converter={StaticResource StatusToColorConverter}}" HorizontalOptions="End" Padding="6, 0"> -->
+            <!--             <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Style="{StaticResource Label-S}" TextColor="{Binding Status, Converter={StaticResource StatusToColorConverter}, ConverterParameter='Label'}"> -->
+            <!--                 <Label.Text> -->
+            <!--                     <Binding Path="IoTStatus?.Status"></Binding> -->
+            <!--                 </Label.Text> -->
+            <!--             </Label> -->
+            <!--         </Border> -->
+            <!--     </Grid> -->
+            <!-- </DataTemplate> -->
         </ResourceDictionary>
     </ContentPage.Resources>
     
@@ -59,7 +61,7 @@
                                                 <FormattedString>
                                                     <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraActiveCount}" TextColor="{StaticResource Gray700}"/>
                                                     <Span Text=" / " TextColor="{StaticResource Gray700}"/>
-                                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraStatuses.Count}" TextColor="{StaticResource Gray700}"/>
+                                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraViewModels.Count}" TextColor="{StaticResource Gray700}"/>
                                                     <Span Text=" Active" TextColor="{StaticResource Gray700}"/>
                                                 </FormattedString>
                                             </Label.FormattedText>
@@ -69,8 +71,13 @@
                             </controls:AccordionControl.HeaderContent>
                             <controls:AccordionControl.BodyContent>
                                 <ControlTemplate>
-                                    <CollectionView ItemTemplate="{StaticResource IoTCard}" 
-                                                    ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraStatuses}"/>
+                                    <CollectionView ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraViewModels}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="viewModels:IoTCardViewModel">
+                                                <controls:IoTCardControl BindingContext="{Binding}"/> 
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
                                 </ControlTemplate>
                             </controls:AccordionControl.BodyContent>
                         </controls:AccordionControl>
@@ -86,7 +93,7 @@
                                                 <FormattedString>
                                                     <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=ModbusDeviceActiveCount}" TextColor="{StaticResource Gray700}"/>
                                                     <Span Text=" / " TextColor="{StaticResource Gray700}"/>
-                                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=ModbusDeviceStatuses.Count}" TextColor="{StaticResource Gray700}"/>
+                                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=ModbusDeviceViewModels.Count}" TextColor="{StaticResource Gray700}"/>
                                                     <Span Text=" Active" TextColor="{StaticResource Gray700}"/>
                                                 </FormattedString>
                                             </Label.FormattedText>
@@ -96,12 +103,17 @@
                             </controls:AccordionControl.HeaderContent>
                             <controls:AccordionControl.BodyContent>
                                 <ControlTemplate>
-                                    <CollectionView ItemTemplate="{StaticResource IoTCard}" 
-                                                    ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=ModbusDeviceStatuses}"/>
+                                    <CollectionView ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=ModbusDeviceViewModels}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="viewModels:IoTCardViewModel">
+                                                <controls:IoTCardControl BindingContext="{Binding}"/> 
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
                                 </ControlTemplate>
                             </controls:AccordionControl.BodyContent>
                         </controls:AccordionControl>
-
+                        
                         <!-- Weather Station Accordion Control -->
                         <controls:AccordionControl IsVisible="{Binding WeatherStationIsVisible}">
                             <controls:AccordionControl.HeaderContent>
@@ -113,7 +125,7 @@
                                                 <FormattedString>
                                                     <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=WeatherStationActiveCount}" TextColor="{StaticResource Gray700}"/>
                                                     <Span Text=" / " TextColor="{StaticResource Gray700}"/>
-                                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=WeatherStationStatuses.Count}" TextColor="{StaticResource Gray700}"/>
+                                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=WeatherStationViewModels.Count}" TextColor="{StaticResource Gray700}"/>
                                                     <Span Text=" Active" TextColor="{StaticResource Gray700}"/>
                                                 </FormattedString>
                                             </Label.FormattedText>
@@ -123,8 +135,13 @@
                             </controls:AccordionControl.HeaderContent>
                             <controls:AccordionControl.BodyContent>
                                 <ControlTemplate>
-                                    <CollectionView ItemTemplate="{StaticResource IoTCard}" 
-                                                    ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=WeatherStationStatuses}"/>
+                                    <CollectionView ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=WeatherStationViewModels}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="viewModels:IoTCardViewModel">
+                                                <controls:IoTCardControl BindingContext="{Binding}"/> 
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
                                 </ControlTemplate>
                             </controls:AccordionControl.BodyContent>
                         </controls:AccordionControl>

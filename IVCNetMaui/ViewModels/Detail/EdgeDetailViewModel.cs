@@ -26,34 +26,32 @@ namespace IVCNetMaui.ViewModels.Detail
         [ObservableProperty] 
         [NotifyPropertyChangedFor(nameof(CameraIsVisible))]
         private ObservableCollection<Camera> _cameras = new();
-
         
-        [ObservableProperty] 
-        [NotifyPropertyChangedFor(nameof(CameraActiveCount))]
-        private ObservableCollection<IoTStatus> _cameraStatuses = new();
-
         [ObservableProperty] 
         [NotifyPropertyChangedFor(nameof(ModbusDeviceIsVisible))]
         private ObservableCollection<ModbusDevice> _modbusDevices = new();
         
         [ObservableProperty] 
-        [NotifyPropertyChangedFor(nameof(ModbusDeviceActiveCount))]
-        private ObservableCollection<IoTStatus> _modbusDeviceStatuses = new();
-        
-        [ObservableProperty] 
         [NotifyPropertyChangedFor(nameof(WeatherStationIsVisible))]
         private ObservableCollection<WeatherStation> _weatherStations = new();
+
+        [ObservableProperty]
+        private ObservableCollection<IoTCardViewModel> _cameraViewModels = new();
+        [ObservableProperty]
+        private ObservableCollection<IoTCardViewModel> _modbusDeviceViewModels = new();
+        [ObservableProperty]
+        private ObservableCollection<IoTCardViewModel> _weatherStationViewModels = new();
         
-        [ObservableProperty] 
-        [NotifyPropertyChangedFor(nameof(WeatherStationActiveCount))]
-        private ObservableCollection<IoTStatus> _weatherStationStatuses = new();
         public string PageTitle => $"{EdgeInfo?.Name ?? "Unknown"} [{Status?.Version ?? "0.0.0.0"}]";
         public bool CameraIsVisible => Cameras.Count > 0;
         public bool ModbusDeviceIsVisible => ModbusDevices.Count > 0;
         public bool WeatherStationIsVisible => WeatherStations.Count > 0;
-        public int CameraActiveCount => CountActivated(CameraStatuses);
-        public int ModbusDeviceActiveCount => CountActivated(ModbusDeviceStatuses);
-        public int WeatherStationActiveCount => CountActivated(WeatherStationStatuses);
+        [ObservableProperty]
+        private int _cameraActiveCount;
+        [ObservableProperty]
+        private int _modbusDeviceActiveCount;
+        [ObservableProperty]
+        private int _weatherStationActiveCount;
         
         async partial void OnCamerasChanged(ObservableCollection<Camera> value)
         {
@@ -61,9 +59,21 @@ namespace IVCNetMaui.ViewModels.Detail
             {
                 if (EdgeInfo != null)
                 {
-                    var tasks = value.Select(async camera => await ApiService.GetIoTStatusAsync(EdgeInfo.Id, "camera", camera.Id));
-                    var result = await Task.WhenAll(tasks);
-                    CameraStatuses = new ObservableCollection<IoTStatus>(result);
+                    var active = 0;
+                    var tasks = value.Select(async camera =>
+                    {
+                        var viewModel = new IoTCardViewModel(camera, navigationService, apiService);
+                        if (camera.Status == 0)
+                        {
+                            ++active;
+                            var status = await ApiService.GetIoTStatusAsync(EdgeInfo.Id, "camera", camera.Id);
+                            viewModel.Status = status;
+                        }
+
+                        return viewModel;
+                    });
+                    CameraViewModels = new ObservableCollection<IoTCardViewModel>(await Task.WhenAll(tasks));
+                    CameraActiveCount = active;
                 }
             }
             catch (Exception e)
@@ -77,9 +87,21 @@ namespace IVCNetMaui.ViewModels.Detail
             {
                 if (EdgeInfo != null)
                 {
-                    var tasks = value.Select(async modbus => await ApiService.GetIoTStatusAsync(EdgeInfo.Id, "modbus", modbus.Id));
-                    var result = await Task.WhenAll(tasks);
-                    ModbusDeviceStatuses = new ObservableCollection<IoTStatus>(result);
+                    var active = 0;
+                    var tasks = value.Select(async modbus =>
+                    {
+                        var viewModel = new IoTCardViewModel(modbus, navigationService, apiService);
+                        if (modbus.Status == 0)
+                        {
+                            ++active;
+                            var status = await ApiService.GetIoTStatusAsync(EdgeInfo.Id, "modbus", modbus.Id);
+                            viewModel.Status = status;
+                        }
+
+                        return viewModel;
+                    });
+                    ModbusDeviceViewModels = new ObservableCollection<IoTCardViewModel>(await Task.WhenAll(tasks));
+                    ModbusDeviceActiveCount = active;
                 }
             }
             catch (Exception e)
@@ -93,9 +115,21 @@ namespace IVCNetMaui.ViewModels.Detail
             {
                 if (EdgeInfo != null)
                 {
-                    var tasks = value.Select(async weather => await ApiService.GetIoTStatusAsync(EdgeInfo.Id, "weather", weather.Id));
-                    var result = await Task.WhenAll(tasks);
-                    WeatherStationStatuses = new ObservableCollection<IoTStatus>(result);
+                    var active = 0;
+                    var tasks = value.Select(async weather =>
+                    {
+                        var viewModel = new IoTCardViewModel(weather, navigationService, apiService);
+                        if (weather.Status == 0)
+                        {
+                            ++active;
+                            var status = await ApiService.GetIoTStatusAsync(EdgeInfo.Id, "weather", weather.Id);
+                            viewModel.Status = status;
+                        }
+
+                        return viewModel;
+                    });
+                    WeatherStationViewModels = new ObservableCollection<IoTCardViewModel>(await Task.WhenAll(tasks));
+                    WeatherStationActiveCount = active;
                 }
             }
             catch (Exception e)
@@ -108,17 +142,6 @@ namespace IVCNetMaui.ViewModels.Detail
         private Task NavigateToHealthMonitor()
         {
             return NavigationService.NavigateToAsync("healthMonitor");
-        }
-
-        private int CountActivated(ObservableCollection<IoTStatus> statuses)
-        {
-            var count = 0;
-            foreach (var status in statuses)
-            {
-                if (status.Status == "Up") count++;
-            }
-
-            return count;
         }
     }
 }

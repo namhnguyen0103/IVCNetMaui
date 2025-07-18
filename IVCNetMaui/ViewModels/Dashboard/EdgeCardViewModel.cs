@@ -224,12 +224,16 @@ public partial class EdgeCardViewModel : ViewModelBase
 
     private async Task GetStatusAsync()
     {
-        Status = await ApiService.GetEdgeStatusAsync(EdgeInfo.Id);
+        var result = await ApiService.GetEdgeStatusAsync(EdgeInfo.Id);
+        Status = result;
+        EdgeInfo.EdgeStatus = result;
     }
 
     private async Task GetHealthAsync()
     {
-        Health = await ApiService.GetEdgeHealthAsync(EdgeInfo.Id);
+        var result = await ApiService.GetEdgeHealthAsync(EdgeInfo.Id);
+        Health = result;
+        EdgeInfo.EdgeHealth = result;
     }
 
     private async Task GetCamerasAsync()
