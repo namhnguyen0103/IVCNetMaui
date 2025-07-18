@@ -79,12 +79,6 @@ namespace IVCNetMaui.ViewModels.Dashboard
             });
         }
 
-        [RelayCommand]
-        private Task NavigateToEdgeDetail()
-        {
-            return NavigationService.NavigateToAsync("edgeDetail");
-        }
-
         private async Task UpdateHealthStatusAsync()
         {
             try

@@ -1,6 +1,5 @@
 ﻿using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
-using System.Collections.ObjectModel;
 using IVCNetMaui.Models.Status;
 using IVCNetMaui.Services.Api;
 
@@ -9,8 +8,6 @@ namespace IVCNetMaui.ViewModels.Dashboard
     [QueryProperty(nameof(InitialPage), "InitialPage")]
     public partial class HealthMonitorViewModel : ViewModelBase
     {
-        public event Func<Task>? RequestLazyViewLoad;
-        
         [ObservableProperty]
         private int _initialPage;
         

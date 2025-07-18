@@ -10,11 +10,13 @@ namespace IVCNetMaui.Converters
     internal class StatusToColorConverter : IValueConverter
     {
         private readonly Color _upColor = Color.FromArgb("#66A80A");
-        private readonly Color _downColor = Color.FromArgb("#B71C0B");
-        private readonly Color _unknownColor = Color.FromArgb("#21252");
+        private readonly Color _inactiveColor = Color.FromArgb("#B71C0B");
+        private readonly Color _downColor = Color.FromArgb("#868E96");
+        private readonly Color _unknownColor = Color.FromArgb("#868E96");
         
         private readonly Color _upBackgroundColor = Color.FromArgb("#EEF9DF");
-        private readonly Color _downBackgroundColor = Color.FromArgb("#F9E0DF");
+        private readonly Color _inactiveBackgroundColor = Color.FromArgb("#F9E0DF");
+        private readonly Color _downBackgroundColor = Color.FromArgb("#E9ECEE");
         private readonly Color _unknownBackgroundColor = Color.FromArgb("#E9ECEE");
          
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
@@ -28,7 +30,8 @@ namespace IVCNetMaui.Converters
                     "Active" => _upColor,
                     "Running" => _upColor,
                     "Up" => _upColor,
-                    "Deactivated" => _downColor,
+                    "Deactivated" => _inactiveColor,
+                    "Down" => _downColor,
                     _ => _unknownColor,
                 };
             }
@@ -37,7 +40,8 @@ namespace IVCNetMaui.Converters
                 "Active" => _upBackgroundColor,
                 "Running" => _upBackgroundColor,
                 "Up" => _upBackgroundColor,
-                "Deactivated" => _downBackgroundColor,
+                "Deactivated" => _inactiveBackgroundColor,
+                "Down" => _downBackgroundColor,
                 _ => _unknownBackgroundColor,
             };
         }

@@ -195,4 +195,18 @@ public class ApiService : IApiService
             throw;
         }
     }
+
+    public async Task<IoTStatus> GetIoTStatusAsync(int unit, string type, int iot)
+    {
+        try
+        {
+            var response = await _requestProvider.GetAsync<IoTStatus>($"{_globalSetting.BaseApiEndpoint}/vaedge/iot/status?unit={unit}&type={type}&iot={iot}");
+            return response;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

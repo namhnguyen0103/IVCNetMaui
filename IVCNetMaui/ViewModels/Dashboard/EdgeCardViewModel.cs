@@ -31,27 +31,90 @@ public partial class EdgeCardViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(IoTIsVisible))]
     [NotifyPropertyChangedFor(nameof(CameraActivated))]
     private ObservableCollection<Camera> _cameras = new();
+    async partial void OnCamerasChanged(ObservableCollection<Camera> value)
+    {
+        try
+        {
+            var totalCameraUp = 0;
+            var tasks = value.Select(async camera =>
+            {
+                var result = await ApiService.GetIoTStatusAsync(EdgeInfo.Id, "camera", camera.Id);
+                if (result.Status == "Up") totalCameraUp++;
+            });
+            await Task.WhenAll(tasks);
+            CameraUp = totalCameraUp;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
     
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ModbusDeviceIsVisible))]
     [NotifyPropertyChangedFor(nameof(IoTIsVisible))]
     [NotifyPropertyChangedFor(nameof(ModbusDeviceActivated))]
     private ObservableCollection<ModbusDevice> _modbusDevices = new() ;
+    async partial void OnModbusDevicesChanged(ObservableCollection<ModbusDevice> value)
+    {
+        try
+        {
+            var totalModbusUp = 0;
+            var tasks = value.Select(async modbus =>
+            {
+                var result = await ApiService.GetIoTStatusAsync(EdgeInfo.Id, "modbus", modbus.Id);
+                if (result.Status == "Up") totalModbusUp++;
+            });
+            await Task.WhenAll(tasks);
+            ModbusDeviceUp = totalModbusUp;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
     
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(WeatherStationIsVisible))]
     [NotifyPropertyChangedFor(nameof(IoTIsVisible))]
     [NotifyPropertyChangedFor(nameof(WeatherStationActivated))]
     private ObservableCollection<WeatherStation> _weatherStations = new();
+
+    async partial void OnWeatherStationsChanged(ObservableCollection<WeatherStation> value)
+    {
+        try
+        {
+            var totalWeatherUp = 0;
+            var tasks = value.Select(async weather =>
+            {
+                var result = await ApiService.GetIoTStatusAsync(EdgeInfo.Id, "weather", weather.Id);
+                if (result.Status == "Up") totalWeatherUp++;
+            });
+            await Task.WhenAll(tasks);
+            WeatherStationUp = totalWeatherUp;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
     
     [RelayCommand(CanExecute = nameof(IsActive))]
     private Task NavigateToEdgeDetail()
     {
-        return NavigationService.NavigateToAsync("edgeDetail");
-    }
+        var queryParameters = new ShellNavigationQueryParameters()
+        {
+            { "EdgeInfo", EdgeInfo },
+            { "Cameras", Cameras },
+            { "ModbusDevices", ModbusDevices },
+            { "WeatherStations", WeatherStations }
+        };
+        if (Status != null) queryParameters.Add("Status", Status);
 
-    private bool IsActive() => EdgeInfo.Status == 0;
+        return NavigationService.NavigateToAsync("edgeDetail", queryParameters);
+    }
     
+    private bool IsActive() => EdgeInfo.Status == 0;
     public bool HealthIsVisible => EdgeInfo.Status == 0;
     public bool IoTIsVisible => EdgeInfo.Status == 0 && (CameraIsVisible || ModbusDeviceIsVisible || WeatherStationIsVisible);
     public String EdgeState => EdgeInfo.Status == 0 ? "Active" : "Deactivated";
@@ -132,6 +195,11 @@ public partial class EdgeCardViewModel : ViewModelBase
             return count;
         }
     }
+
+    [ObservableProperty] private int _cameraUp;
+    [ObservableProperty] private int _modbusDeviceUp;
+    [ObservableProperty] private int _weatherStationUp;
+    
     public EdgeCardViewModel(Edge edge, INavigationService navigationService, IApiService apiService) : base(navigationService, apiService)
     {
         _edgeInfo = edge;

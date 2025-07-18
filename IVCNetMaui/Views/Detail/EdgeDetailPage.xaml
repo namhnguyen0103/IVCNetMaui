@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:tabView="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             xmlns:converters="clr-namespace:IVCNetMaui.Converters"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
+             xmlns:ioT="clr-namespace:IVCNetMaui.Models.IoT"
              x:Class="IVCNetMaui.Views.Detail.EdgeDetailPage"
-             Title="Moxa 1200 [Ver. 2.9.1.0]"
+             Title="{Binding PageTitle}"
              x:DataType="viewModels:EdgeDetailViewModel">
     <Shell.BackButtonBehavior>
         <BackButtonBehavior TextOverride=""/>
@@ -13,40 +15,26 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ControlTemplate x:Key="IoTHeader" x:DataType="controls:AccordionControl">
-                <Grid ColumnDefinitions="*, Auto" ColumnSpacing="12"  Margin="0, 0, 12, 0">
-                    <Label Text="Camera" Style="{StaticResource Body-L}" VerticalTextAlignment="Center"/>
-                    <Label Grid.Column="1" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="5 Total" TextColor="{StaticResource Gray700}"/>
-                                <Span Text="  /  " TextColor="{StaticResource Gray700}"/>
-                                <Span Text="2 Activated" TextColor="{StaticResource Gray700}"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                
-                </Grid>
-            </ControlTemplate>
-
-            <DataTemplate x:Key="IoTCard" x:DataType="x:String">
+            <converters:StatusToColorConverter x:Key="StatusToColorConverter"/>
+            
+            <DataTemplate x:Key="IoTCard" x:DataType="ioT:IoTStatus">
                 <Grid ColumnDefinitions="*, 80" ColumnSpacing="8" Padding="12, 12">
-                    <Label Style="{StaticResource Body-M}" VerticalTextAlignment="Center">
+                    <Label Style="{StaticResource Body-S}" VerticalTextAlignment="Center">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="DC Cam1 Thermal" />
-                                <Span Text="  " />
-                                <Span Text="#ID" TextColor="{StaticResource Gray700}"/>
+                                <Span Text="{Binding IotName}" />
+                                <Span Text="{Binding IotId, StringFormat=' #{0}'}" TextColor="{StaticResource Gray700}"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Border Grid.Column="1" StrokeShape="RoundRectangle 20"  HeightRequest="24">
-                        <Label Text="Unknown" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Style="{StaticResource Body-S}" TextColor="{StaticResource Gray700}"/>
+                    <Border Grid.Column="1" HeightRequest="24" StrokeThickness="0" BackgroundColor="{Binding Status, Converter={StaticResource StatusToColorConverter}}" HorizontalOptions="End" Padding="6, 0">
+                        <Label Text="{Binding Status}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Style="{StaticResource Label-S}" TextColor="{Binding Status, Converter={StaticResource StatusToColorConverter}, ConverterParameter='Label'}"/>
                     </Border>
                 </Grid>
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
+    
     <tabView:SfTabView Style="{StaticResource Header}">
         <tabView:SfTabView.Items>
             <!--Health Monitor Tab-->
@@ -58,50 +46,91 @@
 
             <!--IoT Tab-->
             <tabView:SfTabItem Header="IoT">
-                <VerticalStackLayout Padding="{StaticResource MainPadding}" Spacing="16">
-                    <controls:AccordionControl HeaderContent="{StaticResource IoTHeader}" IsExpanded="True">
-                        <controls:AccordionControl.BodyContent>
-                            <ControlTemplate>
-                                <CollectionView ItemTemplate="{StaticResource IoTCard}" 
-                                                ItemsSource="{Binding x:DataType='viewModels:EdgeDetailViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=Cameras}"/>
-                            </ControlTemplate>
-                        </controls:AccordionControl.BodyContent>
-                    </controls:AccordionControl>
+                <ScrollView>
+                    <VerticalStackLayout Padding="{StaticResource MainPadding}" Spacing="16">
+                        <!-- Camera Accordion Control -->
+                        <controls:AccordionControl IsVisible="{Binding CameraIsVisible}" IsExpanded="True">
+                            <controls:AccordionControl.HeaderContent>
+                                <ControlTemplate>
+                                    <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
+                                        <Label Text="Camera"/>
+                                        <Label Grid.Column="1" Style="{StaticResource Body-S}" VerticalTextAlignment="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraActiveCount}" TextColor="{StaticResource Gray700}"/>
+                                                    <Span Text=" / " TextColor="{StaticResource Gray700}"/>
+                                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraStatuses.Count}" TextColor="{StaticResource Gray700}"/>
+                                                    <Span Text=" Active" TextColor="{StaticResource Gray700}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                </ControlTemplate>
+                            </controls:AccordionControl.HeaderContent>
+                            <controls:AccordionControl.BodyContent>
+                                <ControlTemplate>
+                                    <CollectionView ItemTemplate="{StaticResource IoTCard}" 
+                                                    ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraStatuses}"/>
+                                </ControlTemplate>
+                            </controls:AccordionControl.BodyContent>
+                        </controls:AccordionControl>
 
-                    <controls:AccordionControl>
-                        <controls:AccordionControl.HeaderContent>
-                            <ControlTemplate>
-                                <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
-                                    <Label Text="Modbus Device"/>
-                                    <Label Text="3 Total  /  2 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource Body-S}" VerticalTextAlignment="Center"/>
-                                </Grid>
-                            </ControlTemplate>
-                        </controls:AccordionControl.HeaderContent>
-                        <controls:AccordionControl.BodyContent>
-                            <ControlTemplate>
-                                <CollectionView ItemTemplate="{StaticResource IoTCard}" 
-                                                ItemsSource="{Binding x:DataType='viewModels:EdgeDetailViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=Cameras}"/>
-                            </ControlTemplate>
-                        </controls:AccordionControl.BodyContent>
-                    </controls:AccordionControl>
+                        <!-- Modbus Device Accordion Control -->
+                        <controls:AccordionControl IsVisible="{Binding ModbusDeviceIsVisible}">
+                            <controls:AccordionControl.HeaderContent>
+                                <ControlTemplate>
+                                    <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
+                                        <Label Text="Modbus Device"/>
+                                        <Label Grid.Column="1" Style="{StaticResource Body-S}" VerticalTextAlignment="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=ModbusDeviceActiveCount}" TextColor="{StaticResource Gray700}"/>
+                                                    <Span Text=" / " TextColor="{StaticResource Gray700}"/>
+                                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=ModbusDeviceStatuses.Count}" TextColor="{StaticResource Gray700}"/>
+                                                    <Span Text=" Active" TextColor="{StaticResource Gray700}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                </ControlTemplate>
+                            </controls:AccordionControl.HeaderContent>
+                            <controls:AccordionControl.BodyContent>
+                                <ControlTemplate>
+                                    <CollectionView ItemTemplate="{StaticResource IoTCard}" 
+                                                    ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=ModbusDeviceStatuses}"/>
+                                </ControlTemplate>
+                            </controls:AccordionControl.BodyContent>
+                        </controls:AccordionControl>
 
-                    <controls:AccordionControl>
-                        <controls:AccordionControl.HeaderContent>
-                            <ControlTemplate>
-                                <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
-                                    <Label Text="Weather Station"/>
-                                    <Label Text="2 Total  /  2 Activated" Grid.Column="1" TextColor="{StaticResource Gray700}" Style="{StaticResource Body-S}" VerticalTextAlignment="Center"/>
-                                </Grid>
-                            </ControlTemplate>
-                        </controls:AccordionControl.HeaderContent>
-                        <controls:AccordionControl.BodyContent>
-                            <ControlTemplate>
-                                <CollectionView ItemTemplate="{StaticResource IoTCard}" 
-                                                ItemsSource="{Binding x:DataType='viewModels:EdgeDetailViewModel', Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=Cameras}"/>
-                            </ControlTemplate>
-                        </controls:AccordionControl.BodyContent>
-                    </controls:AccordionControl>
-                </VerticalStackLayout>
+                        <!-- Weather Station Accordion Control -->
+                        <controls:AccordionControl IsVisible="{Binding WeatherStationIsVisible}">
+                            <controls:AccordionControl.HeaderContent>
+                                <ControlTemplate>
+                                    <Grid ColumnDefinitions="*, Auto" Margin="0, 0, 12, 0">
+                                        <Label Text="Weather Station"/>
+                                        <Label Grid.Column="1" Style="{StaticResource Body-S}" VerticalTextAlignment="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=WeatherStationActiveCount}" TextColor="{StaticResource Gray700}"/>
+                                                    <Span Text=" / " TextColor="{StaticResource Gray700}"/>
+                                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=WeatherStationStatuses.Count}" TextColor="{StaticResource Gray700}"/>
+                                                    <Span Text=" Active" TextColor="{StaticResource Gray700}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                </ControlTemplate>
+                            </controls:AccordionControl.HeaderContent>
+                            <controls:AccordionControl.BodyContent>
+                                <ControlTemplate>
+                                    <CollectionView ItemTemplate="{StaticResource IoTCard}" 
+                                                    ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=WeatherStationStatuses}"/>
+                                </ControlTemplate>
+                            </controls:AccordionControl.BodyContent>
+                        </controls:AccordionControl>
+                    </VerticalStackLayout>
+                </ScrollView>
+                
             </tabView:SfTabItem>
         </tabView:SfTabView.Items>
     </tabView:SfTabView>

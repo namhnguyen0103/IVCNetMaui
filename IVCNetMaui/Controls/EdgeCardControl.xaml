@@ -25,7 +25,7 @@
               Spacing="4"
               Padding="{StaticResource CardPadding}">
             <VerticalStackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding NavigateToEdgeDetailCommand}"></TapGestureRecognizer>
+                <TapGestureRecognizer Command="{Binding NavigateToEdgeDetailCommand}" />
             </VerticalStackLayout.GestureRecognizers>
             <VerticalStackLayout.Behaviors>
                 <toolkit:TouchBehavior PressedBackgroundColor="{StaticResource Gray300}"
@@ -87,7 +87,7 @@
                                 <FormattedString>
                                     <Span Text="{Binding Cameras.Count}"/>
                                     <Span Text="{Binding CameraActivated, StringFormat=' • {0} Active'}"/>
-                                    <Span Text=" • 0 Up"/>
+                                    <Span Text="{Binding CameraUp, StringFormat=' • {0} Up'}"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -99,7 +99,7 @@
                                 <FormattedString>
                                     <Span Text="{Binding ModbusDevices.Count}"/>
                                     <Span Text="{Binding ModbusDeviceActivated, StringFormat=' • {0} Active'}"/>
-                                    <Span Text=" • 0 Up"/>
+                                    <Span Text="{Binding ModbusDeviceUp, StringFormat=' • {0} Up'}"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -112,7 +112,7 @@
                                 <FormattedString>
                                     <Span Text="{Binding WeatherStations.Count}"/>
                                     <Span Text="{Binding WeatherStationActivated, StringFormat=' • {0} Active'}"/>
-                                    <Span Text=" • 0 Up"/>
+                                    <Span Text="{Binding WeatherStationUp, StringFormat=' • {0} Up'}"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
