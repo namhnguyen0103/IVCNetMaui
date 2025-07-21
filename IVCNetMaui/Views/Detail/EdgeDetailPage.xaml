@@ -11,12 +11,20 @@
         <BackButtonBehavior TextOverride=""/>
     </Shell.BackButtonBehavior>
     
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="CollectionView">
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <tabView:SfTabView Style="{StaticResource Header}">
         <tabView:SfTabView.Items>
             <!--Health Monitor Tab-->
             <tabView:SfTabItem Header="Health Monitor">
                 <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
-                    <ScrollView>
+                    <ScrollView BackgroundColor="{StaticResource Gray200}">
                         <controls:HealthMonitorSummaryControl 
                             HealthStatus="{Binding Health}"
                             Padding="{StaticResource MainPadding}" 
@@ -30,7 +38,7 @@
             <!--IoT Tab-->
             <tabView:SfTabItem Header="IoT">
                 <ScrollView>
-                    <VerticalStackLayout Padding="{StaticResource MainPadding}" Spacing="16">
+                    <VerticalStackLayout Padding="{StaticResource MainPadding}" Spacing="16" BackgroundColor="{StaticResource Gray200}">
                         <!-- Camera Accordion Control -->
                         <controls:AccordionControl IsVisible="{Binding CameraIsVisible}" IsExpanded="True">
                             <controls:AccordionControl.HeaderContent>

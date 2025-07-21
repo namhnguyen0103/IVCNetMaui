@@ -4,6 +4,7 @@
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:tabView="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
              xmlns:converters="clr-namespace:IVCNetMaui.Converters"
+             xmlns:selectors="clr-namespace:IVCNetMaui.Selectors"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Dashboard"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -16,6 +17,144 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <converters:StatusToColorConverter x:Key="StatusConverter" />
+            <Style x:Key="PropertyBorder" TargetType="Border">
+                <Setter Property="Padding" Value="8, 6"/>
+            </Style>
+            <Style TargetType="Label" BasedOn="{StaticResource Body-S}">
+                <Setter Property="TextColor" Value="{StaticResource Gray950}"/>
+            </Style>
+            <DataTemplate x:Key="Active" x:DataType="viewModels:EdgeCardViewModel">
+                <Border BackgroundColor="White" StrokeShape="Rectangle">
+                    <VerticalStackLayout 
+                          Spacing="10"
+                          Padding="{StaticResource CardPadding}">
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToEdgeDetailCommand}" />
+                        </VerticalStackLayout.GestureRecognizers>
+                        <VerticalStackLayout.Behaviors>
+                            <toolkit:TouchBehavior PressedBackgroundColor="{StaticResource Gray300}"
+                                                   DefaultBackgroundColor="White"/>
+                        </VerticalStackLayout.Behaviors>
+                        <Grid ColumnDefinitions="Auto, Auto, *" ColumnSpacing="4" >
+                            <!-- <Border StrokeThickness="0" BackgroundColor="{Binding EdgeState, Converter={StaticResource StatusConverter}}" Padding="6, 0"> -->
+                            <Label Text="{Binding EdgeState}"
+                                   Padding="6, 0"
+                                   TextColor="{Binding EdgeState, Converter={StaticResource StatusConverter}, ConverterParameter='Label'}" 
+                                   Style="{StaticResource Label-S}" 
+                                   BackgroundColor="{Binding EdgeState, Converter={StaticResource StatusConverter}}"
+                                   VerticalTextAlignment="Center"/>
+                            <!-- </Border> -->
+                            <Label Grid.Column="1" Text="{Binding EdgeInfo.Name, TargetNullValue='Unknown', FallbackValue='Unknown'}" Style="{StaticResource Title-M}" MaxLines="1" LineBreakMode="TailTruncation"/>
+                            <Label Grid.Column="2" Text="{Binding EdgeInfo.Id, StringFormat='#{0}', FallbackValue='-1'}" Style="{StaticResource Title-M}" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center"/>
+                        </Grid>   
+                   
+                        <Border Style="{StaticResource PropertyBorder}" IsVisible="{Binding HealthIsVisible}">
+                            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                                  ColumnDefinitions="*, *"
+                                  RowSpacing="6">
+                                <Label Text="Version" TextColor="{StaticResource Gray700}"/>
+                                <Label Grid.Column="1" Text="{Binding Version}" />
+                                <Label Grid.Row="1" Text="Uptime" TextColor="{StaticResource Gray700}"/>
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Uptime, StringFormat='{0:%d\\.hh\\:mm\\:ss}'}"/>
+                                <Label Grid.Row="2" Text="System" TextColor="{StaticResource Gray700}"/>
+                                <Label Grid.Row="2" Grid.Column="1">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding CpuUsage, StringFormat='{0}% CPU'}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Grid.Row="3" Text="Video Process" TextColor="{StaticResource Gray700}"/>
+                                <Label Grid.Row="3" Grid.Column="1">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding VideoState}" TextColor="{Binding VideoState, Converter={StaticResource StatusConverter}, ConverterParameter='Label'}"/>
+                                            <Span Text=" • "/>
+                                            <Span Text="{Binding VideoCpuUsage, StringFormat='{0}% CPU'}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Grid.Row="4" Text="UI Process" TextColor="{StaticResource Gray700}"/>
+                                <Label Grid.Row="4" Grid.Column="1">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding UiState}" TextColor="{Binding UiState, Converter={StaticResource StatusConverter}, ConverterParameter='Label'}"/>
+                                            <Span Text=" • "/>
+                                            <Span Text="{Binding UiCpuUsage, StringFormat='{0}% CPU'}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Grid>
+                        </Border>
+                        
+                        <Border Style="{StaticResource PropertyBorder}" IsVisible="{Binding IoTIsVisible}">
+                            <VerticalStackLayout Spacing="6">
+                                <Grid ColumnDefinitions="*, *" IsVisible="{Binding CameraIsVisible}">
+                                    <Label Text="Camera" TextColor="{StaticResource Gray700}"/>
+                                    <Label Grid.Column="1">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Cameras.Count}"/>
+                                                <Span Text="{Binding CameraActivated, StringFormat=' • {0} Active'}"/>
+                                                <Span Text="{Binding CameraUp, StringFormat=' • {0} Up'}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                                <Grid ColumnDefinitions="*, *" IsVisible="{Binding ModbusDeviceIsVisible}">
+                                    <Label Text="Modbus Device" TextColor="{StaticResource Gray700}"/>
+                                    <Label Grid.Column="1">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding ModbusDevices.Count}"/>
+                                                <Span Text="{Binding ModbusDeviceActivated, StringFormat=' • {0} Active'}"/>
+                                                <Span Text="{Binding ModbusDeviceUp, StringFormat=' • {0} Up'}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                                
+                                <Grid ColumnDefinitions="*, *" IsVisible="{Binding WeatherStationIsVisible}">
+                                    <Label Text="Weather Station" TextColor="{StaticResource Gray700}"/>
+                                    <Label Grid.Column="1">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding WeatherStations.Count}"/>
+                                                <Span Text="{Binding WeatherStationActivated, StringFormat=' • {0} Active'}"/>
+                                                <Span Text="{Binding WeatherStationUp, StringFormat=' • {0} Up'}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+            </DataTemplate>
+            <DataTemplate x:Key="Deactivated" x:DataType="viewModels:EdgeCardViewModel">
+                <Border BackgroundColor="{StaticResource Gray300}" StrokeShape="Rectangle">
+                    <VerticalStackLayout 
+                        Spacing="4"
+                        Padding="{StaticResource CardPadding}">
+                        <Grid ColumnDefinitions="Auto, Auto, *" ColumnSpacing="4" >
+                            <!-- <Border StrokeThickness="0" BackgroundColor="{Binding EdgeState, Converter={StaticResource StatusConverter}}" Padding="6, 0"> -->
+                            <Label Text="{Binding EdgeState}" 
+                                   TextColor="{Binding EdgeState, Converter={StaticResource StatusConverter}, ConverterParameter='Label'}" 
+                                   BackgroundColor="{Binding EdgeState, Converter={StaticResource StatusConverter}}"
+                                   Style="{StaticResource Label-S}" 
+                                   VerticalTextAlignment="Center"
+                                   Padding="6, 0"/>
+                            <!-- </Border> -->
+                            <Label Grid.Column="1" Text="{Binding EdgeInfo.Name, TargetNullValue='Unknown', FallbackValue='Unknown'}" Style="{StaticResource Title-M}" MaxLines="1" LineBreakMode="TailTruncation"/>
+                            <Label Grid.Column="2" Text="{Binding EdgeInfo.Id, StringFormat='#{0}', FallbackValue='-1'}" Style="{StaticResource Title-M}" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+            </DataTemplate>
+            <selectors:EdgeCardTemplateSelector x:Key="EdgeCardTemplateSelector" 
+                                                ActiveCardTemplate="{StaticResource Active}"
+                                                DeactivatedCardTemplate="{StaticResource Deactivated}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -23,7 +162,7 @@
             <tabView:SfTabView.Items>
                 <tabView:SfTabItem Header="Hub">
                     <tabView:SfTabItem.Content>
-                        <Grid RowDefinitions="*">
+                        <Grid RowDefinitions="*" BackgroundColor="{StaticResource Gray200}">
                             <RefreshView Command="{Binding RefreshCommand}" IsVisible="{Binding HubInitializing, Converter={StaticResource InverseBooleanConverter}}" IsRefreshing="{Binding IsRefreshing}">
                                 <ScrollView>
                                     <controls:HealthMonitorSummaryControl 
@@ -47,7 +186,8 @@
                             <CollectionView Grid.Row="1" 
                                             ItemsSource="{Binding VaEdgeCards}" 
                                             IsVisible="{Binding EdgeInitializing, Converter={StaticResource InverseBooleanConverter}}" 
-                                            BackgroundColor="{StaticResource Gray200}">
+                                            BackgroundColor="{StaticResource Gray200}"
+                                            ItemTemplate="{StaticResource EdgeCardTemplateSelector}">
                                 <CollectionView.ItemsLayout>
                                     <GridItemsLayout Orientation="Vertical"
                                                        VerticalItemSpacing="8"
@@ -57,11 +197,11 @@
                                         </GridItemsLayout.Span>
                                     </GridItemsLayout>
                                 </CollectionView.ItemsLayout>
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate x:DataType="viewModels:EdgeCardViewModel">
-                                        <controls:EdgeCardControl BindingContext="{Binding}" />
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
+                                <!-- <CollectionView.ItemTemplate> -->
+                                <!--     <DataTemplate x:DataType="viewModels:EdgeCardViewModel"> -->
+                                <!--         <controls:EdgeCardControl BindingContext="{Binding}" /> -->
+                                <!--     </DataTemplate> -->
+                                <!-- </CollectionView.ItemTemplate> -->
                             </CollectionView>
                             <ActivityIndicator Grid.Row="1" IsRunning="{Binding EdgeInitializing}" />
                         </Grid>

@@ -10,7 +10,7 @@
              x:Class="IVCNetMaui.Views.Dashboard.HealthMonitorPage"
              x:DataType="viewModels:HealthMonitorViewModel"
              Title="Health Monitor"
-             BackgroundColor="{StaticResource Gray200}">
+             BackgroundColor="White">
     <Shell.BackButtonBehavior>
         <BackButtonBehavior TextOverride=""/>
     </Shell.BackButtonBehavior>

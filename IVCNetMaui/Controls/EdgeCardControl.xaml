@@ -11,7 +11,7 @@
         <ResourceDictionary>
             <converters:StatusToColorConverter x:Key="StatusConverter" />
             <Style x:Key="PropertyBorder" TargetType="Border">
-                <Setter Property="Padding" Value="8"/>
+                <Setter Property="Padding" Value="8, 6"/>
             </Style>
 
             <Style TargetType="Label" BasedOn="{StaticResource Body-S}">
@@ -21,7 +21,7 @@
             <ControlTemplate x:Key="Active">
                 <Border BackgroundColor="White" StrokeShape="Rectangle">
                     <VerticalStackLayout 
-                          Spacing="4"
+                          Spacing="10"
                           Padding="{StaticResource CardPadding}">
                         <VerticalStackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding NavigateToEdgeDetailCommand}" />
@@ -35,7 +35,7 @@
                                 <Label Text="{Binding EdgeState}" TextColor="{Binding EdgeState, Converter={StaticResource StatusConverter}, ConverterParameter='Label'}" Style="{StaticResource Label-S}" VerticalTextAlignment="Center"/>
                             </Border>
                             <Label Grid.Column="1" Text="{Binding EdgeInfo.Name, TargetNullValue='Unknown', FallbackValue='Unknown'}" Style="{StaticResource Title-M}" MaxLines="1" LineBreakMode="TailTruncation"/>
-                            <Label Grid.Column="2" Text="{Binding EdgeInfo.Id, StringFormat='#{0}', FallbackValue='-1'}" Style="{StaticResource Body-L}" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center"/>
+                            <Label Grid.Column="2" Text="{Binding EdgeInfo.Id, StringFormat='#{0}', FallbackValue='-1'}" Style="{StaticResource Title-M}" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center"/>
                         </Grid>   
                    
                         <Border Style="{StaticResource PropertyBorder}" IsVisible="{Binding HealthIsVisible}">
@@ -123,7 +123,7 @@
             </ControlTemplate>
             
             <ControlTemplate x:Key="Deactivated">
-                <Border BackgroundColor="White" StrokeShape="Rectangle">
+                <Border BackgroundColor="{StaticResource Gray300}" StrokeShape="Rectangle">
                     <VerticalStackLayout 
                         Spacing="4"
                         Padding="{StaticResource CardPadding}">
@@ -132,7 +132,7 @@
                                 <Label Text="{Binding EdgeState}" TextColor="{Binding EdgeState, Converter={StaticResource StatusConverter}, ConverterParameter='Label'}" Style="{StaticResource Label-S}" VerticalTextAlignment="Center"/>
                             </Border>
                             <Label Grid.Column="1" Text="{Binding EdgeInfo.Name, TargetNullValue='Unknown', FallbackValue='Unknown'}" Style="{StaticResource Title-M}" MaxLines="1" LineBreakMode="TailTruncation"/>
-                            <Label Grid.Column="2" Text="{Binding EdgeInfo.Id, StringFormat='#{0}', FallbackValue='-1'}" Style="{StaticResource Body-L}" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center"/>
+                            <Label Grid.Column="2" Text="{Binding EdgeInfo.Id, StringFormat='#{0}', FallbackValue='-1'}" Style="{StaticResource Title-M}" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center"/>
                         </Grid>
                     </VerticalStackLayout>
                 </Border>

@@ -29,6 +29,7 @@
 
     <Style x:Key="Title-L" TargetType="Label">
         <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontFamily" Value="RobotoMedium"/>
     </Style>
 
     <Style x:Key="Title-M" TargetType="Label">

@@ -13,7 +13,7 @@
               x:Name="MainExpander"
               IsExpanded="{Binding IsExpanded, FallbackValue=false, Mode=TwoWay}">
             <toolkit:Expander.Header>
-                <Grid ColumnDefinitions="*, Auto" Padding="{StaticResource CardPadding}" BackgroundColor="{StaticResource Gray200}">
+                <Grid ColumnDefinitions="*, Auto" Padding="{StaticResource CardPadding}" BackgroundColor="{StaticResource Gray100}">
                     <ContentView ControlTemplate="{Binding HeaderContent}"/>
                     <Image x:Name="HeaderIcon" Grid.Column="1" WidthRequest="14">
                         <Image.Source>

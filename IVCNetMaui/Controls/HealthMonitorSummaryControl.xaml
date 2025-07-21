@@ -12,9 +12,9 @@
                 <Setter Property="Padding" Value="{StaticResource CardPadding}"/>
             </Style>
             
-            <Style x:Key="SummaryPrimary" TargetType="Label" BasedOn="{StaticResource Body-L}"/>
+            <Style x:Key="SummaryPrimary" TargetType="Label" BasedOn="{StaticResource Body-M}"/>
             
-            <Style x:Key="SummarySecondary" TargetType="Label" BasedOn="{StaticResource Body-M}">
+            <Style x:Key="SummarySecondary" TargetType="Label" BasedOn="{StaticResource Body-S}">
                 <Setter Property="TextColor" Value="{StaticResource Gray700}"/>
             </Style>
             
@@ -23,9 +23,9 @@
             </Style>
             
             <Style x:Key="SummaryGrid" TargetType="Grid">
-                <Setter Property="RowSpacing" Value="12"/>
-                <Setter Property="ColumnSpacing" Value="12"/>
-                <Setter Property="Padding" Value="12, 4, 12, 12"/>
+                <Setter Property="RowSpacing" Value="8"/>
+                <Setter Property="ColumnSpacing" Value="8"/>
+                <Setter Property="Padding" Value="12, 14"/>
             </Style>
             
             <converters:TimeSpanConverter x:Key="TimeSpanConverter"/>
@@ -35,7 +35,7 @@
 
     </ContentView.Resources>
     
-    <VerticalStackLayout Spacing="16" BindingContext="{x:Reference This}">
+    <VerticalStackLayout Spacing="28" BindingContext="{x:Reference This}">
         <!--System Section-->
         <controls:MenuCardControl Title="System" Command="{Binding NavigateToSystemCommand}">
             <controls:MenuCardControl.BodyContent>

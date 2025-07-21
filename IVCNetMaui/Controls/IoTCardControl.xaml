@@ -21,9 +21,15 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-        <Border Grid.Column="1" HeightRequest="24" StrokeThickness="0" BackgroundColor="{Binding StatusString, Converter={StaticResource StatusToColorConverter}}" HorizontalOptions="End" Padding="6, 0">
-            <Label Text="{Binding StatusString}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Style="{StaticResource Label-S}" TextColor="{Binding IotInfo.Status, Converter={StaticResource StatusToColorConverter}, ConverterParameter='Label'}">
-            </Label>
-        </Border>
+        <!-- <Border Grid.Column="1" HeightRequest="24" StrokeThickness="0" BackgroundColor="{Binding StatusString, Converter={StaticResource StatusToColorConverter}}" HorizontalOptions="End" Padding="6, 0"> -->
+            <Label Text="{Binding StatusString}" 
+                   Grid.Column="1"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
+                   Style="{StaticResource Label-S}" 
+                   TextColor="{Binding IotInfo.Status, Converter={StaticResource StatusToColorConverter}, ConverterParameter='Label'}"
+                   BackgroundColor="{Binding StatusString, Converter={StaticResource StatusToColorConverter}}"
+                   Padding="6, 6"
+                   />
+        <!-- </Border> -->
     </Grid>
 </ContentView>

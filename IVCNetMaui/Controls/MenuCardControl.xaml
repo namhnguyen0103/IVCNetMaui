@@ -3,22 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             xmlns:m="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
              x:Class="IVCNetMaui.Controls.MenuCardControl"
              x:Name="This"
              x:DataType="controls:MenuCardControl">
-    <Border BindingContext="{x:Reference This}">
-        <Border.Behaviors>
-            <toolkit:TouchBehavior 
-                PressedBackgroundColor="{StaticResource Gray100}"
-                DefaultBackgroundColor="White"
-                PressedScale="0.99"/>
-        </Border.Behaviors>
-        <Border.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding Command}"/>
-        </Border.GestureRecognizers>
-        <VerticalStackLayout>
-            <Label Text="{Binding Title}" Padding="{StaticResource CardPadding}" Style="{StaticResource Body-L}" BackgroundColor="{StaticResource Gray200}"/>
+    <VerticalStackLayout BindingContext="{x:Reference This}" Spacing="6">
+        <Label Text="{Binding Title}" Style="{StaticResource Title-L}" FontFamily="RobotoMedium"/>
+        <Border Shadow="0 5 12 hsla(210, 7%, 56%, 0.2)" StrokeShape="RoundRectangle 12, 12, 12, 12" StrokeThickness="0">
+            <Border.Behaviors>
+                <toolkit:TouchBehavior 
+                    PressedBackgroundColor="{StaticResource Gray100}"
+                    DefaultBackgroundColor="White"
+                    PressedScale="0.99"/>
+            </Border.Behaviors>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Command}"/>
+            </Border.GestureRecognizers>
             <ContentView ControlTemplate="{Binding BodyContent}"/>
-        </VerticalStackLayout>
-    </Border>
+        </Border>
+    </VerticalStackLayout>
+    
 </ContentView>

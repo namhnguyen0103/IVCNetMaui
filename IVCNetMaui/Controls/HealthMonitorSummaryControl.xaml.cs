@@ -1,5 +1,4 @@
 using IVCNetMaui.Models.Status;
-using IVCNetMaui.Services.Navigation;
 
 namespace IVCNetMaui.Controls;
 
@@ -47,7 +46,7 @@ public partial class HealthMonitorSummaryControl
     
     public DateTime LastUpdate { get; set; } = DateTime.Now;
 
-    public string Name => HealthStatus?.SystemStatus?.MachineName ?? "Unknown";
+    public string Name => HealthStatus?.SystemStatus?.MachineName ?? "N/A";
     public double CpuUsage
     {
         get
@@ -61,7 +60,7 @@ public partial class HealthMonitorSummaryControl
     }
     public TimeSpan UpTime => HealthStatus?.SystemStatus?.UpTime ?? TimeSpan.Zero;
 
-    public string VideoStatus => HealthStatus?.VideoProcessStatus?.State ?? "Unknown";
+    public string VideoStatus => HealthStatus?.VideoProcessStatus?.State ?? "N/A";
     public int VideoPid => HealthStatus?.VideoProcessStatus?.Pid ?? 0;
     public int VideoHandle => HealthStatus?.VideoProcessStatus?.Handles ?? 0;
     public int VideoThreads => HealthStatus?.VideoProcessStatus?.Threads ?? 0;
@@ -79,7 +78,7 @@ public partial class HealthMonitorSummaryControl
         }
     }
 
-    public string UiStatus => HealthStatus?.UiProcessStatus?.State ?? "Unknown";
+    public string UiStatus => HealthStatus?.UiProcessStatus?.State ?? "N/A";
     public int UiPid => HealthStatus?.UiProcessStatus?.Pid ?? 0;
     public int UiHandle => HealthStatus?.UiProcessStatus?.Handles ?? 0;
     public int UiThreads => HealthStatus?.UiProcessStatus?.Threads ?? 0;

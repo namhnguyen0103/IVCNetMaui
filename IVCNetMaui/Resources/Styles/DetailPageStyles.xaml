@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IVCNetMaui.Resources.Styles.DetailPageStyles">
     <Style x:Key="PropertyBorder" TargetType="Border">
-        <Setter Property="BackgroundColor" Value="White"/>
-        <Setter Property="StrokeThickness" Value="0"/>
+        <!-- <Setter Property="BackgroundColor" Value="{StaticResource Gray100}"/> -->
+        <!-- <Setter Property="StrokeThickness" Value="0"/> -->
         <Setter Property="Padding" Value="12"/>
     </Style>
     <Style x:Key="SectionTitle" TargetType="Label" BasedOn="{StaticResource Body-L}">
