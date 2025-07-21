@@ -43,7 +43,7 @@
                 <tabView:SfTabItem Header="Edge">
                     <tabView:SfTabItem.Content>
                         <Grid RowDefinitions="Auto, *">
-                            <SearchBar ios:SearchBar.SearchBarStyle="Minimal" Placeholder="Search"/>
+                            <!-- <SearchBar ios:SearchBar.SearchBarStyle="Minimal" Placeholder="Search"/> -->
                             <CollectionView Grid.Row="1" 
                                             ItemsSource="{Binding VaEdgeCards}" 
                                             IsVisible="{Binding EdgeInitializing, Converter={StaticResource InverseBooleanConverter}}" 

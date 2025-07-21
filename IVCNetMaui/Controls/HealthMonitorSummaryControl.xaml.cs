@@ -52,7 +52,7 @@ public partial class HealthMonitorSummaryControl
     {
         get
         {
-            if (HealthStatus is { SystemStatus: not null } && HealthStatus.SystemStatus.CpuTotal != 0)
+            if (HealthStatus?.SystemStatus != null && HealthStatus.SystemStatus.CpuTotal != 0)
             {
                 return CalculateCpuUsage(HealthStatus.SystemStatus.CpuUsed, HealthStatus.SystemStatus.CpuTotal);
             }
@@ -71,7 +71,7 @@ public partial class HealthMonitorSummaryControl
     {
         get
         {
-            if (HealthStatus?.VideoProcessStatus != null && HealthStatus.VideoProcessStatus?.CpuTotal != 0)
+            if (HealthStatus?.VideoProcessStatus != null && HealthStatus.VideoProcessStatus.CpuTotal != 0)
             {
                 return CalculateCpuUsage(HealthStatus.VideoProcessStatus.CpuUsed, HealthStatus.VideoProcessStatus.CpuTotal);
             }

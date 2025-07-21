@@ -6,8 +6,14 @@ using IVCNetMaui.Services.Api;
 namespace IVCNetMaui.ViewModels.Dashboard
 {
     [QueryProperty(nameof(InitialPage), "InitialPage")]
+    [QueryProperty(nameof(Type), "Type")]
+    [QueryProperty(nameof(Id), "Id")]
+    [QueryProperty(nameof(HealthStatus), "Health")]
     public partial class HealthMonitorViewModel : ViewModelBase
     {
+        public string? Type { get; set; }
+        public int Id { get; set; } = -1;
+        
         [ObservableProperty]
         private int _initialPage;
         
@@ -25,15 +31,22 @@ namespace IVCNetMaui.ViewModels.Dashboard
         
         public override async Task InitializeAsync()
         {
-            await UpdateHealthStatusAsync();
+            if (HealthStatus == null) await UpdateHealthStatusAsync();
+            await Task.Delay(500);
         }
         
         private async Task UpdateHealthStatusAsync()
         {
             try
             {
-                await Task.Delay(1000);
-                HealthStatus = await ApiService.GetHealthStatusAsync();
+                if (Type == "Hub")
+                {
+                    HealthStatus = await ApiService.GetHealthStatusAsync();
+                }
+                else if (Type == "Edge")
+                {
+                    HealthStatus = await ApiService.GetEdgeHealthAsync(Id);
+                }
             }
             catch (Exception e)
             {

@@ -84,7 +84,7 @@ public class System
     public Cpu? Cpus { get; set; }
     public Dictionary<String, Disk>? RamBytes { get; set; }
     public Dictionary<String, Disk>? DiskBytes { get; set; }
-    public Dictionary<String, Metric.Network>? Network { get; set; }
+    public Dictionary<String, EdgeNetwork>? Network { get; set; }
 }
 
 public class SystemInfo
@@ -99,6 +99,17 @@ public class Cpu
 {
     public double Total { get; set; }
     public double Used { get; set; }
+}
+
+public class EdgeNetwork
+{
+    public string? InterfaceId { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
+    public int NetworkInterfaceType { get; set; }
+    public double BytesSentPerSecond { get; set; }
+    public double BytesReceivedPerSecond { get; set; }
+    public int PacketsQueued { get; set; }
 }
 
 public class HealthMetricRoot

@@ -2,6 +2,7 @@ using System.Text.Json;
 using IVCNetMaui.Models;
 using IVCNetMaui.Models.Authentication;
 using IVCNetMaui.Models.IoT;
+using IVCNetMaui.Models.Metric;
 using IVCNetMaui.Models.Status;
 using IVCNetMaui.Services.Credential;
 using IVCNetMaui.Services.RequestProvider;
@@ -10,13 +11,11 @@ namespace IVCNetMaui.Services.Api;
 
 public class ApiService : IApiService
 {
-    private readonly HttpClient _httpClient;
     private readonly IRequestProvider  _requestProvider;
     private readonly GlobalSetting _globalSetting;
 
     public ApiService(IRequestProvider requestProvider, GlobalSetting globalSetting)
     {
-        _httpClient = new HttpClient();
         _requestProvider = requestProvider;
         _globalSetting = globalSetting;
     }
@@ -134,12 +133,98 @@ public class ApiService : IApiService
         }
     }
 
-    public async Task<EdgeHealth?> GetEdgeHealthAsync(int unit)
+    public async Task<HealthStatus?> GetEdgeHealthAsync(int unit)
     {
         try
         {
             var response = await _requestProvider.GetAsync<HealthMetricRoot>($"{_globalSetting.BaseApiEndpoint}/vaedge/health/status?unit={unit}");
-            return response.HealthMetrics;
+            var value = response.HealthMetrics;
+            List<Disk> disks = new();
+            if (value?.System?.DiskBytes != null)
+            {
+                foreach (var disk in value.System.DiskBytes)
+                {
+                    disks.Add(new Disk
+                    {
+                        DiskName = disk.Key,
+                        Total = disk.Value.Total,
+                        Used = disk.Value.Used,
+                        Available = disk.Value.Available,
+                    });
+                }
+            }
+            
+            List<Models.Metric.Network> networks = new();
+            if (value?.System?.Network != null)
+            {
+                foreach (var network in value.System.Network.Values)
+                {
+                    networks.Add(new Models.Metric.Network
+                    {
+                        InterfaceId = network.InterfaceId,
+                        Name = network.Name,
+                        Description = network.Description,
+                        NetworkInterfaceType = network.NetworkInterfaceType,
+                        BytesSendPerSecond = network.BytesSentPerSecond,
+                        BytesReceivePerSecond = network.BytesReceivedPerSecond,
+                        PacketsQueued = network.PacketsQueued,
+                    });
+                }
+            }
+            
+            var healthStatus = new HealthStatus()
+            {
+                SystemStatus = new SystemStatus
+                {
+                    MachineName = value?.System?.Info?.MachineName,
+                    OsVersion = value?.System?.Info?.OsVersion,
+                    Started = value?.System?.Info?.Started ?? new DateTime(),
+                    UpTime = value?.System?.Info?.UpTime ?? TimeSpan.Zero,
+                    CpuTotal = value?.System?.Cpus?.Total ?? 0,
+                    CpuUsed = value?.System?.Cpus?.Used ?? 0,
+                    RamPhysicalTotal = value?.System?.RamBytes?["Physical"].Total ?? 0,
+                    RamPhysicalUsed = value?.System?.RamBytes?["Physical"].Used ?? 0,
+                    RamVirtualTotal = value?.System?.RamBytes?["Virtual"].Total ?? 0,
+                    RamVirtualUsed = value?.System?.RamBytes?["Virtual"].Used ?? 0,
+                    Disks = disks.ToArray(),
+                    Network = networks.ToArray(),
+                },
+                UiProcessStatus = new ProcessStatus
+                {
+                    ApplicationName = null,
+                    State = value?.Vae_ui?.State,
+                    Error = value?.Vae_ui?.Error,
+                    Pid = value?.Vae_ui?.Pid ?? -1,
+                    LastExitTime = value?.Vae_ui?.LastExitTime,
+                    LastExitCode = value?.Vae_ui?.LastExitCode,
+                    CpuTotal = value?.Vae_ui?.Cpus?.Total ?? 0,
+                    CpuUsed = value?.Vae_ui?.Cpus?.Used ?? 0,
+                    RamPeakWorking = value?.Vae_ui?.RamBytes?.PeakWorking ?? 0,
+                    RamWorking = value?.Vae_ui?.RamBytes?.Working ?? 0,
+                    RamPaged = value?.Vae_ui?.RamBytes?.Paged ?? 0,
+                    RamPeakPaged = value?.Vae_ui?.RamBytes?.PeakPaged ?? 0,
+                    Threads = value?.Vae_ui?.Threads ?? 0,
+                    Handles = value?.Vae_ui?.Handles ?? 0,
+                },
+                VideoProcessStatus = new ProcessStatus() 
+                {
+                    ApplicationName = null,
+                    State = value?.Vae_video?.State,
+                    Error = value?.Vae_video?.Error,
+                    Pid = value?.Vae_video?.Pid ?? -1,
+                    LastExitTime = value?.Vae_video?.LastExitTime,
+                    LastExitCode = value?.Vae_video?.LastExitCode,
+                    CpuTotal = value?.Vae_video?.Cpus?.Total ?? 0,
+                    CpuUsed = value?.Vae_video?.Cpus?.Used ?? 0,
+                    RamPeakWorking = value?.Vae_video?.RamBytes?.PeakWorking ?? 0,
+                    RamWorking = value?.Vae_video?.RamBytes?.Working ?? 0,
+                    RamPaged = value?.Vae_video?.RamBytes?.Paged ?? 0,
+                    RamPeakPaged = value?.Vae_video?.RamBytes?.PeakPaged ?? 0,
+                    Threads = value?.Vae_video?.Threads ?? 0,
+                    Handles = value?.Vae_video?.Handles ?? 0,
+                }
+            };
+            return healthStatus;
         }
         catch (Exception e)
         {

@@ -14,7 +14,7 @@ public interface IApiService
     Task<HealthStatus> GetHealthStatusAsync();
     Task<List<Edge>> GetEdgesAsync();
     Task<EdgeStatus> GetEdgeStatusAsync(int unit);
-    Task<EdgeHealth?> GetEdgeHealthAsync(int unit);
+    Task<HealthStatus?> GetEdgeHealthAsync(int unit);
     Task<List<Camera>> GetCamerasAsync(int unit);
     Task<List<ModbusDevice>> GetModbusDeviceAsync(int unit);
     Task<List<WeatherStation>> GetWeatherStationAsync(int unit);

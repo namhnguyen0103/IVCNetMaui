@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using IVCNetMaui.Models;
 using IVCNetMaui.Models.IoT;
+using IVCNetMaui.Models.Status;
 using IVCNetMaui.Services.Api;
 using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
@@ -24,7 +25,7 @@ public partial class EdgeCardViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(CpuUsage))]
     [NotifyPropertyChangedFor(nameof(VideoCpuUsage))]
     [NotifyPropertyChangedFor(nameof(UiCpuUsage))]
-    private EdgeHealth? _health;
+    private HealthStatus? _health;
     
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CameraIsVisible))]
@@ -109,6 +110,7 @@ public partial class EdgeCardViewModel : ViewModelBase
             { "ModbusDevices", ModbusDevices },
             { "WeatherStations", WeatherStations }
         };
+        if (Health != null) queryParameters.Add("Health", Health);
         if (Status != null) queryParameters.Add("Status", Status);
 
         return NavigationService.NavigateToAsync("edgeDetail", queryParameters);
@@ -119,16 +121,16 @@ public partial class EdgeCardViewModel : ViewModelBase
     public bool IoTIsVisible => EdgeInfo.Status == 0 && (CameraIsVisible || ModbusDeviceIsVisible || WeatherStationIsVisible);
     public String EdgeState => EdgeInfo.Status == 0 ? "Active" : "Deactivated";
     public String Version => Status?.Version ?? "Unknown";
-    public TimeSpan Uptime => Health?.System?.Info?.UpTime ?? TimeSpan.Zero;
-    public String VideoState => Health?.Vae_video?.State ?? "Unknown";
-    public String UiState => Health?.Vae_ui?.State ?? "Unknown";
+    public TimeSpan Uptime => Health?.SystemStatus?.UpTime ?? TimeSpan.Zero;
+    public String VideoState => Health?.VideoProcessStatus?.State ?? "Unknown";
+    public String UiState => Health?.UiProcessStatus?.State ?? "Unknown";
     public double CpuUsage
     {
         get
         {
-            if (Health?.System?.Cpus != null)
+            if (Health?.SystemStatus != null && Health.SystemStatus.CpuTotal != 0)
             {
-                return CalculateCpuUsage(Health.System.Cpus.Used, Health.System.Cpus.Total);
+                return CalculateCpuUsage(Health.SystemStatus.CpuUsed, Health.SystemStatus.CpuTotal);
             }
             return 0;
         }
@@ -136,9 +138,9 @@ public partial class EdgeCardViewModel : ViewModelBase
     public double VideoCpuUsage {
         get
         {
-            if (Health?.Vae_video?.Cpus != null)
+            if (Health?.VideoProcessStatus != null && Health.VideoProcessStatus.CpuTotal != 0)
             {
-                return CalculateCpuUsage(Health.Vae_video.Cpus.Used, Health.Vae_video.Cpus.Total);
+                return CalculateCpuUsage(Health.VideoProcessStatus.CpuUsed, Health.VideoProcessStatus.CpuTotal);
             }
             return 0;
         }
@@ -146,9 +148,9 @@ public partial class EdgeCardViewModel : ViewModelBase
     public double UiCpuUsage {
         get
         {
-            if (Health?.Vae_ui?.Cpus != null) 
+            if (Health?.UiProcessStatus != null && Health.UiProcessStatus.CpuTotal != 0)
             {
-                return CalculateCpuUsage(Health.Vae_ui.Cpus.Used, Health.Vae_ui.Cpus.Total);
+                return CalculateCpuUsage(Health.UiProcessStatus.CpuUsed, Health.UiProcessStatus.CpuTotal);
             }
             return 0;
         }
@@ -233,7 +235,6 @@ public partial class EdgeCardViewModel : ViewModelBase
     {
         var result = await ApiService.GetEdgeHealthAsync(EdgeInfo.Id);
         Health = result;
-        EdgeInfo.EdgeHealth = result;
     }
 
     private async Task GetCamerasAsync()

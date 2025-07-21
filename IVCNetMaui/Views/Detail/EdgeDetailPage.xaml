@@ -10,40 +10,21 @@
     <Shell.BackButtonBehavior>
         <BackButtonBehavior TextOverride=""/>
     </Shell.BackButtonBehavior>
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <!-- <converters:StatusToColorConverter x:Key="StatusToColorConverter"/> -->
-            
-            <!-- <DataTemplate x:Key="IoTCard" x:DataType="ioT:IoTBase"> -->
-            <!--     <Grid ColumnDefinitions="*, 80" ColumnSpacing="8" Padding="12, 12"> -->
-            <!--         <Label Style="{StaticResource Body-S}" VerticalTextAlignment="Center"> -->
-            <!--             <Label.FormattedText> -->
-            <!--                 <FormattedString> -->
-            <!--                     <Span Text="{Binding Name}" /> -->
-            <!--                     <Span Text="{Binding Id, StringFormat=' #{0}'}" TextColor="{StaticResource Gray700}"/> -->
-            <!--                 </FormattedString> -->
-            <!--             </Label.FormattedText> -->
-            <!--         </Label> -->
-            <!--         <Border Grid.Column="1" HeightRequest="24" StrokeThickness="0" BackgroundColor="{Binding Status, Converter={StaticResource StatusToColorConverter}}" HorizontalOptions="End" Padding="6, 0"> -->
-            <!--             <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Style="{StaticResource Label-S}" TextColor="{Binding Status, Converter={StaticResource StatusToColorConverter}, ConverterParameter='Label'}"> -->
-            <!--                 <Label.Text> -->
-            <!--                     <Binding Path="IoTStatus?.Status"></Binding> -->
-            <!--                 </Label.Text> -->
-            <!--             </Label> -->
-            <!--         </Border> -->
-            <!--     </Grid> -->
-            <!-- </DataTemplate> -->
-        </ResourceDictionary>
-    </ContentPage.Resources>
     
     <tabView:SfTabView Style="{StaticResource Header}">
         <tabView:SfTabView.Items>
             <!--Health Monitor Tab-->
             <tabView:SfTabItem Header="Health Monitor">
-                <ScrollView>
-                    <controls:HealthMonitorSummaryControl Padding="{StaticResource MainPadding}" NavigateToSystemCommand="{Binding NavigateToHealthMonitorCommand}"/>
-                </ScrollView>
+                <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+                    <ScrollView>
+                        <controls:HealthMonitorSummaryControl 
+                            HealthStatus="{Binding Health}"
+                            Padding="{StaticResource MainPadding}" 
+                            NavigateToSystemCommand="{Binding NavigateToSystemCommand}"
+                            NavigateToUiProcessCommand="{Binding NavigateToUiProcessCommand}"
+                            NavigateToVideoProcessCommand="{Binding NavigateToVideoProcessCommand}"/>
+                    </ScrollView>
+                </RefreshView>
             </tabView:SfTabItem>
 
             <!--IoT Tab-->

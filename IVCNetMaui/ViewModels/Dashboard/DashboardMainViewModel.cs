@@ -60,23 +60,37 @@ namespace IVCNetMaui.ViewModels.Dashboard
         
         private async Task NavigateToSystemAsync()
         {
-            await NavigationService.NavigateToAsync("healthMonitor");
+            var queryParameters = new ShellNavigationQueryParameters()
+            {
+                { "Type", "Hub" },
+            };
+            if (HealthStatus != null) queryParameters.Add("Health", HealthStatus);
+            
+            await NavigationService.NavigateToAsync("healthMonitor", queryParameters);
         }
         
         private async Task NavigateToVideoProcessAsync()
         {
-            await NavigationService.NavigateToAsync("healthMonitor", new ShellNavigationQueryParameters()
+            var queryParameters = new ShellNavigationQueryParameters()
             {
+                { "Type", "Hub" },
                 { "InitialPage", 1 }
-            });
+            };
+            if (HealthStatus != null) queryParameters.Add("Health", HealthStatus);
+            
+            await NavigationService.NavigateToAsync("healthMonitor", queryParameters);
         }
         
         private async Task NavigateToUiProcessAsync()
         {
-            await NavigationService.NavigateToAsync("healthMonitor", new ShellNavigationQueryParameters()
+            var queryParameters = new ShellNavigationQueryParameters()
             {
+                { "Type", "Hub" },
                 { "InitialPage", 2 }
-            });
+            };
+            if (HealthStatus != null) queryParameters.Add("Health", HealthStatus);
+            
+            await NavigationService.NavigateToAsync("healthMonitor", queryParameters);
         }
 
         private async Task UpdateHealthStatusAsync()

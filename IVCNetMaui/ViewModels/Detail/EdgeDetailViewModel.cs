@@ -3,11 +3,14 @@ using IVCNetMaui.ViewModels.Base;
 using System.Collections.ObjectModel;
 using IVCNetMaui.Models;
 using IVCNetMaui.Models.IoT;
+using IVCNetMaui.Models.Metric;
+using IVCNetMaui.Models.Status;
 using IVCNetMaui.Services.Api;
 
 namespace IVCNetMaui.ViewModels.Detail
 {
     [QueryProperty(nameof(EdgeInfo), "EdgeInfo")]
+    [QueryProperty(nameof(Health), "Health")]
     [QueryProperty(nameof(Status), "Status")]
     [QueryProperty(nameof(Cameras), "Cameras")]
     [QueryProperty(nameof(ModbusDevices), "ModbusDevices")]
@@ -18,6 +21,9 @@ namespace IVCNetMaui.ViewModels.Detail
         [ObservableProperty] 
         [NotifyPropertyChangedFor(nameof(PageTitle))]
         private Edge? _edgeInfo;
+        
+        [ObservableProperty]
+        private  HealthStatus? _health;
         
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(PageTitle))]
@@ -42,6 +48,8 @@ namespace IVCNetMaui.ViewModels.Detail
         [ObservableProperty]
         private ObservableCollection<IoTCardViewModel> _weatherStationViewModels = new();
         
+        [ObservableProperty] private bool _isRefreshing;
+        
         public string PageTitle => $"{EdgeInfo?.Name ?? "Unknown"} [{Status?.Version ?? "0.0.0.0"}]";
         public bool CameraIsVisible => Cameras.Count > 0;
         public bool ModbusDeviceIsVisible => ModbusDevices.Count > 0;
@@ -52,7 +60,7 @@ namespace IVCNetMaui.ViewModels.Detail
         private int _modbusDeviceActiveCount;
         [ObservableProperty]
         private int _weatherStationActiveCount;
-        
+
         async partial void OnCamerasChanged(ObservableCollection<Camera> value)
         {
             try
@@ -139,9 +147,69 @@ namespace IVCNetMaui.ViewModels.Detail
         }
         
         [RelayCommand]
-        private Task NavigateToHealthMonitor()
+        private async Task Refresh()
         {
-            return NavigationService.NavigateToAsync("healthMonitor");
+            await UpdateHealthStatusAsync();
+            IsRefreshing = false;
         }
+        
+        [RelayCommand]
+        private Task NavigateToSystem()
+        {
+            var queryParameters = new ShellNavigationQueryParameters()
+            {
+                { "Type", "Edge" },
+            };
+            if (Health != null) queryParameters.Add("Health", Health);
+            if (EdgeInfo != null) queryParameters.Add("Id", EdgeInfo.Id);
+            
+            return NavigationService.NavigateToAsync("healthMonitor", queryParameters);
+        }
+        
+        [RelayCommand]
+        private Task NavigateToVideoProcess()
+        {
+            var queryParameters = new ShellNavigationQueryParameters()
+            {
+                { "Type", "Edge" },
+                { "InitialPage", 1 }
+            };
+            if (Health != null) queryParameters.Add("Health", Health);
+            if (EdgeInfo != null) queryParameters.Add("Id", EdgeInfo.Id);
+            
+            return NavigationService.NavigateToAsync("healthMonitor", queryParameters);
+        }
+        
+        [RelayCommand]
+        private Task NavigateToUiProcess()
+        {
+            var queryParameters = new ShellNavigationQueryParameters()
+            {
+                { "Type", "Edge" },
+                { "InitialPage", 2 }
+            };
+            if (Health != null) queryParameters.Add("Health", Health);
+            if (EdgeInfo != null) queryParameters.Add("Id", EdgeInfo.Id);
+            
+            return NavigationService.NavigateToAsync("healthMonitor", queryParameters);
+        }
+        
+        [RelayCommand(CanExecute = nameof(UpdateHealthCanExecute))]
+        private async Task UpdateHealthStatusAsync()
+        {
+            try
+            {
+                if (EdgeInfo != null)
+                {
+                    Health = await ApiService.GetEdgeHealthAsync(EdgeInfo.Id);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        private bool UpdateHealthCanExecute() => EdgeInfo != null;
     }
 }
