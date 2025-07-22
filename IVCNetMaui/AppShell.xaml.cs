@@ -128,6 +128,8 @@ namespace IVCNetMaui
                     }
                 });
             }
+            
+            Routing.RegisterRoute("filterModal", typeof(EventFilterPage));
         }
         
         private static FontImageSource GetIcon(string iconName)

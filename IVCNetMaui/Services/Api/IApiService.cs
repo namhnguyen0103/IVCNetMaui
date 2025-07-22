@@ -19,4 +19,6 @@ public interface IApiService
     Task<List<ModbusDevice>> GetModbusDeviceAsync(int unit);
     Task<List<WeatherStation>> GetWeatherStationAsync(int unit);
     Task<IoTStatus> GetIoTStatusAsync(int unit, string type, int iot);
+    Task<List<Event>> GetEventsAsync();
+    Task<int> GetEventCountAsync();
 }

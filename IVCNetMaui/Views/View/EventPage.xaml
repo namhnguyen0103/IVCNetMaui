@@ -1,25 +1,50 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
+             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+             xmlns:models="clr-namespace:IVCNetMaui.Models"
              x:Class="IVCNetMaui.Views.View.EventPage"
              x:DataType="viewModels:EventViewModel"
              Title="Event View"
-             BackgroundColor="{StaticResource Gray200}">
+             BackgroundColor="{StaticResource BlueGray}">
 
-    <Grid RowDefinitions="*">
-        <CollectionView ItemsSource="{Binding List}">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical"
-                                   ItemSpacing="8" />
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="x:String">
-                    <controls:EventCardControl Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EventViewModel}}, Path=NavigateToEventDetailCommand}" />
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Filter" Command="{Binding OpenFilterPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Manage_search}"  />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <Grid RowDefinitions="Auto, *">
+        <SearchBar ios:SearchBar.SearchBarStyle="Minimal" Placeholder="Search"/>
+        <RefreshView Grid.Row="1">
+            <CollectionView ItemsSource="{Binding Events}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="8" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Event">
+                        <controls:EventCardControl Event="{Binding}">
+                            <controls:EventCardControl.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EventViewModel}}, Path=NavigateToEventDetailCommand}"
+                                                      CommandParameter="{Binding}" />
+                            </controls:EventCardControl.GestureRecognizers>
+                            <controls:EventCardControl.Behaviors>
+                                <toolkit:TouchBehavior
+                                    PressedBackgroundColor="{StaticResource Gray300}"
+                                    DefaultBackgroundColor="White" />
+                            </controls:EventCardControl.Behaviors>
+                        </controls:EventCardControl>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            </RefreshView>
+        <ActivityIndicator Grid.RowSpan="2" IsRunning="{Binding IsBusy}"/>
     </Grid>
 </ContentPage>

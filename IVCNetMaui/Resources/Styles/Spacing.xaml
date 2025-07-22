@@ -4,6 +4,6 @@
              x:Class="IVCNetMaui.Resources.Styles.Spacing">
 
     <Thickness x:Key="MainPadding">12, 12</Thickness>
-    <Thickness x:Key="CardPadding">12, 12</Thickness>
+    <Thickness x:Key="CardPadding">12, 10</Thickness>
     
 </ResourceDictionary>

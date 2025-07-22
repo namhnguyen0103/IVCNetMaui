@@ -3,13 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
-             xmlns:m="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
              x:Class="IVCNetMaui.Controls.MenuCardControl"
              x:Name="This"
              x:DataType="controls:MenuCardControl">
     <VerticalStackLayout BindingContext="{x:Reference This}" Spacing="6">
         <Label Text="{Binding Title}" Style="{StaticResource Title-L}" FontFamily="RobotoMedium"/>
-        <Border Shadow="0 5 12 hsla(210, 7%, 56%, 0.2)" StrokeShape="RoundRectangle 12, 12, 12, 12" StrokeThickness="0">
+        <Border StrokeShape="RoundRectangle 10, 10, 10, 10" StrokeThickness="0">
+            <Border.Shadow>
+                <Shadow Brush="#55000000"
+                        Offset="0,4"
+                        Radius="12"
+                        Opacity="0.3" />
+            </Border.Shadow>
+                
             <Border.Behaviors>
                 <toolkit:TouchBehavior 
                     PressedBackgroundColor="{StaticResource Gray100}"
@@ -22,5 +28,5 @@
             <ContentView ControlTemplate="{Binding BodyContent}"/>
         </Border>
     </VerticalStackLayout>
-    
+    <!-- Shadow="0 5 5 hsla(210, 7%, 56%, 0.2)" -->
 </ContentView>

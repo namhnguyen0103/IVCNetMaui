@@ -13,6 +13,7 @@
     <Color x:Key="SecondaryDarkText">#53A5FF</Color>
     <Color x:Key="Tertiary">#043871</Color>
 
+    <Color x:Key="BlueGray">#F0F3F4</Color>
     <Color x:Key="BlueExtraLight">#E0F5FF</Color>
     <Color x:Key="BlueLight">#B2DEFF</Color>
     <Color x:Key="BlueMedium">#53A5FF</Color>

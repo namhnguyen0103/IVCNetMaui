@@ -1,59 +1,48 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.EventCardControl"
              x:Name="This"
-             x:DataType="controls:EventCardControl">
+             x:DataType="controls:EventCardControl"
+             BackgroundColor="White">
     <ContentView.Resources>
         <ResourceDictionary>
             <Style TargetType="Label" BasedOn="{StaticResource Body-S}"/>
         </ResourceDictionary>
     </ContentView.Resources>
     
-    <Border Padding="{StaticResource CardPadding}"
-            BindingContext="{x:Reference This}">
-        
-        <Border.Behaviors>
-            <toolkit:TouchBehavior 
-                PressedBackgroundColor="{StaticResource Gray300}"
-                DefaultBackgroundColor="White"/>
-        </Border.Behaviors>
-        
-        <Border.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding Command}"/>
-        </Border.GestureRecognizers>
-        
+    <Border Padding="{StaticResource CardPadding}" StrokeShape="Rectangle" BindingContext="{x:Reference This}">
         <VerticalStackLayout>
-            <Label Style="{StaticResource Body-M}">
+            <Label Style="{StaticResource Body-M}" Margin="0, 0, 0, 4">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Unit" />
+                        <Span Text="{Binding Event.UnitName, FallbackValue='Unknown'}" />
                         <Span Text=" / " TextColor="{StaticResource Gray700}"/>
-                        <Span Text="Name"/>
+                        <Span Text="{Binding Event.EventRuleName, FallbackValue='Unknown'}"/>
                         <Span Text="  "/>
-                        <Span Text="#ID" TextColor="{StaticResource Gray700}"/>
+                        <Span Text="{Binding Event.Id, StringFormat='#{0}', FallbackValue='#-1'}" TextColor="{StaticResource Gray700}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
             
-            <Label Text="Description"
+            <Label Text="{Binding Event.EventDescription, FallbackValue='Unknown'}"
                    Style="{StaticResource Title-M}"
-                   Margin="0, 0, 0, 4"/>
+                   Margin="0, 0, 0, 12"
+                   LineBreakMode="WordWrap"/>
             
-            <Border Padding="8">
+            <Border Padding="8, 10">
                 <Grid RowDefinitions="Auto, Auto, Auto, Auto"
                       ColumnDefinitions="*, *"
                       RowSpacing="6">
                     <Label Text="Category" TextColor="{StaticResource Gray700}"/>
-                    <Label Grid.Column="1" Text="Alarm"/>
+                    <Label Grid.Column="1" Text="{Binding Event.EventCategory, TargetNullValue='Unknown', FallbackValue='Unknown'}"/>
                     <Label Grid.Row="1" Text="Tag" TextColor="{StaticResource Gray700}"/>
-                    <Label Grid.Row="1" Grid.Column="1" Text="IV: Alert"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Event.EventRuleTag, TargetNullValue='Unknown', FallbackValue='Unknown'}"/>
                     <Label Grid.Row="2" Text="Received Time" TextColor="{StaticResource Gray700}"/>
-                    <Label Grid.Row="2" Grid.Column="1" Text="6/6/2025 8:43:12 AM"/>
+                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding Event.EventReceived, StringFormat='{0:M/d/yyyy h:mm:ss tt}'}"/>
                     <Label Grid.Row="3" Text="Event Time" TextColor="{StaticResource Gray700}"/>
-                    <Label Grid.Row="3" Grid.Column="1" Text="6/6/2025 8:43:12 AM"/>
+                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding Event.EventTime, StringFormat='{0:M/d/yyyy h:mm:ss tt}'}"/>
                 </Grid>
             </Border>
         </VerticalStackLayout>

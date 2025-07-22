@@ -294,4 +294,32 @@ public class ApiService : IApiService
             throw;
         }
     }
+
+    public async Task<List<Event>> GetEventsAsync()
+    {
+        try
+        {
+            var response = await _requestProvider.GetAsync<List<Event>>($"{_globalSetting.BaseApiEndpoint}/eventlog/page?pagenum=1&pagesize=25&orderby=id&direction=desc");
+            return response;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<int> GetEventCountAsync()
+    {
+        try
+        {
+            var response = await _requestProvider.GetAsync<int>($"{_globalSetting.BaseApiEndpoint}/eventlog/count");
+            return response;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

@@ -10,7 +10,6 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <converters:ThousandsFormatConverter x:Key="ThousandsFormatConverter"/>
-            <converters:DummyConverter x:Key="DummyConverter"></converters:DummyConverter>
             
             <Style TargetType="Span">
                 <Setter Property="FontSize" Value="12"/>
@@ -31,6 +30,6 @@
                 </Label.FormattedText>
             </Label>
         </Grid>
-        <progressBar:SfLinearProgressBar AnimationDuration="0" Progress="{Binding Progress}" TrackHeight="6" ProgressHeight="6" TrackCornerRadius="4" ProgressCornerRadius="3" TrackFill="{StaticResource BlueExtraLight}" ProgressFill="{StaticResource BlueMedium}"/>
+        <progressBar:SfLinearProgressBar AnimationDuration="0" Progress="{Binding Progress}" TrackHeight="6" ProgressHeight="6" TrackCornerRadius="4" ProgressCornerRadius="3" TrackFill="{StaticResource BlueGray}" ProgressFill="{StaticResource BlueMedium}"/>
     </VerticalStackLayout>
 </ContentView>

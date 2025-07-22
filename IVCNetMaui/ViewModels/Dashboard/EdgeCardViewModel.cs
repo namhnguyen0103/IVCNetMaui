@@ -101,7 +101,7 @@ public partial class EdgeCardViewModel : ViewModelBase
     }
     
     [RelayCommand(CanExecute = nameof(IsActive))]
-    private Task NavigateToEdgeDetail()
+    private Task NavigateToEdgeHealth()
     {
         var queryParameters = new ShellNavigationQueryParameters()
         {
@@ -109,6 +109,23 @@ public partial class EdgeCardViewModel : ViewModelBase
             { "Cameras", Cameras },
             { "ModbusDevices", ModbusDevices },
             { "WeatherStations", WeatherStations }
+        };
+        if (Health != null) queryParameters.Add("Health", Health);
+        if (Status != null) queryParameters.Add("Status", Status);
+
+        return NavigationService.NavigateToAsync("edgeDetail", queryParameters);
+    }
+    
+    [RelayCommand(CanExecute = nameof(IsActive))]
+    private Task NavigateToEdgeIoT()
+    {
+        var queryParameters = new ShellNavigationQueryParameters()
+        {
+            { "EdgeInfo", EdgeInfo },
+            { "Cameras", Cameras },
+            { "ModbusDevices", ModbusDevices },
+            { "WeatherStations", WeatherStations },
+            { "InitialPage", 1 }
         };
         if (Health != null) queryParameters.Add("Health", Health);
         if (Status != null) queryParameters.Add("Status", Status);

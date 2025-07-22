@@ -21,15 +21,15 @@
                 <Label  Style="{StaticResource Body-M}" Margin="0, 0, 0, 4">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Moxa AIG-502-2TB" />
+                            <Span Text="{Binding Event.UnitName, TargetNullValue='Unknown', FallbackValue='Unknown'}" />
                             <Span Text=" / " TextColor="{StaticResource Gray700}"/>
-                            <Span Text="DCam1"/>
+                            <Span Text="{Binding Event.EventCategory, TargetNullValue='Unknown', FallbackValue='Unknown'}"/>
                             <Span Text="  "  />
-                            <Span Text="#ID" TextColor="{StaticResource Gray700}"/>
+                            <Span Text="{Binding Event.Id, TargetNullValue='Unknown', FallbackValue='#-1'}" TextColor="{StaticResource Gray700}"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Label Text="ALERT:65598:[Liquid Area2]"
+                <Label Text="{Binding Event.EventDescription, TargetNullValue='Unknown', FallbackValue='Unknown'}"
                        Style="{StaticResource Title-L}"
                        Margin="0, 0, 0, 8"/>
                 <Border Margin="0, 0, 0, 16">
@@ -41,10 +41,10 @@
                         <Label Text="Tag" Grid.Row="1" Style="{StaticResource PropertySecondaryText}"/>
                         <Label Text="Received Time" Grid.Row="2" Style="{StaticResource PropertySecondaryText}"/>
                         <Label Text="Event Time" Grid.Row="3" Style="{StaticResource PropertySecondaryText}"/>
-                        <Label Text="Alarm" Grid.Column="1" Style="{StaticResource PropertyPrimaryText}"/>
-                        <Label Text="IV:Alert" Grid.Row="1" Grid.Column="1" Style="{StaticResource PropertyPrimaryText}"/>
-                        <Label Text="6/17/2025 11:07:41 AM" Grid.Row="2" Grid.Column="1" Style="{StaticResource PropertyPrimaryText}"/>
-                        <Label Text="6/17/2025 11:07:41 AM" Grid.Row="3" Grid.Column="1" Style="{StaticResource PropertyPrimaryText}"/>
+                        <Label Text="{Binding Event.EventCategory, TargetNullValue='Unknown', FallbackValue='Unknown'}" Grid.Column="1" Style="{StaticResource PropertyPrimaryText}"/>
+                        <Label Text="{Binding Event.EventRuleTag, TargetNullValue='Unknown', FallbackValue='Unknown'}" Grid.Row="1" Grid.Column="1" Style="{StaticResource PropertyPrimaryText}"/>
+                        <Label Text="{Binding Event.EventReceived, TargetNullValue='Unknown', StringFormat='{0:M/d/yyyy h:mm:ss tt}'}" Grid.Row="2" Grid.Column="1" Style="{StaticResource PropertyPrimaryText}"/>
+                        <Label Text="{Binding Event.EventTime, TargetNullValue='Unknown', StringFormat='{0:M/d/yyyy h:mm:ss tt}'}" Grid.Row="3" Grid.Column="1" Style="{StaticResource PropertyPrimaryText}"/>
                     </Grid>
                 </Border>
                 <controls:AccordionControl>
@@ -55,7 +55,10 @@
                     </controls:AccordionControl.HeaderContent>
                     <controls:AccordionControl.BodyContent>
                         <ControlTemplate>
-                            <Label Text="Detail Body" Style="{StaticResource PropertySecondaryText}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HeightRequest="200" BackgroundColor="{StaticResource Gray200}"/>
+                            <Label Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EventDetailViewModel}}, Path=Event.EventData}" 
+                                   Style="{StaticResource PropertySecondaryText}" 
+                                   BackgroundColor="{StaticResource Gray200}"
+                                   Padding="12, 8"/>
                         </ControlTemplate>
                     </controls:AccordionControl.BodyContent>
                 </controls:AccordionControl>

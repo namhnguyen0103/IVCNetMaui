@@ -15,9 +15,10 @@
     <Style x:Key="Header" TargetType="syncfusion:SfTabView">
         <Setter Property="TabBarHeight" Value="32"/>
         <Setter Property="IndicatorWidthMode" Value="Stretch"/>
-        <Setter Property="IndicatorBackground" Value="{StaticResource Gray950}"/>
+        <Setter Property="IndicatorBackground" Value="{StaticResource BlueExtraDark}"/>
         <Setter Property="ContentTransitionDuration" Value="0"/>
         <Setter Property="IndicatorStrokeThickness" Value="0.5"/>
+        <Setter Property="TabBarBackground" Value="White" />
     </Style>
 
     <Style TargetType="syncfusion:SfTabItem">

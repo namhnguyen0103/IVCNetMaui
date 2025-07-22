@@ -13,43 +13,45 @@
              x:DataType="viewModels:DashboardMainViewModel"
              x:Name="DashboardPage"
              Title="Dashboard"
-             HideSoftInputOnTapped="True">
+             HideSoftInputOnTapped="True"
+             BackgroundColor="{StaticResource BlueGray}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <converters:StatusToColorConverter x:Key="StatusConverter" />
             <Style x:Key="PropertyBorder" TargetType="Border">
-                <Setter Property="Padding" Value="8, 6"/>
+                <Setter Property="Padding" Value="8, 10"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="Shadow" Value="0 3 12 hsla(210, 7%, 56%, 0.1)" />
             </Style>
             <Style TargetType="Label" BasedOn="{StaticResource Body-S}">
                 <Setter Property="TextColor" Value="{StaticResource Gray950}"/>
             </Style>
             <DataTemplate x:Key="Active" x:DataType="viewModels:EdgeCardViewModel">
-                <Border BackgroundColor="White" StrokeShape="Rectangle">
+                <Border BackgroundColor="{StaticResource Gray100}" StrokeShape="Rectangle">
                     <VerticalStackLayout 
-                          Spacing="10"
+                          Spacing="12"
                           Padding="{StaticResource CardPadding}">
-                        <VerticalStackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding NavigateToEdgeDetailCommand}" />
-                        </VerticalStackLayout.GestureRecognizers>
-                        <VerticalStackLayout.Behaviors>
-                            <toolkit:TouchBehavior PressedBackgroundColor="{StaticResource Gray300}"
-                                                   DefaultBackgroundColor="White"/>
-                        </VerticalStackLayout.Behaviors>
                         <Grid ColumnDefinitions="Auto, Auto, *" ColumnSpacing="4" >
-                            <!-- <Border StrokeThickness="0" BackgroundColor="{Binding EdgeState, Converter={StaticResource StatusConverter}}" Padding="6, 0"> -->
                             <Label Text="{Binding EdgeState}"
                                    Padding="6, 0"
                                    TextColor="{Binding EdgeState, Converter={StaticResource StatusConverter}, ConverterParameter='Label'}" 
                                    Style="{StaticResource Label-S}" 
                                    BackgroundColor="{Binding EdgeState, Converter={StaticResource StatusConverter}}"
                                    VerticalTextAlignment="Center"/>
-                            <!-- </Border> -->
                             <Label Grid.Column="1" Text="{Binding EdgeInfo.Name, TargetNullValue='Unknown', FallbackValue='Unknown'}" Style="{StaticResource Title-M}" MaxLines="1" LineBreakMode="TailTruncation"/>
                             <Label Grid.Column="2" Text="{Binding EdgeInfo.Id, StringFormat='#{0}', FallbackValue='-1'}" Style="{StaticResource Title-M}" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center"/>
                         </Grid>   
                    
-                        <Border Style="{StaticResource PropertyBorder}" IsVisible="{Binding HealthIsVisible}">
+                        <Border Style="{StaticResource PropertyBorder}">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateToEdgeHealthCommand}" />
+                            </Border.GestureRecognizers>
+                            <Border.Behaviors>
+                                <toolkit:TouchBehavior PressedBackgroundColor="{StaticResource Gray300}"
+                                                       DefaultBackgroundColor="White"
+                                                       PressedScale="0.98"/>
+                            </Border.Behaviors>
                             <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
                                   ColumnDefinitions="*, *"
                                   RowSpacing="6">
@@ -89,6 +91,14 @@
                         </Border>
                         
                         <Border Style="{StaticResource PropertyBorder}" IsVisible="{Binding IoTIsVisible}">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateToEdgeIoTCommand}" />
+                            </Border.GestureRecognizers>
+                            <Border.Behaviors>
+                                <toolkit:TouchBehavior PressedBackgroundColor="{StaticResource Gray300}"
+                                                       DefaultBackgroundColor="White"
+                                                       PressedScale="0.98"/>
+                            </Border.Behaviors>
                             <VerticalStackLayout Spacing="6">
                                 <Grid ColumnDefinitions="*, *" IsVisible="{Binding CameraIsVisible}">
                                     <Label Text="Camera" TextColor="{StaticResource Gray700}"/>
@@ -133,19 +143,17 @@
                 </Border>
             </DataTemplate>
             <DataTemplate x:Key="Deactivated" x:DataType="viewModels:EdgeCardViewModel">
-                <Border BackgroundColor="{StaticResource Gray300}" StrokeShape="Rectangle">
+                <Border BackgroundColor="{StaticResource Gray100}" StrokeShape="Rectangle">
                     <VerticalStackLayout 
                         Spacing="4"
                         Padding="{StaticResource CardPadding}">
                         <Grid ColumnDefinitions="Auto, Auto, *" ColumnSpacing="4" >
-                            <!-- <Border StrokeThickness="0" BackgroundColor="{Binding EdgeState, Converter={StaticResource StatusConverter}}" Padding="6, 0"> -->
                             <Label Text="{Binding EdgeState}" 
                                    TextColor="{Binding EdgeState, Converter={StaticResource StatusConverter}, ConverterParameter='Label'}" 
                                    BackgroundColor="{Binding EdgeState, Converter={StaticResource StatusConverter}}"
                                    Style="{StaticResource Label-S}" 
                                    VerticalTextAlignment="Center"
                                    Padding="6, 0"/>
-                            <!-- </Border> -->
                             <Label Grid.Column="1" Text="{Binding EdgeInfo.Name, TargetNullValue='Unknown', FallbackValue='Unknown'}" Style="{StaticResource Title-M}" MaxLines="1" LineBreakMode="TailTruncation"/>
                             <Label Grid.Column="2" Text="{Binding EdgeInfo.Id, StringFormat='#{0}', FallbackValue='-1'}" Style="{StaticResource Title-M}" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center"/>
                         </Grid>
@@ -162,7 +170,7 @@
             <tabView:SfTabView.Items>
                 <tabView:SfTabItem Header="Hub">
                     <tabView:SfTabItem.Content>
-                        <Grid RowDefinitions="*" BackgroundColor="{StaticResource Gray200}">
+                        <Grid RowDefinitions="*" BackgroundColor="Transparent">
                             <RefreshView Command="{Binding RefreshCommand}" IsVisible="{Binding HubInitializing, Converter={StaticResource InverseBooleanConverter}}" IsRefreshing="{Binding IsRefreshing}">
                                 <ScrollView>
                                     <controls:HealthMonitorSummaryControl 
@@ -186,22 +194,16 @@
                             <CollectionView Grid.Row="1" 
                                             ItemsSource="{Binding VaEdgeCards}" 
                                             IsVisible="{Binding EdgeInitializing, Converter={StaticResource InverseBooleanConverter}}" 
-                                            BackgroundColor="{StaticResource Gray200}"
                                             ItemTemplate="{StaticResource EdgeCardTemplateSelector}">
                                 <CollectionView.ItemsLayout>
                                     <GridItemsLayout Orientation="Vertical"
-                                                       VerticalItemSpacing="8"
+                                                       VerticalItemSpacing="12"
                                                        HorizontalItemSpacing="8">
                                         <GridItemsLayout.Span>
                                             <OnIdiom x:TypeArguments="system:Int32" Phone="1" Default="1" />
                                         </GridItemsLayout.Span>
                                     </GridItemsLayout>
                                 </CollectionView.ItemsLayout>
-                                <!-- <CollectionView.ItemTemplate> -->
-                                <!--     <DataTemplate x:DataType="viewModels:EdgeCardViewModel"> -->
-                                <!--         <controls:EdgeCardControl BindingContext="{Binding}" /> -->
-                                <!--     </DataTemplate> -->
-                                <!-- </CollectionView.ItemTemplate> -->
                             </CollectionView>
                             <ActivityIndicator Grid.Row="1" IsRunning="{Binding EdgeInitializing}" />
                         </Grid>

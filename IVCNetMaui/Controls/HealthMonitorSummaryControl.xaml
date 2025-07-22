@@ -8,10 +8,6 @@
              x:DataType="controls:HealthMonitorSummaryControl">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Style TargetType="Grid">
-                <Setter Property="Padding" Value="{StaticResource CardPadding}"/>
-            </Style>
-            
             <Style x:Key="SummaryPrimary" TargetType="Label" BasedOn="{StaticResource Body-M}"/>
             
             <Style x:Key="SummarySecondary" TargetType="Label" BasedOn="{StaticResource Body-S}">
@@ -24,8 +20,8 @@
             
             <Style x:Key="SummaryGrid" TargetType="Grid">
                 <Setter Property="RowSpacing" Value="8"/>
-                <Setter Property="ColumnSpacing" Value="8"/>
-                <Setter Property="Padding" Value="12, 14"/>
+                <Setter Property="ColumnSpacing" Value="12"/>
+                <Setter Property="Padding" Value="16, 12"/>
             </Style>
             
             <converters:TimeSpanConverter x:Key="TimeSpanConverter"/>

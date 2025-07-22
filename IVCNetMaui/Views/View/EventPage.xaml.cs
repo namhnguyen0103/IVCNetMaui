@@ -19,4 +19,9 @@ public partial class EventPage : ContentPage
 			vm.InitializeAsyncCommand.Execute(null);
 		}
 	}
+
+	private async void MenuItem_OnClicked(object? sender, EventArgs e)
+	{
+		await Navigation.PushModalAsync(new EventFilterPage());
+	}
 }

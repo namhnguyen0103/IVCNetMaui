@@ -1,6 +1,8 @@
 using IVCNetMaui.Services.Api;
 using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.ViewModels.Base;
+using IVCNetMaui.Models;
+using IVCNetMaui.Views.View;
 
 namespace IVCNetMaui.ViewModels.View;
 using CommunityToolkit.Mvvm;
@@ -9,28 +11,43 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-public partial class EventViewModel : ViewModelBase
+public partial class EventViewModel(INavigationService navigationService, IApiService apiService)
+    : ViewModelBase(navigationService, apiService)
 {
-    [ObservableProperty] private ObservableCollection<string> _list;
+    [ObservableProperty] private ObservableCollection<Event> _events = new();
 
     [RelayCommand]
-    private Task NavigateToEventDetail()
+    private Task NavigateToEventDetail(Event data)
     {
-        return NavigationService.NavigateToAsync("eventDetail");
+        var queryParameters = new ShellNavigationQueryParameters()
+        {
+            { "Event", data }
+        };
+        return NavigationService.NavigateToAsync("eventDetail", queryParameters);
     }
-    public EventViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService, apiService)
-	{
-        
+    
+    [RelayCommand]
+    private Task OpenFilterPage()
+    {
+        return NavigationService.PushModalAsync(new EventFilterPage());
     }
 
     public override async Task InitializeAsync()
     {
-        Console.WriteLine("InitializeAsync");
-        await Task.Delay(2000);
-        List = new()
+        await Task.Delay(500);
+        await GetEventsAsync();
+    }
+
+    private async Task GetEventsAsync()
+    {
+        try
         {
-            "1", "2", "3"
-        };
-        Console.WriteLine("Completed");
+            var events = await ApiService.GetEventsAsync();
+            Events = new ObservableCollection<Event>(events);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 }

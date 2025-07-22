@@ -9,4 +9,13 @@ public partial class EventDetailPage : ContentPage
 		BindingContext = vm;
 		InitializeComponent();
 	}
+	
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+		if (BindingContext is EdgeDetailViewModel vm && vm.InitializeAsyncCommand.CanExecute(null))
+		{
+			vm.InitializeAsyncCommand.Execute(null);
+		}
+	}
 }

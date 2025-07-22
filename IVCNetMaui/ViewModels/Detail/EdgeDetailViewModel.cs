@@ -9,6 +9,7 @@ using IVCNetMaui.Services.Api;
 
 namespace IVCNetMaui.ViewModels.Detail
 {
+    [QueryProperty(nameof(InitialPage), "InitialPage")]
     [QueryProperty(nameof(EdgeInfo), "EdgeInfo")]
     [QueryProperty(nameof(Health), "Health")]
     [QueryProperty(nameof(Status), "Status")]
@@ -17,6 +18,8 @@ namespace IVCNetMaui.ViewModels.Detail
     [QueryProperty(nameof(WeatherStations), "WeatherStations")]
     public partial class EdgeDetailViewModel(INavigationService navigationService, IApiService apiService) : ViewModelBase(navigationService, apiService)
     {
+        [ObservableProperty]
+        private int _initialPage;
         
         [ObservableProperty] 
         [NotifyPropertyChangedFor(nameof(PageTitle))]
@@ -49,7 +52,7 @@ namespace IVCNetMaui.ViewModels.Detail
         private ObservableCollection<IoTCardViewModel> _weatherStationViewModels = new();
         
         [ObservableProperty] private bool _isRefreshing;
-        
+
         public string PageTitle => $"{EdgeInfo?.Name ?? "Unknown"} [{Status?.Version ?? "0.0.0.0"}]";
         public bool CameraIsVisible => Cameras.Count > 0;
         public bool ModbusDeviceIsVisible => ModbusDevices.Count > 0;

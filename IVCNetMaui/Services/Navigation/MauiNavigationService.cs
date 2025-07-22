@@ -17,6 +17,11 @@ public class MauiNavigationService : INavigationService
     public Task PopAsync() =>
         Shell.Current.Navigation.PopAsync();
 
+    public Task PushModalAsync(Page page)
+    {
+        return Application.Current.MainPage.Navigation.PushModalAsync(page);
+    }
+
     public void TapFlyoutIcon()
     {
         Shell.Current.FlyoutIsPresented = !Shell.Current.FlyoutIsPresented;
