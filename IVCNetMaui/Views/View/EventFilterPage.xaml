@@ -74,7 +74,7 @@
             </CollectionView>
         </VerticalStackLayout>
         <VerticalStackLayout Grid.Row="2" Spacing="10">
-            <Label Text="Data Type" Style="{StaticResource Title-M}"/>
+            <Label Text="Type" Style="{StaticResource Title-M}"/>
             <CollectionView SelectionMode="Single" ItemTemplate="{StaticResource RadioCard}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"/>
@@ -92,7 +92,7 @@
             </CollectionView>
         </VerticalStackLayout>
         <Grid Grid.Row="3" ColumnDefinitions="*, *" ColumnSpacing="12">
-            <Button Clicked="Button_OnClicked" Text="Cancel" BackgroundColor="White" TextColor="{StaticResource BluePrimary}" BorderColor="{StaticResource BluePrimary}" BorderWidth="0.5"/>
+            <Button Clicked="Button_OnClicked" Text="Cancel" BackgroundColor="Transparent" TextColor="{StaticResource BluePrimary}" BorderColor="{StaticResource BlueLight}" BorderWidth="1"/>
             <Button Grid.Column="1" Text="Apply"/>
         </Grid>
     </Grid>

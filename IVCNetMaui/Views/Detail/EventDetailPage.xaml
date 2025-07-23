@@ -66,32 +66,35 @@
                 </controls:AccordionControl>
             </VerticalStackLayout>
             <Grid Grid.Row="1" ColumnDefinitions="*, *" ColumnSpacing="8" Padding="8, 8">
-                <!-- <Button Text="Upload Snap" Command="{Binding NavigateToMediaDetailCommand}"/> -->
-                <sfButton:SfButton Command="{Binding NavigateToMediaDetailCommand}">
+                <sfButton:SfButton Command="{Binding NavigateToMediaDetailCommand}" Background="Transparent">
                     <sfButton:SfButton.Content>
                         <DataTemplate>
-                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="4">
-                                <Image x:Name="Check" IsVisible="True" VerticalOptions="Center" WidthRequest="16">
-                                    <Image.Source>
-                                        <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="White"/>
-                                    </Image.Source>
-                                </Image>
-                                <Label Text="Upload Snap" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Label-L}"/>
-                            </HorizontalStackLayout>
+                            <Border Stroke="{StaticResource BlueLight}" StrokeThickness="1">
+                                <HorizontalStackLayout HorizontalOptions="Center" Spacing="4">
+                                    <Image x:Name="Check" IsVisible="True" VerticalOptions="Center" WidthRequest="16">
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="{StaticResource BluePrimary}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Label Text="Upload Snap" VerticalTextAlignment="Center" TextColor="{StaticResource BluePrimary}" Style="{StaticResource Label-L}"/>
+                                </HorizontalStackLayout>
+                            </Border>
                         </DataTemplate>
                     </sfButton:SfButton.Content>
                 </sfButton:SfButton>
-                <sfButton:SfButton Grid.Column="1" Command="{Binding NavigateToMediaDetailCommand}">
+                <sfButton:SfButton Grid.Column="1" Command="{Binding NavigateToMediaDetailCommand}" Background="Transparent">
                     <sfButton:SfButton.Content>
                         <DataTemplate>
-                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="4">
-                                <Image x:Name="Check" IsVisible="True" VerticalOptions="Center" WidthRequest="16">
-                                    <Image.Source>
-                                        <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="White"/>
-                                    </Image.Source>
-                                </Image>
-                                <Label Text="Upload Clip" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Label-L}"/>
-                            </HorizontalStackLayout>
+                            <Border Stroke="{StaticResource BlueLight}" StrokeThickness="1">
+                                <HorizontalStackLayout HorizontalOptions="Center" Spacing="4">
+                                    <Image x:Name="Check" IsVisible="True" VerticalOptions="Center" WidthRequest="16">
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="{StaticResource BluePrimary}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Label Text="Upload Clip" VerticalTextAlignment="Center" TextColor="{StaticResource BluePrimary}" Style="{StaticResource Label-L}"/>
+                                </HorizontalStackLayout>
+                            </Border>
                         </DataTemplate>
                     </sfButton:SfButton.Content>
                 </sfButton:SfButton>
