@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sfButton="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
+             xmlns:m="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
              x:Class="IVCNetMaui.Views.Detail.EventDetailPage"
              x:DataType="viewModels:EventDetailViewModel">
     <Shell.BackButtonBehavior>
@@ -25,7 +27,7 @@
                             <Span Text=" / " TextColor="{StaticResource Gray700}"/>
                             <Span Text="{Binding Event.EventCategory, TargetNullValue='Unknown', FallbackValue='Unknown'}"/>
                             <Span Text="  "  />
-                            <Span Text="{Binding Event.Id, TargetNullValue='Unknown', FallbackValue='#-1'}" TextColor="{StaticResource Gray700}"/>
+                            <Span Text="{Binding Event.Id, StringFormat='#{0}', TargetNullValue='Unknown', FallbackValue='#-1'}" TextColor="{StaticResource Gray700}"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -64,8 +66,35 @@
                 </controls:AccordionControl>
             </VerticalStackLayout>
             <Grid Grid.Row="1" ColumnDefinitions="*, *" ColumnSpacing="8" Padding="8, 8">
-                <Button Text="Upload Snap" Command="{Binding NavigateToMediaDetailCommand}"/>
-                <Button Grid.Column="1" Text="Upload Clip" Command="{Binding NavigateToMediaDetailCommand}"/>
+                <!-- <Button Text="Upload Snap" Command="{Binding NavigateToMediaDetailCommand}"/> -->
+                <sfButton:SfButton Command="{Binding NavigateToMediaDetailCommand}">
+                    <sfButton:SfButton.Content>
+                        <DataTemplate>
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="4">
+                                <Image x:Name="Check" IsVisible="True" VerticalOptions="Center" WidthRequest="16">
+                                    <Image.Source>
+                                        <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="White"/>
+                                    </Image.Source>
+                                </Image>
+                                <Label Text="Upload Snap" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Label-L}"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </sfButton:SfButton.Content>
+                </sfButton:SfButton>
+                <sfButton:SfButton Grid.Column="1" Command="{Binding NavigateToMediaDetailCommand}">
+                    <sfButton:SfButton.Content>
+                        <DataTemplate>
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="4">
+                                <Image x:Name="Check" IsVisible="True" VerticalOptions="Center" WidthRequest="16">
+                                    <Image.Source>
+                                        <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="White"/>
+                                    </Image.Source>
+                                </Image>
+                                <Label Text="Upload Clip" VerticalTextAlignment="Center" TextColor="White" Style="{StaticResource Label-L}"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </sfButton:SfButton.Content>
+                </sfButton:SfButton>
             </Grid>
         </Grid>
     </ScrollView>

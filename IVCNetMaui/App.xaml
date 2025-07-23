@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
                 <ResourceDictionary Source="/Resources/Styles/Typescale.xaml"/>
                 <ResourceDictionary Source="/Resources/Styles/Spacing.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/Behaviors.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

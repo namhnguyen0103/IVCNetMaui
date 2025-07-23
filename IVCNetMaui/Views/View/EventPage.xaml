@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
@@ -21,9 +21,11 @@
     </ContentPage.ToolbarItems>
     
     <Grid RowDefinitions="Auto, *">
-        <SearchBar ios:SearchBar.SearchBarStyle="Minimal" Placeholder="Search"/>
-        <RefreshView Grid.Row="1">
-            <CollectionView ItemsSource="{Binding Events}">
+        <!-- <SearchBar ios:SearchBar.SearchBarStyle="Minimal" Placeholder="Search"/> -->
+        <RefreshView Grid.Row="1" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshEventsCommand}">
+            <CollectionView ItemsSource="{Binding Events}"
+                            RemainingItemsThreshold="5"
+                            RemainingItemsThresholdReachedCommand="{Binding LoadAdditionalEventsCommand}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"
                                        ItemSpacing="8" />
@@ -36,9 +38,8 @@
                                                       CommandParameter="{Binding}" />
                             </controls:EventCardControl.GestureRecognizers>
                             <controls:EventCardControl.Behaviors>
-                                <toolkit:TouchBehavior
-                                    PressedBackgroundColor="{StaticResource Gray300}"
-                                    DefaultBackgroundColor="White" />
+                                <toolkit:TouchBehavior PressedBackgroundColor="{StaticResource Gray300}"
+                                                       DefaultBackgroundColor="White"/>
                             </controls:EventCardControl.Behaviors>
                         </controls:EventCardControl>
                     </DataTemplate>

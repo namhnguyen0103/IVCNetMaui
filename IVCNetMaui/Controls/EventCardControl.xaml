@@ -12,7 +12,8 @@
         </ResourceDictionary>
     </ContentView.Resources>
     
-    <Border Padding="{StaticResource CardPadding}" StrokeShape="Rectangle" BindingContext="{x:Reference This}">
+    <Border Padding="{StaticResource CardPadding}" 
+            StrokeShape="Rectangle" BindingContext="{x:Reference This}">
         <VerticalStackLayout>
             <Label Style="{StaticResource Body-M}" Margin="0, 0, 0, 4">
                 <Label.FormattedText>

@@ -33,7 +33,8 @@
     
     <VerticalStackLayout Spacing="28" BindingContext="{x:Reference This}">
         <!--System Section-->
-        <controls:MenuCardControl Title="System" Command="{Binding NavigateToSystemCommand}">
+        <controls:MenuCardControl Title="System" 
+                                  Command="{Binding NavigateToSystemCommand}">
             <controls:MenuCardControl.BodyContent>
                 <ControlTemplate>
                     <Grid ColumnDefinitions="*, *"

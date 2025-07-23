@@ -295,11 +295,11 @@ public class ApiService : IApiService
         }
     }
 
-    public async Task<List<Event>> GetEventsAsync()
+    public async Task<List<Event>> GetEventsAsync(int pageNum, int pageSize)
     {
         try
         {
-            var response = await _requestProvider.GetAsync<List<Event>>($"{_globalSetting.BaseApiEndpoint}/eventlog/page?pagenum=1&pagesize=25&orderby=id&direction=desc");
+            var response = await _requestProvider.GetAsync<List<Event>>($"{_globalSetting.BaseApiEndpoint}/eventlog/page?pagenum={pageNum}&pagesize={pageSize}&orderby=id&direction=desc");
             return response;
         }
         catch (Exception e)

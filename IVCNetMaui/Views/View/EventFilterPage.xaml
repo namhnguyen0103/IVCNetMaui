@@ -2,10 +2,99 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              x:Class="IVCNetMaui.Views.View.EventFilterPage">
     
-    <VerticalStackLayout>
-        <Button Clicked="Button_OnClicked" Text="Close"/>
-    </VerticalStackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="RadioCard" x:DataType="x:String">
+                <Grid ColumnDefinitions="*, Auto" Padding="0, 10">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="Indicator"
+                                                Property="Border.BackgroundColor"
+                                                Value="{StaticResource BluePrimary}" />
+                                        <Setter TargetName="Indicator"
+                                                Property="Border.Stroke"
+                                                Value="{StaticResource BluePrimary}" />
+                                        <Setter TargetName="Check"
+                                                Property="Image.IsVisible"
+                                                Value="True"/>
+                                        <Setter Property="BackgroundColor"
+                                                Value="Transparent"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                    <Label Text="{Binding}" Style="{StaticResource Body-L}" VerticalTextAlignment="Center"/>
+                    <Border x:Name="Indicator" Grid.Column="1" 
+                            WidthRequest="24" 
+                            HeightRequest="24" 
+                            StrokeShape="RoundRectangle 12, 12, 12, 12" 
+                            BackgroundColor="White" 
+                            StrokeThickness="1.5"
+                            Stroke="{StaticResource BlueLight}">
+                        <Image x:Name="Check" IsVisible="False" VerticalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Check}" Color="White"/>
+                            </Image.Source>
+                        </Image>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="{StaticResource MainPadding}" RowSpacing="32">
+        <HorizontalStackLayout Spacing="6">
+            <Image WidthRequest="28">
+                <Image.Source>
+                    <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Manage_search}" Color="{StaticResource Gray950}"/>
+                </Image.Source>
+            </Image>
+            <Label Text="Filter" Style="{StaticResource Title-L}" VerticalTextAlignment="Center"/>
+        </HorizontalStackLayout>
+        <VerticalStackLayout Grid.Row="1" Spacing="10">
+            <Label Text="Sort By" Style="{StaticResource Title-M}"/>
+            <CollectionView SelectionMode="Single" ItemTemplate="{StaticResource RadioCard}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Ascending</x:String>
+                        <x:String>Descending</x:String>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+            </CollectionView>
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Row="2" Spacing="10">
+            <Label Text="Data Type" Style="{StaticResource Title-M}"/>
+            <CollectionView SelectionMode="Single" ItemTemplate="{StaticResource RadioCard}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>ID</x:String>
+                        <x:String>Unit</x:String>
+                        <x:String>Category</x:String>
+                        <x:String>Event Time</x:String>
+                        <x:String>Received Time</x:String>
+                        <x:String>Tag</x:String>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+            </CollectionView>
+        </VerticalStackLayout>
+        <Grid Grid.Row="3" ColumnDefinitions="*, *" ColumnSpacing="12">
+            <Button Clicked="Button_OnClicked" Text="Cancel" BackgroundColor="White" TextColor="{StaticResource BluePrimary}" BorderColor="{StaticResource BluePrimary}" BorderWidth="0.5"/>
+            <Button Grid.Column="1" Text="Apply"/>
+        </Grid>
+    </Grid>
     
 </ContentPage>
