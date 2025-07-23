@@ -52,6 +52,9 @@ namespace IVCNetMaui.ViewModels.Detail
         private ObservableCollection<IoTCardViewModel> _weatherStationViewModels = new();
         
         [ObservableProperty] private bool _isRefreshing;
+        [ObservableProperty] private bool _cameraIsLoading;
+        [ObservableProperty] private bool _modbusDevicesIsLoading;
+        [ObservableProperty] private bool _weatherStationsIsLoading;
 
         public string PageTitle => $"{EdgeInfo?.Name ?? "Unknown"} [{Status?.Version ?? "0.0.0.0"}]";
         public bool CameraIsVisible => Cameras.Count > 0;
@@ -68,6 +71,7 @@ namespace IVCNetMaui.ViewModels.Detail
         {
             try
             {
+                CameraIsLoading = true;
                 if (EdgeInfo != null)
                 {
                     var active = 0;
@@ -86,16 +90,19 @@ namespace IVCNetMaui.ViewModels.Detail
                     CameraViewModels = new ObservableCollection<IoTCardViewModel>(await Task.WhenAll(tasks));
                     CameraActiveCount = active;
                 }
+                CameraIsLoading = false;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                CameraIsLoading = false;
             }
         }
         async partial void OnModbusDevicesChanged(ObservableCollection<ModbusDevice> value)
         {
             try
             {
+                ModbusDevicesIsLoading = true;
                 if (EdgeInfo != null)
                 {
                     var active = 0;
@@ -114,16 +121,19 @@ namespace IVCNetMaui.ViewModels.Detail
                     ModbusDeviceViewModels = new ObservableCollection<IoTCardViewModel>(await Task.WhenAll(tasks));
                     ModbusDeviceActiveCount = active;
                 }
+                ModbusDevicesIsLoading = false;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                ModbusDevicesIsLoading = false;
             }
         }
         async partial void OnWeatherStationsChanged(ObservableCollection<WeatherStation> value)
         {
             try
             {
+                WeatherStationsIsLoading = true;
                 if (EdgeInfo != null)
                 {
                     var active = 0;
@@ -142,10 +152,12 @@ namespace IVCNetMaui.ViewModels.Detail
                     WeatherStationViewModels = new ObservableCollection<IoTCardViewModel>(await Task.WhenAll(tasks));
                     WeatherStationActiveCount = active;
                 }
+                WeatherStationsIsLoading = false;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                WeatherStationsIsLoading = false;
             }
         }
         

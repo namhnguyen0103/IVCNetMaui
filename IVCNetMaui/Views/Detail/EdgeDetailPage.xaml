@@ -64,13 +64,17 @@
                                 </controls:AccordionControl.HeaderContent>
                                 <controls:AccordionControl.BodyContent>
                                     <ControlTemplate>
-                                        <CollectionView ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraViewModels}">
-                                            <CollectionView.ItemTemplate>
-                                                <DataTemplate x:DataType="viewModels:IoTCardViewModel">
-                                                    <controls:IoTCardControl BindingContext="{Binding}"/> 
-                                                </DataTemplate>
-                                            </CollectionView.ItemTemplate>
-                                        </CollectionView>
+                                        <Grid>
+                                            <CollectionView ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraViewModels}"
+                                                            IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraIsLoading, Converter={StaticResource InverseBooleanConverter}}">
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate x:DataType="viewModels:IoTCardViewModel">
+                                                        <controls:IoTCardControl BindingContext="{Binding}"/> 
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+                                            <ActivityIndicator IsRunning="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraIsLoading}"/>
+                                        </Grid>
                                     </ControlTemplate>
                                 </controls:AccordionControl.BodyContent>
                             </controls:AccordionControl>
@@ -96,13 +100,17 @@
                                 </controls:AccordionControl.HeaderContent>
                                 <controls:AccordionControl.BodyContent>
                                     <ControlTemplate>
-                                        <CollectionView ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=ModbusDeviceViewModels}">
-                                            <CollectionView.ItemTemplate>
-                                                <DataTemplate x:DataType="viewModels:IoTCardViewModel">
-                                                    <controls:IoTCardControl BindingContext="{Binding}"/> 
-                                                </DataTemplate>
-                                            </CollectionView.ItemTemplate>
-                                        </CollectionView>
+                                        <Grid>
+                                            <CollectionView ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=ModbusDeviceViewModels}"
+                                                            IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=CameraIsLoading, Converter={StaticResource InverseBooleanConverter}}">
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate x:DataType="viewModels:IoTCardViewModel">
+                                                        <controls:IoTCardControl BindingContext="{Binding}"/> 
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+                                            <ActivityIndicator IsRunning="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=ModbusDevicesIsLoading}" />
+                                        </Grid>
                                     </ControlTemplate>
                                 </controls:AccordionControl.BodyContent>
                             </controls:AccordionControl>
@@ -128,13 +136,17 @@
                                 </controls:AccordionControl.HeaderContent>
                                 <controls:AccordionControl.BodyContent>
                                     <ControlTemplate>
-                                        <CollectionView ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=WeatherStationViewModels}">
-                                            <CollectionView.ItemTemplate>
-                                                <DataTemplate x:DataType="viewModels:IoTCardViewModel">
-                                                    <controls:IoTCardControl BindingContext="{Binding}"/> 
-                                                </DataTemplate>
-                                            </CollectionView.ItemTemplate>
-                                        </CollectionView>
+                                        <Grid>
+                                            <CollectionView ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=WeatherStationViewModels}"
+                                                            IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=WeatherStationsIsLoading, Converter={StaticResource InverseBooleanConverter}}">
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate x:DataType="viewModels:IoTCardViewModel">
+                                                        <controls:IoTCardControl BindingContext="{Binding}"/> 
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+                                            <ActivityIndicator IsRunning="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EdgeDetailViewModel}}, Path=WeatherStationsIsLoading}" />
+                                        </Grid>
                                     </ControlTemplate>
                                 </controls:AccordionControl.BodyContent>
                             </controls:AccordionControl>
