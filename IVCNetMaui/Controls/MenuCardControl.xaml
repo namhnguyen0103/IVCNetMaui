@@ -8,7 +8,7 @@
              x:DataType="controls:MenuCardControl">
     <VerticalStackLayout BindingContext="{x:Reference This}" Spacing="8">
         <Label Text="{Binding Title}" Style="{StaticResource Title-M}" TextColor="{StaticResource Gray950}"/>
-        <Border StrokeThickness="1.5" BackgroundColor="White">
+        <Border BackgroundColor="White">
             <Border.Shadow>
                 <Shadow Brush="#55000000"
                         Offset="0,4"
