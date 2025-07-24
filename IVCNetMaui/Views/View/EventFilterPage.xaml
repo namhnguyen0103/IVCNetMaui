@@ -17,10 +17,10 @@
                                     <VisualState.Setters>
                                         <Setter TargetName="Indicator"
                                                 Property="Border.BackgroundColor"
-                                                Value="{StaticResource BluePrimary}" />
+                                                Value="{StaticResource Blue600}" />
                                         <Setter TargetName="Indicator"
                                                 Property="Border.Stroke"
-                                                Value="{StaticResource BluePrimary}" />
+                                                Value="{StaticResource Blue600}" />
                                         <Setter TargetName="Check"
                                                 Property="Image.IsVisible"
                                                 Value="True"/>
@@ -37,8 +37,8 @@
                             HeightRequest="24" 
                             StrokeShape="RoundRectangle 12, 12, 12, 12" 
                             BackgroundColor="White" 
-                            StrokeThickness="1.5"
-                            Stroke="{StaticResource BlueLight}">
+                            StrokeThickness="2"
+                            Stroke="{StaticResource Gray300}">
                         <Image x:Name="Check" IsVisible="False" VerticalOptions="Center">
                             <Image.Source>
                                 <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Check}" Color="White"/>
@@ -92,8 +92,8 @@
             </CollectionView>
         </VerticalStackLayout>
         <Grid Grid.Row="3" ColumnDefinitions="*, *" ColumnSpacing="12">
-            <Button Clicked="Button_OnClicked" Text="Cancel" BackgroundColor="Transparent" TextColor="{StaticResource BluePrimary}" BorderColor="{StaticResource BlueLight}" BorderWidth="1"/>
-            <Button Grid.Column="1" Text="Apply"/>
+            <Button Clicked="Button_OnClicked" Text="CANCEL" BackgroundColor="Transparent" TextColor="{StaticResource Blue600}" BorderColor="{StaticResource Blue600}" BorderWidth="1"/>
+            <Button Grid.Column="1" Text="APPLY" Background="{StaticResource Blue600}"/>
         </Grid>
     </Grid>
     

@@ -16,7 +16,7 @@
     </Shell.BackButtonBehavior>
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Download" Command="{Binding RefreshCommand}">
+        <ToolbarItem Text="Refresh" Command="{Binding RefreshCommand}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Refresh}"  />
             </ToolbarItem.IconImageSource>
@@ -32,19 +32,19 @@
     <Grid>
         <syncfusion:SfTabView TabBarBackground="White" Style="{StaticResource Header}" IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" SelectedIndex="{Binding InitialPage, Mode=OneWay}">
             <syncfusion:SfTabView.Items>
-                <syncfusion:SfTabItem Header="System">
+                <syncfusion:SfTabItem Header="SYSTEM">
                     <syncfusion:SfTabItem.Content>
                             <controls:SystemDetailControl SystemStatus="{Binding SystemStatus}"/>
                     </syncfusion:SfTabItem.Content>
                 </syncfusion:SfTabItem>
         
-                <syncfusion:SfTabItem Header="Video Process">
+                <syncfusion:SfTabItem Header="VIDEO PROCESS">
                     <syncfusion:SfTabItem.Content>
                             <controls:ProcessDetailControl ProcessStatus="{Binding VideoProcessStatus}"/>
                     </syncfusion:SfTabItem.Content>
                 </syncfusion:SfTabItem>
         
-                <syncfusion:SfTabItem Header="UI Process">
+                <syncfusion:SfTabItem Header="UI PROCESS">
                     <syncfusion:SfTabItem.Content>
                             <controls:ProcessDetailControl ProcessStatus="{Binding UiProcessStatus}"/>
                     </syncfusion:SfTabItem.Content>

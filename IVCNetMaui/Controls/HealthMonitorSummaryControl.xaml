@@ -10,18 +10,18 @@
         <ResourceDictionary>
             <Style x:Key="SummaryPrimary" TargetType="Label" BasedOn="{StaticResource Body-M}"/>
             
-            <Style x:Key="SummarySecondary" TargetType="Label" BasedOn="{StaticResource Body-S}">
+            <Style x:Key="SummarySecondary" TargetType="Label" BasedOn="{StaticResource Body-M}">
                 <Setter Property="TextColor" Value="{StaticResource Gray700}"/>
             </Style>
             
             <Style x:Key="SummaryStack" TargetType="VerticalStackLayout">
-                <Setter Property="Spacing" Value="4"/>
+                <Setter Property="Spacing" Value="2"/>
             </Style>
             
             <Style x:Key="SummaryGrid" TargetType="Grid">
-                <Setter Property="RowSpacing" Value="8"/>
+                <Setter Property="RowSpacing" Value="12"/>
                 <Setter Property="ColumnSpacing" Value="12"/>
-                <Setter Property="Padding" Value="16, 12"/>
+                <Setter Property="Padding" Value="16, 14"/>
             </Style>
             
             <converters:TimeSpanConverter x:Key="TimeSpanConverter"/>
@@ -31,7 +31,7 @@
 
     </ContentView.Resources>
     
-    <VerticalStackLayout Spacing="28" BindingContext="{x:Reference This}">
+    <VerticalStackLayout Spacing="32" BindingContext="{x:Reference This}">
         <!--System Section-->
         <controls:MenuCardControl Title="System" 
                                   Command="{Binding NavigateToSystemCommand}">

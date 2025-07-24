@@ -8,7 +8,7 @@
              x:Class="IVCNetMaui.Views.Detail.EdgeDetailPage"
              Title="{Binding PageTitle}"
              x:DataType="viewModels:EdgeDetailViewModel"
-             BackgroundColor="{StaticResource BlueGray}">
+             BackgroundColor="{StaticResource Blue100}">
     <Shell.BackButtonBehavior>
         <BackButtonBehavior TextOverride=""/>
     </Shell.BackButtonBehavior>
@@ -26,7 +26,7 @@
         <tabView:SfTabView Style="{StaticResource Header}" IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" SelectedIndex="{Binding InitialPage, Mode=OneWay}">
             <tabView:SfTabView.Items>
                 <!--Health Monitor Tab-->
-                <tabView:SfTabItem Header="Health Monitor">
+                <tabView:SfTabItem Header="HEALTH MONITOR">
                     <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
                         <ScrollView>
                             <controls:HealthMonitorSummaryControl 
@@ -40,7 +40,7 @@
                 </tabView:SfTabItem>
 
                 <!--IoT Tab-->
-                <tabView:SfTabItem Header="IoT">
+                <tabView:SfTabItem Header="IOT">
                     <ScrollView>
                         <VerticalStackLayout Padding="{StaticResource MainPadding}" Spacing="16">
                             <!-- Camera Accordion Control -->

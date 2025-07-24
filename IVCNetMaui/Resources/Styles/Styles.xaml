@@ -15,15 +15,32 @@
     <Style x:Key="Header" TargetType="syncfusion:SfTabView">
         <Setter Property="TabBarHeight" Value="32"/>
         <Setter Property="IndicatorWidthMode" Value="Stretch"/>
-        <Setter Property="IndicatorBackground" Value="{StaticResource BlueExtraDark}"/>
+        <Setter Property="IndicatorBackground" Value="{StaticResource Blue600}"/>
         <Setter Property="ContentTransitionDuration" Value="0"/>
-        <Setter Property="IndicatorStrokeThickness" Value="0.5"/>
+        <Setter Property="IndicatorStrokeThickness" Value="1.5"/>
         <Setter Property="TabBarBackground" Value="White" />
     </Style>
 
     <Style TargetType="syncfusion:SfTabItem">
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="FontFamily" Value="RobotoRegular"/>
+        <Setter Property="FontFamily" Value="RobotoMedium"/>
+        <Setter Property="TextColor" Value="{StaticResource Gray950}" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup>
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{StaticResource Gray950}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{StaticResource Blue600}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
     </Style>
 
     <Style TargetType="ActivityIndicator">
@@ -38,7 +55,7 @@
     <Style TargetType="Border">
         <Setter Property="Stroke" Value="{StaticResource Gray400}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 4, 4, 4, 4"/>
-        <Setter Property="StrokeThickness" Value="0.5"/>
+        <Setter Property="StrokeThickness" Value="1"/>
     </Style>
 
     <Style TargetType="BoxView">
@@ -47,7 +64,7 @@
 
     <Style TargetType="Button">
         <Setter Property="TextColor" Value="White"/>
-        <Setter Property="BackgroundColor" Value="{StaticResource BluePrimary}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Blue600}"/>
         <Setter Property="FontFamily" Value="RobotoMedium"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="BorderWidth" Value="0"/>
@@ -61,7 +78,7 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Pressed">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{StaticResource BlueMedium}"/>
+                            <Setter Property="BackgroundColor" Value="{StaticResource Blue400}"/>
                         </VisualState.Setters>
                     </VisualState>                                                                                  
                     <VisualState x:Name="Disabled">
@@ -72,7 +89,7 @@
                     </VisualState>
                     <VisualState x:Name="PointerOver">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{StaticResource BlueDark}" />
+                            <Setter Property="BackgroundColor" Value="{StaticResource Blue600}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -81,7 +98,7 @@
     </Style>
     
     <Style TargetType="sfButton:SfButton">
-        <Setter Property="Background" Value="{StaticResource BluePrimary}"/>
+        <Setter Property="Background" Value="{StaticResource Blue600}"/>
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="HeightRequest" Value="44"/>
         <Setter Property="EnableRippleEffect" Value="False"/>
@@ -99,7 +116,7 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Pressed">
                         <VisualState.Setters>
-                            <Setter Property="Background" Value="{StaticResource BlueMedium}"/>
+                            <Setter Property="Background" Value="{StaticResource Blue400}"/>
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="Disabled">
@@ -453,8 +470,8 @@
         <Setter Property="UnselectedColor" Value="{StaticResource Gray200}"/>
         <Setter Property="NavBarHasShadow" Value="False" />
         <Setter Property="TabBarBackgroundColor" Value="{StaticResource Gray950}"/>
-        <Setter Property="TabBarForegroundColor" Value="{StaticResource BluePrimary}"/>
-        <Setter Property="TabBarTitleColor" Value="{StaticResource BluePrimary}" />
+        <Setter Property="TabBarForegroundColor" Value="{StaticResource Blue500}"/>
+        <Setter Property="TabBarTitleColor" Value="{StaticResource Blue500}" />
         <Setter Property="TabBarUnselectedColor" Value="{StaticResource Gray900}"/>
         <Setter Property="FlyoutBackground" Value="White"/>
         <Setter Property="FlyoutBackdrop" Value="#80808080" />

@@ -30,6 +30,6 @@
                 </Label.FormattedText>
             </Label>
         </Grid>
-        <progressBar:SfLinearProgressBar AnimationDuration="0" Progress="{Binding Progress}" TrackHeight="6" ProgressHeight="6" TrackCornerRadius="4" ProgressCornerRadius="3" TrackFill="{StaticResource BlueGray}" ProgressFill="{StaticResource BlueMedium}"/>
+        <progressBar:SfLinearProgressBar AnimationDuration="0" Progress="{Binding Progress}" TrackHeight="6" ProgressHeight="6" TrackCornerRadius="0" ProgressCornerRadius="0" TrackFill="{StaticResource Blue100}" ProgressFill="{StaticResource Blue500}"/>
     </VerticalStackLayout>
 </ContentView>

@@ -20,7 +20,7 @@ public partial class LoginViewModel : ViewModelBase
 	private string _password = "admin.123";
 
 	[ObservableProperty]
-	private string _ip = "192.168.20.19";
+	private string _ip = "192.168.25.42";
 
 	[ObservableProperty]
 	private int _port;

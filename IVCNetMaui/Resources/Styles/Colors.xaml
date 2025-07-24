@@ -6,21 +6,21 @@
 
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
 
-    <Color x:Key="Primary">#3086E8</Color>
-    <Color x:Key="PrimaryDark">#0868D2</Color>
-    <Color x:Key="PrimaryDarkText">#242424</Color>
-    <Color x:Key="Secondary">#9ACAFF</Color>
-    <Color x:Key="SecondaryDarkText">#53A5FF</Color>
-    <Color x:Key="Tertiary">#043871</Color>
+    <Color x:Key="Primary">#0552A8</Color>
+    <Color x:Key="PrimaryDark">#033D7C</Color>
+    <Color x:Key="PrimaryDarkText">#003066</Color>
+    <Color x:Key="Secondary">#77AFEE</Color>
+    <Color x:Key="SecondaryDarkText">#3C87DD</Color>
+    <Color x:Key="Tertiary">#E7F3F9</Color>
 
-    <Color x:Key="BlueGray">#F0F3F4</Color>
-    <Color x:Key="BlueExtraLight">#E7F3F9</Color>
-    <Color x:Key="BlueLight">#BADDF7</Color>
-    <Color x:Key="BlueMedium">#6BAEFA</Color>
-    <Color x:Key="BluePrimary">#3086E8</Color>
-    <Color x:Key="BlueDark">#0552A8</Color>
-    <Color x:Key="BlueExtraDark">#033D7C</Color>
-    <Color x:Key="BlueBlack">#003066</Color>
+    <Color x:Key="Blue100">#F4F6F8</Color>
+    <Color x:Key="Blue200">#E7F3F9</Color>
+    <Color x:Key="Blue300">#BADDF7</Color>
+    <Color x:Key="Blue400">#77AFEE</Color>
+    <Color x:Key="Blue500">#3C87DD</Color>
+    <Color x:Key="Blue600">#0552A8</Color>
+    <Color x:Key="Blue700">#033D7C</Color>
+    <Color x:Key="Blue800">#003066</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>

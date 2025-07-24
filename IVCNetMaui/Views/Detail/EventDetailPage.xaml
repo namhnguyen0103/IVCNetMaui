@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sfButton="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
              xmlns:m="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
@@ -69,14 +70,14 @@
                 <sfButton:SfButton Command="{Binding NavigateToMediaDetailCommand}" Background="Transparent">
                     <sfButton:SfButton.Content>
                         <DataTemplate>
-                            <Border Stroke="{StaticResource BlueLight}" StrokeThickness="1">
+                            <Border Stroke="{StaticResource Blue600}" StrokeThickness="1">
                                 <HorizontalStackLayout HorizontalOptions="Center" Spacing="4">
-                                    <Image x:Name="Check" IsVisible="True" VerticalOptions="Center" WidthRequest="16">
+                                    <Image x:Name="Check" IsVisible="True" VerticalOptions="Center" WidthRequest="18">
                                         <Image.Source>
-                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="{StaticResource BluePrimary}"/>
+                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="{StaticResource Blue600}"/>
                                         </Image.Source>
                                     </Image>
-                                    <Label Text="Upload Snap" VerticalTextAlignment="Center" TextColor="{StaticResource BluePrimary}" Style="{StaticResource Label-L}"/>
+                                    <Label Text="UPLOAD SNAP" VerticalTextAlignment="Center" TextColor="{StaticResource Blue600}" Style="{StaticResource Label-L}"/>
                                 </HorizontalStackLayout>
                             </Border>
                         </DataTemplate>
@@ -85,14 +86,14 @@
                 <sfButton:SfButton Grid.Column="1" Command="{Binding NavigateToMediaDetailCommand}" Background="Transparent">
                     <sfButton:SfButton.Content>
                         <DataTemplate>
-                            <Border Stroke="{StaticResource BlueLight}" StrokeThickness="1">
+                            <Border Stroke="{StaticResource Blue600}" StrokeThickness="1">
                                 <HorizontalStackLayout HorizontalOptions="Center" Spacing="4">
-                                    <Image x:Name="Check" IsVisible="True" VerticalOptions="Center" WidthRequest="16">
+                                    <Image x:Name="Check" IsVisible="True" VerticalOptions="Center" WidthRequest="18">
                                         <Image.Source>
-                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="{StaticResource BluePrimary}"/>
+                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="{StaticResource Blue600}"/>
                                         </Image.Source>
                                     </Image>
-                                    <Label Text="Upload Clip" VerticalTextAlignment="Center" TextColor="{StaticResource BluePrimary}" Style="{StaticResource Label-L}"/>
+                                    <Label Text="UPLOAD CLIP" VerticalTextAlignment="Center" TextColor="{StaticResource Blue600}" Style="{StaticResource Label-L}"/>
                                 </HorizontalStackLayout>
                             </Border>
                         </DataTemplate>

@@ -14,23 +14,28 @@
              x:Name="DashboardPage"
              Title="Dashboard"
              HideSoftInputOnTapped="True"
-             BackgroundColor="{StaticResource BlueGray}">
+             BackgroundColor="{StaticResource Blue100}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <converters:StatusToColorConverter x:Key="StatusConverter" />
             <Style x:Key="PropertyBorder" TargetType="Border">
-                <Setter Property="Padding" Value="8, 10"/>
+                <Setter Property="Padding" Value="10, 8"/>
                 <Setter Property="BackgroundColor" Value="White"/>
                 <Setter Property="Shadow" Value="0 3 12 hsla(210, 7%, 56%, 0.1)" />
             </Style>
             <Style TargetType="Label" BasedOn="{StaticResource Body-S}">
                 <Setter Property="TextColor" Value="{StaticResource Gray950}"/>
             </Style>
+            <Style x:Key="PropertyGrid" TargetType="Grid" >
+                <Setter Property="RowSpacing" Value="8"/>
+                <Setter Property="ColumnSpacing" Value="10"/>
+            </Style>
+            
             <DataTemplate x:Key="Active" x:DataType="viewModels:EdgeCardViewModel">
-                <Border BackgroundColor="{StaticResource Gray100}" StrokeShape="Rectangle">
+                <Border BackgroundColor="White" StrokeShape="Rectangle">
                     <VerticalStackLayout 
-                          Spacing="12"
+                          Spacing="10"
                           Padding="{StaticResource CardPadding}">
                         <Grid ColumnDefinitions="Auto, Auto, *" ColumnSpacing="4" >
                             <Label Text="{Binding EdgeState}"
@@ -54,7 +59,7 @@
                             </Border.Behaviors>
                             <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
                                   ColumnDefinitions="*, *"
-                                  RowSpacing="6">
+                                  Style="{StaticResource PropertyGrid}">
                                 <Label Text="Version" TextColor="{StaticResource Gray700}"/>
                                 <Label Grid.Column="1" Text="{Binding Version}" />
                                 <Label Grid.Row="1" Text="Uptime" TextColor="{StaticResource Gray700}"/>
@@ -100,7 +105,7 @@
                                                        PressedScale="0.98"/>
                             </Border.Behaviors>
                             <VerticalStackLayout Spacing="6">
-                                <Grid ColumnDefinitions="*, *" IsVisible="{Binding CameraIsVisible}">
+                                <Grid ColumnDefinitions="*, *" IsVisible="{Binding CameraIsVisible}" Style="{StaticResource PropertyGrid}">
                                     <Label Text="Camera" TextColor="{StaticResource Gray700}"/>
                                     <Label Grid.Column="1">
                                         <Label.FormattedText>
@@ -112,7 +117,7 @@
                                         </Label.FormattedText>
                                     </Label>
                                 </Grid>
-                                <Grid ColumnDefinitions="*, *" IsVisible="{Binding ModbusDeviceIsVisible}">
+                                <Grid ColumnDefinitions="*, *" IsVisible="{Binding ModbusDeviceIsVisible}" Style="{StaticResource PropertyGrid}">
                                     <Label Text="Modbus Device" TextColor="{StaticResource Gray700}"/>
                                     <Label Grid.Column="1">
                                         <Label.FormattedText>
@@ -125,7 +130,7 @@
                                     </Label>
                                 </Grid>
                                 
-                                <Grid ColumnDefinitions="*, *" IsVisible="{Binding WeatherStationIsVisible}">
+                                <Grid ColumnDefinitions="*, *" IsVisible="{Binding WeatherStationIsVisible}" Style="{StaticResource PropertyGrid}">
                                     <Label Text="Weather Station" TextColor="{StaticResource Gray700}"/>
                                     <Label Grid.Column="1">
                                         <Label.FormattedText>
@@ -143,7 +148,7 @@
                 </Border>
             </DataTemplate>
             <DataTemplate x:Key="Deactivated" x:DataType="viewModels:EdgeCardViewModel">
-                <Border BackgroundColor="{StaticResource Gray100}" StrokeShape="Rectangle">
+                <Border BackgroundColor="{StaticResource Gray200}" StrokeShape="Rectangle">
                     <VerticalStackLayout 
                         Spacing="4"
                         Padding="{StaticResource CardPadding}">
@@ -166,9 +171,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <tabView:SfTabView Style="{StaticResource Header}">
+    <tabView:SfTabView Style="{StaticResource Header}" IndicatorStrokeThickness="1.5" IndicatorBackground="{StaticResource Blue600}">
             <tabView:SfTabView.Items>
-                <tabView:SfTabItem Header="Hub">
+                <tabView:SfTabItem Header="HUB">
                     <tabView:SfTabItem.Content>
                         <Grid RowDefinitions="*" BackgroundColor="Transparent">
                             <RefreshView Command="{Binding RefreshCommand}" IsVisible="{Binding HubInitializing, Converter={StaticResource InverseBooleanConverter}}" IsRefreshing="{Binding IsRefreshing}">
@@ -187,7 +192,7 @@
                     </tabView:SfTabItem.Content>
                 </tabView:SfTabItem>
 
-                <tabView:SfTabItem Header="Edge">
+                <tabView:SfTabItem Header="EDGE">
                     <tabView:SfTabItem.Content>
                         <Grid RowDefinitions="Auto, *">
                             <!-- <SearchBar ios:SearchBar.SearchBarStyle="Minimal" Placeholder="Search"/> -->

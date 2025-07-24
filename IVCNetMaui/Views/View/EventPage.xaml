@@ -10,7 +10,7 @@
              x:Class="IVCNetMaui.Views.View.EventPage"
              x:DataType="viewModels:EventViewModel"
              Title="Event View"
-             BackgroundColor="{StaticResource BlueGray}">
+             BackgroundColor="{StaticResource Blue100}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Filter" Command="{Binding OpenFilterPageCommand}">
