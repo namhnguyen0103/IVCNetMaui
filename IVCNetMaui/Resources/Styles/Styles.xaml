@@ -100,28 +100,24 @@
     <Style TargetType="sfButton:SfButton">
         <Setter Property="Background" Value="{StaticResource Blue600}"/>
         <Setter Property="CornerRadius" Value="4"/>
-        <Setter Property="HeightRequest" Value="44"/>
+        <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="EnableRippleEffect" Value="False"/>
-        <Setter Property="Content">
-            <DataTemplate x:DataType="sfButton:SfButton">
-                <Grid>
-                    <Label x:Name="Label" Text="{Binding Text}" Style="{StaticResource Title-L}" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
-                    <ActivityIndicator x:Name="Indicator" Color="{StaticResource Gray700}"/>
-                </Grid>
-            </DataTemplate>
-        </Setter>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="RobotoMedium"/>
+        <Setter Property="ImageSize" Value="24"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Pressed">
                         <VisualState.Setters>
-                            <Setter Property="Background" Value="{StaticResource Blue400}"/>
+                            <Setter Property="Background" Value="{StaticResource Blue500}"/>
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="Disabled">
                         <VisualState.Setters>
-                            <Setter Property="Background" Value="#BFC3C7"/>
+                            <Setter Property="Background" Value="{StaticResource Gray200}"/>
+                            <Setter Property="TextColor" Value="{StaticResource Gray950}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>

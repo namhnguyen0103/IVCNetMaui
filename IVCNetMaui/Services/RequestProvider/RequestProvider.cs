@@ -9,7 +9,7 @@ using IVCNetMaui.Services.Credential;
 
 namespace IVCNetMaui.Services.RequestProvider;
 
-public class RequestProvider : IRequestProvider
+public class RequestProvider(ICredentialService credentialService) : IRequestProvider
 {
     private readonly Lazy<HttpClient> _httpClient =
         new(() =>
@@ -18,26 +18,14 @@ public class RequestProvider : IRequestProvider
                 return httpClient;
                 
             }, LazyThreadSafetyMode.ExecutionAndPublication);
-    
-    private readonly ICredentialService _credentialService;
 
-    public RequestProvider(ICredentialService credentialService)
-    {
-        _credentialService = credentialService;
-    }
-    
     public async Task<TResult> GetAsync<TResult>(string uri)
     {
-        HttpClient httpClient = _httpClient.Value;
-        
-        var credential = await _credentialService.GetAsync();
-        var byteArray = Encoding.ASCII.GetBytes($"{credential.Value.Username}:{credential.Value.Password}");
-        
         var request = new HttpRequestMessage(HttpMethod.Get, uri);
-        request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
-        
-        HttpResponseMessage response = await httpClient.SendAsync(request);
+        await AddAuthorizationHeaderAsync(request);
 
+        HttpResponseMessage response = await _httpClient.Value.SendAsync(request);
+        
         await HandleResponse(response);
         
         if (typeof(TResult) == typeof(string))
@@ -45,45 +33,94 @@ public class RequestProvider : IRequestProvider
             string raw = await response.Content.ReadAsStringAsync();
             return (TResult)(object)raw;
         }
-        return await response.Content.ReadFromJsonAsync<TResult>();
+        
+        var result = await response.Content.ReadFromJsonAsync<TResult>();
+        if (result == null)
+            throw new InvalidOperationException($"Failed to deserialize response to {typeof(TResult).Name}.");
+
+        return result;
     }
 
     public async Task<TResult> PostAsync<TResult, TInput>(string uri, TInput data)
     {
-        HttpClient httpClient = _httpClient.Value;
-        
-        var credential = await _credentialService.GetAsync();
-        var byteArray = Encoding.ASCII.GetBytes($"{credential.Value.Username}:{credential.Value.Password}");
-        
-        string json = JsonSerializer.Serialize<TInput>(data);
+        string json = JsonSerializer.Serialize(data);
         StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-        
         var request = new HttpRequestMessage(HttpMethod.Post, uri)
         {
             Content = content
         };
-        request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
+        await AddAuthorizationHeaderAsync(request);
+
+        HttpResponseMessage response = await _httpClient.Value.SendAsync(request);
         
-        HttpResponseMessage response = await httpClient.SendAsync(request);
         await HandleResponse(response);
         
-        return await response.Content.ReadFromJsonAsync<TResult>();
-    }
+        var result = await response.Content.ReadFromJsonAsync<TResult>();
+        if (result == null)
+            throw new InvalidOperationException($"Failed to deserialize response to {typeof(TResult).Name}.");
 
-    public Task<TResult> PutAsync<TResult>(string uri, string clientId, string clientSecret)
+        return result;
+    }
+    
+    public async Task<TResult> PutAsync<TResult>(string uri)
     {
-        throw new NotImplementedException();
+        var request = new HttpRequestMessage(HttpMethod.Put, uri);
+        await AddAuthorizationHeaderAsync(request);
+
+        HttpResponseMessage response = await _httpClient.Value.SendAsync(request);
+        
+        await HandleResponse(response);
+        
+        var result = await response.Content.ReadFromJsonAsync<TResult>();
+        if (result == null)
+            throw new InvalidOperationException($"Failed to deserialize response to {typeof(TResult).Name}.");
+
+        return result;
+    }
+    
+    public async Task<TResult> PutAsync<TResult, TInput>(string uri, TInput data)
+    {
+        string json = JsonSerializer.Serialize(data);
+        StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Put, uri)
+        {
+            Content = content
+        };
+        
+        await AddAuthorizationHeaderAsync(request);
+
+        HttpResponseMessage response = await _httpClient.Value.SendAsync(request);
+        
+        await HandleResponse(response);
+        
+        var result = await response.Content.ReadFromJsonAsync<TResult>();
+        if (result == null)
+            throw new InvalidOperationException($"Failed to deserialize response to {typeof(TResult).Name}.");
+
+        return result;
     }
 
     public Task DeleteAsync<TResult>(string uri)
     {
         throw new NotImplementedException();
     }
+
+    private async Task AddAuthorizationHeaderAsync(HttpRequestMessage request)
+    {
+        var credential = await credentialService.GetAsync();
+        var bytesArray = credential is null
+            ? null
+            : Encoding.ASCII.GetBytes($"{credential.Value.Username}:{credential.Value.Password}");
+        
+        if (bytesArray != null)
+            request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(bytesArray));
+    }
     
     private static async Task HandleResponse(HttpResponseMessage response)
     {
         if (!response.IsSuccessStatusCode)
         {
+            Console.WriteLine(response.StatusCode);
             var content = await response.Content.ReadAsStringAsync();
 
             if (response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.Unauthorized)

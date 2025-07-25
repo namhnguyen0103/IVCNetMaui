@@ -6,7 +6,8 @@ public interface IRequestProvider
     
     Task<TResult> PostAsync<TResult, TInput>(string uri, TInput data);
     
-    Task<TResult> PutAsync<TResult>(string uri, string clientId, string clientSecret);
+    Task<TResult> PutAsync<TResult>(string uri);
+    Task<TResult> PutAsync<TResult, TInput>(string uri, TInput data);
     
     Task DeleteAsync<TResult>(string uri);
 }

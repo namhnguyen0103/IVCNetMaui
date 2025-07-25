@@ -21,4 +21,5 @@ public interface IApiService
     Task<IoTStatus> GetIoTStatusAsync(int unit, string type, int iot);
     Task<List<Event>> GetEventsAsync(int pageNum, int pageSize);
     Task<int> GetEventCountAsync();
+    Task<bool> PutUploadSnapAsync(int unit, int feed, string snapshot, string extension);
 }

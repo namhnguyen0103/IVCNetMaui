@@ -322,4 +322,18 @@ public class ApiService : IApiService
             throw;
         }
     }
+
+    public async Task<bool> PutUploadSnapAsync(int unit, int feed, string snapshot, string extension)
+    {
+        try
+        {
+            var response = await _requestProvider.PutAsync<string>($"{_globalSetting.BaseApiEndpoint}/api/v1/video/ui/snapshot/upload?unit=5&feed=3&snapshot=aei-4093-cam1-20250725122914111&ext=jpg");
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return false;
+        }
+    }
 }
