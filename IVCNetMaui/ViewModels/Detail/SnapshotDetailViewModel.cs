@@ -8,7 +8,7 @@ using IVCNetMaui.ViewModels.Base;
 namespace IVCNetMaui.ViewModels.Detail;
 
 [QueryProperty(nameof(Event), "Event")]
-public partial class MediaDetailViewModel(INavigationService navigationService, IApiService apiService) : ViewModelBase(navigationService, apiService)
+public partial class SnapshotDetailViewModel(INavigationService navigationService, IApiService apiService) : ViewModelBase(navigationService, apiService)
 {
     [ObservableProperty] private Event _event = new();
     [ObservableProperty] ObservableCollection<ImageSource> _imageSources = new();

@@ -3,9 +3,9 @@ using IVCNetMaui.ViewModels.Detail;
 
 namespace IVCNetMaui.Views.Detail;
 
-public partial class MediaDetailPage : ContentPage
+public partial class SnapshotDetailPage : ContentPage
 {
-	public MediaDetailPage(MediaDetailViewModel vm)
+	public SnapshotDetailPage(SnapshotDetailViewModel vm)
 	{
 		BindingContext = vm;
 		InitializeComponent();
@@ -15,7 +15,7 @@ public partial class MediaDetailPage : ContentPage
 	{
 		base.OnAppearing();
 
-		if (BindingContext is MediaDetailViewModel vm && vm.InitializeAsyncCommand.CanExecute(null))
+		if (BindingContext is SnapshotDetailViewModel vm && vm.InitializeAsyncCommand.CanExecute(null))
 		{
 			vm.InitializeAsyncCommand.Execute(null);
 		}

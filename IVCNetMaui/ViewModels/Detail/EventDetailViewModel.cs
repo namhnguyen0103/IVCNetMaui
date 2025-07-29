@@ -34,7 +34,7 @@ public partial class EventDetailViewModel(INavigationService navigationService, 
 		{
 			{ "Event", Event }
 		};
-		return NavigationService.NavigateToAsync("mediaDetail",  queryParameters);
+		return NavigationService.NavigateToAsync("snapshotDetail",  queryParameters);
 	}
 	
 	private bool CanNavigateToClipDetail()
@@ -42,14 +42,14 @@ public partial class EventDetailViewModel(INavigationService navigationService, 
 		return Event.IsClipUploaded;
 	} 
 	
-	[RelayCommand(CanExecute = nameof(CanNavigateToClipDetail))]
+	[RelayCommand]
 	private Task NavigateToClipDetail()
 	{
 		var queryParameters = new ShellNavigationQueryParameters()
 		{
 			{ "Event", Event }
 		};
-		return NavigationService.NavigateToAsync("mediaDetail",  queryParameters);
+		return NavigationService.NavigateToAsync("clipDetail",  queryParameters);
 	}
 
 	private bool CanUploadSnap()

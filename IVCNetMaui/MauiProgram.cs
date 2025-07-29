@@ -83,7 +83,8 @@ namespace IVCNetMaui
             builder.Services.AddTransient<EdgeDetailViewModel>();
             builder.Services.AddTransient<CameraViewModel>();
             builder.Services.AddTransient<EventDetailViewModel>();
-            builder.Services.AddTransient<MediaDetailViewModel>();
+            builder.Services.AddTransient<SnapshotDetailViewModel>();
+            builder.Services.AddTransient<ClipDetailViewModel>();
             builder.Services.AddTransient<EdgeCardViewModel>();
             
             return builder;
@@ -102,7 +103,8 @@ namespace IVCNetMaui
             builder.Services.AddTransient<EdgeDetailPage>();
             builder.Services.AddTransient<CameraPage>();
             builder.Services.AddTransient<EventDetailPage>();
-            builder.Services.AddTransient<MediaDetailPage>();
+            builder.Services.AddTransient<SnapshotDetailPage>();
+            builder.Services.AddTransient<ClipDetailPage>();
 
             return builder;
         }

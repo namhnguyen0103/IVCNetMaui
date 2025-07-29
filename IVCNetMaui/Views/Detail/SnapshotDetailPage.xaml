@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
-             x:Class="IVCNetMaui.Views.Detail.MediaDetailPage"
-             x:DataType="viewModels:MediaDetailViewModel"
+             x:Class="IVCNetMaui.Views.Detail.SnapshotDetailPage"
+             x:DataType="viewModels:SnapshotDetailViewModel"
              BackgroundColor="{StaticResource Blue100}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Download">

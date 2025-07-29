@@ -177,7 +177,7 @@
 	  <MauiXaml Update="Views\Detail\EventDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Detail\MediaDetailPage.xaml">
+	  <MauiXaml Update="Views\Detail\SnapshotDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Historical\HistoricalHealthDataPage.xaml">

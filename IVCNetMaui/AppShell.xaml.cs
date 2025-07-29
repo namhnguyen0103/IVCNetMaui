@@ -86,7 +86,8 @@ namespace IVCNetMaui
                     }
                 });
                 Routing.RegisterRoute("eventView/eventDetail", typeof(EventDetailPage));
-                Routing.RegisterRoute("eventView/eventDetail/mediaDetail", typeof(MediaDetailPage));
+                Routing.RegisterRoute("eventView/eventDetail/snapshotDetail", typeof(SnapshotDetailPage));
+                Routing.RegisterRoute("eventView/eventDetail/clipDetail", typeof(ClipDetailPage));
             }
 
             // Allow access to Historical Section
