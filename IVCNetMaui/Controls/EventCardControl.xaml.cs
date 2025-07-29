@@ -6,14 +6,15 @@ namespace IVCNetMaui.Controls;
 
 public partial class EventCardControl : ContentView
 {
-	public static readonly BindableProperty EventProperty = BindableProperty.Create(nameof(Event), typeof(Event), typeof(EventCardControl), propertyChanged:
+	public static readonly BindableProperty EventProperty = BindableProperty.Create(nameof(Event), typeof(Event), typeof(EventCardControl),  propertyChanged:
 		(bindable, _, _) =>
 		{
 			var control = (EventCardControl)bindable;
 			control.OnPropertyChanged(nameof(MediaText));
+			control.OnPropertyChanged(nameof(MediaChipIsVisible));
 		});
 
-	public Event Event
+	public Event? Event
 	{
 		get => (Event)GetValue(EventProperty);
 		set => SetValue(EventProperty, value);
@@ -32,6 +33,20 @@ public partial class EventCardControl : ContentView
 		InitializeComponent();
 	}
 
-	public string MediaText => String.IsNullOrEmpty(Event.ClipFileName) || String.IsNullOrEmpty(Event.SnapFileName) ? "Yes" : "None";
+	public string MediaText
+	{
+		get
+		{
+			if (Event != null)
+			{
+				return !String.IsNullOrEmpty(Event.ClipFileName) || !String.IsNullOrEmpty(Event.SnapFileName)
+					? "Yes"
+					: "No";
+			}
+			return "Unknown";
+		}
+	}
+	
+	public bool MediaChipIsVisible => Event != null && (!String.IsNullOrEmpty(Event.ClipFileName) || !String.IsNullOrEmpty(Event.SnapFileName));
     
 }

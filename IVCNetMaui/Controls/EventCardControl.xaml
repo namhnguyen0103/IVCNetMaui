@@ -15,6 +15,9 @@
     <Border Padding="{StaticResource CardPadding}" 
             StrokeShape="Rectangle" BindingContext="{x:Reference This}">
         <VerticalStackLayout>
+            <Label Text="SNAPSHOT &amp; CLIP"
+                   IsVisible="{Binding MediaChipIsVisible}" Style="{StaticResource Label-S}" TextColor="{StaticResource Blue600}" BackgroundColor="{StaticResource Blue200}" Padding="6, 4" VerticalTextAlignment="Center" HorizontalOptions="Start"
+                   Margin="0, 0, 0, 4"/>
             <Label Style="{StaticResource Body-M}" Margin="0, 0, 0, 4">
                 <Label.FormattedText>
                     <FormattedString>
@@ -26,14 +29,13 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            
             <Label Text="{Binding Event.EventDescription, FallbackValue='Unknown'}"
                    Style="{StaticResource Title-M}"
-                   Margin="0, 0, 0, 10"
-                   LineBreakMode="WordWrap"/>
+                   LineBreakMode="WordWrap"
+                   Margin="0, 0, 0, 10"/>
             
             <Border Padding="10, 8">
-                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto"
                       ColumnDefinitions="*, *"
                       RowSpacing="8">
                     <Label Text="Category" TextColor="{StaticResource Gray700}"/>
@@ -44,8 +46,6 @@
                     <Label Grid.Row="2" Grid.Column="1" Text="{Binding Event.EventReceived, StringFormat='{0:M/d/yyyy h:mm:ss tt}'}"/>
                     <Label Grid.Row="3" Text="Event Time" TextColor="{StaticResource Gray700}"/>
                     <Label Grid.Row="3" Grid.Column="1" Text="{Binding Event.EventTime, StringFormat='{0:M/d/yyyy h:mm:ss tt}'}"/>
-                    <Label Grid.Row="4" Text="Media" TextColor="{StaticResource Gray700}"/>
-                    <Label Grid.Row="4" Grid.Column="1" Text="{Binding MediaText}"/>
                 </Grid>
             </Border>
         </VerticalStackLayout>

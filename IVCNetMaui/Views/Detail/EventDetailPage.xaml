@@ -128,7 +128,7 @@
                 </sfButton:SfButton>
                 <sfButton:SfButton Grid.Row="1" 
                                    Grid.Column="1" 
-                                   Command="{Binding NavigateToMediaDetailCommand}" 
+                                   Command="{Binding NavigateToSnapDetailCommand}" 
                                    Background="Transparent">
                     <sfButton:SfButton.Content>
                         <DataTemplate x:DataType="sfButton:SfButton">
@@ -190,7 +190,7 @@
                 </sfButton:SfButton>
                 <sfButton:SfButton Grid.Row="1" 
                                    Grid.Column="1" 
-                                   Command="{Binding NavigateToMediaDetailCommand}" 
+                                   Command="{Binding NavigateToClipDetailCommand}" 
                                    Background="Transparent"
                                    CornerRadius="0">
                     <sfButton:SfButton.Content>

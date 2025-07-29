@@ -22,13 +22,28 @@ public partial class EventDetailViewModel(INavigationService navigationService, 
 		UploadClipCommand.NotifyCanExecuteChanged();
 	}
 
-	private bool CanNavigateToMediaDetail()
+	private bool CanNavigateToSnapDetail()
 	{
 		return Event.IsSnapUploaded;
 	} 
 	
-	[RelayCommand(CanExecute = nameof(CanNavigateToMediaDetail))]
-	private Task NavigateToMediaDetail()
+	[RelayCommand(CanExecute = nameof(CanNavigateToSnapDetail))]
+	private Task NavigateToSnapDetail()
+	{
+		var queryParameters = new ShellNavigationQueryParameters()
+		{
+			{ "Event", Event }
+		};
+		return NavigationService.NavigateToAsync("mediaDetail",  queryParameters);
+	}
+	
+	private bool CanNavigateToClipDetail()
+	{
+		return Event.IsClipUploaded;
+	} 
+	
+	[RelayCommand(CanExecute = nameof(CanNavigateToClipDetail))]
+	private Task NavigateToClipDetail()
 	{
 		var queryParameters = new ShellNavigationQueryParameters()
 		{
@@ -67,12 +82,12 @@ public partial class EventDetailViewModel(INavigationService navigationService, 
 			if (result)
 			{
 				Event.IsSnapUploaded = true;
-				NavigateToMediaDetailCommand.NotifyCanExecuteChanged();
-				await DialogService.ShowAlertAsync("Upload Success", string.Empty, "OK");
+				NavigateToSnapDetailCommand.NotifyCanExecuteChanged();
+				await DialogService.ShowAlertAsync("Upload Snapshot Success", string.Empty, "OK");
 			}
 			else
 			{
-				await DialogService.ShowAlertAsync("Upload Failed", string.Empty, "OK");
+				await DialogService.ShowAlertAsync("Upload Snapshot Failed", string.Empty, "OK");
 			}
 		}
 		catch (Exception ex)
@@ -90,7 +105,41 @@ public partial class EventDetailViewModel(INavigationService navigationService, 
 	[RelayCommand(CanExecute = nameof(CanUploadClip))]
 	private async Task UploadClip()
 	{
-		await Task.Delay(1000);
+		try
+		{
+			List<Task<bool>> tasks = new();
+			if (Event.ClipFileName is not null)
+			{
+				var snaps = Event.ClipFileName.Split(',');
+				foreach (var snap in snaps)
+				{
+					var segments =  snap.Split('/');
+					var feed =  segments[0];
+					var filename = segments.Last();
+					var clip = Path.GetFileNameWithoutExtension(filename);
+					var extension = Path.GetExtension(filename).TrimStart('.');
+					tasks.Add(ApiService.PutUploadClipAsync(Event.UnitId, int.Parse(feed), clip, extension));
+				}
+			}
+
+			var responses = await Task.WhenAll(tasks);
+			var result = responses.All(t => t);
+			if (result)
+			{
+				Event.IsClipUploaded = true;
+				NavigateToClipDetailCommand.NotifyCanExecuteChanged();
+				await DialogService.ShowAlertAsync("Upload Clip Success", string.Empty, "OK");
+			}
+			else
+			{
+				await DialogService.ShowAlertAsync("Upload Clip Failed", string.Empty, "OK");
+			}
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex.Message);
+			await DialogService.ShowAlertAsync("Upload Error", string.Empty, "OK");
+		}
 	}
 
 	private bool CanDownload()

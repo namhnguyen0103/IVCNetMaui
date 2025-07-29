@@ -220,6 +220,21 @@ public class ApiService : IApiService
         }
     }
 
+    public async Task<bool> PutUploadClipAsync(int unit, int feed, string clip, string extension)
+    {
+        try
+        {
+            var uri = $"{_globalSetting.BaseApiEndpoint}/video/ui/clip/upload?unit={unit}&feed={feed}&clip={clip}&ext={extension}"; 
+            await _requestProvider.PutAsync(uri);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return false;
+        }
+    }
+
     public async Task<byte[]> GetSnapAsync(string snapshot)
     {
         var uri = $"{_globalSetting.BaseApiEndpoint}/video/snapshot?snapshot={snapshot}";
