@@ -14,8 +14,14 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ScrollView>
-        <VerticalStackLayout>
-            <Image Source="{Binding Source}"/>
-        </VerticalStackLayout>
+            <StackLayout BindableLayout.ItemsSource="{Binding ImageSources}" Spacing="12">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="ImageSource">
+                        <Image Source="{Binding}"/>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+
     </ScrollView>
+
 </ContentPage>

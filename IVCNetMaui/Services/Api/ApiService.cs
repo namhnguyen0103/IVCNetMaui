@@ -220,10 +220,10 @@ public class ApiService : IApiService
         }
     }
 
-    public async Task<Stream> GetSnapAsync(string snapshot)
+    public async Task<byte[]> GetSnapAsync(string snapshot)
     {
-        var uri = $"{_globalSetting.BaseApiEndpoint}/video/snapshot?snapshot=5/3/aei-4094-cam1-20250725132310000";
-        var response = await _requestProvider.GetAsync<Stream>(uri);
+        var uri = $"{_globalSetting.BaseApiEndpoint}/video/snapshot?snapshot={snapshot}";
+        var response = await _requestProvider.GetAsync<byte[]>(uri);
         return response;
     }
 }

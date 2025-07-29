@@ -6,7 +6,12 @@ namespace IVCNetMaui.Controls;
 
 public partial class EventCardControl : ContentView
 {
-	public static readonly BindableProperty EventProperty = BindableProperty.Create(nameof(Event), typeof(Event), typeof(EventCardControl));
+	public static readonly BindableProperty EventProperty = BindableProperty.Create(nameof(Event), typeof(Event), typeof(EventCardControl), propertyChanged:
+		(bindable, _, _) =>
+		{
+			var control = (EventCardControl)bindable;
+			control.OnPropertyChanged(nameof(MediaText));
+		});
 
 	public Event Event
 	{
@@ -26,5 +31,7 @@ public partial class EventCardControl : ContentView
 	{
 		InitializeComponent();
 	}
+
+	public string MediaText => String.IsNullOrEmpty(Event.ClipFileName) || String.IsNullOrEmpty(Event.SnapFileName) ? "Yes" : "None";
     
 }

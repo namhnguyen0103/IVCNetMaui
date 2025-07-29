@@ -19,6 +19,7 @@ public partial class EventDetailViewModel(INavigationService navigationService, 
 	partial void OnEventChanged(Event value)
 	{
 		UploadSnapCommand.NotifyCanExecuteChanged();
+		UploadClipCommand.NotifyCanExecuteChanged();
 	}
 
 	private bool CanNavigateToMediaDetail()
@@ -38,7 +39,7 @@ public partial class EventDetailViewModel(INavigationService navigationService, 
 
 	private bool CanUploadSnap()
 	{
-		return Event.SnapFileName?.Length > 0;
+		return !String.IsNullOrEmpty(Event.SnapFileName);
 	}
 
 	[RelayCommand(CanExecute = nameof(CanUploadSnap))]
@@ -79,5 +80,27 @@ public partial class EventDetailViewModel(INavigationService navigationService, 
 			Console.WriteLine(ex.Message);
 			await DialogService.ShowAlertAsync("Upload Error", string.Empty, "OK");
 		}
+	}
+
+	private bool CanUploadClip()
+	{
+		return !String.IsNullOrEmpty(Event.ClipFileName);
+	}
+
+	[RelayCommand(CanExecute = nameof(CanUploadClip))]
+	private async Task UploadClip()
+	{
+		await Task.Delay(1000);
+	}
+
+	private bool CanDownload()
+	{
+		return false;
+	}
+
+	[RelayCommand(CanExecute = nameof(CanDownload))]
+	private async Task Download()
+	{
+		await Task.Delay(1000);
 	}
 }

@@ -33,9 +33,9 @@ public class RequestProvider(ICredentialService credentialService) : IRequestPro
             string raw = await response.Content.ReadAsStringAsync();
             return (TResult)(object)raw;
         }
-        if (typeof(TResult) == typeof(Stream))
+        if (typeof(TResult) == typeof(byte[]))
         {
-            var stream = await response.Content.ReadAsStreamAsync();
+            var stream = await response.Content.ReadAsByteArrayAsync();
             return (TResult)(object)stream;
         }
         

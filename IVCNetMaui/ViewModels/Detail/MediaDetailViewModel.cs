@@ -20,15 +20,14 @@ public partial class MediaDetailViewModel(INavigationService navigationService, 
             Task.Run(async () => await GetSnapAsync(value.SnapFileName));
         }
     }
-
-    [ObservableProperty]
-    private ImageSource _source = ImageSource.FromFile("placeholder.png");
     
     private async Task GetSnapAsync(string snapFileName)
     {
+        ObservableCollection<ImageSource> images = new();
         try
         {
             var snaps = snapFileName.Split(',');
+            var tasks = new List<Task<byte[]>>();
             foreach (var snap in snaps)
             {
                 var segments = snap.Split('/');
@@ -36,9 +35,15 @@ public partial class MediaDetailViewModel(INavigationService navigationService, 
                 var filename = segments.Last();
                 var snapshot = Path.GetFileNameWithoutExtension(filename);
                 var parameter = $"{Event.UnitId}/{feed}/{snapshot}";
-                var stream = await ApiService.GetSnapAsync(parameter);
-                ImageSources.Add(ImageSource.FromStream(() => stream));
+                tasks.Add(ApiService.GetSnapAsync(parameter));
             }
+            await Task.WhenAll(tasks);
+            foreach (var task in tasks)
+            {
+                images.Add(ImageSource.FromStream(() => new MemoryStream(task.Result)));
+            }
+            ImageSources = images;
+
         }
         catch (Exception ex)
         {
