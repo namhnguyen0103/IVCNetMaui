@@ -17,6 +17,24 @@
                 <ResourceDictionary Source="/Resources/Styles/DetailPageStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             
+            <Style TargetType="sfButton:SfButton">
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="TextColor" Value="{StaticResource Gray950}"/>
+                <Setter Property="EnableRippleEffect" Value="False" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="{StaticResource Gray400}"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            
             <Style x:Key="ButtonBorder" TargetType="Border">
                 <Setter Property="Padding" Value="0, 6"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
@@ -39,7 +57,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView>
-        <Grid RowDefinitions="Auto, Auto, Auto">
+        <Grid RowDefinitions="Auto, Auto, Auto" RowSpacing="24">
             <VerticalStackLayout Padding="{StaticResource MainPadding}">
                 <Label  Style="{StaticResource Body-M}" Margin="0, 0, 0, 4">
                     <Label.FormattedText>
@@ -97,10 +115,10 @@
                                 <VerticalStackLayout Style="{StaticResource ButtonStack}">
                                     <Image>
                                         <Image.Source>
-                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="{Binding Source={x:Reference ButtonLabel}, Path=TextColor}"/>
+                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
                                         </Image.Source>
                                     </Image>
-                                    <Label x:Name="ButtonLabel" Text="UPLOAD" Style="{StaticResource ButtonText}"/>
+                                    <Label x:Name="ButtonLabel" Text="UPLOAD" Style="{StaticResource ButtonText}" TextColor="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
                                 </VerticalStackLayout>
                             </Border>
                         </DataTemplate>
@@ -111,15 +129,16 @@
                                    Command="{Binding NavigateToMediaDetailCommand}" 
                                    Background="Transparent">
                     <sfButton:SfButton.Content>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="sfButton:SfButton">
                             <Border Style="{StaticResource ButtonBorder}">
+                                
                                 <VerticalStackLayout Style="{StaticResource ButtonStack}">
                                     <Image>
                                         <Image.Source>
-                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Image}" Color="{Binding Source={x:Reference ButtonLabel}, Path=TextColor}"/>
+                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Image}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
                                         </Image.Source>
                                     </Image>
-                                    <Label x:Name="ButtonLabel" Text="VIEW" Style="{StaticResource ButtonText}"/>
+                                    <Label x:Name="ButtonLabel" Text="VIEW" Style="{StaticResource ButtonText}" TextColor="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
                                 </VerticalStackLayout>
                             </Border>
                         </DataTemplate>
@@ -144,7 +163,66 @@
                     </sfButton:SfButton.Content>
                 </sfButton:SfButton>
             </Grid>
-            
+            <Grid Grid.Row="2" RowDefinitions="Auto, Auto" ColumnDefinitions="*, *, *" RowSpacing="8" ColumnSpacing="6" Padding="12, 0">
+                <Label Text="Clip" Grid.ColumnSpan="3" Style="{StaticResource Title-M}"/>
+                <sfButton:SfButton Grid.Row="1" 
+                                   Background="Transparent"
+                                   Command="{Binding UploadSnapCommand}">
+                    <sfButton:SfButton.Content>
+                        <DataTemplate>
+                            <Border Style="{StaticResource ButtonBorder}">
+                                <VerticalStackLayout Style="{StaticResource ButtonStack}">
+                                    <Image>
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="{Binding Source={x:Reference ButtonLabel}, Path=TextColor}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Label x:Name="ButtonLabel" Text="UPLOAD" Style="{StaticResource ButtonText}"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </sfButton:SfButton.Content>
+                </sfButton:SfButton>
+                <sfButton:SfButton Grid.Row="1" 
+                                   Grid.Column="1" 
+                                   Command="{Binding NavigateToMediaDetailCommand}" 
+                                   Background="Transparent"
+                                   CornerRadius="0">
+                    <sfButton:SfButton.Content>
+                        <DataTemplate x:DataType="sfButton:SfButton">
+                            <Border Style="{StaticResource ButtonBorder}">
+                                
+                                <VerticalStackLayout Style="{StaticResource ButtonStack}">
+                                    <Image>
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Image}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Label x:Name="ButtonLabel" Text="VIEW" Style="{StaticResource ButtonText}" TextColor="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </sfButton:SfButton.Content>
+                </sfButton:SfButton>
+                <sfButton:SfButton Grid.Row="1" 
+                                   Grid.Column="2" 
+                                   Background="Transparent">
+                    <sfButton:SfButton.Content>
+                        <DataTemplate>
+                            <Border Style="{StaticResource ButtonBorder}">
+                                <VerticalStackLayout Style="{StaticResource ButtonStack}">
+                                    <Image>
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Download}" Color="{Binding Source={x:Reference ButtonLabel}, Path=TextColor}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Label x:Name="ButtonLabel" Text="DOWNLOAD" Style="{StaticResource ButtonText}"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </sfButton:SfButton.Content>
+                </sfButton:SfButton>
+            </Grid>
         </Grid>
     </ScrollView>
 </ContentPage>

@@ -11,28 +11,73 @@ namespace IVCNetMaui.ViewModels.Detail;
 [QueryProperty(nameof(Event), "Event")]
 public partial class EventDetailViewModel(INavigationService navigationService, IApiService apiService, IDialogService dialogService) : ViewModelBase(navigationService, apiService)
 {
-	public IDialogService DialogService { get; } = dialogService;
+	private IDialogService DialogService { get; } =  dialogService;
 	
 	[ObservableProperty]
 	private Event _event = new();
-	
-	[RelayCommand]
-	private Task NavigateToMediaDetail()
+
+	partial void OnEventChanged(Event value)
 	{
-		return NavigationService.NavigateToAsync("mediaDetail");
+		UploadSnapCommand.NotifyCanExecuteChanged();
 	}
 
-	[RelayCommand]
+	private bool CanNavigateToMediaDetail()
+	{
+		return Event.IsSnapUploaded;
+	} 
+	
+	[RelayCommand(CanExecute = nameof(CanNavigateToMediaDetail))]
+	private Task NavigateToMediaDetail()
+	{
+		var queryParameters = new ShellNavigationQueryParameters()
+		{
+			{ "Event", Event }
+		};
+		return NavigationService.NavigateToAsync("mediaDetail",  queryParameters);
+	}
+
+	private bool CanUploadSnap()
+	{
+		return Event.SnapFileName?.Length > 0;
+	}
+
+	[RelayCommand(CanExecute = nameof(CanUploadSnap))]
 	private async Task UploadSnap()
 	{
-			var result = await ApiService.PutUploadSnapAsync(5, 3, "aei-4093-cam1-20250725122914111", "jpg");
+		try
+		{
+			List<Task<bool>> tasks = new();
+			if (Event.SnapFileName is not null)
+			{
+				var snaps = Event.SnapFileName.Split(',');
+				foreach (var snap in snaps)
+				{
+					var segments =  snap.Split('/');
+					var feed =  segments[0];
+					var filename = segments.Last();
+					var snapshot = Path.GetFileNameWithoutExtension(filename);
+					var extension = Path.GetExtension(filename).TrimStart('.');
+					tasks.Add(ApiService.PutUploadSnapAsync(Event.UnitId, int.Parse(feed), snapshot, extension));
+				}
+			}
+
+			var responses = await Task.WhenAll(tasks);
+			var result = responses.All(t => t);
 			if (result)
 			{
-				await DialogService.ShowAlertAsync("Upload Sucess", string.Empty, "OK");
+				Event.IsSnapUploaded = true;
+				NavigateToMediaDetailCommand.NotifyCanExecuteChanged();
+				await DialogService.ShowAlertAsync("Upload Success", string.Empty, "OK");
 			}
 			else
 			{
 				await DialogService.ShowAlertAsync("Upload Failed", string.Empty, "OK");
 			}
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex.Message);
+			await DialogService.ShowAlertAsync("Upload Error", string.Empty, "OK");
+		}
 	}
 }

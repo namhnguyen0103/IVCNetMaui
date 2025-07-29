@@ -10,4 +10,14 @@ public partial class MediaDetailPage : ContentPage
 		BindingContext = vm;
 		InitializeComponent();
 	}
+	
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+
+		if (BindingContext is MediaDetailViewModel vm && vm.InitializeAsyncCommand.CanExecute(null))
+		{
+			vm.InitializeAsyncCommand.Execute(null);
+		}
+	}
 }

@@ -22,4 +22,5 @@ public interface IApiService
     Task<List<Event>> GetEventsAsync(int pageNum, int pageSize);
     Task<int> GetEventCountAsync();
     Task<bool> PutUploadSnapAsync(int unit, int feed, string snapshot, string extension);
+    Task<Stream> GetSnapAsync(string snapshot);
 }

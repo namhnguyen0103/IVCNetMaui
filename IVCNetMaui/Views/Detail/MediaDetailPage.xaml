@@ -4,7 +4,8 @@
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.Detail"
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              x:Class="IVCNetMaui.Views.Detail.MediaDetailPage"
-             x:DataType="viewModels:MediaDetailViewModel">
+             x:DataType="viewModels:MediaDetailViewModel"
+             BackgroundColor="{StaticResource Blue100}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Download">
             <ToolbarItem.IconImageSource>
@@ -12,16 +13,9 @@
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    <Grid RowDefinitions="*, *">
-        <Border BackgroundColor="{StaticResource Gray200}">
-            <Label Text="Img/Vid"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"/>
-        </Border>
-        <Border Grid.Row="1" BackgroundColor="{StaticResource Gray200}">
-            <Label Text="Img/Vid"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"/>
-        </Border>
-    </Grid>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Image Source="{Binding Source}"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
