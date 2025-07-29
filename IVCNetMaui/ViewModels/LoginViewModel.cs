@@ -83,7 +83,7 @@ public partial class LoginViewModel : ViewModelBase
 			{
 				_globalSetting.BaseApiEndpoint = $"http://{Ip}:{Port}/api/v1";
 				_globalSetting.Permissions = await ApiService.GetPermissionsAsync();
-				// _globalSetting.Units = await ApiService.GetVideoFeedsAsync();
+				_globalSetting.Units = await ApiService.GetVideoFeedsAsync();
 				_globalSetting.ApiUserInfo = await ApiService.GetUserInfoAsync();
 				_globalSetting.Roles = await ApiService.GetRoleAsync();
 				Application.Current.MainPage = _serviceProvider.GetRequiredService<AppShell>();

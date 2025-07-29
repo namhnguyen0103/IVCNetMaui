@@ -8,7 +8,7 @@
              Title="Camera View">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Camera"
-                     Command="{Binding AddCommand}">
+                     >
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Add}" />
             </ToolbarItem.IconImageSource>
