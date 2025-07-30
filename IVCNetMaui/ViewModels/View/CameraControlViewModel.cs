@@ -15,16 +15,22 @@ public partial class CameraControlViewModel : ViewModelBase
     {
         _globalSetting = globalSetting;
         Units = new ObservableCollection<Unit>(_globalSetting.Units);
-        if (Units.Count > 0)
-        {
-            Feeds = new(Units[0].Feeds);
-        }
-        else
-        {
-            Feeds = new();
-        }
     }
 
     [ObservableProperty] private ObservableCollection<Unit> _units;
-    [ObservableProperty] private ObservableCollection<Feed> _feeds;
+    [ObservableProperty] private int _selectedUnitIndex = -1;
+    partial void OnSelectedUnitIndexChanged(int oldValue, int newValue)
+    {
+        if ((newValue == oldValue) || (newValue < 0 || newValue >= Units.Count))
+        {
+            return;
+        }
+
+        SelectedFeedIndex = -1;
+        Feeds = new ObservableCollection<Feed>(Units[newValue].Feeds);
+    }
+
+    [ObservableProperty] private ObservableCollection<Feed> _feeds = new();
+    [ObservableProperty] private int _selectedFeedIndex = -1;
+    
 }

@@ -24,4 +24,5 @@ public interface IApiService
     Task<bool> PutUploadSnapAsync(int unit, int feed, string snapshot, string extension);
     Task<bool> PutUploadClipAsync(int unit, int feed, string clip, string extension);
     Task<byte[]> GetSnapAsync(string snapshot);
+    Task<byte[]> GetClipAsync(string clip);
 }

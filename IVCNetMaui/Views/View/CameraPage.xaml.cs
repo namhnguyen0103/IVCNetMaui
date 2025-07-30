@@ -15,7 +15,7 @@ public partial class CameraPage : ContentPage
     protected override void OnBindingContextChanged()
     {
         base.OnBindingContextChanged();
-
+    
         if (BindingContext is CameraViewModel viewModel)
         {
             viewModel.PropertyChanged += (_, e) =>
@@ -38,11 +38,12 @@ public partial class CameraPage : ContentPage
             for (int i = 0; i < rows; i++)
             {
                 FlexibleGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                var camera = viewModel.Cameras[i];
+                var camera = new CameraControl();
+                camera.BindingContext = viewModel.Cameras[i];
                 FlexibleGrid.Children.Add(camera);
                 Grid.SetRow(camera, i);
             }
         }
-
+    
     }
 }

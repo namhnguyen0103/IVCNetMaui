@@ -3,6 +3,7 @@ using IVCNetMaui.Services.Api;
 using IVCNetMaui.Services.Authentication;
 using IVCNetMaui.Services.Credential;
 using IVCNetMaui.Services.Dialog;
+using IVCNetMaui.Services.Factory;
 using IVCNetMaui.Services.Navigation;
 using IVCNetMaui.Services.RequestProvider;
 using IVCNetMaui.Services.Settings;
@@ -69,6 +70,7 @@ namespace IVCNetMaui
             builder.Services.AddSingleton<IApiService, ApiService>();
             builder.Services.AddSingleton<IDialogService, DialogService>();
             builder.Services.AddSingleton<GlobalSetting>();
+            builder.Services.AddSingleton<IViewModelFactoryService, ViewModelFactoryService>();
             
             return builder;
         }
@@ -86,6 +88,7 @@ namespace IVCNetMaui
             builder.Services.AddTransient<SnapshotDetailViewModel>();
             builder.Services.AddTransient<ClipDetailViewModel>();
             builder.Services.AddTransient<EdgeCardViewModel>();
+            builder.Services.AddTransient<CameraControlViewModel>();
             
             return builder;
         }

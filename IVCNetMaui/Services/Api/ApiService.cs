@@ -241,4 +241,11 @@ public class ApiService : IApiService
         var response = await _requestProvider.GetAsync<byte[]>(uri);
         return response;
     }
+
+    public async Task<byte[]> GetClipAsync(string clip)
+    {
+        var uri = $"{_globalSetting.BaseApiEndpoint}/video/clip/download?clip={clip}";
+        var response = await _requestProvider.GetAsync<byte[]>(uri);
+        return response;
+    }
 }

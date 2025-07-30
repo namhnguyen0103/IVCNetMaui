@@ -3,47 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+             xmlns:converters="clr-namespace:IVCNetMaui.Converters"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
              xmlns:models="clr-namespace:IVCNetMaui.Models"
              x:Class="IVCNetMaui.Controls.CameraControl"
              x:Name="This"
-             x:DataType="controls:CameraControl">
+             x:DataType="viewModels:CameraControlViewModel">
     <ContentView.Resources>
         <ResourceDictionary>
             <Style TargetType="Picker">
                 <Setter Property="FontSize" Value="10"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource Gray200}" />
             </Style>
+            <converters:ToPickerItemConverter x:Key="ToPickerItemConverter"></converters:ToPickerItemConverter>
         </ResourceDictionary>
     </ContentView.Resources>
-    <Grid RowDefinitions="Auto, *" BindingContext="{x:Reference This}">
-        <Grid ColumnDefinitions="125, 125, *, Auto"
+    <Grid RowDefinitions="Auto, Auto, *">
+        <Grid ColumnDefinitions="125, 125, Auto, Auto"
                   ColumnSpacing="12"
                   Padding="12, 0"
                   BackgroundColor="{StaticResource Gray500}">
             <Picker Grid.Column="0" 
                     Title="Select Unit"
                     ItemsSource="{Binding Units}"
-                    ItemDisplayBinding="{Binding Path=Name}"
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource ToPickerItemConverter}}"
                     SelectedIndex="{Binding SelectedUnitIndex, Mode=TwoWay}"/>
             <Picker Grid.Column="1" 
                     Title="Select Feed"
                     ItemsSource="{Binding Feeds}"
-                    ItemDisplayBinding="{Binding Name}"
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource ToPickerItemConverter}}"
                     SelectedIndex="{Binding SelectedFeedIndex, Mode=TwoWay}"/>
-            <Image Grid.Column="3" 
-                   WidthRequest="20">
-                <Image.Source>
-                    <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Close}" Color="{StaticResource Gray950}"/>
-                </Image.Source>
-                <!-- <Image.GestureRecognizers> -->
-                <!--     <TapGestureRecognizer Command="{Binding DeleteCommand}" -->
-                <!--                           CommandParameter="{Binding}"/> -->
-                <!-- </Image.GestureRecognizers> -->
-            </Image>
+            <Border Grid.Column="2" Padding="4, 0" BackgroundColor="{StaticResource Gray200}" StrokeThickness="0" StrokeShape="Rectangle">
+                <Image 
+                       WidthRequest="20">
+                    <Image.Source>
+                        <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Control_camera}" Color="{StaticResource Gray950}"/>
+                    </Image.Source>
+                    <!-- <Image.GestureRecognizers> -->
+                    <!--     <TapGestureRecognizer Command="{Binding DeleteCommand}" -->
+                    <!--                           CommandParameter="{Binding}"/> -->
+                    <!-- </Image.GestureRecognizers> -->
+                </Image>
+            </Border>
+
+            <Border Grid.Column="3" Padding="4, 0" BackgroundColor="{StaticResource Gray200}" StrokeThickness="0" StrokeShape="Rectangle">
+                <Image WidthRequest="20">
+                    <Image.Source>
+                        <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Close}" Color="{StaticResource Gray950}"/>
+                    </Image.Source>
+                    <!-- <Image.GestureRecognizers> -->
+                    <!--     <TapGestureRecognizer Command="{Binding DeleteCommand}" -->
+                    <!--                           CommandParameter="{Binding}"/> -->
+                    <!-- </Image.GestureRecognizers> -->
+                </Image>
+            </Border>
         </Grid>
-        <Border Grid.Row="1" 
+        <Grid Grid.Row="1">
+            <Label Text="PTZ"/>
+        </Grid>
+        <Border Grid.Row="2" 
                 Background="{StaticResource Gray200}" 
                 StrokeThickness="0"
                 StrokeShape="Rectangle"

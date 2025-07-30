@@ -3,17 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
+             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.View.CameraPage"
              x:DataType="viewModels:CameraViewModel"
              Title="Camera View">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Camera"
-                     >
+                     Command="{Binding AddCameraCommand}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Add}" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    <Grid x:Name="FlexibleGrid">
+    <Grid x:Name="FlexibleGrid" BindableLayout.ItemsSource="{Binding Cameras}">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate x:DataType="viewModels:CameraControlViewModel">
+                <controls:CameraControl BindingContext="{Binding .}"></controls:CameraControl>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
     </Grid>
+    <!-- <StackLayout BindableLayout.ItemsSource="{Binding Cameras}"> -->
+    <!--     <BindableLayout.ItemTemplate> -->
+    <!--         <DataTemplate> -->
+    <!--             <controls:CameraControl></controls:CameraControl> -->
+    <!--         </DataTemplate> -->
+    <!--     </BindableLayout.ItemTemplate> -->
+    <!-- </StackLayout> -->
 </ContentPage>
