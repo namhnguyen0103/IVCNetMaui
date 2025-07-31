@@ -19,6 +19,7 @@ public partial class CameraControlViewModel : ViewModelBase
 
     [ObservableProperty] private ObservableCollection<Unit> _units;
     [ObservableProperty] private int _selectedUnitIndex = -1;
+    [ObservableProperty] private IRelayCommand _deleteCommand;
     partial void OnSelectedUnitIndexChanged(int oldValue, int newValue)
     {
         if ((newValue == oldValue) || (newValue < 0 || newValue >= Units.Count))
@@ -32,5 +33,11 @@ public partial class CameraControlViewModel : ViewModelBase
 
     [ObservableProperty] private ObservableCollection<Feed> _feeds = new();
     [ObservableProperty] private int _selectedFeedIndex = -1;
-    
+    [ObservableProperty] private bool _ptzIsVisible;
+
+    [RelayCommand]
+    private void TogglePtz()
+    {
+        PtzIsVisible = !PtzIsVisible;
+    }
 }

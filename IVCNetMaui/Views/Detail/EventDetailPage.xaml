@@ -64,7 +64,7 @@
                         <FormattedString>
                             <Span Text="{Binding Event.UnitName, TargetNullValue='Unknown', FallbackValue='Unknown'}" />
                             <Span Text=" / " TextColor="{StaticResource Gray700}"/>
-                            <Span Text="{Binding Event.EventCategory, TargetNullValue='Unknown', FallbackValue='Unknown'}"/>
+                            <Span Text="{Binding Event.EventRuleName, TargetNullValue='Unknown', FallbackValue='Unknown'}"/>
                             <Span Text="  "  />
                             <Span Text="{Binding Event.Id, StringFormat='#{0}', TargetNullValue='Unknown', FallbackValue='#-1'}" TextColor="{StaticResource Gray700}"/>
                         </FormattedString>

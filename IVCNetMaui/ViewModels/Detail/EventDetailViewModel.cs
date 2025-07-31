@@ -42,7 +42,7 @@ public partial class EventDetailViewModel(INavigationService navigationService, 
 		return Event.IsClipUploaded;
 	} 
 	
-	[RelayCommand]
+	[RelayCommand(CanExecute = nameof(CanNavigateToClipDetail))]
 	private Task NavigateToClipDetail()
 	{
 		var queryParameters = new ShellNavigationQueryParameters()

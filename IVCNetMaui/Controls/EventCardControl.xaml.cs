@@ -12,6 +12,8 @@ public partial class EventCardControl : ContentView
 			var control = (EventCardControl)bindable;
 			control.OnPropertyChanged(nameof(MediaText));
 			control.OnPropertyChanged(nameof(MediaChipIsVisible));
+			control.OnPropertyChanged(nameof(SnapshotChipIsVisible));
+			control.OnPropertyChanged(nameof(ClipChipIsVisible));
 		});
 
 	public Event? Event
@@ -48,5 +50,6 @@ public partial class EventCardControl : ContentView
 	}
 	
 	public bool MediaChipIsVisible => Event != null && (!String.IsNullOrEmpty(Event.ClipFileName) || !String.IsNullOrEmpty(Event.SnapFileName));
-    
+    public bool SnapshotChipIsVisible => Event != null && !String.IsNullOrEmpty(Event.SnapFileName);
+    public bool ClipChipIsVisible => Event != null && !String.IsNullOrEmpty(Event.ClipFileName);
 }

@@ -15,9 +15,16 @@
     <Border Padding="{StaticResource CardPadding}" 
             StrokeShape="Rectangle" BindingContext="{x:Reference This}">
         <VerticalStackLayout>
-            <Label Text="SNAPSHOT &amp; CLIP"
-                   IsVisible="{Binding MediaChipIsVisible}" Style="{StaticResource Label-S}" TextColor="{StaticResource Blue600}" BackgroundColor="{StaticResource Blue200}" Padding="6, 4" VerticalTextAlignment="Center" HorizontalOptions="Start"
-                   Margin="0, 0, 0, 4"/>
+            <HorizontalStackLayout Margin="0, 0, 0, 4" IsVisible="{Binding MediaChipIsVisible}" Spacing="4">
+                <Label Text="SNAPSHOT"
+                       IsVisible="{Binding SnapshotChipIsVisible}"
+                       Style="{StaticResource Label-S}" TextColor="{StaticResource Blue600}" 
+                       BackgroundColor="{StaticResource Blue200}" Padding="6, 4" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
+                <Label Text="CLIP"
+                       IsVisible="{Binding ClipChipIsVisible}"
+                       Style="{StaticResource Label-S}" TextColor="{StaticResource Blue600}" 
+                       BackgroundColor="{StaticResource Blue200}" Padding="6, 4" VerticalTextAlignment="Center" HorizontalOptions="Start"/>
+            </HorizontalStackLayout>
             <Label Style="{StaticResource Body-M}" Margin="0, 0, 0, 4">
                 <Label.FormattedText>
                     <FormattedString>

@@ -14,16 +14,18 @@ public partial class CameraViewModel : ViewModelBase
     private readonly IViewModelFactoryService _viewModelFactoryService;
 
     [ObservableProperty] 
-    private ObservableCollection<CameraControlViewModel> _cameras;
+    private ObservableCollection<CameraControlViewModel> _cameras = new();
     
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(AddCameraCommand))]
-    private int _cameraCount = 1;
+    private int _cameraCount;
 
     [RelayCommand(CanExecute = nameof(CanAddCamera))]
     private void AddCamera()
     {
-        Cameras.Add(_viewModelFactoryService.GetViewModel<CameraControlViewModel>());
+        var newCamera = _viewModelFactoryService.GetViewModel<CameraControlViewModel>();
+        newCamera.DeleteCommand = new RelayCommand(() => DeleteCamera(newCamera));
+        Cameras.Add(newCamera);
         CameraCount++;
     }
         
@@ -31,7 +33,6 @@ public partial class CameraViewModel : ViewModelBase
         return CameraCount < 4;
     }
     
-    [RelayCommand]
     private void DeleteCamera(CameraControlViewModel camera)
     {
         if (CameraCount <= 1) return;
@@ -46,9 +47,6 @@ public partial class CameraViewModel : ViewModelBase
 	{
         _globalSetting = globalSetting;
         _viewModelFactoryService = viewModelFactoryService;
-        Cameras = 
-        [
-            _viewModelFactoryService.GetViewModel<CameraControlViewModel>(),
-        ];
+        AddCamera();
     }
 }

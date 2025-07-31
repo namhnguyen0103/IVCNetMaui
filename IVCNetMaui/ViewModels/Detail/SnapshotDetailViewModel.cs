@@ -17,7 +17,8 @@ public partial class SnapshotDetailViewModel(INavigationService navigationServic
     {
         if (value.SnapFileName != null)
         {
-            Task.Run(async () => await GetSnapAsync(value.SnapFileName));
+            // Task.Run(async () => await GetSnapAsync(value.SnapFileName));
+            _ = IsBusyFor(() => GetSnapAsync(value.SnapFileName));
         }
     }
     

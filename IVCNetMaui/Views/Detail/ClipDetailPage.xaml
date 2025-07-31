@@ -19,9 +19,9 @@
     <ScrollView>
         <Grid RowDefinitions="Auto, 200, Auto, 200, Auto, 200" RowSpacing="12">
             <Label Text="H265"></Label>
-            <!-- <toolkit:MediaElement Grid.Row="1" Source="{Binding MediaSource}"></toolkit:MediaElement> -->
+            <toolkit:MediaElement Grid.Row="1" Source="{Binding MediaSource}"></toolkit:MediaElement>
             <Label Grid.Row="2" Text="H264"></Label>
-            <!-- <toolkit:MediaElement Grid.Row="3" Source="{Binding MediaSource2}"></toolkit:MediaElement> -->
+            <toolkit:MediaElement Grid.Row="3" Source="{Binding MediaSource2}"></toolkit:MediaElement>
             <!-- <Label Grid.Row="4" Text="YCX-H264-640x360.mp4"></Label> -->
             <!-- <toolkit:MediaElement Grid.Row="5" Source="filesystem://YCX-H264-640x360.mp4"></toolkit:MediaElement> -->
         </Grid>

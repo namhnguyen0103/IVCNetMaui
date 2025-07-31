@@ -11,7 +11,7 @@
         <ToolbarItem Text="Add Camera"
                      Command="{Binding AddCameraCommand}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Add}" />
+                <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Magnify_fullscreen}" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
