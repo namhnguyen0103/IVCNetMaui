@@ -19,7 +19,7 @@ public interface IApiService
     Task<List<ModbusDevice>> GetModbusDeviceAsync(int unit);
     Task<List<WeatherStation>> GetWeatherStationAsync(int unit);
     Task<IoTStatus> GetIoTStatusAsync(int unit, string type, int iot);
-    Task<List<Event>> GetEventsAsync(int pageNum, int pageSize, string orderBy, string direction);
+    Task<List<Event>> GetEventsAsync(int pageNum, int pageSize, string orderBy, string direction );
     Task<int> GetEventCountAsync();
     Task<bool> PutUploadSnapAsync(int unit, int feed, string snapshot, string extension);
     Task<bool> PutUploadClipAsync(int unit, int feed, string clip, string extension);

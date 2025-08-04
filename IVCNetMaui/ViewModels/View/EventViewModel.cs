@@ -63,7 +63,6 @@ public partial class EventViewModel(INavigationService navigationService, IApiSe
 
     public override async Task InitializeAsync()
     {
-        await Task.Delay(500);
         Events = new ObservableCollection<Event>(await GetEventsAsync()); 
     }
 
