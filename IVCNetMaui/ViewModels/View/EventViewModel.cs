@@ -19,6 +19,14 @@ public partial class EventViewModel(INavigationService navigationService, IApiSe
     
     [ObservableProperty] private ObservableCollection<Event> _events = new();
     [ObservableProperty] private bool _isRefreshing;
+    [ObservableProperty] private FilterParams _filterParams = new();
+    partial void OnFilterParamsChanged(FilterParams? oldValue, FilterParams newValue)
+    {
+        if (oldValue == null || (oldValue.SortBy != newValue.SortBy || oldValue.SortOrder != newValue.SortOrder))
+        {
+            _ = IsBusyFor(RefreshEvents);
+        }
+    }
 
     [RelayCommand]
     private Task NavigateToEventDetail(Event data)
@@ -31,9 +39,9 @@ public partial class EventViewModel(INavigationService navigationService, IApiSe
     }
     
     [RelayCommand]
-    private Task OpenFilterPage()
+    private async Task OpenFilterPage()
     {
-        return NavigationService.PushModalAsync(new EventFilterPage());
+        await NavigationService.PushModalAsync(new EventFilterPage(this));
     }
 
     [RelayCommand]
@@ -63,7 +71,7 @@ public partial class EventViewModel(INavigationService navigationService, IApiSe
     {
         try
         {
-            var events = await ApiService.GetEventsAsync(_pageNum, 25);
+            var events = await ApiService.GetEventsAsync(_pageNum, 25, FilterParams.SortBy, FilterParams.SortOrder);
             _pageNum++;
             return events;
         }
@@ -72,5 +80,20 @@ public partial class EventViewModel(INavigationService navigationService, IApiSe
             Console.WriteLine(e);
             return new();
         }
+    }
+}
+
+public class FilterParams
+{
+    public string SortOrder { get; set; } = "desc";
+    public string SortBy { get; set; } = "Id";
+
+    public FilterParams Copy()
+    {
+        return new FilterParams()
+        {
+            SortOrder = this.SortOrder,
+            SortBy = this.SortBy,
+        };
     }
 }

@@ -53,6 +53,7 @@ public partial class ClipDetailViewModel : ViewModelBase
             var tempPath1 = Path.Combine(FileSystem.CacheDirectory, "video1.mp4");
             File.WriteAllBytes(tempPath1, task1);
             MediaSource = MediaSource.FromFile(tempPath1);
+            // MediaSource.From
             var task2 = await ApiService.GetClipAsync("1/4/-20250730153246191-20250730153256191");
             var tempPath2 = Path.Combine(FileSystem.CacheDirectory, "video2.mp4");
             File.WriteAllBytes(tempPath2, task2);

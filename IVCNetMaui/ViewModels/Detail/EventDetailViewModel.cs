@@ -20,6 +20,8 @@ public partial class EventDetailViewModel(INavigationService navigationService, 
 	{
 		UploadSnapCommand.NotifyCanExecuteChanged();
 		UploadClipCommand.NotifyCanExecuteChanged();
+		NavigateToSnapDetailCommand.NotifyCanExecuteChanged();
+		NavigateToClipDetailCommand.NotifyCanExecuteChanged();
 	}
 
 	private bool CanNavigateToSnapDetail()

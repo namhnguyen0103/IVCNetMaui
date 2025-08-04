@@ -3,7 +3,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
-             x:Class="IVCNetMaui.Views.View.EventFilterPage">
+             xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
+             x:Class="IVCNetMaui.Views.View.EventFilterPage"
+             x:DataType="viewModels:EventViewModel">
     
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -61,7 +63,7 @@
         </HorizontalStackLayout>
         <VerticalStackLayout Grid.Row="1" Spacing="10">
             <Label Text="Sort By" Style="{StaticResource Title-M}"/>
-            <CollectionView SelectionMode="Single" ItemTemplate="{StaticResource RadioCard}">
+            <CollectionView x:Name="SortOrderCollectionView" SelectionMode="Single" ItemTemplate="{StaticResource RadioCard}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
@@ -75,7 +77,7 @@
         </VerticalStackLayout>
         <VerticalStackLayout Grid.Row="2" Spacing="10">
             <Label Text="Type" Style="{StaticResource Title-M}"/>
-            <CollectionView SelectionMode="Single" ItemTemplate="{StaticResource RadioCard}">
+            <CollectionView x:Name="SortByCollectionView" SelectionMode="Single" ItemTemplate="{StaticResource RadioCard}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
@@ -92,8 +94,8 @@
             </CollectionView>
         </VerticalStackLayout>
         <Grid Grid.Row="3" ColumnDefinitions="*, *" ColumnSpacing="12">
-            <Button Clicked="Button_OnClicked" Text="CANCEL" BackgroundColor="Transparent" TextColor="{StaticResource Blue600}" BorderColor="{StaticResource Blue600}" BorderWidth="1"/>
-            <Button Grid.Column="1" Text="APPLY" Background="{StaticResource Blue600}"/>
+            <Button x:Name="CancelButton" Clicked="CancelButton_OnClicked" Text="CANCEL" BackgroundColor="Transparent" TextColor="{StaticResource Blue600}" BorderColor="{StaticResource Blue600}" BorderWidth="1"/>
+            <Button x:Name="ApplyButton" Clicked="ApplyButton_OnClicked" Grid.Column="1" Text="APPLY" Background="{StaticResource Blue600}"/>
         </Grid>
     </Grid>
     

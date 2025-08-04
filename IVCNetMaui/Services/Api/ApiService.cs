@@ -191,9 +191,9 @@ public class ApiService : IApiService
         return response;
     }
 
-    public async Task<List<Event>> GetEventsAsync(int pageNum, int pageSize)
+    public async Task<List<Event>> GetEventsAsync(int pageNum, int pageSize, string orderBy, string direction)
     {
-        var uri = $"{_globalSetting.BaseApiEndpoint}/eventlog/page?pagenum={pageNum}&pagesize={pageSize}&orderby=id&direction=desc";
+        var uri = $"{_globalSetting.BaseApiEndpoint}/eventlog/page?pagenum={pageNum}&pagesize={pageSize}&orderby={orderBy}&direction={direction}";
         var response = await _requestProvider.GetAsync<List<Event>>(uri);
         return response;
     }
