@@ -88,6 +88,7 @@
                         <x:String>Category</x:String>
                         <x:String>Event Time</x:String>
                         <x:String>Received Time</x:String>
+                        <x:String>Name</x:String>
                         <x:String>Tag</x:String>
                     </x:Array>
                 </CollectionView.ItemsSource>

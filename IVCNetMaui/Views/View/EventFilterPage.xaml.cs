@@ -31,6 +31,24 @@ public partial class EventFilterPage : ContentPage
             case "Id":
                 SortByCollectionView.SelectedItem = "ID";
                 break;
+            case "UnitName":
+                SortByCollectionView.SelectedItem = "Unit";
+                break;
+            case "EventCategory":
+                SortByCollectionView.SelectedItem = "Category";
+                break;
+            case "EventTime":
+                SortByCollectionView.SelectedItem = "Event Time";
+                break;
+            case "EventReceived":
+                SortByCollectionView.SelectedItem = "Received Time";
+                break;
+            case "EventRuleName":
+                SortByCollectionView.SelectedItem = "Name";
+                break;
+            case "EventRuleTag":
+                SortByCollectionView.SelectedItem = "Tag";
+                break;
             default:
                 SortByCollectionView.SelectedItem = "ID";
                 break;
@@ -60,6 +78,24 @@ public partial class EventFilterPage : ContentPage
         {
             case "ID":
                 newParams.SortBy = "Id";
+                break;
+            case "Unit":
+                newParams.SortBy = "UnitName";
+                break;
+            case "Category":
+                newParams.SortBy = "EventCategory";
+                break;
+            case "Event Time":
+                newParams.SortBy = "EventTime";
+                break;
+            case "Received Time":
+                newParams.SortBy = "EventReceived";
+                break;
+            case "Name":
+                newParams.SortBy = "EventRuleName";
+                break;
+            case "Tag":
+                newParams.SortBy = "EventRuleTag";
                 break;
             default:
                 newParams.SortBy = "Id";
