@@ -11,12 +11,12 @@ namespace IVCNetMaui.Converters
     {
         private readonly Color _upColor = Color.FromArgb("#66A80A");
         private readonly Color _inactiveColor = Color.FromArgb("#B71C0B");
-        private readonly Color _downColor = Color.FromArgb("#868E96");
+        private readonly Color _downColor = Color.FromArgb("#F0DD0F");
         private readonly Color _unknownColor = Color.FromArgb("#868E96");
         
         private readonly Color _upBackgroundColor = Color.FromArgb("#EEF9DF");
         private readonly Color _inactiveBackgroundColor = Color.FromArgb("#F9E0DF");
-        private readonly Color _downBackgroundColor = Color.FromArgb("#E9ECEE");
+        private readonly Color _downBackgroundColor = Color.FromArgb("#FEFACD");
         private readonly Color _unknownBackgroundColor = Color.FromArgb("#E9ECEE");
          
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)

@@ -77,11 +77,11 @@ namespace IVCNetMaui.ViewModels.Detail
                     var active = 0;
                     var tasks = value.Select(async camera =>
                     {
-                        var viewModel = new IoTCardViewModel(camera, navigationService, apiService);
+                        var viewModel = new IoTCardViewModel(camera.CameraId.ToString(), camera, navigationService, apiService);
                         if (camera.Status == 0)
                         {
                             ++active;
-                            var status = await ApiService.GetIoTStatusAsync(EdgeInfo.Id, "camera", camera.Id);
+                            var status = await ApiService.GetIoTStatusAsync(EdgeInfo.Id, "camera", camera.CameraId);
                             viewModel.Status = status;
                         }
 
@@ -108,7 +108,7 @@ namespace IVCNetMaui.ViewModels.Detail
                     var active = 0;
                     var tasks = value.Select(async modbus =>
                     {
-                        var viewModel = new IoTCardViewModel(modbus, navigationService, apiService);
+                        var viewModel = new IoTCardViewModel(modbus.Id.ToString(), modbus, navigationService, apiService);
                         if (modbus.Status == 0)
                         {
                             ++active;
@@ -139,7 +139,7 @@ namespace IVCNetMaui.ViewModels.Detail
                     var active = 0;
                     var tasks = value.Select(async weather =>
                     {
-                        var viewModel = new IoTCardViewModel(weather, navigationService, apiService);
+                        var viewModel = new IoTCardViewModel(weather.Id.ToString(), weather, navigationService, apiService);
                         if (weather.Status == 0)
                         {
                             ++active;

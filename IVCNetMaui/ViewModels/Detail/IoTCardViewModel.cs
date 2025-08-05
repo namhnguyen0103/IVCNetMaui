@@ -5,9 +5,11 @@ using IVCNetMaui.ViewModels.Base;
 
 namespace IVCNetMaui.ViewModels.Detail;
 
-public partial class IoTCardViewModel(IoTBase iotInfo, INavigationService navigationService, IApiService apiService)
+public partial class IoTCardViewModel(string id, IoTBase iotInfo, INavigationService navigationService, IApiService apiService)
     : ViewModelBase(navigationService, apiService)
 {
+    [ObservableProperty] private string _id = id;
+    
     [ObservableProperty] 
     [NotifyPropertyChangedFor(nameof(StatusString))]
     private IoTBase _iotInfo = iotInfo;

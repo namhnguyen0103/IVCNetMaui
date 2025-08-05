@@ -69,7 +69,7 @@
                Text="{Binding Password, Mode=TwoWay}"/>
         <Label Text="{Binding ErrorMessage}" Style="{StaticResource Body-M}" TextColor="Red" HorizontalTextAlignment="Center" Margin="0, 0, 0, 32"
                />
-        <sfButton:SfButton Text="Log in" Command="{Binding LoginCommand}" Style="{StaticResource LoadingButton}">
+        <sfButton:SfButton Text="Log in" Clicked="Button_HapticFeedback" Command="{Binding LoginCommand}" Style="{StaticResource LoadingButton}">
             <sfButton:SfButton.Content>
                 <DataTemplate>
                     <Grid>

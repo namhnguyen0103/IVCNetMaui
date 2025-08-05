@@ -16,12 +16,12 @@ public partial class EdgeCardViewModel : ViewModelBase
     
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Version))]
+    [NotifyPropertyChangedFor(nameof(VideoState))]
+    [NotifyPropertyChangedFor(nameof(UiState))]
     private EdgeStatus? _status;
     
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Uptime))]
-    [NotifyPropertyChangedFor(nameof(VideoState))]
-    [NotifyPropertyChangedFor(nameof(UiState))]
     [NotifyPropertyChangedFor(nameof(CpuUsage))]
     [NotifyPropertyChangedFor(nameof(VideoCpuUsage))]
     [NotifyPropertyChangedFor(nameof(UiCpuUsage))]
@@ -139,8 +139,8 @@ public partial class EdgeCardViewModel : ViewModelBase
     public String EdgeState => EdgeInfo.Status == 0 ? "Active" : "Deactivated";
     public String Version => Status?.Version ?? "Unknown";
     public TimeSpan Uptime => Health?.SystemStatus?.UpTime ?? TimeSpan.Zero;
-    public String VideoState => Health?.VideoProcessStatus?.State ?? "Unknown";
-    public String UiState => Health?.UiProcessStatus?.State ?? "Unknown";
+    public String VideoState => Status?.VeStatus ?? "Unknown";
+    public String UiState => Status?.UiStatus ?? "Unknown";
     public double CpuUsage
     {
         get

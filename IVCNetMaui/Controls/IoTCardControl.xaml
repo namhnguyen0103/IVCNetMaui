@@ -17,7 +17,7 @@
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text="{Binding IotInfo.Name}" />
-                    <Span Text="{Binding IotInfo.Id, StringFormat=' #{0}'}" TextColor="{StaticResource Gray700}"/>
+                    <Span Text="{Binding Id, StringFormat=' #{0}'}" TextColor="{StaticResource Gray700}"/>
                 </FormattedString>
             </Label.FormattedText>
         </Label>

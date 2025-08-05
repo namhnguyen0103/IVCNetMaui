@@ -19,4 +19,9 @@ public partial class LoginPage : ContentPage
 #endif
 		}
 	}
+
+	private void Button_HapticFeedback(object? sender, EventArgs e)
+	{
+		HapticFeedback.Default.Perform(HapticFeedbackType.Click);
+	}
 }
