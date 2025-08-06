@@ -52,7 +52,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     
-    <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="{StaticResource MainPadding}" RowSpacing="32">
+    <Grid RowDefinitions="Auto, *, Auto" Padding="{StaticResource MainPadding}" RowSpacing="32">
         <HorizontalStackLayout Spacing="6">
             <Image WidthRequest="28">
                 <Image.Source>
@@ -61,40 +61,44 @@
             </Image>
             <Label Text="Filter" Style="{StaticResource Title-L}" VerticalTextAlignment="Center"/>
         </HorizontalStackLayout>
-        <VerticalStackLayout Grid.Row="1" Spacing="10">
-            <Label Text="Sort By" Style="{StaticResource Title-M}"/>
-            <CollectionView x:Name="SortOrderCollectionView" SelectionMode="Single" ItemTemplate="{StaticResource RadioCard}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Ascending</x:String>
-                        <x:String>Descending</x:String>
-                    </x:Array>
-                </CollectionView.ItemsSource>
-            </CollectionView>
-        </VerticalStackLayout>
-        <VerticalStackLayout Grid.Row="2" Spacing="10">
-            <Label Text="Type" Style="{StaticResource Title-M}"/>
-            <CollectionView x:Name="SortByCollectionView" SelectionMode="Single" ItemTemplate="{StaticResource RadioCard}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>ID</x:String>
-                        <x:String>Unit</x:String>
-                        <x:String>Category</x:String>
-                        <x:String>Event Time</x:String>
-                        <x:String>Received Time</x:String>
-                        <x:String>Name</x:String>
-                        <x:String>Tag</x:String>
-                    </x:Array>
-                </CollectionView.ItemsSource>
-            </CollectionView>
-        </VerticalStackLayout>
-        <Grid Grid.Row="3" ColumnDefinitions="*, *" ColumnSpacing="12">
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="32">
+                <VerticalStackLayout Spacing="10">
+                <Label Text="Sort By" Style="{StaticResource Title-M}"/>
+                <CollectionView x:Name="SortOrderCollectionView" SelectionMode="Single" ItemTemplate="{StaticResource RadioCard}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Ascending</x:String>
+                            <x:String>Descending</x:String>
+                        </x:Array>
+                    </CollectionView.ItemsSource>
+                </CollectionView>
+            </VerticalStackLayout>
+                <VerticalStackLayout Spacing="10">
+                <Label Text="Type" Style="{StaticResource Title-M}"/>
+                <CollectionView x:Name="SortByCollectionView" SelectionMode="Single" ItemTemplate="{StaticResource RadioCard}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>ID</x:String>
+                            <x:String>Unit</x:String>
+                            <x:String>Category</x:String>
+                            <x:String>Event Time</x:String>
+                            <x:String>Received Time</x:String>
+                            <x:String>Name</x:String>
+                            <x:String>Tag</x:String>
+                        </x:Array>
+                    </CollectionView.ItemsSource>
+                </CollectionView>
+            </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <Grid Grid.Row="2" ColumnDefinitions="*, *" ColumnSpacing="12">
             <Button x:Name="CancelButton" Clicked="CancelButton_OnClicked" Text="CANCEL" BackgroundColor="Transparent" TextColor="{StaticResource Blue600}" BorderColor="{StaticResource Blue600}" BorderWidth="1"/>
             <Button x:Name="ApplyButton" Clicked="ApplyButton_OnClicked" Grid.Column="1" Text="APPLY" Background="{StaticResource Blue600}"/>
         </Grid>
