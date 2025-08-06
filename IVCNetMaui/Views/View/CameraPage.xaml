@@ -6,7 +6,13 @@
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Views.View.CameraPage"
              x:DataType="viewModels:CameraViewModel"
-             Title="Camera View">
+             Title="Camera View"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             ios:Page.UseSafeArea="False"
+             Shell.NavBarIsVisible="True"
+             BackgroundColor="{StaticResource Blue100}"
+             >
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Camera"
                      Command="{Binding AddCameraCommand}">
@@ -15,18 +21,6 @@
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    <Grid x:Name="FlexibleGrid" BindableLayout.ItemsSource="{Binding Cameras}">
-        <BindableLayout.ItemTemplate>
-            <DataTemplate x:DataType="viewModels:CameraControlViewModel">
-                <controls:CameraControl BindingContext="{Binding .}"></controls:CameraControl>
-            </DataTemplate>
-        </BindableLayout.ItemTemplate>
+    <Grid x:Name="FlexibleGrid" >
     </Grid>
-    <!-- <StackLayout BindableLayout.ItemsSource="{Binding Cameras}"> -->
-    <!--     <BindableLayout.ItemTemplate> -->
-    <!--         <DataTemplate> -->
-    <!--             <controls:CameraControl></controls:CameraControl> -->
-    <!--         </DataTemplate> -->
-    <!--     </BindableLayout.ItemTemplate> -->
-    <!-- </StackLayout> -->
 </ContentPage>

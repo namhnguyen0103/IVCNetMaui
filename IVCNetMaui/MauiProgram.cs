@@ -2,6 +2,7 @@
 using IVCNetMaui.Services.Api;
 using IVCNetMaui.Services.Authentication;
 using IVCNetMaui.Services.Credential;
+using IVCNetMaui.Services.DeviceInfo;
 using IVCNetMaui.Services.Dialog;
 using IVCNetMaui.Services.Factory;
 using IVCNetMaui.Services.Navigation;
@@ -71,6 +72,7 @@ namespace IVCNetMaui
             builder.Services.AddSingleton<IDialogService, DialogService>();
             builder.Services.AddSingleton<GlobalSetting>();
             builder.Services.AddSingleton<IViewModelFactoryService, ViewModelFactoryService>();
+            builder.Services.AddSingleton<IDeviceInfoService, DeviceInfoService>();
             
             return builder;
         }

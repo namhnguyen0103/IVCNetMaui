@@ -33,8 +33,8 @@ public partial class CameraControlViewModel : ViewModelBase
 
     [ObservableProperty] private ObservableCollection<Feed> _feeds = new();
     [ObservableProperty] private int _selectedFeedIndex = -1;
-    [ObservableProperty] private bool _ptzIsVisible;
 
+    [ObservableProperty] private bool _ptzIsVisible;
     [RelayCommand]
     private void TogglePtz()
     {

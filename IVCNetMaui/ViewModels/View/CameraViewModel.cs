@@ -1,4 +1,5 @@
 using IVCNetMaui.Services.Api;
+using IVCNetMaui.Services.DeviceInfo;
 using IVCNetMaui.Services.Dialog;
 using IVCNetMaui.Services.Factory;
 using IVCNetMaui.Services.Navigation;
@@ -14,6 +15,7 @@ public partial class CameraViewModel : ViewModelBase
     private readonly GlobalSetting _globalSetting;
     private readonly IViewModelFactoryService _viewModelFactoryService;
     private readonly IDialogService _dialogService;
+    private readonly int _maxCameras;
 
     [ObservableProperty] 
     private ObservableCollection<CameraControlViewModel> _cameras = new();
@@ -32,7 +34,8 @@ public partial class CameraViewModel : ViewModelBase
     }
         
     private bool CanAddCamera() {
-        return CameraCount < 4;
+        
+        return CameraCount < _maxCameras;
     }
     
     private async Task DeleteCamera(CameraControlViewModel camera)
@@ -49,11 +52,28 @@ public partial class CameraViewModel : ViewModelBase
         }
     }
     
-    public CameraViewModel(INavigationService navigationService, IApiService apiService, GlobalSetting globalSetting, IViewModelFactoryService viewModelFactoryService, IDialogService dialogService) : base(navigationService, apiService)
+    public CameraViewModel(INavigationService navigationService, IApiService apiService, GlobalSetting globalSetting, IViewModelFactoryService viewModelFactoryService, IDialogService dialogService, IDeviceInfoService deviceInfoService) : base(navigationService, apiService)
 	{
         _globalSetting = globalSetting;
         _viewModelFactoryService = viewModelFactoryService;
         _dialogService = dialogService;
+        var deviceIdiom = deviceInfoService.GetDeviceIdiom();
+        if (deviceIdiom == DeviceIdiom.Phone)
+        {
+            _maxCameras = 2;
+        }
+        else if (deviceIdiom == DeviceIdiom.Tablet)
+        {
+            _maxCameras = 4;
+        }
+        else if (deviceIdiom == DeviceIdiom.Desktop)
+        {
+            _maxCameras = 6;
+        }
+        else
+        {
+            _maxCameras = 1;
+        }
         AddCamera();
     }
 }

@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Windows.Input;
 using CommunityToolkit.Maui.Views;
 using IVCNetMaui.Models;
@@ -8,12 +9,28 @@ namespace IVCNetMaui.Controls;
 
 public partial class CameraControl : ContentView
 {
-    public CameraControl()
+    public CameraControl(CameraControlViewModel vm)
     {
+	    BindingContext = vm;
 		InitializeComponent();
 	}
-	private void Button_OnClicked(object? sender, EventArgs e)
-	{ 
-		throw new NotImplementedException();
+	private void ControlGrid_Tapped(object? sender, EventArgs e)
+	{
+		Task.Run(FadeInAnimation);
+	}
+
+	private async Task FadeInAnimation()
+	{
+		if (BindingContext is CameraControlViewModel)
+		{
+			if (Controls.Opacity == 0)
+			{
+				await Controls.FadeTo(1, 150);
+			}
+			else
+			{
+				await Controls.FadeTo(0, 150);
+			}
+		}
 	}
 }
