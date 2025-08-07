@@ -43,7 +43,7 @@ public partial class CameraViewModel : ViewModelBase
         if (CameraCount <= 1) return;
         if (Cameras.Contains(camera))
         {
-            var response = await _dialogService.ShowConfirmationAsync("Delete Camera", string.Empty, "OK", "Cancel");
+            var response = await _dialogService.ShowConfirmationAsync("Delete Live Feed", string.Empty, "OK", "Cancel");
             if (response)
             {
                 Cameras.Remove(camera);
