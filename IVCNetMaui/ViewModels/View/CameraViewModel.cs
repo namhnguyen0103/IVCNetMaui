@@ -76,4 +76,10 @@ public partial class CameraViewModel : ViewModelBase
         }
         AddCamera();
     }
+
+    [RelayCommand]
+    private void OpenFlyout()
+    {
+        NavigationService.TapFlyoutIcon();
+    }
 }

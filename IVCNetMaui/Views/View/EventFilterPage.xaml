@@ -43,7 +43,7 @@
                             Stroke="{StaticResource Gray300}">
                         <Image x:Name="Check" IsVisible="False" VerticalOptions="Center">
                             <Image.Source>
-                                <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Check}" Color="White"/>
+                                <FontImageSource Glyph="{x:Static m:MaterialSharp.Check}" Color="White"/>
                             </Image.Source>
                         </Image>
                     </Border>
@@ -56,7 +56,7 @@
         <HorizontalStackLayout Spacing="6">
             <Image WidthRequest="28">
                 <Image.Source>
-                    <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Manage_search}" Color="{StaticResource Gray950}"/>
+                    <FontImageSource Glyph="{x:Static m:MaterialSharp.Manage_search}" Color="{StaticResource Gray950}"/>
                 </Image.Source>
             </Image>
             <Label Text="Filter" Style="{StaticResource Title-L}" VerticalTextAlignment="Center"/>

@@ -9,7 +9,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Download">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Download}"  />
+                <FontImageSource Glyph="{x:Static m:MaterialSharp.Download}"  />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>

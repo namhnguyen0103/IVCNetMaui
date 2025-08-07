@@ -15,7 +15,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Filter" Command="{Binding OpenFilterPageCommand}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Manage_search}"  />
+                <FontImageSource Glyph="{x:Static m:MaterialSharp.Manage_search}"  />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>

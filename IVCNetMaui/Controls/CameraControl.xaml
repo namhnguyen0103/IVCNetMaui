@@ -2,8 +2,11 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:sfButton="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
              xmlns:converters="clr-namespace:IVCNetMaui.Converters"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
+             xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.CameraControl"
              x:Name="This"
              x:DataType="viewModels:CameraControlViewModel">
@@ -18,252 +21,91 @@
                 <Setter Property="BackgroundColor" Value="#9021252A" />
                 <Setter Property="StrokeShape" Value="RoundRectangle 4,4,4,4" />
                 <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <Style x:Key="Icon" TargetType="Border">
                 <Setter Property="Padding" Value="2, 2" />
                 
             </Style>
-            <Style TargetType="FontImageSource">
-                <Setter Property="FontFamily" Value="MaterialSharpFilled"/>
-                <Setter Property="Color" Value="White" />
-            </Style>
             <Style x:Key="IconImage" TargetType="Image">
                 <Setter Property="WidthRequest" Value="28" />
                 <Setter Property="HeightRequest" Value="28" />
+            </Style>
+            <Style x:Key="IconButton" TargetType="sfButton:SfButton">
+                <Setter Property="Opacity" Value="1"></Setter>
+                <Setter Property="Background" Value="#9021252A" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Opacity" Value="0.5" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Opacity" Value="0.5" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="#90ffffff" />
+                                    <Setter Property="TextColor" Value="{StaticResource Gray950}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
             </Style>
             <converters:ToPickerItemConverter x:Key="ToPickerItemConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
     
-    <Grid  BackgroundColor="{StaticResource Blue100}">
+    <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto, *, Auto" BackgroundColor="Black">
         <Image Source="camera_placeholder.png" Grid.ColumnSpan="3" Grid.RowSpan="3" >
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Tapped="ControlGrid_Tapped"></TapGestureRecognizer>
             </Image.GestureRecognizers>
         </Image>
-        <!-- <toolkit:MediaElement Source="filesystem://YCX-H264-640x360.mp4" Grid.ColumnSpan="3" Grid.RowSpan="3"></toolkit:MediaElement> -->
-
-        <!-- Controls -->
-        <Grid x:Name="Controls" ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto, *, Auto" BackgroundColor="#0821252A">
-            <Grid.GestureRecognizers>
-                <TapGestureRecognizer Tapped="ControlGrid_Tapped"/>
-            </Grid.GestureRecognizers>
-            <!-- Header Controls -->
-            <Grid x:Name="HeaderControls" Grid.ColumnSpan="3" ColumnDefinitions="Auto, *, Auto" Padding="4, 4, 4, 0" IsVisible="{Binding ControlIsVisible}">
-                <HorizontalStackLayout Spacing="6">
-                    <Picker Title="Select Unit"
-                            ItemsSource="{Binding Units}"
-                            ItemDisplayBinding="{Binding ., Converter={StaticResource ToPickerItemConverter}}"
-                            SelectedIndex="{Binding SelectedUnitIndex, Mode=TwoWay}"
-                            WidthRequest="120"/>
-                    <Picker Title="Select Feed"
-                            TextColor="White"
-                            ItemsSource="{Binding Feeds}"
-                            ItemDisplayBinding="{Binding ., Converter={StaticResource ToPickerItemConverter}}"
-                            SelectedIndex="{Binding SelectedFeedIndex, Mode=TwoWay}"
-                            WidthRequest="120"/>
-                    <Border Style="{StaticResource Icon}">
-                        <Border.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding TogglePtzCommand}"/>
-                        </Border.GestureRecognizers>
-                        <Image Style="{StaticResource IconImage}">
-                            <Image.Source>
-                                <FontImageSource Glyph="{x:Static m:MaterialSharp.Control_camera}"/>
-                            </Image.Source>
-                        </Image>
-                    </Border>
-                </HorizontalStackLayout>
-                <Border Grid.Column="2" Style="{StaticResource Icon}">
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DeleteCommand}" />
-                    </Border.GestureRecognizers>
-                    <Image Style="{StaticResource IconImage}">
-                        <Image.Source>
-                            <FontImageSource Glyph="{x:Static m:MaterialSharp.Close}"/>
-                        </Image.Source>
-                    </Image>
-                </Border>
-            </Grid>
         
-            <!-- Side Controls -->
-            <Grid Grid.Column="0" Grid.Row="1" RowDefinitions="Auto, Auto, Auto,  *" Grid.RowSpan="2" Padding="4, 16, 4, 0" RowSpacing="8" IsVisible="{Binding ControlIsVisible}">
-                <Border Style="{StaticResource Icon}" Grid.Row="1">
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding TogglePtzCommand}"/>
-                    </Border.GestureRecognizers>
-                    <Image Style="{StaticResource IconImage}">
-                        <Image.Source>
-                            <FontImageSource Glyph="{x:Static m:MaterialSharp.Photo_camera_back}"/>
-                        </Image.Source>
-                    </Image>
-                </Border>
-                <Border Style="{StaticResource Icon}" Grid.Row="2">
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding TogglePtzCommand}"/>
-                    </Border.GestureRecognizers>
-                    <Image Style="{StaticResource IconImage}">
-                        <Image.Source>
-                            <FontImageSource Glyph="{x:Static m:MaterialSharp.Video_camera_back}"/>
-                        </Image.Source>
-                    </Image>
-                </Border>
-            </Grid>
-            
-            <!-- Bottom Controls -->
-            <Grid x:Name="PtzControls" Grid.Row="2" Grid.ColumnSpan="3" ColumnDefinitions="*, Auto" Padding="4, 0, 4, 4" IsVisible="{Binding PtzIsVisible}">
-                <Grid Grid.Column="1" ColumnDefinitions="Auto, Auto, Auto, Auto" RowDefinitions="Auto, Auto, Auto">
-                    <Border Style="{StaticResource Icon}" Grid.Row="1">
-                        <Image Style="{StaticResource IconImage}">
-                            <Image.Source>
-                                <FontImageSource Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_left}"/>
-                            </Image.Source>
-                        </Image>
-                    </Border>
-                    <Border Style="{StaticResource Icon}" Grid.Column="1">
-                        <Image Style="{StaticResource IconImage}">
-                            <Image.Source>
-                                <FontImageSource Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_up}"/>
-                            </Image.Source>
-                        </Image>
-                    </Border>
-                    <Border Style="{StaticResource Icon}" Grid.Row="1" Grid.Column="2">
-                        <Image Style="{StaticResource IconImage}">
-                            <Image.Source>
-                                <FontImageSource Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_right}"/>
-                            </Image.Source>
-                        </Image>
-                    </Border>
-                    <Border Style="{StaticResource Icon}" Grid.Row="2" Grid.Column="1">
-                        <Image Style="{StaticResource IconImage}">
-                            <Image.Source>
-                                <FontImageSource Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_down}"/>
-                            </Image.Source>
-                        </Image>
-                    </Border>
-                    <Border Style="{StaticResource Icon}" Grid.Row="0" Grid.Column="3">
-                        <Image Style="{StaticResource IconImage}">
-                            <Image.Source>
-                                <FontImageSource Glyph="{x:Static m:MaterialSharp.Add}"/>
-                            </Image.Source>
-                        </Image>
-                    </Border>
-                    <Border Style="{StaticResource Icon}" Grid.Row="2" Grid.Column="3">
-                        <Image Style="{StaticResource IconImage}">
-                            <Image.Source>
-                                <FontImageSource Glyph="{x:Static m:MaterialSharp.Remove}"/>
-                            </Image.Source>
-                        </Image>
-                    </Border>
-                </Grid>
-            </Grid>
+        <!-- Header Controls -->
+        <Grid x:Name="HeaderControls" Grid.ColumnSpan="3" ColumnDefinitions="Auto, *, Auto" Padding="4">
+            <HorizontalStackLayout Spacing="6">
+                <Picker Title="Select Unit"
+                        ItemsSource="{Binding Units}"
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource ToPickerItemConverter}}"
+                        SelectedIndex="{Binding SelectedUnitIndex, Mode=TwoWay}"
+                        WidthRequest="120"/>
+                <Picker Title="Select Feed"
+                        TextColor="White"
+                        ItemsSource="{Binding Feeds}"
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource ToPickerItemConverter}}"
+                        SelectedIndex="{Binding SelectedFeedIndex, Mode=TwoWay}"
+                        WidthRequest="120"/>
+            </HorizontalStackLayout>
+            <controls:IconButtonControl Grid.Column="2" Glyph="{x:Static m:MaterialSharp.Close}" Command="{Binding DeleteCommand}" />
+        </Grid>
+        
+        <!-- Bottom Left Controls -->
+        <HorizontalStackLayout x:Name="BottomLeftControls" Grid.Column="0" Grid.Row="2" Padding="4, 4" Spacing="6" VerticalOptions="End">
+            <controls:IconButtonControl IsCheckable="True" 
+                                        IsChecked="{Binding PtzIsVisible}" 
+                                        Glyph="{x:Static m:MaterialSharp.Control_camera}"
+                                        Command="{Binding TogglePtzCommand}"></controls:IconButtonControl>
+            <controls:IconButtonControl Glyph="{x:Static m:MaterialSharp.Photo_camera_back}" />
+            <controls:IconButtonControl Glyph="{x:Static m:MaterialSharp.Video_camera_back}" />
+        </HorizontalStackLayout>
+        
+        <!-- Bottom Right Controls -->
+        <Grid x:Name="BottomRightControls" Grid.Row="2" Grid.Column="2" ColumnDefinitions="Auto, Auto, Auto, Auto" RowDefinitions="Auto, Auto, Auto" IsVisible="{Binding PtzIsVisible}" Padding="4">
+            <controls:IconButtonControl Grid.Row="1" Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_left}" />
+            <controls:IconButtonControl Grid.Column="1" Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_up}" />
+            <controls:IconButtonControl Grid.Column="2" Grid.Row="1" Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_right}" />
+            <controls:IconButtonControl Grid.Row="2" Grid.Column="1" Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_down}" />
+            <controls:IconButtonControl Grid.Row="0" Grid.Column="3" Glyph="{x:Static m:MaterialSharp.Add}" />
+            <controls:IconButtonControl Grid.Row="2" Grid.Column="3" Glyph="{x:Static m:MaterialSharp.Remove}" />
         </Grid>
     </Grid>
-    
-    <!-- <Grid RowDefinitions="Auto, Auto, *" BackgroundColor="{StaticResource Gray500}"> -->
-    <!--     <Grid ColumnDefinitions="*, *, *, *, *, *" -->
-    <!--           ColumnSpacing="6"> -->
-    <!--         <Picker Grid.Column="0"  -->
-    <!--                 Grid.ColumnSpan="2" -->
-    <!--                 Title="Select Unit" -->
-    <!--                 ItemsSource="{Binding Units}" -->
-    <!--                 ItemDisplayBinding="{Binding ., Converter={StaticResource ToPickerItemConverter}}" -->
-    <!--                 SelectedIndex="{Binding SelectedUnitIndex, Mode=TwoWay}"/> -->
-    <!--         <Picker Grid.Column="2"  -->
-    <!--                 Grid.ColumnSpan="2" -->
-    <!--                 Title="Select Feed" -->
-    <!--                 ItemsSource="{Binding Feeds}" -->
-    <!--                 ItemDisplayBinding="{Binding ., Converter={StaticResource ToPickerItemConverter}}" -->
-    <!--                 SelectedIndex="{Binding SelectedFeedIndex, Mode=TwoWay}"/> -->
-    <!--         <Border Grid.Column="4" BackgroundColor="{StaticResource Gray200}" StrokeThickness="0" StrokeShape="Rectangle"> -->
-    <!--             <Border.GestureRecognizers> -->
-    <!--                 <TapGestureRecognizer Command="{Binding TogglePtzCommand}"/> -->
-    <!--             </Border.GestureRecognizers> -->
-    <!--             <Image  -->
-    <!--                    WidthRequest="20"> -->
-    <!--                 <Image.Source> -->
-    <!--                     <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Control_camera}" Color="{StaticResource Gray950}"/> -->
-    <!--                 </Image.Source> -->
-    <!--             </Image> -->
-    <!--         </Border> -->
-    <!-- -->
-    <!--         <Border Grid.Column="5" Padding="4, 0" BackgroundColor="{StaticResource Gray200}" StrokeThickness="0" StrokeShape="Rectangle"> -->
-    <!--             <Border.GestureRecognizers> -->
-    <!--                 <TapGestureRecognizer Command="{Binding DeleteCommand}" /> -->
-    <!--             </Border.GestureRecognizers> -->
-    <!--             <Image WidthRequest="20"> -->
-    <!--                 <Image.Source> -->
-    <!--                     <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Close}" Color="{StaticResource Gray950}"/> -->
-    <!--                 </Image.Source> -->
-    <!--             </Image> -->
-    <!--         </Border> -->
-    <!--     </Grid> -->
-    <!--     <Grid Grid.Row="1" ColumnDefinitions="*, *, *, *, *, *" RowDefinitions="Auto, Auto" RowSpacing="8" ColumnSpacing="6" Padding="0, 4, 0, 0" IsVisible="{Binding PtzIsVisible}"> -->
-    <!--         <Picker Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" SelectedIndex="0" Title="Select Mode"> -->
-    <!--             <Picker.ItemsSource> -->
-    <!--                 <x:Array Type="{x:Type x:String}"> -->
-    <!--                     <x:String>Relative</x:String> -->
-    <!--                     <x:String>Continuous</x:String> -->
-    <!--                 </x:Array> -->
-    <!--             </Picker.ItemsSource> -->
-    <!--         </Picker> -->
-    <!--         <Picker Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" SelectedIndex="0" Title="Select Preset"> -->
-    <!--             <Picker.ItemsSource> -->
-    <!--                 <x:Array Type="{x:Type x:String}"> -->
-    <!--                 </x:Array> -->
-    <!--             </Picker.ItemsSource> -->
-    <!--         </Picker> -->
-    <!--          -->
-    <!--         <Border Grid.Row="1"> -->
-    <!--             <Image WidthRequest="20"> -->
-    <!--                 <Image.Source> -->
-    <!--                     <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Add}" Color="{StaticResource Gray950}"/> -->
-    <!--                 </Image.Source> -->
-    <!--             </Image> -->
-    <!--         </Border> -->
-    <!--         <Border Grid.Row="1" Grid.Column="1"> -->
-    <!--             <Image WidthRequest="20"> -->
-    <!--                 <Image.Source> -->
-    <!--                     <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Remove}" Color="{StaticResource Gray950}"/> -->
-    <!--                 </Image.Source> -->
-    <!--             </Image> -->
-    <!--         </Border> -->
-    <!--         <Border Grid.Row="1" Grid.Column="2"> -->
-    <!--             <Image WidthRequest="20"> -->
-    <!--                 <Image.Source> -->
-    <!--                     <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_left}" Color="{StaticResource Gray950}"/> -->
-    <!--                 </Image.Source> -->
-    <!--             </Image> -->
-    <!--         </Border> -->
-    <!--         <Border Grid.Row="1" Grid.Column="3"> -->
-    <!--             <Image WidthRequest="20"> -->
-    <!--                 <Image.Source> -->
-    <!--                     <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_up}" Color="{StaticResource Gray950}"/> -->
-    <!--                 </Image.Source> -->
-    <!--             </Image> -->
-    <!--         </Border> -->
-    <!--         <Border Grid.Row="1" Grid.Column="4"> -->
-    <!--             <Image WidthRequest="20"> -->
-    <!--                 <Image.Source> -->
-    <!--                     <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_right}" Color="{StaticResource Gray950}"/> -->
-    <!--                 </Image.Source> -->
-    <!--             </Image> -->
-    <!--         </Border> -->
-    <!--         <Border Grid.Row="1" Grid.Column="5"> -->
-    <!--             <Image WidthRequest="20"> -->
-    <!--                 <Image.Source> -->
-    <!--                     <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_down}" Color="{StaticResource Gray950}"/> -->
-    <!--                 </Image.Source> -->
-    <!--             </Image> -->
-    <!--         </Border> -->
-    <!--     </Grid> -->
-    <!--     <Border Grid.Row="2"  -->
-    <!--             Background="{StaticResource Gray950}"  -->
-    <!--             StrokeThickness="0" -->
-    <!--             StrokeShape="Rectangle" -->
-    <!--             x:Name="ContentBorder"> -->
-    <!--         ~1~ <Label Text="Select a feed" TextColor="{StaticResource Gray700}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/> @1@ -->
-    <!--         ~1~ <toolkit:MediaElement Source="filesystem://YCX-H264-640x360.mp4"></toolkit:MediaElement> @1@ -->
-    <!--         <Image Source="camera_placeholder.png"/> -->
-    <!--     </Border> -->
-    <!-- </Grid> -->
 </ContentView>

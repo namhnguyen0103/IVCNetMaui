@@ -4,23 +4,69 @@
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              xmlns:viewModels="clr-namespace:IVCNetMaui.ViewModels.View"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
+             xmlns:sfButton="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
              x:Class="IVCNetMaui.Views.View.CameraPage"
              x:DataType="viewModels:CameraViewModel"
              Title="Camera View"
-             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             ios:Page.UseSafeArea="False"
-             Shell.NavBarIsVisible="True"
-             BackgroundColor="{StaticResource Blue100}"
-             >
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="Black">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="IconButton" TargetType="sfButton:SfButton">
+                <Setter Property="Opacity" Value="1"></Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Opacity" Value="0.5"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Opacity" Value="0.5" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Camera"
                      Command="{Binding AddCameraCommand}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="MaterialSharpFilled" Glyph="{x:Static m:MaterialSharp.Magnify_fullscreen}" />
+                <FontImageSource Glyph="{x:Static m:MaterialSharp.Magnify_fullscreen}" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    <Grid x:Name="FlexibleGrid" >
+    <Grid RowDefinitions="Auto, *">
+        <Grid ColumnDefinitions="Auto, *, Auto" Padding="4, 0">
+            <Image Grid.Column="0">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenFlyoutCommand}"></TapGestureRecognizer>
+                </Image.GestureRecognizers>
+                <Image.Source>
+                    <FontImageSource Glyph="{x:Static m:MaterialSharp.Menu}"></FontImageSource>
+                </Image.Source>
+            </Image>
+            <sfButton:SfButton Grid.Column="2" Command="{Binding AddCameraCommand}" Background="Transparent" Style="{StaticResource IconButton}">
+                <sfButton:SfButton.Content>
+                    <DataTemplate>
+                        <Image>
+                            <Image.Source>
+                                <FontImageSource Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}" Glyph="{x:Static m:MaterialSharp.Magnify_fullscreen}"></FontImageSource>
+                            </Image.Source>
+                        </Image>
+                    </DataTemplate>
+                </sfButton:SfButton.Content>
+            </sfButton:SfButton>
+        </Grid>
+        <Grid x:Name="FlexibleGrid" Grid.Row="1" BackgroundColor="{StaticResource Gray900}" RowSpacing="0.5" ColumnSpacing="0.5">
+        </Grid>
     </Grid>
 </ContentPage>

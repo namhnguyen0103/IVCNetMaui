@@ -12,7 +12,7 @@
 
     <MenuItem Text="Logout" Clicked="LogoutMenuItem_Clicked">
         <MenuItem.IconImageSource>
-            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Logout}" Color="{StaticResource Gray700}"/>
+            <FontImageSource Glyph="{x:Static m:MaterialSharp.Logout}" Color="{StaticResource Gray700}"/>
         </MenuItem.IconImageSource>
     </MenuItem>
 </Shell>

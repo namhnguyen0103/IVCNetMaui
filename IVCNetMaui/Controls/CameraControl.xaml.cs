@@ -23,13 +23,22 @@ public partial class CameraControl : ContentView
 	{
 		if (BindingContext is CameraControlViewModel)
 		{
-			if (Controls.Opacity == 0)
+			if (HeaderControls.Opacity == 0)
 			{
-				await Controls.FadeTo(1, 150);
+				await Task.WhenAll([
+					HeaderControls.FadeTo(1, 150),
+					BottomLeftControls.FadeTo(1, 150),
+					BottomRightControls.FadeTo(1, 150)
+				]);
+
 			}
 			else
 			{
-				await Controls.FadeTo(0, 150);
+				await Task.WhenAll([
+					HeaderControls.FadeTo(0, 150),
+					BottomLeftControls.FadeTo(0, 150),
+					BottomRightControls.FadeTo(0, 150)
+				]);
 			}
 		}
 	}

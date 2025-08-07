@@ -18,7 +18,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Refresh" Command="{Binding RefreshCommand}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Refresh}"  />
+                <FontImageSource Glyph="{x:Static m:MaterialSharp.Refresh}"  />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>

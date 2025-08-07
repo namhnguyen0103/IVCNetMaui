@@ -117,7 +117,7 @@
                                 <VerticalStackLayout Style="{StaticResource ButtonStack}">
                                     <Image>
                                         <Image.Source>
-                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
+                                            <FontImageSource Glyph="{x:Static m:MaterialSharp.Upload}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
                                         </Image.Source>
                                     </Image>
                                     <Label x:Name="ButtonLabel" Text="UPLOAD" Style="{StaticResource ButtonText}" TextColor="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
@@ -137,7 +137,7 @@
                                 <VerticalStackLayout Style="{StaticResource ButtonStack}">
                                     <Image>
                                         <Image.Source>
-                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Image}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
+                                            <FontImageSource Glyph="{x:Static m:MaterialSharp.Image}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
                                         </Image.Source>
                                     </Image>
                                     <Label x:Name="ButtonLabel" Text="VIEW" Style="{StaticResource ButtonText}" TextColor="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
@@ -156,7 +156,7 @@
                                 <VerticalStackLayout Style="{StaticResource ButtonStack}">
                                     <Image>
                                         <Image.Source>
-                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Download}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
+                                            <FontImageSource Glyph="{x:Static m:MaterialSharp.Download}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
                                         </Image.Source>
                                     </Image>
                                     <Label x:Name="ButtonLabel" Text="DOWNLOAD" Style="{StaticResource ButtonText}" TextColor="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
@@ -179,7 +179,7 @@
                                 <VerticalStackLayout Style="{StaticResource ButtonStack}">
                                     <Image>
                                         <Image.Source>
-                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Upload}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
+                                            <FontImageSource Glyph="{x:Static m:MaterialSharp.Upload}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
                                         </Image.Source>
                                     </Image>
                                     <Label x:Name="ButtonLabel" Text="UPLOAD" Style="{StaticResource ButtonText}" TextColor="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
@@ -200,7 +200,7 @@
                                 <VerticalStackLayout Style="{StaticResource ButtonStack}">
                                     <Image>
                                         <Image.Source>
-                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Image}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
+                                            <FontImageSource Glyph="{x:Static m:MaterialSharp.Image}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
                                         </Image.Source>
                                     </Image>
                                     <Label x:Name="ButtonLabel" Text="VIEW" Style="{StaticResource ButtonText}" TextColor="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
@@ -219,7 +219,7 @@
                                 <VerticalStackLayout Style="{StaticResource ButtonStack}">
                                     <Image>
                                         <Image.Source>
-                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Download}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
+                                            <FontImageSource Glyph="{x:Static m:MaterialSharp.Download}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
                                         </Image.Source>
                                     </Image>
                                     <Label x:Name="ButtonLabel" Text="DOWNLOAD" Style="{StaticResource ButtonText}" TextColor="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>

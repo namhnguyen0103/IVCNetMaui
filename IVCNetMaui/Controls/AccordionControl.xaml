@@ -17,7 +17,7 @@
                     <ContentView ControlTemplate="{Binding HeaderContent}"/>
                     <Image x:Name="HeaderIcon" Grid.Column="1" WidthRequest="14">
                         <Image.Source>
-                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_down}" Color="{StaticResource Gray900}"/>
+                            <FontImageSource Glyph="{x:Static m:MaterialSharp.Keyboard_arrow_down}" Color="{StaticResource Gray900}"/>
                         </Image.Source>
                     </Image>
                 </Grid>
