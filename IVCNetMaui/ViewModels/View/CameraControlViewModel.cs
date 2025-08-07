@@ -40,4 +40,6 @@ public partial class CameraControlViewModel : ViewModelBase
     {
         PtzIsVisible = !PtzIsVisible;
     }
+
+    [ObservableProperty] private double _controlOpacity = 1;
 }

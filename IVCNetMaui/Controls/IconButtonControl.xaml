@@ -3,7 +3,6 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sfButton="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
-             xmlns:m="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
              xmlns:controls="clr-namespace:IVCNetMaui.Controls"
              x:Class="IVCNetMaui.Controls.IconButtonControl"
              x:Name="This"
@@ -47,7 +46,7 @@
         <sfButton:SfButton.Content>
             <DataTemplate x:DataType="controls:IconButtonControl">
                 <Grid Padding="2">
-                    <Image WidthRequest="28" HeightRequest="28">
+                    <Image WidthRequest="32" HeightRequest="32">
                         <Image.Source>
                             <FontImageSource Glyph="{Binding Glyph}" Color="{Binding Source={RelativeSource AncestorType={x:Type sfButton:SfButton}}, Path=TextColor}"/>
                         </Image.Source>
